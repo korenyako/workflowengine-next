@@ -1,0 +1,51 @@
+[
+  {
+    "path": "/",
+    "title": "FormEngine — React Form Library & Builder",
+    "description": "Build React forms with FormEngine: Core JSON renderer, UI components, and visual drag-and-drop Builder. Integrate custom components to match your design system and business logic."
+  },
+  {
+    "path": "/react-form-library",
+    "title": "FormEngine Core — React JSON Form Renderer",
+    "description": "Core JSON renderer for React forms: schema-driven UI, validations, controlled components, and full customization for enterprise use."
+  },
+  {
+    "path": "/react-form-builder-library",
+    "title": "React Drag-and-Drop Form Builder — FormEngine Designer",
+    "description": "Visual builder for React forms: drag and drop fields, configure validation, export schema, integrate with your components."
+  },
+  {
+    "path": "/react-form-components-library",
+    "title": "FormEngine UI — Ready-made React Form Components",
+    "description": "Production-ready React form components: inputs, selects, layouts, validation states, accessible and themeable."
+  },
+  {
+    "path": "/react-form-components-library/data-grid",
+    "title": "React Data Grid Component | FormEngine React Table Library",
+    "description": "Explore FormEngine React Data Grid – a lightweight, customizable React table component for form builders. Supports JSON schemas, editable cells, and drag-and-drop integration.",
+    "ogImage": "/og/data-grid.png",
+    "keywords": "react data grid, formengine table, react table component, data grid guide",
+    "type": "product"
+  },
+  {
+    "path": "/react-form-builder-library/pricing",
+    "title": "Drag and Drop Form Builder Premium Pricing",
+    "description": "Transparent pricing for FormEngine Designer (React form builder). Compare plans and choose what fits your team."
+  },
+  {
+    "path": "/ai-form-builder",
+    "title": "AI React Form Builder — Generate complex forms in minutes | FormEngine",
+    "description": "Build complex forms in ~5 minutes. Upload a screenshot or PDF—AI produces schema, validation, and React code. Powered by FormEngine Core. Fine-tune in Designer."
+  },
+  {
+    "path": "/contacts",
+    "title": "Contact Us — FormEngine",
+    "description": "Get in touch with the FormEngine team about the Core library, the React form builder, licensing, and support."
+  },
+  {
+    "path": "/404",
+    "title": "404 — Page not found",
+    "description": "The page you are looking for could not be found.",
+    "noindex": true
+  }
+]

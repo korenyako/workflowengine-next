@@ -1,0 +1,103 @@
+/* Contacts page MUI form styles for dark theme */
+
+/* Form container */
+#fe-contact-form {
+  color: #ffffff;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  font-family: var(--font-inter), "Inter", sans-serif;
+}
+
+/* Override MUI default font (Roboto) with Inter */
+#fe-contact-form .MuiTypography-root,
+#fe-contact-form .MuiInputBase-root,
+#fe-contact-form .MuiInputLabel-root,
+#fe-contact-form .MuiButton-root,
+#fe-contact-form .MuiFormHelperText-root {
+  font-family: var(--font-inter), "Inter", sans-serif;
+}
+
+/* Spacing between form fields */
+#fe-contact-form .MuiFormControl-root {
+  margin-bottom: 1.25rem;
+}
+
+/* Input styling: filled background, no outline, enforce min height for client-side navigation */
+#fe-contact-form .MuiOutlinedInput-root {
+  border-radius: 0.5rem;
+  background-color: #1f2937;
+  min-height: 56px;
+}
+
+#fe-contact-form .MuiOutlinedInput-input {
+  padding: 16.5px 14px;
+  box-sizing: border-box;
+  height: auto;
+}
+
+#fe-contact-form .MuiOutlinedInput-notchedOutline {
+  border: none;
+}
+
+/* Error state: tinted red background, revert on focus */
+#fe-contact-form .MuiOutlinedInput-root.Mui-error {
+  background-color: #2a1215;
+}
+
+#fe-contact-form .MuiOutlinedInput-root.Mui-error.Mui-focused {
+  background-color: #1f2937;
+}
+
+#fe-contact-form .MuiFormControl-root:focus-within .MuiInputLabel-root.Mui-error {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+#fe-contact-form .MuiFormControl-root:focus-within .MuiFormHelperText-root.Mui-error {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Remove MUI default/dark theme backgrounds (white flash on navigation) */
+#fe-contact-form,
+#fe-contact-form * {
+  background-color: transparent !important;
+}
+
+/* Restore specific backgrounds */
+#fe-contact-form .MuiOutlinedInput-root {
+  background-color: #1f2937 !important;
+}
+
+#fe-contact-form .MuiOutlinedInput-root.Mui-error {
+  background-color: #2a1215 !important;
+}
+
+#fe-contact-form .MuiOutlinedInput-root.Mui-error.Mui-focused {
+  background-color: #1f2937 !important;
+}
+
+/* MUI Button styling — matches site CTA primary */
+#fe-contact-form .MuiButton-contained {
+  margin-top: 0.5rem;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-transform: none;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  color: #1f2937;
+  background: linear-gradient(to right, #93c5fd, #d8b4fe);
+  box-shadow: none;
+  transition: all 200ms;
+}
+
+#fe-contact-form .MuiButton-contained:hover {
+  background: linear-gradient(to right, #60a5fa, #a78bfa);
+  box-shadow: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #fe-contact-form {
+    padding: 1rem;
+  }
+}

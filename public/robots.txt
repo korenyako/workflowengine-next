@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Disallow: /demos
+Disallow: /404
+Disallow: /draft
+Disallow: /drafts
+Disallow: /preview
+Disallow: /*?*utm_
+Disallow: /*?*ref=
+Disallow: /*?*fbclid=
+Disallow: /*?*gclid=
+Sitemap: https://formengine.io/sitemap.xml
+Sitemap: https://formengine.io/documentation/sitemap.xml
+LLMs-Txt: https://formengine.io/llms.txt

@@ -1,0 +1,274 @@
+[
+  {
+    "type": "HeroWithCodeBlock",
+    "props": {
+      "title": "Open Source Lightweight React JSON Schema Form Library for Mantine",
+      "description": "Build dynamic, reusable forms from JSON schema with Mantine components — optimized for bundle size, tree-shaking, and developer experience.",
+      "code": "npm i @react-form-builder/core @react-form-builder/components-mantine",
+      "anchor": "/documentation/",
+      "hideStarButton": true
+    }
+  },
+
+  {
+    "type": "FeaturesGridBlock",
+    "props": {
+      "title": "Why Choose WorkflowEngine Core with Mantine",
+      "anchor": "why-choose",
+      "features": [
+        {
+          "icon": "OnboardingIcon",
+          "title": "Modern Design System",
+          "text": "Mantine offers clean, modern components with excellent attention to detail. Your forms will look professional out of the box."
+        },
+        {
+          "icon": "ScriptIcon",
+          "title": "MIT Licensed",
+          "text": "Both WorkflowEngine Core and the Mantine components package are MIT licensed. Use them freely in commercial and personal projects."
+        },
+        {
+          "icon": "DragDropEditorIcon",
+          "title": "Rich Component Set",
+          "text": "TextInput, NumberInput, Select, MultiSelect, Checkbox, Radio, Switch, Slider, DatePicker, ColorPicker, and more."
+        },
+        {
+          "icon": "DeveloperIntegrationIcon",
+          "title": "Excellent DX",
+          "text": "Mantine is known for its developer experience. Great TypeScript support, intuitive APIs, and comprehensive documentation."
+        },
+        {
+          "icon": "CustomComponentIcon",
+          "title": "Accessible by Default",
+          "text": "Mantine components are built with accessibility in mind. ARIA attributes, keyboard navigation, and screen reader support included."
+        },
+        {
+          "icon": "ReusableFormsIcon",
+          "title": "TypeScript Support",
+          "text": "Full TypeScript definitions for all components. Get autocomplete and type checking in your IDE."
+        },
+        {
+          "icon": "DynamicLogicIcon",
+          "title": "Flexible Styling",
+          "text": "Use Mantine's CSS-in-JS styling, CSS modules, or Tailwind CSS. Style your forms however you prefer."
+        },
+        {
+          "icon": "ValidationIcon",
+          "title": "Form Validation",
+          "text": "Built-in validation with Mantine-styled error messages. Works with WorkflowEngine's validation system and third-party libraries."
+        },
+        {
+          "icon": "MultiLanguageIcon",
+          "title": "RTL Support",
+          "text": "Mantine supports RTL languages. Build forms for Arabic, Hebrew, and other RTL locales with ease."
+        }
+      ]
+    }
+  },
+
+  {
+    "type": "HowToUseBlock",
+    "props": {
+      "title": "How WorkflowEngine Core fits into your stack",
+      "description": "WorkflowEngine Core maps a JSON form definition to a dynamic HTML form and lets you plug in your own UI components — or use the ready-made Mantine pack.",
+      "columns": 4,
+      "centered": true,
+      "blockBg": "#111827",
+      "items": [
+        {
+          "icon": "1",
+          "title": "JSON schema stored (Git / DB / API)",
+          "text": ""
+        },
+        {
+          "icon": "2",
+          "title": "Frontend loads schema",
+          "text": ""
+        },
+        {
+          "icon": "3",
+          "title": "WorkflowEngine Core renders UI through Mantine view",
+          "text": ""
+        },
+        {
+          "icon": "4",
+          "title": "Submit data to your backend",
+          "text": ""
+        }
+      ]
+    }
+  },
+
+  {
+    "type": "FeaturesGridBlock",
+    "props": {
+      "title": "Features built for real-world Mantine apps",
+      "anchor": "features",
+      "features": [
+        {
+          "icon": "MuiComponentsPackIcon",
+          "title": "Mantine components pack",
+          "text": "Use Mantine components via @react-form-builder/components-mantine."
+        },
+        {
+          "icon": "UiAgnosticIcon",
+          "title": "UI-agnostic core",
+          "text": "Keep the renderer independent from UI. Swap themes when needed."
+        },
+        {
+          "icon": "ScaleAcrossProjectsIcon",
+          "title": "Reusable JSON schemas",
+          "text": "Copy, version, and reuse forms across applications and teams."
+        },
+        {
+          "icon": "ModernStackIcon",
+          "title": "Modern stack friendly",
+          "text": "Works smoothly with Next.js, Remix, and other React setups."
+        },
+        {
+          "icon": "WhiteLabelIcon",
+          "title": "Multiple themes supported",
+          "text": "MUI, shadcn/ui, React Suite, Mantine — with more on the way."
+        },
+        {
+          "icon": "DragDropEditorIcon",
+          "title": "Open-source core + optional drag and drop form builder",
+          "text": "Start with the free MIT core and scale to a drag-and-drop workflow when needed."
+        }
+      ]
+    }
+  },
+
+  {
+    "type": "HowToUseBlock",
+    "props": {
+      "title": "Quickstart: render your first Mantine form in minutes",
+      "columns": 3,
+      "centered": true,
+      "blockBg": "#111827",
+      "items": [
+        {
+          "icon": "1",
+          "title": "Install core + Mantine components pack",
+          "text": ""
+        },
+        {
+          "icon": "2",
+          "title": "Load a JSON schema\n(local file or API)",
+          "text": ""
+        },
+        {
+          "icon": "3",
+          "title": "Render with FormViewer\nand submit to your backend",
+          "text": ""
+        }
+      ]
+    }
+  },
+
+  {
+    "type": "MantineInstallationBlock",
+    "props": {}
+  },
+
+  {
+    "type": "MantineBasicUsageBlock",
+    "props": {}
+  },
+
+  {
+    "type": "FeaturesGridBlock",
+    "props": {
+      "title": "Built for API-driven products and internal tools",
+      "anchor": "usecases",
+      "centered": true,
+      "iconSize": 32,
+      "features": [
+        {
+          "icon": "AdminPanelIcon",
+          "title": "Admin panels\n& back-office forms",
+          "text": ""
+        },
+        {
+          "icon": "OnboardingFlowIcon",
+          "title": "Onboarding flows",
+          "text": ""
+        },
+        {
+          "icon": "B2BConfigIcon",
+          "title": "B2B configuration forms",
+          "text": ""
+        },
+        {
+          "icon": "SurveysIcon",
+          "title": "Surveys & questionnaires",
+          "text": ""
+        },
+        {
+          "icon": "DynamicLogicIcon",
+          "title": "Internal tooling",
+          "text": ""
+        },
+        {
+          "icon": "ReusableFormsIcon",
+          "title": "Multi-tenant\nschema-driven UI",
+          "text": ""
+        }
+      ]
+    }
+  },
+
+  {
+    "type": "FAQBlock",
+    "props": {
+      "title": "FAQ",
+      "blockBg": "rgba(31, 41, 55, 0.5)",
+      "anchor": "faq",
+      "faqItems": [
+        {
+          "question": "Is WorkflowEngine Core open source?",
+          "answer": "Yes. The core library is MIT-licensed, which is suitable for commercial use."
+        },
+        {
+          "question": "How do I use it with Mantine?",
+          "answer": "Install @react-form-builder/components-mantine and render forms with FormViewer using the provided Mantine view."
+        },
+        {
+          "question": "Do I need a visual drag-and-drop builder?",
+          "answer": "No. You can render and manage forms purely from JSON. A visual builder can be added later if your workflow needs it."
+        },
+        {
+          "question": "Can I store form schemas in a database and deliver them via API?",
+          "answer": "Yes — the JSON schema can be loaded from any source (file, DB, CMS, API) and rendered in the client."
+        },
+        {
+          "question": "Does it work with Next.js / Remix?",
+          "answer": "Yes — it's designed to work smoothly with modern React stacks, including Next.js and Remix."
+        },
+        {
+          "question": "What UI themes are supported?",
+          "answer": "MUI, shadcn/ui, React Suite, Mantine are listed as supported themes, with more coming soon."
+        },
+        {
+          "question": "How small is the bundle?",
+          "answer": "The repository provides a benchmark example: ~188.54 KB gzip for WorkflowEngine Core (JS + CSS)."
+        },
+        {
+          "question": "Can I use my own Mantine-based components?",
+          "answer": "Yes — the core is designed to render using your components; the Mantine pack is a ready-made option."
+        }
+      ]
+    }
+  },
+
+  {
+    "type": "CallToActionBlock",
+    "props": {
+      "title": "Ready to build schema-driven Mantine forms?",
+      "description": "Start with the MIT-licensed core, render your first form, and keep your UI consistent with Mantine.",
+      "button": {
+        "text": "Get started with Mantine",
+        "href": "https://workflowengine.io/documentation/components-library/mantine#getting-started-with-mantine-components"
+      }
+    }
+  }
+]

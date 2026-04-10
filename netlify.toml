@@ -1,0 +1,8 @@
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/backend/lead/"
+  to = "/.netlify/functions/lead"
+  status = 200
+  force = true

@@ -1,0 +1,118 @@
+{
+  "version": "1",
+  "tooltipType": "RsTooltip",
+  "errorType": "RsErrorMessage",
+  "form": {
+    "key": "contact_screen",
+    "type": "Screen",
+    "props": {},
+    "schema": {
+      "autoValidate": true,
+      "submit": {
+        "method": "POST",
+        "url": "/backend/lead/",
+        "headers": { "Content-Type": "application/json" },
+        "successMessage": "Thanks! We’ll get back to you soon.",
+        "errorMessage": "Submission failed. Please try again."
+      }
+    },
+    "children": [
+      {
+        "key": "contact_container",
+        "type": "RsContainer",
+        "props": {},
+        "children": [
+          {
+            "key": "first_name",
+            "type": "RsInput",
+            "props": {
+              "label": { "value": "First Name" },
+              "name": { "value": "first_name" }
+            },
+            "schema": { "validations": [{ "key": "required" }], "autoValidate": true }
+          },
+          {
+            "key": "last_name",
+            "type": "RsInput",
+            "props": {
+              "label": { "value": "Last Name" },
+              "name": { "value": "last_name" }
+            },
+            "schema": { "validations": [{ "key": "required" }], "autoValidate": true }
+          },
+          {
+            "key": "business_phone",
+            "type": "RsInput",
+            "props": {
+              "label": { "value": "Business Phone" },
+              "name": { "value": "business_phone" }
+            },
+            "schema": { "validations": [{ "key": "required" }], "autoValidate": true }
+          },
+          {
+            "key": "company",
+            "type": "RsInput",
+            "props": {
+              "label": { "value": "Company" },
+              "name": { "value": "company" }
+            },
+            "schema": { "validations": [{ "key": "required" }], "autoValidate": true }
+          },
+          {
+            "key": "email",
+            "type": "RsInput",
+            "props": {
+              "label": { "value": "E-mail" },
+              "name": { "value": "email" }
+            },
+            "schema": { "validations": [{ "key": "email" }, { "key": "required" }], "autoValidate": true }
+          },
+          {
+            "key": "job_function",
+            "type": "RsInput",
+            "props": {
+              "label": { "value": "Job Function" },
+              "name": { "value": "job_function" }
+            },
+            "schema": { "validations": [{ "key": "required" }], "autoValidate": true }
+          },
+          {
+            "key": "details",
+            "type": "RsTextArea",
+            "props": {
+              "label": { "value": "Tell Us More About How We Can Help?" },
+              "rows": { "value": 4 },
+              "name": { "value": "details" }
+            }
+          },
+
+          { "key": "name", "type": "RsInput", "props": { "name": { "value": "name" }, "style": { "value": "display:none" } } },
+          { "key": "message", "type": "RsInput", "props": { "name": { "value": "message" }, "style": { "value": "display:none" } } },
+
+          {
+            "key": "website",
+            "type": "RsInput",
+            "props": {
+              "label": { "value": "Website" },
+              "name": { "value": "website" },
+              "style": { "value": "position:absolute;left:-9999px;opacity:0;height:0;width:0;pointer-events:none;" }
+            }
+          },
+
+          {
+            "key": "send_btn",
+            "type": "RsButton",
+            "props": {
+              "label": { "value": "SEND" },
+              "children": { "value": "Send" },
+              "type": { "value": "submit" }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "localization": {},
+  "languages": [{ "code": "en", "name": "English" }],
+  "defaultLanguage": "en"
+}

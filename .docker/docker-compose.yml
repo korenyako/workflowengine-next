@@ -1,0 +1,28 @@
+services:
+  formengine-nginx:
+    image: nginx:stable-alpine@sha256:50243df971afd18218643c8b5aee914202dc95d75bd67aa1618235f76d8766b5
+    hostname: formengine-nginx
+    container_name: formengine-nginx
+    read_only: true
+    depends_on:
+      - formengine-fpm
+    links:
+      - formengine-fpm
+    ports:
+      - "127.0.0.1:8093:8093"
+    volumes:
+      - ./../out:/usr/share/nginx/html
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./tmp/docker/var/cache/nginx:/var/cache/nginx
+      - ./tmp/docker/var/log/nginx:/var/log/nginx
+      - ./tmp/docker/var/run:/var/run
+  formengine-fpm:
+    image: php:7.3.32-fpm-alpine3.13@sha256:6b7fa63799e0fb6b39f0b076f76f5dda30b4acc86444247cfd6143f6a1c6c07c
+    hostname: formengine-fpm
+    container_name: formengine-fpm
+    read_only: true
+    expose:
+      - "9000"
+    volumes:
+      - ./backend:/usr/share/nginx/html/backend:ro
+      - ./php/php.ini:/usr/local/etc/php/php.ini:ro

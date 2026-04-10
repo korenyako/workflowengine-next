@@ -1,0 +1,522 @@
+{
+    "version": "1",
+    "form": {
+      "key": "Screen",
+      "type": "Screen",
+      "props": {},
+      "children": [
+        {
+          "key": "rsStaticContent1",
+          "type": "RsStaticContent",
+          "props": {
+            "allowHtml": {
+              "value": true
+            },
+            "content": {
+              "value": "This is an example of a <a target=\"_blank\" rel=\"noopener\" href=\"https://rsuitejs.com/components/table/#word-wrap\">Word Wrap</a> table."
+            }
+          },
+          "css": {
+            "any": {
+              "string": "  font-size: 18px;"
+            }
+          }
+        },
+        {
+          "key": "rsDivider1",
+          "type": "RsDivider",
+          "props": {},
+          "children": []
+        },
+        {
+          "key": "wordWrapTable",
+          "type": "RsTable",
+          "props": {
+            "wordWrap": {
+              "value": "break-word"
+            },
+            "height": {
+              "value": 400
+            },
+            "data": {
+              "value": [
+                {
+                  "id": 1,
+                  "email": "Leora13@yahoo.com",
+                  "firstName": "Red Wacky League AntlezBroketheStereoNeon Kitching Josh Bennett Evolution Dreams 红色古怪联盟丹尼尔梅斯马修",
+                  "lastName": "Schuppe",
+                  "city": "New Gust",
+                  "companyName": "Lebsack - Nicolas"
+                },
+                {
+                  "id": 2,
+                  "email": "Mose_Gerhold51@yahoo.com",
+                  "firstName": "Janis",
+                  "lastName": "Bode",
+                  "city": "New Gust",
+                  "companyName": "Glover - Hermiston"
+                },
+                {
+                  "id": 3,
+                  "city": "New Gust",
+                  "email": "Frieda.Sauer61@gmail.com",
+                  "firstName": "Makenzie Vandervort",
+                  "lastName": null,
+                  "companyName": "Williamson - Kassulke"
+                },
+                {
+                  "id": 4,
+                  "email": "Eloisa.OHara@hotmail.com",
+                  "firstName": "Ciara",
+                  "lastName": "Towne",
+                  "city": "Vandervort",
+                  "companyName": "Hilpert, Eichmann and Brown"
+                }
+              ]
+            }
+          },
+          "events": {
+            "onRowClick": [
+              {
+                "name": "log",
+                "type": "common"
+              }
+            ]
+          },
+          "children": [
+            {
+              "key": "idColumn",
+              "type": "RsColumn",
+              "props": {
+                "align": {
+                  "value": "center"
+                },
+                "width": {
+                  "value": 70
+                },
+                "fixed": {
+                  "value": true
+                }
+              },
+              "children": [
+                {
+                  "key": "idHeaderCell",
+                  "type": "RsHeaderCell",
+                  "props": {
+                    "children": {
+                      "value": "Id",
+                      "editorType": "string"
+                    }
+                  }
+                },
+                {
+                  "key": "idCell",
+                  "type": "RsCell",
+                  "props": {
+                    "dataKey": {
+                      "value": "id"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "key": "rsColumn2",
+              "type": "RsColumn",
+              "props": {
+                "width": {
+                  "value": 130
+                },
+                "fixed": {
+                  "value": true
+                }
+              },
+              "children": [
+                {
+                  "key": "firstNameHeaderCell",
+                  "type": "RsHeaderCell",
+                  "props": {
+                    "children": {
+                      "value": "First Name",
+                      "editorType": "string"
+                    }
+                  }
+                },
+                {
+                  "key": "firstNameCell",
+                  "type": "RsCell",
+                  "props": {
+                    "dataKey": {
+                      "value": "firstName"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "key": "lastNameColumn",
+              "type": "RsColumn",
+              "props": {
+                "width": {
+                  "value": 130
+                }
+              },
+              "children": [
+                {
+                  "key": "lastNameHeaderCell",
+                  "type": "RsHeaderCell",
+                  "props": {
+                    "children": {
+                      "value": "Last Name",
+                      "editorType": "string"
+                    }
+                  }
+                },
+                {
+                  "key": "lastNameCell",
+                  "type": "RsCell",
+                  "props": {
+                    "dataKey": {
+                      "value": "lastName"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "key": "cityColumn",
+              "type": "RsColumn",
+              "props": {
+                "width": {
+                  "value": 200
+                }
+              },
+              "children": [
+                {
+                  "key": "cityHeaderCell",
+                  "type": "RsHeaderCell",
+                  "props": {
+                    "children": {
+                      "value": "City",
+                      "editorType": "string"
+                    }
+                  }
+                },
+                {
+                  "key": "cityCell",
+                  "type": "RsCell",
+                  "props": {
+                    "dataKey": {
+                      "value": "city"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "key": "companyNameColumn",
+              "type": "RsColumn",
+              "props": {
+                "width": {
+                  "value": 200
+                }
+              },
+              "children": [
+                {
+                  "key": "companyNameHeaderCell",
+                  "type": "RsHeaderCell",
+                  "props": {
+                    "children": {
+                      "value": "Company Name",
+                      "editorType": "string"
+                    }
+                  }
+                },
+                {
+                  "key": "companyNameCell",
+                  "type": "RsCell",
+                  "props": {
+                    "dataKey": {
+                      "value": "companyName"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "localization": {},
+    "languages": [
+      {
+        "code": "en",
+        "dialect": "US",
+        "name": "English",
+        "description": "American English",
+        "bidi": "ltr"
+      }
+    ],
+    "defaultLanguage": "en-US",
+    "default": {
+      "version": "1",
+      "form": {
+        "key": "Screen",
+        "type": "Screen",
+        "props": {},
+        "children": [
+          {
+            "key": "rsStaticContent1",
+            "type": "RsStaticContent",
+            "props": {
+              "allowHtml": {
+                "value": true
+              },
+              "content": {
+                "value": "This is an example of a <a target=\"_blank\" rel=\"noopener\" href=\"https://rsuitejs.com/components/table/#word-wrap\">Word Wrap</a> table."
+              }
+            },
+            "css": {
+              "any": {
+                "string": "  font-size: 18px;"
+              }
+            }
+          },
+          {
+            "key": "rsDivider1",
+            "type": "RsDivider",
+            "props": {},
+            "children": []
+          },
+          {
+            "key": "wordWrapTable",
+            "type": "RsTable",
+            "props": {
+              "wordWrap": {
+                "value": "break-word"
+              },
+              "height": {
+                "value": 400
+              },
+              "data": {
+                "value": [
+                  {
+                    "id": 1,
+                    "email": "Leora13@yahoo.com",
+                    "firstName": "Red Wacky League AntlezBroketheStereoNeon Kitching Josh Bennett Evolution Dreams 红色古怪联盟丹尼尔梅斯马修",
+                    "lastName": "Schuppe",
+                    "city": "New Gust",
+                    "companyName": "Lebsack - Nicolas"
+                  },
+                  {
+                    "id": 2,
+                    "email": "Mose_Gerhold51@yahoo.com",
+                    "firstName": "Janis",
+                    "lastName": "Bode",
+                    "city": "New Gust",
+                    "companyName": "Glover - Hermiston"
+                  },
+                  {
+                    "id": 3,
+                    "city": "New Gust",
+                    "email": "Frieda.Sauer61@gmail.com",
+                    "firstName": "Makenzie Vandervort",
+                    "lastName": null,
+                    "companyName": "Williamson - Kassulke"
+                  },
+                  {
+                    "id": 4,
+                    "email": "Eloisa.OHara@hotmail.com",
+                    "firstName": "Ciara",
+                    "lastName": "Towne",
+                    "city": "Vandervort",
+                    "companyName": "Hilpert, Eichmann and Brown"
+                  }
+                ]
+              }
+            },
+            "events": {
+              "onRowClick": [
+                {
+                  "name": "log",
+                  "type": "common"
+                }
+              ]
+            },
+            "children": [
+              {
+                "key": "idColumn",
+                "type": "RsColumn",
+                "props": {
+                  "align": {
+                    "value": "center"
+                  },
+                  "width": {
+                    "value": 70
+                  },
+                  "fixed": {
+                    "value": true
+                  }
+                },
+                "children": [
+                  {
+                    "key": "idHeaderCell",
+                    "type": "RsHeaderCell",
+                    "props": {
+                      "children": {
+                        "value": "Id",
+                        "editorType": "string"
+                      }
+                    }
+                  },
+                  {
+                    "key": "idCell",
+                    "type": "RsCell",
+                    "props": {
+                      "dataKey": {
+                        "value": "id"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "key": "rsColumn2",
+                "type": "RsColumn",
+                "props": {
+                  "width": {
+                    "value": 130
+                  },
+                  "fixed": {
+                    "value": true
+                  }
+                },
+                "children": [
+                  {
+                    "key": "firstNameHeaderCell",
+                    "type": "RsHeaderCell",
+                    "props": {
+                      "children": {
+                        "value": "First Name",
+                        "editorType": "string"
+                      }
+                    }
+                  },
+                  {
+                    "key": "firstNameCell",
+                    "type": "RsCell",
+                    "props": {
+                      "dataKey": {
+                        "value": "firstName"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "key": "lastNameColumn",
+                "type": "RsColumn",
+                "props": {
+                  "width": {
+                    "value": 130
+                  }
+                },
+                "children": [
+                  {
+                    "key": "lastNameHeaderCell",
+                    "type": "RsHeaderCell",
+                    "props": {
+                      "children": {
+                        "value": "Last Name",
+                        "editorType": "string"
+                      }
+                    }
+                  },
+                  {
+                    "key": "lastNameCell",
+                    "type": "RsCell",
+                    "props": {
+                      "dataKey": {
+                        "value": "lastName"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "key": "cityColumn",
+                "type": "RsColumn",
+                "props": {
+                  "width": {
+                    "value": 200
+                  }
+                },
+                "children": [
+                  {
+                    "key": "cityHeaderCell",
+                    "type": "RsHeaderCell",
+                    "props": {
+                      "children": {
+                        "value": "City",
+                        "editorType": "string"
+                      }
+                    }
+                  },
+                  {
+                    "key": "cityCell",
+                    "type": "RsCell",
+                    "props": {
+                      "dataKey": {
+                        "value": "city"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "key": "companyNameColumn",
+                "type": "RsColumn",
+                "props": {
+                  "width": {
+                    "value": 200
+                  }
+                },
+                "children": [
+                  {
+                    "key": "companyNameHeaderCell",
+                    "type": "RsHeaderCell",
+                    "props": {
+                      "children": {
+                        "value": "Company Name",
+                        "editorType": "string"
+                      }
+                    }
+                  },
+                  {
+                    "key": "companyNameCell",
+                    "type": "RsCell",
+                    "props": {
+                      "dataKey": {
+                        "value": "companyName"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "localization": {},
+      "languages": [
+        {
+          "code": "en",
+          "dialect": "US",
+          "name": "English",
+          "description": "American English",
+          "bidi": "ltr"
+        }
+      ],
+      "defaultLanguage": "en-US"
+    }
+  }

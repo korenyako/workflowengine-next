@@ -1,0 +1,477 @@
+/* stylelint-disable at-rule-no-unknown */
+/* Google Fonts loaded via index.html for better performance */
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+:root {
+  --color-dark: #111827;
+  --color-dark-alt: #2B2B2B;
+}
+
+/* Предотвращение горизонтальной прокрутки */
+html, body {
+  overflow-x: clip;
+  width: 100%;
+  max-width: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: white !important;
+  font-family: var(--font-inter), "Inter", sans-serif !important;
+  margin: 0;
+  padding: 0;
+  background-color: #0d1117 !important;
+}
+
+/* Базовый шрифт для body и элементов без специальных классов */
+body, p, div, span, button, input, textarea, select {
+  font-family: var(--font-inter), "Inter", sans-serif;
+}
+
+/* Заголовки используют Poppins по умолчанию */
+h1, h2 {
+  font-family: var(--font-poppins), "Poppins", sans-serif;
+}
+
+/* Subtitle использует Space Grotesk */
+.font-subtitle {
+  font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+}
+
+/* Heading использует Poppins */
+.font-heading {
+  font-family: var(--font-poppins), "Poppins", sans-serif;
+  font-weight: 600;
+}
+
+/* Body использует Inter */
+.font-body {
+  font-family: var(--font-inter), "Inter", sans-serif;
+}
+
+h1 {
+  @apply text-4xl sm:text-5xl leading-normal;
+}
+
+h2 {
+  @apply text-3xl sm:text-4xl leading-tight;
+}
+
+h3 {
+  @apply text-2xl leading-tight;
+}
+
+/* Явное определение для моноширинного шрифта */
+code, pre, .font-mono, pre *, code * {
+  font-family: var(--font-jetbrains-mono), "JetBrains Mono", "Roboto Mono", "SF Mono", "Monaco", "Inconsolata", "Fira Code", "Droid Sans Mono", "Source Code Pro", "Consolas", "Liberation Mono", "Menlo", "Courier", monospace !important;
+  font-feature-settings: "liga" 0;
+  font-variant-ligatures: none;
+}
+
+/* Глобальные стили только для текстовых ссылок */
+a:not([class*="bg-"]):not([class*="border-"]):not([class*="text-white"]):not([class*="text-gray"]):not([class*="text-blue"]):not([class*="text-green"]):not([class*="text-yellow"]):not(.btn) {
+  color: rgb(147 197 253); /* text-blue-300 */
+  transition: color 0.2s ease;
+}
+
+a:not([class*="bg-"]):not([class*="border-"]):not([class*="text-white"]):not([class*="text-gray"]):not([class*="text-blue"]):not([class*="text-green"]):not([class*="text-yellow"]):not(.btn):hover {
+  color: rgb(191 219 254); /* text-blue-200 */
+}
+
+/* Стили для ссылок в тексте (как теги) */
+.text-link-tag {
+  color: rgb(147 197 253) !important; /* text-blue-300 */
+  background-color: rgba(147, 197, 253, 0.1) !important; /* полупрозрачный синий фон */
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.text-link-tag:hover {
+  color: rgb(191 219 254) !important; /* text-blue-200 */
+  background-color: rgba(147, 197, 253, 0.2) !important; /* более яркий фон при наведении */
+}
+
+/* Стили для ссылок в тексте с моноширинным шрифтом (для кода и документации) */
+.text-link-tag-mono {
+  color: rgb(147 197 253) !important; /* text-blue-300 */
+  background-color: rgba(147, 197, 253, 0.1) !important; /* полупрозрачный синий фон */
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+  font-family: var(--font-jetbrains-mono), "JetBrains Mono", "Roboto Mono", "SF Mono", "Monaco", "Inconsolata", "Fira Code", "Droid Sans Mono", "Source Code Pro", "Consolas", "Liberation Mono", "Menlo", "Courier", monospace !important;
+  font-size: 0.875em !important; /* Немного меньше размер для моноширинного шрифта */
+}
+
+.text-link-tag-mono:hover {
+  color: rgb(191 219 254) !important; /* text-blue-200 */
+  background-color: rgba(147, 197, 253, 0.2) !important; /* более яркий фон при наведении */
+}
+
+/* Стили для выделения кода без ссылки */
+.code-highlight {
+  color: #98c379 !important; /* зеленый цвет */
+  background-color: #0F172A !important; /* темный фон */
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  font-family: var(--font-jetbrains-mono), "JetBrains Mono", "Roboto Mono", "SF Mono", "Monaco", "Inconsolata", "Fira Code", "Droid Sans Mono", "Source Code Pro", "Consolas", "Liberation Mono", "Menlo", "Courier", monospace !important;
+  font-size: 0.875em !important; /* Немного меньше размер для моноширинного шрифта */
+}
+
+/* Анимация движения логотипов */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-75%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 25s linear infinite;
+}
+
+/* React Flow стили */
+.flow-container .react-flow__renderer {
+  cursor: default !important;
+}
+
+.flow-container .react-flow__viewport {
+  background: transparent !important;
+}
+
+.flow-container .react-flow__pane {
+  background: transparent !important;
+}
+
+.flow-container .react-flow__node {
+  pointer-events: none !important;
+}
+
+.flow-container .react-flow__edge {
+  pointer-events: none !important;
+}
+
+/* Разрешаем прокрутку на контейнере ReactFlow */
+.flow-container {
+  pointer-events: auto !important;
+}
+
+/* Принудительно убираем курсор grab */
+.flow-container .react-flow__pane {
+  cursor: default !important;
+}
+
+.flow-container .react-flow__renderer {
+  cursor: default !important;
+}
+
+/* Стили для стандартных узлов React Flow */
+.flow-container .react-flow__node {
+  background: #2B2B2B !important;
+  color: white !important;
+  border-radius: 10px !important;
+  font-weight: bold !important;
+  font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif !important;
+  font-size: 14px !important;
+  padding: 10px 20px !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.flow-container .react-flow__node .react-flow__handle {
+  background: transparent !important;
+  border: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Мобильные стили для предотвращения горизонтальной прокрутки */
+@media (max-width: 768px) {
+  /* Убираем горизонтальные отступы на мобильных */
+  .px-4 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  .px-8 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  /* Обеспечиваем, что контейнеры не выходят за пределы экрана */
+  .max-w-6xl,
+  .max-w-5xl,
+  .max-w-4xl,
+  .max-w-3xl {
+    max-width: calc(100vw - 2rem) !important;
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+  }
+  
+  /* Убираем горизонтальную прокрутку для всех элементов */
+  * {
+    max-width: 100vw;
+  }
+}
+
+
+
+/* Стили для скроллбара в блоках кода */
+pre::-webkit-scrollbar {
+  width: 4px;
+}
+
+pre::-webkit-scrollbar-track {
+  background: #0f172a;
+  border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Скрываем кнопки прокрутки */
+pre::-webkit-scrollbar-button {
+  display: none !important;
+}
+
+pre::-webkit-scrollbar-button:start {
+  display: none !important;
+}
+
+pre::-webkit-scrollbar-button:end {
+  display: none !important;
+}
+
+pre::-webkit-scrollbar-corner {
+  background: #0f172a;
+}
+
+/* Стили для кнопки копирования в блоках кода */
+.code-copy-button {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.code-block:hover .code-copy-button {
+  opacity: 1;
+}
+
+/* Стили для скроллбара в CodePreview */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #0f172a;
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Скрываем кнопки прокрутки */
+.custom-scrollbar::-webkit-scrollbar-button {
+  display: none !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-button:start {
+  display: none !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-button:end {
+  display: none !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar-corner {
+  background: #0f172a;
+}
+
+/* Стили для выделения ключевых слов */
+.highlight-keyword {
+  background: linear-gradient(120deg, rgba(168, 85, 247, 0.8) 0%, rgba(168, 85, 247, 0.8) 100%) no-repeat 0 88%/100% 0.4em transparent;
+  font-weight: inherit;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+  display: inline;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* Стили для highlight.js */
+.hljs {
+  background: #0f172a !important;
+  color: #e2e8f0 !important;
+  padding: 1rem !important;
+  border-radius: 8px !important;
+  overflow-x: auto !important;
+  font-family: var(--font-jetbrains-mono), "JetBrains Mono", "Roboto Mono", "SF Mono", "Monaco", "Inconsolata", "Fira Code", "Droid Sans Mono", "Source Code Pro", "Consolas", "Liberation Mono", "Menlo", "Courier", monospace !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+}
+
+/* Стили для MDX контента */
+.article-content h1, .mdx-content h1 {
+  font-family: var(--font-poppins), Poppins, ui-sans-serif !important;
+  font-size: 32px !important;
+  font-weight: 800 !important;
+  margin: 32px 0 16px !important;
+  color: #ffffff !important;
+}
+.article-content h2, .mdx-content h2 {
+  font-family: var(--font-poppins), Poppins, ui-sans-serif !important;
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  margin: 64px 0 24px !important;
+  color: #ffffff !important;
+}
+.article-content h3, .mdx-content h3 {
+  font-family: var(--font-space-grotesk), 'Space Grotesk', ui-sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+  margin: 48px 0 16px !important;
+  color: #93c5fd !important;
+  letter-spacing: 0.025em !important;
+}
+.article-content h4, .mdx-content h4 {
+  font-family: var(--font-space-grotesk), 'Space Grotesk', ui-sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  margin: 32px 0 16px !important;
+  color: #93c5fd !important;
+  letter-spacing: 0.025em !important;
+}
+.article-content h5, .mdx-content h5 {
+  font-family: var(--font-space-grotesk), 'Space Grotesk', ui-sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  margin: 24px 0 8px !important;
+  color: #93c5fd !important;
+  letter-spacing: 0.025em !important;
+}
+
+/* Стили для параграфов в article-content */
+.article-content p {
+  color: #d1d5db !important; /* gray-300 */
+  font-size: 20px !important;
+  font-weight: 300 !important;
+  line-height: 1.8 !important;
+  margin-bottom: 32px !important;
+}
+
+
+.article-content a {
+  color: #60a5fa !important; /* blue-400 */
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  transition: color 0.15s ease !important;
+}
+
+.article-content a:hover {
+  color: #93c5fd !important; /* blue-300 */
+}
+
+.article-content strong {
+  color: #ffffff !important;
+}
+
+.article-content blockquote {
+  border-left: 4px solid #60a5fa !important;
+  background: rgba(31, 41, 55, 0.3) !important;
+  border-radius: 0 12px 12px 0 !important;
+  padding: 16px 24px !important;
+  margin: 32px 0 !important;
+}
+
+.article-content blockquote p {
+  color: #e5e7eb !important; /* gray-200 */
+}
+
+/* Стили для списков в article-content */
+.article-content ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+}
+
+.article-content ol {
+  list-style: decimal !important;
+  padding-left: 1.5rem !important;
+}
+
+.article-content li {
+  position: relative !important;
+  padding-left: 1.5rem !important;
+  margin-bottom: 16px !important;
+  font-size: 20px !important;
+  font-weight: 300 !important;
+  line-height: 1.8 !important;
+  color: #d1d5db !important;
+}
+
+.article-content ul li::before {
+  content: "•" !important;
+  color: #93c5fd !important; /* фирменный голубой цвет */
+  font-size: 1.2rem !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+}
+
+.article-content ol li {
+  padding-left: 0.5rem !important;
+}
+
+.article-content ol li::marker {
+  color: #93c5fd !important; /* фирменный голубой цвет только для цифр */
+}
+
+/* Глобальные стили для тега mark */
+mark {
+  background: linear-gradient(120deg, rgba(168, 85, 247, 0.8) 0%, rgba(168, 85, 247, 0.8) 100%) no-repeat 0 88%/100% 0.4em transparent;
+  font-weight: inherit;
+  color: inherit
+}
+
+/* Calendly виджет — ограничение ширины на мобильных */
+.calendly-badge-widget {
+  max-width: 100vw !important;
+  overflow: hidden !important;
+}
+
+@media (max-width: 768px) {
+  .calendly-badge-widget .calendly-badge-content {
+    max-width: calc(100vw - 2rem) !important;
+    font-size: 13px !important;
+    padding: 0 12px !important;
+  }
+}
+
+/* Стили для скрытия элементов Bitrix-формы */
+[class='b24-form-sign'] {
+  display: none !important;
+}
+[class='bitrix-footer'] {
+  display: none !important;
+}

@@ -1,0 +1,77 @@
+{
+  "version": "1",
+  "tooltipType": "RsTooltip",
+  "errorType": "RsErrorMessage",
+  "form": {
+    "key": "Screen",
+    "type": "Screen",
+    "props": {},
+    "children": [
+      {
+        "key": "username",
+        "type": "RsInput",
+        "props": {
+          "label": { "value": "Username" },
+          "placeholder": { "value": "Enter username" }
+        },
+        "schema": {
+          "autoValidate": true,
+          "validations": [
+            { "key": "required", "args": { "message": "Username is required" } },
+            { "key": "min", "args": { "limit": 3, "message": "Username must be between 3 and 25 characters" } },
+            { "key": "max", "args": { "limit": 25, "message": "Username must be between 3 and 25 characters" } },
+            { "key": "regex", "args": { "regex": "^[a-zA-Z0-9_]+$", "message": "Use letters, numbers, and _ only" } }
+          ]
+        }
+      },
+      {
+        "key": "password",
+        "type": "RsInput",
+        "props": {
+          "label": { "value": "Password" },
+          "type": { "value": "password" },
+          "placeholder": { "value": "Min 8 chars, incl. lowercase" }
+        },
+        "schema": {
+          "autoValidate": true,
+          "validations": [
+            { "key": "required", "args": { "message": "Password is required" } },
+            { "key": "min", "args": { "limit": 8, "message": "The password must be at least 8 characters" } },
+            { "key": "regex", "args": { "regex": "(?=.*[a-z])", "message": "The password must contain at least one lowercase character" } }
+          ]
+        }
+      },
+      {
+        "key": "email",
+        "type": "RsInput",
+        "props": {
+          "label": { "value": "Email" },
+          "type": { "value": "email" },
+          "placeholder": { "value": "you@company.com" }
+        },
+        "schema": {
+          "autoValidate": true,
+          "validations": [
+            { "key": "required", "args": { "message": "Email is required" } },
+            { "key": "email", "args": { "message": "Invalid email format" } },
+            { "key": "regex", "args": {
+              "regex": "^(?!.*@(gmail|yahoo|hotmail)\\.com$).+$",
+              "message": "You have entered free service email address, please try again with business / work email address"
+            } }
+          ]
+        }
+      }
+    ]
+  },
+  "localization": {},
+  "languages": [
+    {
+      "code": "en",
+      "dialect": "US",
+      "name": "English",
+      "description": "American English",
+      "bidi": "ltr"
+    }
+  ],
+  "defaultLanguage": "en-US"
+}

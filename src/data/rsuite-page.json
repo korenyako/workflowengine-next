@@ -1,0 +1,267 @@
+[
+  {
+    "type": "HeroWithCodeBlock",
+    "props": {
+      "title": "Open Source Lightweight React JSON Schema Form Library for React Suite",
+      "description": "Simplify complex forms with React Suite's ready-to-use and modular components.",
+      "code": "npm install @react-form-builder/components-rsuite",
+      "anchor": "/documentation/",
+      "hideStarButton": true
+    }
+  },
+  {
+    "type": "ArchitectureBlock",
+    "props": {
+      "title": "WorkflowEngine Free React Form Components Library Architecture",
+      "description": "WorkflowEngine Designer lets you build and configure React forms with drag-and-drop simplicity. This package is only required during the form design process and is not needed for rendering forms at runtime.",
+      "packageName": "@react-form-builder/components-rsuite",
+      "components": [
+        {
+          "icon": "DragDropIcon",
+          "title": "Components containing data",
+          "href": "https://workflowengine.io/documentation/components-library/"
+        },
+        {
+          "icon": "FormSettingsIcon",
+          "title": "Simple components",
+          "href": "https://workflowengine.io/documentation/components-library/"
+        },
+        {
+          "icon": "StructuralIcon",
+          "title": "Structural components",
+          "href": "https://workflowengine.io/documentation/components-library/structure-components"
+        }
+      ]
+    }
+  },
+  {
+    "type": "FormDemoBlock",
+    "props": {
+      "demoId": "components",
+      "title": "Ready-to-use React Suite components",
+      "description": "Includes built-in components and supports easy integration of custom ones. Get started fast without sacrificing flexibility.",
+      "layout": "full-width"
+    }
+  },
+  {
+    "type": "WorkflowEngineComponentsBlock",
+    "props": {
+      "title": "Components that are already available within WorkflowEngine",
+      "components": [
+        {
+          "name": "Container",
+          "description": "The Container component represents a div tag that wraps other components, providing a way to group and organize content. It can be used to add padding, margins, and other styles to a group of components. It is also especially useful to define and maintain a consistent layout for components within your form.",
+          "documentationUrl": "https://workflowengine.io/documentation/components-library/structure-components/container",
+          "icon": "ContainerIcon"
+        },
+        {
+          "name": "Repeater",
+          "description": "The Repeater component is a special component that is responsible for displaying an array of repeating components. Dynamic group of fields that can be duplicated or removed by the user.",
+          "documentationUrl": "https://workflowengine.io/documentation/components-library/structure-components/repeater",
+          "icon": "RepeaterIcon"
+        }
+      ]
+    }
+  },
+  {
+    "type": "CenteredImageBlock",
+    "props": {
+      "title": "Ready-to-use React WorkflowEngine components library",
+      "description": "Ready to use, MIT-licensed, and free. Includes built-in components and supports easy integration of custom ones. Get started fast without sacrificing flexibility.",
+      "image": {
+        "src": "/images/components-builder.png",
+        "alt": "React WorkflowEngine components builder"
+      },
+      "anchor": "free"
+    }
+  },
+  {
+    "type": "ComponentsTable",
+    "props": {
+      "showHeader": false,
+      "showFooter": true
+    }
+  },
+  {
+  "type": "WorkflowEngineComponentsBlock",
+  "props": {
+    "title": "Standalone Component Package Compatible with WorkflowEngine, available under a commercial license",
+    "anchor": "commercial",
+    "extraBottomPadding": true,
+    "gradientButton": {
+      "title": "View Documentation",
+      "subtitle": "Learn more about standalone components",
+      "href": "https://workflowengine.io/documentation/components-library",
+      "showIcon": false
+    },
+    "components": [
+      {
+        "name": "QR Code",
+        "description": "Generates a QR code from dynamic or static text input",
+        "documentationUrl": "https://workflowengine.io/documentation/components-library/static-components/qr-code",
+        "icon": "QrCodeIcon",
+        "npmCommand": "npm install @react-form-builder/components-fast-qr",
+        "showIcon": false
+      },
+      {
+        "name": "Google Map",
+        "description": "Embeds an interactive Google Map with pin and location support",
+        "documentationUrl": "https://workflowengine.io/documentation/components-library/fields-components/google-map",
+        "icon": "GoogleMapIcon",
+        "npmCommand": "npm install @react-form-builder/components-google-map",
+        "showIcon": false
+      },
+      {
+        "name": "Rich Text Editor",
+        "description": "RichTextEditor is a thin wrapper around the rich text editor Quill.",
+        "documentationUrl": "https://workflowengine.io/documentation/components-library/fields-components/rich-text-editor",
+        "icon": "RichTextEditorIcon",
+        "npmCommand": "npm install @react-form-builder/components-rich-text",
+        "showIcon": false
+      },
+      {
+        "name": "Signature",
+        "description": "Provides a drawing area where users can sign documents, forms and more using a mouse, touchpad, or other input devices.",
+        "documentationUrl": "https://workflowengine.io/documentation/components-library/fields-components/signature",
+        "icon": "SignatureIcon",
+        "npmCommand": "npm install @react-form-builder/components-signature",
+        "showIcon": false
+      },
+      {
+        "name": "Data Grid",
+        "description": "A versatile table component for displaying, sorting, filtering, and editing tabular data. Supports pagination, inline editing, column resizing, and customizable cell rendering for seamless data management.",
+        "documentationUrl": "/react-form-components-library/data-grid/",
+        "icon": "DataGridIcon",
+        "showIcon": false
+      }
+    ]
+  }
+  },
+  {
+    "type": "FAQBlock",
+    "props": {
+      "title": "FAQ WorkflowEngine React Form Components",
+      "description": "Common questions about WorkflowEngine Components",
+      "anchor": "faq",
+      "blockBg": "rgba(31, 41, 55, 0.5)",
+      "faqItems": [
+        {
+          "question": "What is the WorkflowEngine React Component Library?",
+          "answer": "It's a set of reusable, React form components that render UI from JSON schemas. They work seamlessly with WorkflowEngine Core and are also directly used by the Drag & Drop Form Designer to render live previews and runtime forms."
+        },
+        {
+          "question": "Do I need to use a specific UI framework like MUI or Tailwind?",
+          "answer": "No. The components are unstyled by default. You can apply your own styles or connect them to any design system."
+        },
+        {
+          "question": "Can I use just one component or do I need the whole library?",
+          "answer": "You can use components individually or as a full rendering pipeline — it's completely modular."
+        },
+        {
+          "question": "Can I extend or replace built-in components?",
+          "answer": "Yes. The library is designed for customization. You can override default components or register new ones."
+        },
+        {
+          "question": "Does it support custom input types?",
+          "answer": "Yes. You can define and integrate custom React components as input types using a simple configuration API."
+        },
+        {
+          "question": "Is the library compatible with server-side rendering?",
+          "answer": "Yes. It works with frameworks like Next.js and Remix, supporting full SSR and hydration."
+        },
+        {
+          "question": "Is it possible to render a form entirely from JSON?",
+          "answer": "Yes. You can render entire forms declaratively from a JSON schema — no need to write JSX manually."
+        },
+        {
+          "question": "Is it open-source?",
+          "answer": "The component library is MIT-licensed and free to use in commercial and private projects."
+        },
+        {
+          "question": "Can I integrate it with React Hook Form or Formik?",
+          "answer": "Not directly. It's built to work with WorkflowEngine Core, which handles its own state and logic."
+        },
+        {
+          "question": "Does it work without the Drag & Drop builder?",
+          "answer": "Yes. The library only needs a JSON schema. You can generate it by hand, from code, or using any builder."
+        },
+        {
+          "question": "Can I test components in isolation?",
+          "answer": "Yes. Each component can be used and tested independently in your app or Storybook."
+        },
+        {
+          "question": "Does the library support repeaters and dynamic lists?",
+          "answer": "Yes. It supports repeatable groups, arrays, and nested schemas out of the box."
+        },
+        {
+          "question": "Can I add animations or transitions?",
+          "answer": "Yes. Since it's headless, you can wrap any component with animation libraries like Framer Motion."
+        },
+        {
+          "question": "Is this suitable for production-grade apps?",
+          "answer": "Absolutely. It's built for scalability, testability, and integration into real-world React applications."
+        }
+      ],
+      "primaryCta": {
+        "text": "Ask the community",
+        "href": "https://github.com/optimajet/workflowengine/discussions"
+      }
+    }
+  },
+
+  {
+    "type": "StarsWall",
+    "props": {
+      "heading": "Our Supporters",
+      "title": "People who starred WorkflowEngine",
+      "blockBg": "transparent",
+      "repoUrl": "https://github.com/optimajet/workflowengine",
+      "fileUrl": "/stargazers.json"
+    }
+  },
+  {
+    "type": "LogosBlock",
+    "props": {
+      "subtitle": "Trusted by global organizations",
+      "description": "Leading companies choose WorkflowEngine for their form solutions"
+    }
+  },
+  {
+    "type": "CustomerTestimonialsBlock",
+    "props": {
+      "title": "What people say",
+      "subtitle": "Testimonials",
+      "testimonials": [
+        {
+          "text": "OptimaJet's FormBuilder has been a game-changer for our form creation process. Our end users are delighted with the ability to customize the form's layout and structure without any coding knowledge. It has truly streamlined our workflow and empowered our team to create visually appealing and user-friendly forms.",
+          "name": "Samantha Lee",
+          "title": "Staff Software Engineer",
+          "company": "DCL Software"
+        },
+        {
+          "text": "We've been able to produce forms two times faster than we were before FormBuilder. Adding FormBuilder to the scope was definitely the right thing for us. As a developer, I appreciate the ability to apply custom CSS styling, add external validators, and implement personalized data processing logic. The FormBuilder adapts perfectly to our project's unique requirements.",
+          "name": "Milovan Popovic",
+          "title": "Enterprise Applications Manager",
+          "company": "CP AdaBytes d.o.o"
+        },
+        {
+          "text": "FormBuilder has empowered us to create a truly tailored and seamless form-building experience. The best part? You can easily tweak and customize them to match our exact needs. The ability to monitor other fields and run validations asynchronously adds a whole new level of flexibility.",
+          "name": "Oliver Garcia",
+          "title": "CTO",
+          "company": "ERP Groupe"
+        }
+      ],
+      "blockBg": "transparent"
+    }
+  },
+  {
+    "type": "ContactCTABlock",
+    "props": {
+      "title": "Have a question?",
+      "description": "Ask and we'll get back with you in 1 business day.",
+      "buttonText": "Contact Us",
+      "buttonHref": "/contacts",
+      "blockBg": "#101828"
+    }
+  }
+]

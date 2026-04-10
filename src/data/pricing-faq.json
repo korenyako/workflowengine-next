@@ -1,0 +1,34 @@
+[
+  {
+    "question": "Is WorkflowEngine Core really free forever?",
+    "answer": "Yes. <a href=\"/react-form-library/\">WorkflowEngine Core</a> is free and open-source under the <a href=\"https://github.com/optimajet/workflowengine/blob/master/LICENSE\">MIT license</a> — forever. There are no usage limits, no time restrictions, and no hidden fees. You can use it in any project, including commercial and SaaS applications."
+  },
+  {
+    "question": "What's the difference between free Core and paid Designer?",
+    "answer": "<a href=\"/react-form-library/\">WorkflowEngine Core</a> is a free JSON form renderer — it takes a JSON schema and renders a fully functional form in your React app. <a href=\"/react-form-builder-library/\">WorkflowEngine Designer</a> is a commercial drag-and-drop visual builder for creating and editing those JSON schemas. Core works independently without Designer."
+  },
+  {
+    "question": "Do I need Designer license for every developer?",
+    "answer": "No. Designer licenses are tied to domains, not individual developers. Your entire team can work with a single license. StartUp covers 1 domain, Business covers 3 domains, and Enterprise supports unlimited domains with wildcard subdomains."
+  },
+  {
+    "question": "Can I use Core in production without Designer?",
+    "answer": "Yes. WorkflowEngine Core is fully self-sufficient for rendering forms in production. You can create form schemas manually in JSON or programmatically via the typed API. Designer is only needed if you want a visual drag-and-drop interface for building forms."
+  },
+  {
+    "question": "How does WorkflowEngine pricing compare to alternatives?",
+    "answer": "WorkflowEngine Core is completely free — unlike many alternatives that charge for their form engine. Designer starts at $899/year (subscription) or $1,299 one-time (perpetual license), which is a one-time investment compared to SaaS competitors with recurring monthly fees."
+  },
+  {
+    "question": "Is there a trial for Designer?",
+    "answer": "You can try the <a href=\"https://formbuilder.workflowengine.io/\">Online Form Builder</a> for free — it lets you design forms visually and export JSON schemas. For the full Designer package with integration into your own React app, <a href=\"/contacts/\">contact us</a> to discuss your requirements."
+  },
+  {
+    "question": "What payment methods do you accept?",
+    "answer": "We accept bank transfers and card payments for all plans. For Enterprise and Custom licensing, <a href=\"/contacts/\">contact us</a> to arrange payment terms that work for your organization."
+  },
+  {
+    "question": "Do you offer discounts for startups/students?",
+    "answer": "We evaluate requests on a case-by-case basis. <a href=\"/contacts/\">Contact us</a> with details about your project and we'll discuss options that fit your needs and budget."
+  }
+]

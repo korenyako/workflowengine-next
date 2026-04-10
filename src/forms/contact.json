@@ -1,0 +1,352 @@
+{
+  "version": "1",
+  "actions": {
+    "trackFormStart": {
+      "body": "if (typeof window !== 'undefined' && window.dataLayer && !window.__contactFormStartTracked) {\n  window.__contactFormStartTracked = true;\n  window.dataLayer.push({\n    'event': 'contact_form_start',\n    'form_id': 'contact_form',\n    'timestamp': new Date().toISOString()\n  });\n}",
+      "params": {}
+    },
+    "sendForm": {
+      "body": "    const rootComponent = e.store.form.componentTree\n\n    const setVisible = (key, visible) => {\n        const componentStore = rootComponent.findByKey(key)?.store\n        if (componentStore) {\n            componentStore.renderWhen = {value: visible}\n        }\n    }\n\n    const setUserProps = (key, userProps) => {\n        const component = rootComponent.findByKey(key)\n        if (!component) return\n        component.userDefinedProps = userProps\n    }\n\n    setVisible('errorMessage', false)\n    setVisible('successMessage', false)\n\n    if (rootComponent.hasErrors) return\n\n    setUserProps('contact_container', {disabled: true})\n    \n    try {\n        const backendUrl = window.location.hostname.includes('netlify') ? '/.netlify/functions/lead' : '/backend/lead/';\n        const response = await fetch(backendUrl, {\n            method: 'POST',\n            headers: {\n                'Content-Type': 'application/json'\n            },\n            body: JSON.stringify(e.data)\n        })\n        \n        if (!response.ok) {\n            // GTM Error Tracking\n            if (typeof window !== 'undefined' && window.dataLayer) {\n                window.dataLayer.push({\n                    'event': 'contact_form_submit_error',\n                    'form_id': 'contact_form',\n                    'error_type': 'http_error',\n                    'error_code': response.status,\n                    'timestamp': new Date().toISOString()\n                });\n            }\n            setUserProps('contact_container', {disabled: false})\n            setVisible('errorMessage', true)\n            return\n        }\n\n        await response.json()\n        \n        // GTM Success Tracking\n        if (typeof window !== 'undefined' && window.dataLayer) {\n            window.dataLayer.push({\n                'event': 'contact_form_submit_success',\n                'form_id': 'contact_form',\n                'timestamp': new Date().toISOString()\n            });\n        }\n        \n        setVisible('contact_container', false)\n        setVisible('successMessage', true)\n    } catch (e) {\n        // GTM Network Error Tracking\n        if (typeof window !== 'undefined' && window.dataLayer) {\n            window.dataLayer.push({\n                'event': 'contact_form_submit_error',\n                'form_id': 'contact_form',\n                'error_type': 'network_error',\n                'timestamp': new Date().toISOString()\n            });\n        }\n        setUserProps('contact_container', {disabled: false})\n        setVisible('errorMessage', true)\n    }",
+      "params": {}
+    }
+  },
+  "tooltipType": "MuiTooltip",
+  "errorType": "MuiErrorWrapper",
+  "form": {
+    "key": "contact_screen",
+    "type": "Screen",
+    "props": {},
+    "children": [
+      {
+        "key": "contact_container",
+        "type": "MuiBox",
+        "children": [
+          {
+            "key": "first_name",
+            "type": "MuiTextField",
+            "props": {
+              "label": {
+                "value": "First Name"
+              },
+              "name": {
+                "value": "first_name"
+              },
+
+              "variant": {
+                "value": "outlined"
+              },
+              "fullWidth": {
+                "value": true
+              }
+            },
+            "schema": {
+              "validations": [
+                {
+                  "key": "required"
+                }
+              ],
+              "autoValidate": true
+            },
+            "events": {
+              "onFocus": [
+                {
+                  "name": "trackFormStart",
+                  "type": "code"
+                }
+              ]
+            }
+          },
+          {
+            "key": "last_name",
+            "type": "MuiTextField",
+            "props": {
+              "label": {
+                "value": "Last Name"
+              },
+              "name": {
+                "value": "last_name"
+              },
+
+              "variant": {
+                "value": "outlined"
+              },
+              "fullWidth": {
+                "value": true
+              }
+            },
+            "schema": {
+              "validations": [
+                {
+                  "key": "required"
+                }
+              ],
+              "autoValidate": true
+            }
+          },
+          {
+            "key": "business_phone",
+            "type": "MuiTextField",
+            "props": {
+              "label": {
+                "value": "Business Phone"
+              },
+              "name": {
+                "value": "business_phone"
+              },
+
+              "variant": {
+                "value": "outlined"
+              },
+              "fullWidth": {
+                "value": true
+              }
+            }
+          },
+          {
+            "key": "company",
+            "type": "MuiTextField",
+            "props": {
+              "label": {
+                "value": "Company"
+              },
+              "name": {
+                "value": "company"
+              },
+
+              "variant": {
+                "value": "outlined"
+              },
+              "fullWidth": {
+                "value": true
+              }
+            },
+            "schema": {
+              "validations": [
+                {
+                  "key": "required"
+                }
+              ],
+              "autoValidate": true
+            }
+          },
+          {
+            "key": "email",
+            "type": "MuiTextField",
+            "props": {
+              "label": {
+                "value": "E-mail"
+              },
+              "name": {
+                "value": "email"
+              },
+
+              "variant": {
+                "value": "outlined"
+              },
+              "fullWidth": {
+                "value": true
+              }
+            },
+            "schema": {
+              "validations": [
+                {
+                  "key": "email"
+                },
+                {
+                  "key": "required"
+                }
+              ],
+              "autoValidate": true
+            }
+          },
+          {
+            "key": "job_function",
+            "type": "MuiTextField",
+            "props": {
+              "label": {
+                "value": "Job Function"
+              },
+              "name": {
+                "value": "job_function"
+              },
+
+              "variant": {
+                "value": "outlined"
+              },
+              "fullWidth": {
+                "value": true
+              }
+            },
+            "schema": {
+              "validations": [
+                {
+                  "key": "required"
+                }
+              ],
+              "autoValidate": true
+            }
+          },
+          {
+            "key": "details",
+            "type": "MuiTextField",
+            "props": {
+              "label": {
+                "value": "Tell Us More About How We Can Help?"
+              },
+              "name": {
+                "value": "details"
+              },
+              "variant": {
+                "value": "outlined"
+              },
+              "fullWidth": {
+                "value": true
+              },
+              "multiline": {
+                "value": true
+              },
+              "rows": {
+                "value": 4
+              }
+            }
+          },
+          {
+            "key": "name",
+            "type": "MuiTextField",
+            "props": {
+              "name": {
+                "value": "name"
+              }
+            },
+            "css": {
+              "any": {
+                "string": "  display: none;"
+              }
+            }
+          },
+          {
+            "key": "message",
+            "type": "MuiTextField",
+            "props": {
+              "name": {
+                "value": "message"
+              }
+            },
+            "css": {
+              "any": {
+                "string": "  display: none;"
+              }
+            }
+          },
+          {
+            "key": "website",
+            "type": "MuiTextField",
+            "props": {
+              "label": {
+                "value": "Website"
+              },
+              "name": {
+                "value": "website"
+              }
+            },
+            "css": {
+              "any": {
+                "string": "position:absolute;left:-9999px;opacity:0;height:0;width:0;pointer-events:none;"
+              }
+            }
+          },
+          {
+            "key": "send_btn",
+            "type": "MuiButton",
+            "props": {
+              "children": {
+                "value": "Send"
+              },
+              "variant": {
+                "value": "contained"
+              },
+              "color": {
+                "value": "primary"
+              },
+              "size": {
+                "value": "large"
+              },
+              "fullWidth": {
+                "value": true
+              }
+            },
+            "events": {
+              "onClick": [
+                {
+                  "name": "validate",
+                  "type": "common"
+                },
+                {
+                  "name": "sendForm",
+                  "type": "code"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "key": "errorMessage",
+        "type": "MuiTypography",
+        "props": {
+          "children": {
+            "value": "Submission failed. Please try again."
+          },
+          "variant": {
+            "value": "h6"
+          },
+          "align": {
+            "value": "center"
+          }
+        },
+        "css": {
+          "any": {
+            "string": "  color: red;\n  font-size: 20px;\n  text-align: center;"
+          }
+        },
+        "renderWhen": {
+          "value": "false"
+        }
+      },
+      {
+        "key": "successMessage",
+        "type": "MuiTypography",
+        "props": {
+          "children": {
+            "value": "Thanks! We'll get back to you soon."
+          },
+          "variant": {
+            "value": "h6"
+          },
+          "align": {
+            "value": "center"
+          }
+        },
+        "css": {
+          "any": {
+            "string": "  color: green;\n  font-size: 20px;\n  text-align: center;"
+          }
+        },
+        "renderWhen": {
+          "value": "false"
+        }
+      }
+    ]
+  },
+  "localization": {},
+  "languages": [
+    {
+      "code": "en",
+      "dialect": "US",
+      "name": "English",
+      "description": "American English",
+      "bidi": "ltr"
+    }
+  ],
+  "defaultLanguage": "en-US"
+}

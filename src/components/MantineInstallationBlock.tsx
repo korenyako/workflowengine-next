@@ -1,0 +1,26 @@
+import React from 'react';
+import { Text } from '@/components/content/Text';
+import { CodeBlock } from '@/components/content/CodeBlock';
+
+const MantineInstallationBlock: React.FC = () => {
+  return (
+    <section className="text-white py-10 md:py-14 px-4 sm:px-8">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-white mb-6 text-center">
+          Installation
+        </h2>
+        <div className="article-content space-y-5 font-[Space_Grotesk] text-lg lg:text-xl leading-8">
+          <Text className="text-center">
+            Install the package along with WorkflowEngine Core and Mantine dependencies:
+          </Text>
+          <CodeBlock
+            language="bash"
+            code={`npm install @react-form-builder/core @react-form-builder/components-mantine`}
+          />
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default MantineInstallationBlock;

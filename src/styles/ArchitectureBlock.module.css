@@ -1,0 +1,541 @@
+.orgChartWrapper {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 80em;
+    overflow: hidden;
+    min-height: auto;
+}
+
+.orgChartContainer {
+    padding: 1em;
+    width: 100%;
+    padding-bottom: 2em;
+}
+
+.orgChartOrganizationalChart,
+.orgChartOrganizationalChart ol,
+.orgChartOrganizationalChart li,
+.orgChartOrganizationalChart li > div {
+    position: relative;
+}
+
+.orgChartOrganizationalChart,
+.orgChartOrganizationalChart ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.orgChartOrganizationalChart {
+    text-align: center;
+}
+
+.orgChartOrganizationalChart ol {
+    padding-top: 1em;
+}
+
+.orgChartOrganizationalChart ol:before,
+.orgChartOrganizationalChart ol:after,
+.orgChartOrganizationalChart li:before,
+.orgChartOrganizationalChart li:after,
+.orgChartOrganizationalChart > li > div:before,
+.orgChartOrganizationalChart > li > div:after {
+    background-color: white;
+    content: '';
+    position: absolute;
+}
+
+.orgChartOrganizationalChart ol > li {
+    padding: 1em 0 0 1em;
+}
+
+.orgChartOrganizationalChart > li ol:before {
+    height: 1em;
+    left: 50%;
+    top: 0;
+    width: 3px;
+}
+
+.orgChartOrganizationalChart > li ol:after {
+    height: 3px;
+    left: 3px;
+    top: 1em;
+    width: 50%;
+}
+
+.orgChartOrganizationalChart > li ol > li:not(:last-of-type):before {
+    height: 3px;
+    left: 0;
+    top: 2em;
+    width: 1em;
+}
+
+.orgChartOrganizationalChart > li ol > li:not(:last-of-type):after {
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 3px;
+}
+
+.orgChartOrganizationalChart > li ol > li:last-of-type:before {
+    height: 3px;
+    left: 0;
+    top: 2em;
+    width: 1em;
+}
+
+.orgChartOrganizationalChart > li ol > li:last-of-type:after {
+    height: 2em;
+    left: 0;
+    top: 0;
+    width: 3px;
+}
+
+.orgChartOrganizationalChart li > div {
+    background-color: #2b2b2b;
+    border-radius: 8px;
+    min-height: 2em;
+    padding: 0.75rem 1rem;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+/* PRIMARY - главный элемент (стиль как блок кода NPM) */
+.orgChartOrganizationalChart > li > div {
+    background-color: #111827; /* bg-gray-900 */
+    margin-right: 1em;
+    font-family: 'JetBrains Mono', 'Roboto Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Droid Sans Mono', 'Source Code Pro', 'Consolas', 'Liberation Mono', 'Menlo', 'Courier', monospace !important;
+    font-feature-settings: "liga" 0;
+    font-variant-ligatures: none;
+    font-size: 18px;
+    font-weight: 400;
+    padding: 0.75rem 2rem; /* уменьшили горизонтальные отступы с 3rem до 2rem */
+    border-radius: 8px; /* rounded-lg */
+    color: #BEF264; /* цвет как в блоке кода NPM */
+}
+
+.orgChartOrganizationalChart > li > div:before {
+    bottom: 2em;
+    height: 3px;
+    right: -1em;
+    width: 1em;
+}
+
+.orgChartOrganizationalChart > li > div:first-of-type:after {
+    bottom: 0;
+    height: 2em;
+    right: -1em;
+    width: 3px;
+}
+
+.orgChartOrganizationalChart > li > div + div {
+    margin-top: 1em;
+}
+
+.orgChartOrganizationalChart > li > div + div:after {
+    height: calc(100% + 1em);
+    right: -1em;
+    top: -1em;
+    width: 3px;
+}
+
+/* SECONDARY - элементы первого уровня */
+.orgChartOrganizationalChart > li > ol:before {
+    left: inherit;
+    right: 0;
+}
+
+.orgChartOrganizationalChart > li > ol:after {
+    left: 0;
+    width: 100%;
+}
+
+.orgChartOrganizationalChart > li > ol > li > div {
+    background-color: #1f2937 !important; /* bg-gray-800 как в меню Resources */
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #9ca3af !important; /* text-gray-400 как в меню Resources */
+    transition: color 0.2s ease; /* transition-colors */
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.orgChartOrganizationalChart > li > ol > li > div:hover {
+    color: white !important; /* hover:text-white */
+}
+
+/* Активный элемент - Component editors (теперь как все остальные) */
+.orgChartActive {
+    background-color: #1f2937 !important; /* bg-gray-800 как в меню Resources */
+    color: #9ca3af !important; /* text-gray-400 как в меню Resources */
+    transition: color 0.2s ease !important; /* transition-colors */
+}
+
+.orgChartActive:hover {
+    color: white !important; /* hover:text-white */
+}
+
+/* TERTIARY - элементы третьего уровня (стиль как меню Resources) */
+.orgChartOrganizationalChart > li > ol > li > ol > li > div {
+    background-color: #1f2937 !important; /* bg-gray-800 как в меню Resources */
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #9ca3af !important; /* text-gray-400 как в меню Resources */
+    transition: color 0.2s ease; /* transition-colors */
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.orgChartOrganizationalChart > li > ol > li > ol > li > div:hover {
+    color: white !important; /* hover:text-white */
+}
+
+/* QUATERNARY */
+.orgChartOrganizationalChart > li > ol > li > ol > li > ol > li > div {
+    background-color: #2b2b2b;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+/* QUINARY */
+.orgChartOrganizationalChart > li > ol > li > ol > li > ol > li > ol > li > div {
+    background-color: #2b2b2b;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+
+
+/* Стили для заголовков */
+.orgChartOrganizationalChart h1,
+.orgChartOrganizationalChart h2,
+.orgChartOrganizationalChart h3 {
+    margin: 0;
+    padding: 0;
+    font-weight: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+}
+
+/* MEDIA QUERIES */
+@media only screen and ( min-width: 64em ) {
+
+    .orgChartOrganizationalChart {
+        margin-left: -1em;
+        margin-right: -1em;
+    }
+
+    /* PRIMARY */
+    .orgChartOrganizationalChart > li > div {
+        display: inline-block;
+        float: none;
+        margin: 0 1em 1em 1em;
+        vertical-align: bottom;
+    }
+
+    .orgChartOrganizationalChart > li > div:only-of-type {
+        margin-bottom: 0;
+        width: calc((100% / 1) - 2em - 4px);
+    }
+
+    .orgChartOrganizationalChart > li > div:first-of-type:nth-last-of-type(2),
+    .orgChartOrganizationalChart > li > div:first-of-type:nth-last-of-type(2) ~ div {
+        width: calc((100% / 2) - 2em - 4px);
+    }
+
+    .orgChartOrganizationalChart > li > div:first-of-type:nth-last-of-type(3),
+    .orgChartOrganizationalChart > li > div:first-of-type:nth-last-of-type(3) ~ div {
+        width: calc((100% / 3) - 2em - 4px);
+    }
+
+    .orgChartOrganizationalChart > li > div:first-of-type:nth-last-of-type(4),
+    .orgChartOrganizationalChart > li > div:first-of-type:nth-last-of-type(4) ~ div {
+        width: calc((100% / 4) - 2em - 4px);
+    }
+
+    .orgChartOrganizationalChart > li > div:first-of-type:nth-last-of-type(5),
+    .orgChartOrganizationalChart > li > div:first-of-type:nth-last-of-type(5) ~ div {
+        width: calc((100% / 5) - 2em - 4px);
+    }
+
+    .orgChartOrganizationalChart > li > div:before,
+    .orgChartOrganizationalChart > li > div:after {
+        bottom: -1em!important;
+        top: inherit!important;
+    }
+
+    .orgChartOrganizationalChart > li > div:before {
+        height: 1em!important;
+        left: 50%!important;
+        width: 3px!important;
+    }
+
+    .orgChartOrganizationalChart > li > div:only-of-type:after {
+        display: none;
+    }
+
+    .orgChartOrganizationalChart > li > div:first-of-type:not(:only-of-type):after,
+    .orgChartOrganizationalChart > li > div:last-of-type:not(:only-of-type):after {
+        bottom: -1em;
+        height: 3px;
+        width: calc(50% + 1em + 3px);
+    }
+
+    .orgChartOrganizationalChart > li > div:first-of-type:not(:only-of-type):after {
+        left: calc(50% + 3px);
+    }
+
+    .orgChartOrganizationalChart > li > div:last-of-type:not(:only-of-type):after {
+        left: calc(-1em - 3px);
+    }
+
+    .orgChartOrganizationalChart > li > div + div:not(:last-of-type):after {
+        height: 3px;
+        left: -2em;
+        width: calc(100% + 4em);
+    }
+
+    /* SECONDARY */
+    .orgChartOrganizationalChart > li > ol {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+
+    .orgChartOrganizationalChart > li > ol:before {
+        height: 1em!important;
+        left: 50%!important;
+        top: 0!important;
+        width: 3px!important;
+    }
+
+    .orgChartOrganizationalChart > li > ol > li:before {
+        height: 1em!important;
+        left: 50%!important;
+        top: 0!important;
+        width: 3px!important;
+    }
+
+    .orgChartOrganizationalChart > li > ol:after {
+        display: none;
+    }
+
+    .orgChartOrganizationalChart > li > ol > li {
+        flex: 1;
+        min-width: 0;
+        padding-top: 1em;
+        padding-left: 1em;
+        padding-right: 1em;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+    }
+
+    .orgChartOrganizationalChart > li > ol > li > div {
+        width: 100%;
+        text-align: center;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        min-height: 3em;
+    }
+
+    .orgChartOrganizationalChart > li > ol > li:only-of-type {
+        padding-top: 0;
+    }
+
+    .orgChartOrganizationalChart > li > ol > li:only-of-type:before,
+    .orgChartOrganizationalChart > li > ol > li:only-of-type:after {
+        display: none;
+    }
+
+    .orgChartOrganizationalChart > li > ol > li:first-of-type:not(:only-of-type):after,
+    .orgChartOrganizationalChart > li > ol > li:last-of-type:not(:only-of-type):after {
+        height: 3px;
+        top: 0;
+        width: 50%;
+    }
+
+    .orgChartOrganizationalChart > li > ol > li:first-of-type:not(:only-of-type):after {
+        left: 50%;
+    }
+
+    .orgChartOrganizationalChart > li > ol > li:last-of-type:not(:only-of-type):after {
+        left: 0;
+    }
+
+    .orgChartOrganizationalChart > li > ol > li + li:not(:last-of-type):after {
+        height: 3px;
+        left: -1em;
+        top: 0;
+        width: calc(100% + 2em);
+    }
+
+    /* Специальные стили для разного количества элементов */
+    .orgChartOrganizationalChart.twoItems > li > ol > li {
+        margin-left: 2em;
+        margin-right: 2em;
+    }
+
+    /* Исправляем горизонтальные линии для 2 элементов */
+    .orgChartOrganizationalChart.twoItems > li > ol:after {
+        width: calc(100% - 4em);
+        left: 2em;
+    }
+
+    .orgChartOrganizationalChart.twoItems > li > ol > li:first-of-type:not(:only-of-type):after {
+        width: calc(50% + 2em);
+        left: calc(50% + 3px);
+    }
+
+    .orgChartOrganizationalChart.twoItems > li > ol > li:last-of-type:not(:only-of-type):after {
+        width: calc(50% + 2em + 3px);
+        left: calc(-2em - 3px);
+    }
+
+    .orgChartOrganizationalChart.twoItems > li > ol > li + li:not(:last-of-type):after {
+        width: calc(100% + 4em);
+        left: -2em;
+    }
+
+    .orgChartOrganizationalChart.threeItems > li > ol > li {
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+
+    /* Исправляем горизонтальные линии для 3 элементов */
+    .orgChartOrganizationalChart.threeItems > li > ol:after {
+        width: calc(100% - 2em);
+        left: 1em;
+    }
+
+    .orgChartOrganizationalChart.threeItems > li > ol > li:first-of-type:not(:only-of-type):after {
+        width: calc(50% + 1em);
+        left: calc(50% + 3px);
+    }
+
+    .orgChartOrganizationalChart.threeItems > li > ol > li:last-of-type:not(:only-of-type):after {
+        width: calc(50% + 1em + 3px);
+        left: calc(-1em - 3px);
+    }
+
+    .orgChartOrganizationalChart.threeItems > li > ol > li + li:not(:last-of-type):after {
+        width: calc(100% + 2em);
+        left: -1em;
+    }
+
+    .orgChartOrganizationalChart.fourItems > li > ol > li {
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+    }
+
+    /* Исправляем горизонтальные линии для 4 элементов */
+    .orgChartOrganizationalChart.fourItems > li > ol:after {
+        width: calc(100% - 1em);
+        left: 0.5em;
+    }
+
+    .orgChartOrganizationalChart.fourItems > li > ol > li:first-of-type:not(:only-of-type):after {
+        width: calc(50% + 0.5em);
+        left: calc(50% + 3px);
+    }
+
+    .orgChartOrganizationalChart.fourItems > li > ol > li:last-of-type:not(:only-of-type):after {
+        width: calc(50% + 0.5em + 3px);
+        left: calc(-0.5em - 3px);
+    }
+
+    .orgChartOrganizationalChart.fourItems > li > ol > li + li:not(:last-of-type):after {
+        width: calc(100% + 1em);
+        left: -0.5em;
+    }
+
+    .orgChartOrganizationalChart.fiveItems > li > ol > li {
+        margin-left: 0.25em;
+        margin-right: 0.25em;
+    }
+
+    /* Исправляем горизонтальные линии для 5 элементов */
+    .orgChartOrganizationalChart.fiveItems > li > ol:after {
+        width: calc(100% - 0.5em);
+        left: 0.25em;
+    }
+
+    .orgChartOrganizationalChart.fiveItems > li > ol > li:first-of-type:not(:only-of-type):after {
+        width: calc(50% + 0.25em);
+        left: calc(50% + 3px);
+    }
+
+    .orgChartOrganizationalChart.fiveItems > li > ol > li:last-of-type:not(:only-of-type):after {
+        width: calc(50% + 0.25em + 3px);
+        left: calc(-0.25em - 3px);
+    }
+
+    .orgChartOrganizationalChart.fiveItems > li > ol > li + li:not(:last-of-type):after {
+        width: calc(100% + 0.5em);
+        left: -0.25em;
+    }
+
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .orgChartOrganizationalChart li > div {
+        padding: 0.5rem 1rem;
+        font-size: 14px;
+    }
+    
+    .orgChartOrganizationalChart > li > div {
+        font-size: 16px;
+        padding: 0.75rem 1.5rem;
+    }
+} 
+
+/* Ссылки в архитектурной схеме как в меню Resources */
+.orgChartResourceLink {
+  color: #9ca3af !important; /* text-gray-400 */
+  background: #1f2937;
+  border-radius: 8px;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  transition: color 0.2s, background 0.2s;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+}
+.orgChartResourceLink:hover {
+  color: #fff !important;
+  background: #1e293b;
+}
+
+/* Универсальный стиль для всех иконок */
+.styleIcon,
+.componentEditorsIcon,
+.localizationIcon,
+.formSettingsIcon,
+.actionIcon,
+.dragDropIcon,
+.validationIcon,
+.propertyIcon,
+.formRendererIcon,
+.apiIcon,
+.structuralIcon {
+  width: 24px;
+  height: 24px;
+  margin-right: 0.75em;
+  margin-top: 0.125em;
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+}

@@ -1,0 +1,13 @@
+# Legacy pricing redirect
+/pricing   /react-form-builder-library/pricing/   301
+/pricing/  /react-form-builder-library/pricing/   301
+
+# Archived pages
+/formengine-core-vscode-extension   /react-form-library/   301
+/formengine-core-vscode-extension/  /react-form-library/   301
+
+# Contact form backend -> Netlify Function
+/backend/lead/   /.netlify/functions/lead   200
+
+# Custom 404 page (must be last)
+/*   /404.html   404

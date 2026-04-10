@@ -1,0 +1,6 @@
+**/node_modules
+**/build
+**/dist
+**/out
+
+.docker/backend/includes/secret/settings.php

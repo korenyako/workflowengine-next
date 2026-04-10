@@ -1,0 +1,382 @@
+[
+  {
+    "type": "HeroWithCodeBlock",
+    "props": {
+      "title": "Formengine Core Open-Source, Free JSON Form Renderer React Library",
+      "description": "From simple to complex React forms — built with minimal code, no deep React knowledge, and without compromising performance",
+      "badge": "WorkflowEngine Core Free Open-Source React Form Library Built for Real-World Use",
+      "cta": {
+        "text": "Install",
+        "href": "https://github.com/optimajet/workflowengine"
+      },
+      "code": "npm i @react-form-builder/core",
+      "anchor": "react-form-library"
+    }
+  },
+  {
+    "type": "HeroImageBlock",
+    "props": {
+      "image": {
+        "src": "/images/mockup.webp",
+        "alt": "WorkflowEngine visual form builder demo"
+      }
+    }
+  },
+  
+  {
+    "type": "CenteredAIBlock",
+    "props": {
+      "title": "Build React Forms with ChatGPT and WorkflowEngine",
+      "subtitle": "AI React Form Builder",
+      "description": "To generate a form, just send an image or a PDF of the form in the chat, or provide a text description. After the form is generated, follow the instructions you receive.",
+      "primaryCta": {
+        "text": "Build Form with AI",
+        "href": "/ai-form-builder"
+      },
+      "chatGPTButton": {
+        "placeholder": "Ask anything",
+        "href": "/ai-form-builder"
+      }
+    }
+  },
+  {
+    "type": "ProductsGridBlock",
+    "props": {
+      "title": "OptimaJet WorkflowEngine",
+      "description": "The easiest way to build forms in React using the free, open-source WorkflowEngine Core React library, a ready-to-use component library, and a powerful drag-and-drop form builder library.",
+
+      "products": [
+        {
+          "icon": "LibraryIcon",
+          "title": "React Form Library",
+          "description": "WorkflowEngine Core is a lightweight client-side React library that renders dynamic, JSON-driven forms directly in your React app.",
+          "href": "/react-form-library"
+        },
+        {
+          "icon": "ComponentsIcon",
+          "title": "React Form Components Library",
+          "description": "WorkflowEngine Components Library is a set of ready-to-use React UI components optimized for use with WorkflowEngine Core and Designer.",
+          "href": "/react-form-components-library"
+        },
+        {
+          "icon": "DragDropEditorIcon",
+          "title": "React Form Builder Library",
+          "description": "WorkflowEngine Online Form Builder is a drag-and-drop form builder for creating JSON forms, ready to use with WorkflowEngine Core.",
+          "href": "/react-form-builder-library"
+        }
+      ]
+    }
+  },
+  {
+    "type": "LargeCenteredImageBlock",
+    "props": {
+      "subtitle": "Drag and drop React form builder.\nA versatile solution that benefits both developers and end-users.",
+      "title": "WorkflowEngine React Form Builder Library",
+      "description": "Developers benefit from its powerful features and flexible customization options, enabling them to design and modify forms effortlessly. End users can create visually appealing and functional forms without the need for manual input or coding expertise.",
+      "secondDescription": "Easy to use and user-friendly interface reduce the learning curve for your team, and save development time.",
+      "image": {
+        "src": "/images/react-form-builder.webp",
+        "alt": "React Form Builder screenshot"
+      },
+      "primaryCta": {
+        "text": "Build Form Online",
+        "href": "https://formbuilder.workflowengine.io/"
+      }
+    }
+  },
+  {
+    "type": "FeaturesGridBlock",
+    "props": {
+      "title": "WorkflowEngine React Form Library\nThe Most Flexible Open-Source Library for React Forms",
+      "anchor": "react-form-library",
+      "features": [
+        {
+          "icon": "OnboardingIcon",
+          "title": "Open Source",
+          "text": "Gives you full control, transparency, and flexibility. You can audit the code, adapt it to your needs, and rely on a community-backed project with no vendor lock-in or hidden limitations."
+        },
+        {
+          "icon": "ScriptIcon",
+          "title": "MIT License",
+          "text": "Free to use, modify, and embed in commercial projects. No restrictions or lock-in. Ideal for integrating into your React apps or building your own solution on top."
+        },
+        {
+          "icon": "DragDropEditorIcon",
+          "title": "Easy custom component integration",
+          "text": "Quickly define your own component by specifying its name, type, and props."
+        },
+        {
+          "icon": "DeveloperIntegrationIcon",
+          "title": "Ready to use with popular frameworks",
+          "text": "Works seamlessly with Next.js, Remix, and other modern React stacks with no special setup required."
+        },
+        {
+          "icon": "CustomComponentIcon",
+          "title": "Ready-to-use component library",
+          "text": "Includes built-in components and supports easy integration of custom ones. Get started fast without sacrificing flexibility."
+        },
+        {
+          "icon": "ReusableFormsIcon",
+          "title": "Reusable forms across apps",
+          "text": "Just copy and use. Forms are easily portable between applications with minimal effort. A single JSON object contains the full structure, logic, styles, validation, and actions."
+        },
+        {
+          "icon": "DynamicLogicIcon",
+          "title": "Built-in actions",
+          "text": "Forms support actions like submit, reset, and external calls out of the box. Define only what you need in code or JSON — and it'll just work."
+        },
+        {
+          "icon": "ValidationIcon",
+          "title": "Built-in form validation",
+          "text": "Data validation works out of the box with no extra code. Required fields, error messages, and rules are defined directly in code or JSON. Easily integrates with third-party validation libraries."
+        },
+        {
+          "icon": "MultiLanguageIcon",
+          "title": "Built-in localization",
+          "text": "Forms are ready for multi-language support out of the box. Third-party localization libraries can be integrated if needed."
+        },
+        {
+          "icon": "JsonImportExportIcon",
+          "title": "Dynamic CSS and responsive layout support",
+          "text": "Forms automatically adapt to different devices and styles — no additional layout code needed."
+        },
+        {
+          "icon": "CollaborationIcon",
+          "title": "Programmatic form creation and dynamic generation",
+          "text": "Build or modify forms in real time using code or external data sources."
+        },
+        {
+          "icon": "LiveFormPreviewIcon",
+          "title": "Lower learning curve",
+          "text": "Easily create forms using typed WorkflowEngine Core functions, without writing components or learning complex React concepts. JSON representation of the form is also supported for configuration-driven use."
+        }
+      ]
+    }
+  },
+  {
+    "type": "FormDemoBlock",
+    "props": {
+      "demoId": "components",
+      "subtitle": "The set of ready-to-use React UI components optimized for use with WorkflowEngine Core and Form Builder.",
+      "title": "WorkflowEngine React Form Components Library",
+      "description": "Ready to use, MIT-licensed, and free. Includes built-in components and supports easy integration of custom ones. Get started fast without sacrificing flexibility.",
+      "layout": "full-width"
+    }
+  },
+  {
+    "type": "ComponentsTableBlock",
+    "props": {
+      "showHeader": false,
+      "showFooter": true
+    }
+  },
+  {
+    "type": "TrustpilotTestimonialsBlock",
+    "props": {
+      "title": "Our products are developer-friendly and highly customizable",
+      "description": "We help companies worldwide to build and deploy workflow software applications faster, more scalably, and efficiently, while reducing software development costs.",
+      "logo": "/logos/trustpilot.svg",
+      "reviews": [
+        {
+          "rating": 5,
+          "title": "Easy to integrate product with good documentation",
+          "text": "We were quickly able to integrate the Optimajet Engine into our code and this allowed our team to focus on the business functionality instead of a workflow infrastructure. We found the documentation and sample code very helpful and the team was able to come up to speed quickly.",
+          "source": "Trustpilot",
+          "verified": true
+        },
+        {
+          "rating": 5,
+          "title": "Great product and customer experience",
+          "text": "I was really impressed by the Optimajet vendor sales team's exceptional expertise and professionalism. They spent a lot of time to understand my specific needs and provided tailored solutions that precisely addressed my challenges.",
+          "source": "Trustpilot",
+          "verified": true
+        },
+        {
+          "rating": 5,
+          "title": "Excellent workflow engine",
+          "text": "OptimaJet's workflow engine was a perfect fit for our task. Our engineering team was provided with the required documentation to ensure integration was smooth. Once baked in, the product performed as expected and I would highly recomment OptimaJet to anyone looking for a powerful workflow engine solution.",
+          "source": "Trustpilot",
+          "verified": true
+        }
+      ],
+      "blockBg": "rgba(31, 41, 55, 0.5)"
+    }
+  },
+  {
+    "type": "TwoColumnFeatureBlock",
+    "props": {
+      "subtitle": "Custom components",
+      "title": "Easy custom component integration",
+      "description": "Easily integrate custom components by specifying their name, type, and props. Add custom fields, groups, wrappers, or dynamic behaviors — and match your design system and business logic requirements.",
+      "imageSrc": "/images/components.png",
+      "imageAlt": "Custom field components demonstration",
+      "imagePosition": "left",
+      "gradientButton": {
+        "title": "Documentation",
+        "subtitle": "Custom components",
+        "href": "https://workflowengine.io/documentation/custom-components",
+        "iconPath": "/icons/documentation.svg"
+      }
+    }
+  },
+  {
+    "type": "TwoColumnFeatureBlock",
+    "props": {
+      "subtitle": "JSON Form Renderer for Next.js and Modern React",
+      "title": "Effortless integration with Next.js, Remix, and other React frameworks",
+      "description": "Render dynamic forms in your Next.js app with just one JSON file. WorkflowEngine handles layout, logic, and validation out of the box — fully customizable, MIT-licensed, and production-ready.",
+      "imagePosition": "right",
+      "secondDescription": "You can find fully functional examples in our <a href=\"https://github.com/optimajet/workflowengine\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-link-tag\">GitHub</a> under the <a href=\"https://github.com/optimajet/workflowengine/tree/master/premium/examples\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-link-tag\">examples</a> folder. Explore the code to see how the components work together. Need help? Just <a href=\"https://optimajet.com/contact-us/\" class=\"text-link-tag\" target=\"_blank\" rel=\"noopener noreferrer\">reach out</a>!",
+      "gradientButtons": [
+        {
+          "title": "Documentation",
+          "subtitle": "Usage with Next.js",
+          "href": "https://workflowengine.io/documentation/usage-with-nextjs",
+          "iconPath": "/icons/documentation.svg"
+        },
+        {
+          "title": "Documentation",
+          "subtitle": "Usage with Remix",
+          "href": "https://workflowengine.io/documentation/usage-with-remix",
+          "iconPath": "/icons/documentation.svg"
+        }
+      ],
+      "customImage": {
+        "type": "CodePreview",
+        "props": {
+          "code": "import React from 'react';\nimport { WorkflowEngine } from '@react-form-builder/core';\nimport { formConfig } from './form-config';\n\nexport function MyForm() {\n  return (\n    <WorkflowEngine\n      config={formConfig}\n      onSubmit={(data) => console.log(data)}\n    />\n  );\n}",
+          "language": "bash",
+          "tabs": [
+            {
+              "name": "Next.js",
+              "icon": "/icons/nextjs.svg",
+              "code": "git clone git@github.com:optimajet/workflowengine.git\ncd workflowengine/premium/examples/with-nextjs/with-nextjs-v15\nnpm install\nnpm run dev"
+            },
+            {
+              "name": "Remix",
+              "icon": "/icons/remix.svg",
+              "code": "git clone git@github.com:optimajet/workflowengine.git\ncd workflowengine/premium/examples/with-remix/with-remix-v2\nnpm install\nnpm run dev"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "type": "FormDemoBlock",
+    "props": {
+      "demoId": "conditional",
+      "subtitle": "Dynamic and interactive forms that adapt to user choices or input",
+      "title": "Conditional Logic and Dynamic Form",
+      "description": "Define rules or conditions that control the visibility or behavior of form fields or sections based on specific criteria or user input. With FormBuilder conditional logic, you can set up rules that determine when certain form elements should be displayed, hidden, or disabled, based on the values or selections made in other fields.",
+      "secondDescription": "With Optimajet FormBuilder, you typically define conditional logic through a visual interface or configuration settings. This allows you to specify the conditions and actions associated with each form field or section. The FormBuilder then handles the logic and updates the form's state or DOM dynamically based on the defined conditions.",
+      "layout": "full-width",
+      "primaryCta": {
+        "text": "View Documentation",
+        "href": "https://workflowengine.io/documentation/conditional-rendering"
+      }
+    }
+  },
+  {
+    "type": "FAQBlock",
+    "props": {
+      "title": "Frequently Asked Questions",
+      "blockBg": "rgba(31, 41, 55, 0.5)",
+      "anchor": "faq",
+      "faqItems": [
+        {
+          "question": "Is WorkflowEngine really free?",
+          "answer": "<a href=\"/react-form-library/\">WorkflowEngine Core</a> is completely free and open-source under the MIT license — use it in any project, including commercial ones, with no restrictions. The <a href=\"/react-form-builder-library/\">Form Builder (Designer)</a> is a separate commercial product with paid licenses starting from a single-domain plan. See the <a href=\"/pricing/\">pricing page</a> for details."
+        },
+        {
+          "question": "How does WorkflowEngine compare to React Hook Form?",
+          "answer": "React Hook Form is a code-first validation and state management library, while WorkflowEngine is a JSON-driven form engine with a visual drag-and-drop builder. WorkflowEngine lets you define entire forms — structure, logic, validation, and actions — in JSON, making it ideal for backend-driven apps and dynamic UIs. See our <a href=\"/comparison/react-hook-form-alternative/\">detailed comparison</a>."
+        },
+        {
+          "question": "Can I use WorkflowEngine in commercial projects?",
+          "answer": "Yes. WorkflowEngine Core is <a href=\"https://github.com/optimajet/workflowengine/blob/master/LICENSE\">MIT-licensed</a>, so you can freely use, modify, and embed it in commercial applications with no restrictions or vendor lock-in. The Designer (Form Builder) requires a commercial license for production use."
+        },
+        {
+          "question": "Does WorkflowEngine work with TypeScript?",
+          "answer": "Yes. WorkflowEngine is built with TypeScript and provides full type definitions for all components and APIs. You get autocomplete, type checking, and IntelliSense in your IDE out of the box."
+        },
+        {
+          "question": "What UI libraries are supported?",
+          "answer": "WorkflowEngine ships with ready-to-use component packages for <a href=\"/react-form-components-library/rsuite/\">React Suite (RSuite)</a>, <a href=\"/react-form-components-library/mantine/\">Mantine</a>, <a href=\"/react-form-components-library/mui/\">Material UI (MUI)</a>, and <a href=\"/react-form-components-library/shadcn-ui/\">shadcn/ui</a>. You can also integrate any custom React components by specifying their name, type, and props."
+        },
+        {
+          "question": "How to get started with WorkflowEngine?",
+          "answer": "Install WorkflowEngine Core with <code>npm i @react-form-builder/core</code>, define your form in JSON or using typed helper functions, and render it with the WorkflowEngine component. It works seamlessly with Next.js, Remix, and other modern React frameworks. Check the <a href=\"https://workflowengine.io/documentation/\">getting started guide</a>."
+        },
+        {
+          "question": "Is WorkflowEngine production-ready?",
+          "answer": "Yes. WorkflowEngine is used in production by enterprise companies including Bosch, Philips, Dell, Acer, Novartis, and Engie. The project is actively maintained with 175+ GitHub stars and regular releases."
+        },
+        {
+          "question": "What companies use WorkflowEngine?",
+          "answer": "WorkflowEngine is trusted by global organizations including Bosch, Philips, Dell, Acer, Novartis, Engie, Nelnet, Santos, and Ideagen, with engineering teams using it in production."
+        }
+      ],
+      "primaryCta": {
+        "text": "Ask the community",
+        "href": "https://github.com/optimajet/workflowengine/discussions"
+      }
+    }
+  },
+  {
+    "type": "StarsWall",
+    "props": {
+      "heading": "Our Supporters",
+      "title": "People who starred WorkflowEngine",
+      "repoUrl": "https://github.com/optimajet/workflowengine",
+      "fileUrl": "/stargazers.json",
+      "blockBg": "transparent"
+    }
+  },
+  {
+    "type": "LogosBlock",
+    "props": {
+      "subtitle": "Trusted by global organizations",
+      "description": "Leading companies choose WorkflowEngine for their form solutions"
+    }
+  },
+  {
+    "type": "CustomerTestimonialsBlock",
+    "props": {
+      "title": "What people say",
+      "subtitle": "Testimonials",
+      "anchor": "testimonials",
+      "testimonials": [
+        {
+          "text": "OptimaJet's FormBuilder has been a game-changer for our form creation process. Our end users are delighted with the ability to customize the form's layout and structure without any coding knowledge. It has truly streamlined our workflow and empowered our team to create visually appealing and user-friendly forms.",
+          "name": "Samantha Lee",
+          "title": "Staff Software Engineer",
+          "company": "DCL Software"
+        },
+        {
+          "text": "We've been able to produce forms two times faster than we were before FormBuilder. Adding FormBuilder to the scope was definitely the right thing for us. As a developer, I appreciate the ability to apply custom CSS styling, add external validators, and implement personalized data processing logic. The FormBuilder adapts perfectly to our project's unique requirements.",
+          "name": "Milovan Popovic",
+          "title": "Enterprise Applications Manager",
+          "company": "CP AdaBytes d.o.o"
+        },
+        {
+          "text": "FormBuilder has empowered us to create a truly tailored and seamless form-building experience. The best part? You can easily tweak and customize them to match our exact needs. The ability to monitor other fields and run validations asynchronously adds a whole new level of flexibility.",
+          "name": "Oliver Garcia",
+          "title": "CTO",
+          "company": "ERP Groupe"
+        }
+      ],
+      "blockBg": "transparent"
+    }
+  },
+  {
+    "type": "ContactCTABlock",
+    "props": {
+      "title": "Have a question?",
+      "description": "Ask and we'll get back with you in 1 business day.",
+      "buttonText": "Contact Us",
+      "buttonHref": "/contacts",
+      "blockBg": "#101828"
+    }
+  }
+] 

@@ -1,0 +1,1016 @@
+{
+    "version": "1",
+    "form": {
+      "key": "Screen",
+      "type": "Screen",
+      "props": {},
+      "children": [
+        {
+          "key": "rsStaticContent1",
+          "type": "RsStaticContent",
+          "props": {
+            "allowHtml": {
+              "value": true
+            },
+            "content": {
+              "value": "This is an example of an <a target=\"_blank\" rel=\"noopener\" href=\"https://rsuitejs.com/components/table/#appearance\"> Appearance</a> table."
+            }
+          },
+          "css": {
+            "any": {
+              "string": "  font-size: 18px;"
+            }
+          }
+        },
+        {
+          "key": "rsDivider1",
+          "type": "RsDivider",
+          "props": {},
+          "children": []
+        },
+        {
+          "key": "vStack1",
+          "type": "RsContainer",
+          "props": {},
+          "children": [
+            {
+              "key": "hStack1",
+              "type": "RsContainer",
+              "props": {},
+              "css": {
+                "any": {
+                  "object": {
+                    "flexDirection": "row"
+                  }
+                }
+              },
+              "children": [
+                {
+                  "key": "compactToggle",
+                  "type": "RsToggle",
+                  "props": {
+                    "children": {
+                      "value": "Compact"
+                    }
+                  },
+                  "wrapperCss": {
+                    "any": {
+                      "object": {
+                        "width": "auto"
+                      }
+                    }
+                  }
+                },
+                {
+                  "key": "borderedToggle",
+                  "type": "RsToggle",
+                  "props": {
+                    "children": {
+                      "value": "Bordered"
+                    }
+                  },
+                  "wrapperCss": {
+                    "any": {
+                      "object": {
+                        "width": "auto"
+                      }
+                    }
+                  }
+                },
+                {
+                  "key": "showHeaderToggle",
+                  "type": "RsToggle",
+                  "props": {
+                    "children": {
+                      "value": "Show Header"
+                    }
+                  },
+                  "wrapperCss": {
+                    "any": {
+                      "object": {
+                        "width": "auto"
+                      }
+                    }
+                  }
+                },
+                {
+                  "key": "hoverToggle",
+                  "type": "RsToggle",
+                  "props": {
+                    "children": {
+                      "value": "Hover"
+                    }
+                  },
+                  "wrapperCss": {
+                    "any": {
+                      "object": {
+                        "width": "auto"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "columnsTagPicker",
+          "type": "RsTagPicker",
+          "props": {
+            "data": {
+              "computeType": "function",
+              "fnSource": "    return [\n        {\n            value: 'id',\n            label: 'Id',\n        },\n        {\n            value: 'firstName',\n            label: 'First Name',\n        },\n        {\n            value: 'lastName',\n            label: 'Last Name',\n        },\n\n        {\n            value: 'gender',\n            label: 'Gender',\n        },\n        {\n            value: 'city',\n            label: 'City',\n        }\n    ]",
+              "value": []
+            },
+            "cleanable": {
+              "value": false
+            },
+            "label": {
+              "value": ""
+            },
+            "value": {
+              "value": [
+                "id",
+                "firstName",
+                "lastName",
+                "city",
+                "gender"
+              ]
+            }
+          }
+        },
+        {
+          "key": "basicTable",
+          "type": "RsTable",
+          "props": {
+            "height": {
+              "value": 300
+            },
+            "data": {
+              "value": [
+                {
+                  "id": 1,
+                  "firstName": "Janie",
+                  "lastName": "Ernser",
+                  "gender": "female",
+                  "city": "Lake Kristinborough"
+                },
+                {
+                  "id": 2,
+                  "firstName": "Maximilian",
+                  "lastName": "Bradtke",
+                  "gender": "female",
+                  "city": "Fort Josue"
+                },
+                {
+                  "id": 3,
+                  "firstName": "Anais",
+                  "lastName": "Erdman",
+                  "gender": "female",
+                  "city": "Dibbertfield"
+                },
+                {
+                  "id": 4,
+                  "firstName": "Adalberto",
+                  "lastName": "Considine",
+                  "gender": "male",
+                  "city": "Phoenix"
+                },
+                {
+                  "id": 5,
+                  "firstName": "Oswald",
+                  "lastName": "Heaney",
+                  "gender": "male",
+                  "city": "Palm Bay"
+                },
+                {
+                  "id": 6,
+                  "firstName": "Mireya",
+                  "lastName": "Rempel",
+                  "gender": "female",
+                  "city": "Port Cassieworth"
+                },
+                {
+                  "id": 7,
+                  "firstName": "Webster",
+                  "lastName": "Nienow",
+                  "gender": "female",
+                  "city": "Lucyshire"
+                },
+                {
+                  "id": 8,
+                  "firstName": "Carissa",
+                  "lastName": "Moen",
+                  "gender": "male",
+                  "city": "Brownberg"
+                },
+                {
+                  "id": 9,
+                  "firstName": "Micheal",
+                  "lastName": "Cummerata",
+                  "gender": "female",
+                  "city": "East Keshawn"
+                },
+                {
+                  "id": 10,
+                  "firstName": "Silas",
+                  "lastName": "Homenick",
+                  "gender": "female",
+                  "city": "Vandervortbury"
+                },
+                {
+                  "id": 11,
+                  "firstName": "Wendy",
+                  "lastName": "Bartell",
+                  "gender": "male",
+                  "city": "Lake Nadia"
+                },
+                {
+                  "id": 12,
+                  "firstName": "Ruth",
+                  "lastName": "Dickinson",
+                  "gender": "female",
+                  "city": "South Randallton"
+                },
+                {
+                  "id": 13,
+                  "firstName": "Ashlee",
+                  "lastName": "Gerlach",
+                  "gender": "female",
+                  "city": "Ramonhaven"
+                },
+                {
+                  "id": 14,
+                  "firstName": "Roselyn",
+                  "lastName": "Leannon",
+                  "gender": "female",
+                  "city": "Buffalo Grove"
+                },
+                {
+                  "id": 15,
+                  "firstName": "Kim",
+                  "lastName": "Cole",
+                  "gender": "female",
+                  "city": "South Clintfort"
+                },
+                {
+                  "id": 16,
+                  "firstName": "Ramiro",
+                  "lastName": "Veum",
+                  "gender": "female",
+                  "city": "North Lennyside"
+                },
+                {
+                  "id": 17,
+                  "firstName": "Ellen",
+                  "lastName": "Gislason",
+                  "gender": "male",
+                  "city": "New Tevin"
+                },
+                {
+                  "id": 18,
+                  "firstName": "Kylee",
+                  "lastName": "O'Conner",
+                  "gender": "female",
+                  "city": "South Jarred"
+                },
+                {
+                  "id": 19,
+                  "firstName": "Myriam",
+                  "lastName": "Harber",
+                  "gender": "female",
+                  "city": "New Ivachester"
+                },
+                {
+                  "id": 20,
+                  "firstName": "Lennie",
+                  "lastName": "Fisher",
+                  "gender": "male",
+                  "city": "Bridgetborough"
+                }
+              ]
+            },
+            "showHeader": {
+              "computeType": "function",
+              "fnSource": "  return form.data.showHeaderToggle"
+            },
+            "hover": {
+              "computeType": "function",
+              "fnSource": "  return form.data.hoverToggle"
+            },
+            "bordered": {
+              "computeType": "function",
+              "fnSource": "  return form.data.borderedToggle"
+            },
+            "cellBordered": {
+              "computeType": "function",
+              "fnSource": "  return form.data.borderedToggle"
+            },
+            "headerHeight": {
+              "computeType": "function",
+              "fnSource": "  return form.data.compactToggle ? 30 : 40"
+            },
+            "rowHeight": {
+              "computeType": "function",
+              "fnSource": "  return form.data.compactToggle ? 30 : 46"
+            }
+          },
+          "children": [
+            {
+              "key": "idColumn",
+              "type": "RsColumn",
+              "props": {
+                "width": {
+                  "value": 70
+                },
+                "fixed": {
+                  "value": true
+                }
+              },
+              "children": [
+                {
+                  "key": "idHeaderCell",
+                  "type": "RsHeaderCell",
+                  "props": {
+                    "children": {
+                      "value": "Id"
+                    }
+                  }
+                },
+                {
+                  "key": "idCell",
+                  "type": "RsCell",
+                  "props": {
+                    "dataKey": {
+                      "value": "id"
+                    }
+                  }
+                }
+              ],
+              "renderWhen": {
+                "fnSource": "  return form.data.columnsTagPicker?.includes('id')",
+                "computeType": "function"
+              }
+            },
+            {
+              "key": "firstNameColumn",
+              "type": "RsColumn",
+              "props": {
+                "fixed": {
+                  "value": true
+                },
+                "width": {
+                  "value": 130
+                }
+              },
+              "children": [
+                {
+                  "key": "firstNameHeaderCell",
+                  "type": "RsHeaderCell",
+                  "props": {
+                    "children": {
+                      "value": "First Name"
+                    }
+                  }
+                },
+                {
+                  "key": "firstNameCell",
+                  "type": "RsCell",
+                  "props": {
+                    "dataKey": {
+                      "value": "firstName"
+                    }
+                  }
+                }
+              ],
+              "renderWhen": {
+                "fnSource": "  return form.data.columnsTagPicker?.includes('firstName')",
+                "computeType": "function"
+              }
+            },
+            {
+              "key": "lastNameColumn",
+              "type": "RsColumn",
+              "props": {
+                "width": {
+                  "value": 123
+                }
+              },
+              "children": [
+                {
+                  "key": "lastNameHeaderCell",
+                  "type": "RsHeaderCell",
+                  "props": {
+                    "children": {
+                      "value": "Last Name"
+                    }
+                  }
+                },
+                {
+                  "key": "lastNameCell",
+                  "type": "RsCell",
+                  "props": {
+                    "dataKey": {
+                      "value": "lastName"
+                    }
+                  }
+                }
+              ],
+              "renderWhen": {
+                "fnSource": "  return form.data.columnsTagPicker?.includes('lastName')",
+                "computeType": "function"
+              }
+            },
+            {
+              "key": "genderColumn",
+              "type": "RsColumn",
+              "props": {
+                "width": {
+                  "value": 200
+                }
+              },
+              "children": [
+                {
+                  "key": "genderHeaderCell",
+                  "type": "RsHeaderCell",
+                  "props": {
+                    "children": {
+                      "value": "Gender"
+                    }
+                  }
+                },
+                {
+                  "key": "genderCell",
+                  "type": "RsCell",
+                  "props": {
+                    "dataKey": {
+                      "value": "gender"
+                    }
+                  }
+                }
+              ],
+              "renderWhen": {
+                "fnSource": "  return form.data.columnsTagPicker?.includes('gender')",
+                "computeType": "function"
+              }
+            },
+            {
+              "key": "cityColumn",
+              "type": "RsColumn",
+              "props": {
+                "flexGrow": {
+                  "value": 1
+                }
+              },
+              "children": [
+                {
+                  "key": "cityHeaderCell",
+                  "type": "RsHeaderCell",
+                  "props": {
+                    "children": {
+                      "value": "City"
+                    }
+                  }
+                },
+                {
+                  "key": "cityCell",
+                  "type": "RsCell",
+                  "props": {
+                    "dataKey": {
+                      "value": "city"
+                    }
+                  }
+                }
+              ],
+              "renderWhen": {
+                "fnSource": "  return form.data.columnsTagPicker?.includes('city')",
+                "computeType": "function"
+              }
+            }
+          ],
+          "events": {
+            "onRowClick": []
+          }
+        }
+      ]
+    },
+    "localization": {},
+    "languages": [
+      {
+        "code": "en",
+        "dialect": "US",
+        "name": "English",
+        "description": "American English",
+        "bidi": "ltr"
+      }
+    ],
+    "defaultLanguage": "en-US",
+    "default": {
+      "version": "1",
+      "form": {
+        "key": "Screen",
+        "type": "Screen",
+        "props": {},
+        "children": [
+          {
+            "key": "rsStaticContent1",
+            "type": "RsStaticContent",
+            "props": {
+              "allowHtml": {
+                "value": true
+              },
+              "content": {
+                "value": "This is an example of an <a target=\"_blank\" rel=\"noopener\" href=\"https://rsuitejs.com/components/table/#appearance\"> Appearance</a> table."
+              }
+            },
+            "css": {
+              "any": {
+                "string": "  font-size: 18px;"
+              }
+            }
+          },
+          {
+            "key": "rsDivider1",
+            "type": "RsDivider",
+            "props": {},
+            "children": []
+          },
+          {
+            "key": "vStack1",
+            "type": "RsContainer",
+            "props": {},
+            "children": [
+              {
+                "key": "hStack1",
+                "type": "RsContainer",
+                "props": {},
+                "css": {
+                  "any": {
+                    "object": {
+                      "flexDirection": "row"
+                    }
+                  }
+                },
+                "children": [
+                  {
+                    "key": "compactToggle",
+                    "type": "RsToggle",
+                    "props": {
+                      "children": {
+                        "value": "Compact"
+                      }
+                    },
+                    "wrapperCss": {
+                      "any": {
+                        "object": {
+                          "width": "auto"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "key": "borderedToggle",
+                    "type": "RsToggle",
+                    "props": {
+                      "children": {
+                        "value": "Bordered"
+                      }
+                    },
+                    "wrapperCss": {
+                      "any": {
+                        "object": {
+                          "width": "auto"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "key": "showHeaderToggle",
+                    "type": "RsToggle",
+                    "props": {
+                      "children": {
+                        "value": "Show Header"
+                      }
+                    },
+                    "wrapperCss": {
+                      "any": {
+                        "object": {
+                          "width": "auto"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "key": "hoverToggle",
+                    "type": "RsToggle",
+                    "props": {
+                      "children": {
+                        "value": "Hover"
+                      }
+                    },
+                    "wrapperCss": {
+                      "any": {
+                        "object": {
+                          "width": "auto"
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "columnsTagPicker",
+            "type": "RsTagPicker",
+            "props": {
+              "data": {
+                "computeType": "function",
+                "fnSource": "    return [\n        {\n            value: 'id',\n            label: 'Id',\n        },\n        {\n            value: 'firstName',\n            label: 'First Name',\n        },\n        {\n            value: 'lastName',\n            label: 'Last Name',\n        },\n\n        {\n            value: 'gender',\n            label: 'Gender',\n        },\n        {\n            value: 'city',\n            label: 'City',\n        }\n    ]",
+                "value": []
+              },
+              "cleanable": {
+                "value": false
+              },
+              "label": {
+                "value": ""
+              },
+              "value": {
+                "value": [
+                  "id",
+                  "firstName",
+                  "lastName",
+                  "city",
+                  "gender"
+                ]
+              }
+            }
+          },
+          {
+            "key": "basicTable",
+            "type": "RsTable",
+            "props": {
+              "height": {
+                "value": 300
+              },
+              "data": {
+                "value": [
+                  {
+                    "id": 1,
+                    "firstName": "Janie",
+                    "lastName": "Ernser",
+                    "gender": "female",
+                    "city": "Lake Kristinborough"
+                  },
+                  {
+                    "id": 2,
+                    "firstName": "Maximilian",
+                    "lastName": "Bradtke",
+                    "gender": "female",
+                    "city": "Fort Josue"
+                  },
+                  {
+                    "id": 3,
+                    "firstName": "Anais",
+                    "lastName": "Erdman",
+                    "gender": "female",
+                    "city": "Dibbertfield"
+                  },
+                  {
+                    "id": 4,
+                    "firstName": "Adalberto",
+                    "lastName": "Considine",
+                    "gender": "male",
+                    "city": "Phoenix"
+                  },
+                  {
+                    "id": 5,
+                    "firstName": "Oswald",
+                    "lastName": "Heaney",
+                    "gender": "male",
+                    "city": "Palm Bay"
+                  },
+                  {
+                    "id": 6,
+                    "firstName": "Mireya",
+                    "lastName": "Rempel",
+                    "gender": "female",
+                    "city": "Port Cassieworth"
+                  },
+                  {
+                    "id": 7,
+                    "firstName": "Webster",
+                    "lastName": "Nienow",
+                    "gender": "female",
+                    "city": "Lucyshire"
+                  },
+                  {
+                    "id": 8,
+                    "firstName": "Carissa",
+                    "lastName": "Moen",
+                    "gender": "male",
+                    "city": "Brownberg"
+                  },
+                  {
+                    "id": 9,
+                    "firstName": "Micheal",
+                    "lastName": "Cummerata",
+                    "gender": "female",
+                    "city": "East Keshawn"
+                  },
+                  {
+                    "id": 10,
+                    "firstName": "Silas",
+                    "lastName": "Homenick",
+                    "gender": "female",
+                    "city": "Vandervortbury"
+                  },
+                  {
+                    "id": 11,
+                    "firstName": "Wendy",
+                    "lastName": "Bartell",
+                    "gender": "male",
+                    "city": "Lake Nadia"
+                  },
+                  {
+                    "id": 12,
+                    "firstName": "Ruth",
+                    "lastName": "Dickinson",
+                    "gender": "female",
+                    "city": "South Randallton"
+                  },
+                  {
+                    "id": 13,
+                    "firstName": "Ashlee",
+                    "lastName": "Gerlach",
+                    "gender": "female",
+                    "city": "Ramonhaven"
+                  },
+                  {
+                    "id": 14,
+                    "firstName": "Roselyn",
+                    "lastName": "Leannon",
+                    "gender": "female",
+                    "city": "Buffalo Grove"
+                  },
+                  {
+                    "id": 15,
+                    "firstName": "Kim",
+                    "lastName": "Cole",
+                    "gender": "female",
+                    "city": "South Clintfort"
+                  },
+                  {
+                    "id": 16,
+                    "firstName": "Ramiro",
+                    "lastName": "Veum",
+                    "gender": "female",
+                    "city": "North Lennyside"
+                  },
+                  {
+                    "id": 17,
+                    "firstName": "Ellen",
+                    "lastName": "Gislason",
+                    "gender": "male",
+                    "city": "New Tevin"
+                  },
+                  {
+                    "id": 18,
+                    "firstName": "Kylee",
+                    "lastName": "O'Conner",
+                    "gender": "female",
+                    "city": "South Jarred"
+                  },
+                  {
+                    "id": 19,
+                    "firstName": "Myriam",
+                    "lastName": "Harber",
+                    "gender": "female",
+                    "city": "New Ivachester"
+                  },
+                  {
+                    "id": 20,
+                    "firstName": "Lennie",
+                    "lastName": "Fisher",
+                    "gender": "male",
+                    "city": "Bridgetborough"
+                  }
+                ]
+              },
+              "showHeader": {
+                "computeType": "function",
+                "fnSource": "  return form.data.showHeaderToggle"
+              },
+              "hover": {
+                "computeType": "function",
+                "fnSource": "  return form.data.hoverToggle"
+              },
+              "bordered": {
+                "computeType": "function",
+                "fnSource": "  return form.data.borderedToggle"
+              },
+              "cellBordered": {
+                "computeType": "function",
+                "fnSource": "  return form.data.borderedToggle"
+              },
+              "headerHeight": {
+                "computeType": "function",
+                "fnSource": "  return form.data.compactToggle ? 30 : 40"
+              },
+              "rowHeight": {
+                "computeType": "function",
+                "fnSource": "  return form.data.compactToggle ? 30 : 46"
+              }
+            },
+            "children": [
+              {
+                "key": "idColumn",
+                "type": "RsColumn",
+                "props": {
+                  "width": {
+                    "value": 70
+                  },
+                  "fixed": {
+                    "value": true
+                  }
+                },
+                "children": [
+                  {
+                    "key": "idHeaderCell",
+                    "type": "RsHeaderCell",
+                    "props": {
+                      "children": {
+                        "value": "Id"
+                      }
+                    }
+                  },
+                  {
+                    "key": "idCell",
+                    "type": "RsCell",
+                    "props": {
+                      "dataKey": {
+                        "value": "id"
+                      }
+                    }
+                  }
+                ],
+                "renderWhen": {
+                  "fnSource": "  return form.data.columnsTagPicker?.includes('id')",
+                  "computeType": "function"
+                }
+              },
+              {
+                "key": "firstNameColumn",
+                "type": "RsColumn",
+                "props": {
+                  "fixed": {
+                    "value": true
+                  },
+                  "width": {
+                    "value": 130
+                  }
+                },
+                "children": [
+                  {
+                    "key": "firstNameHeaderCell",
+                    "type": "RsHeaderCell",
+                    "props": {
+                      "children": {
+                        "value": "First Name"
+                      }
+                    }
+                  },
+                  {
+                    "key": "firstNameCell",
+                    "type": "RsCell",
+                    "props": {
+                      "dataKey": {
+                        "value": "firstName"
+                      }
+                    }
+                  }
+                ],
+                "renderWhen": {
+                  "fnSource": "  return form.data.columnsTagPicker?.includes('firstName')",
+                  "computeType": "function"
+                }
+              },
+              {
+                "key": "lastNameColumn",
+                "type": "RsColumn",
+                "props": {
+                  "width": {
+                    "value": 123
+                  }
+                },
+                "children": [
+                  {
+                    "key": "lastNameHeaderCell",
+                    "type": "RsHeaderCell",
+                    "props": {
+                      "children": {
+                        "value": "Last Name"
+                      }
+                    }
+                  },
+                  {
+                    "key": "lastNameCell",
+                    "type": "RsCell",
+                    "props": {
+                      "dataKey": {
+                        "value": "lastName"
+                      }
+                    }
+                  }
+                ],
+                "renderWhen": {
+                  "fnSource": "  return form.data.columnsTagPicker?.includes('lastName')",
+                  "computeType": "function"
+                }
+              },
+              {
+                "key": "genderColumn",
+                "type": "RsColumn",
+                "props": {
+                  "width": {
+                    "value": 200
+                  }
+                },
+                "children": [
+                  {
+                    "key": "genderHeaderCell",
+                    "type": "RsHeaderCell",
+                    "props": {
+                      "children": {
+                        "value": "Gender"
+                      }
+                    }
+                  },
+                  {
+                    "key": "genderCell",
+                    "type": "RsCell",
+                    "props": {
+                      "dataKey": {
+                        "value": "gender"
+                      }
+                    }
+                  }
+                ],
+                "renderWhen": {
+                  "fnSource": "  return form.data.columnsTagPicker?.includes('gender')",
+                  "computeType": "function"
+                }
+              },
+              {
+                "key": "cityColumn",
+                "type": "RsColumn",
+                "props": {
+                  "flexGrow": {
+                    "value": 1
+                  }
+                },
+                "children": [
+                  {
+                    "key": "cityHeaderCell",
+                    "type": "RsHeaderCell",
+                    "props": {
+                      "children": {
+                        "value": "City"
+                      }
+                    }
+                  },
+                  {
+                    "key": "cityCell",
+                    "type": "RsCell",
+                    "props": {
+                      "dataKey": {
+                        "value": "city"
+                      }
+                    }
+                  }
+                ],
+                "renderWhen": {
+                  "fnSource": "  return form.data.columnsTagPicker?.includes('city')",
+                  "computeType": "function"
+                }
+              }
+            ],
+            "events": {
+              "onRowClick": []
+            }
+          }
+        ]
+      },
+      "localization": {},
+      "languages": [
+        {
+          "code": "en",
+          "dialect": "US",
+          "name": "English",
+          "description": "American English",
+          "bidi": "ltr"
+        }
+      ],
+      "defaultLanguage": "en-US"
+    }
+  }

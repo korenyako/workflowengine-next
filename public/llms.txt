@@ -1,0 +1,38 @@
+# FormEngine
+
+> FormEngine is a React form builder ecosystem: an open-source JSON form renderer (FormEngine Core), a visual drag-and-drop form designer (FormEngine Designer), a UI component library, and an AI-powered form generator. This file describes the formengine.io website structure and its key pages. For technical documentation on the FormEngine library itself (API, JSON schema, components), see [llms.txt for the library](https://formengine.io/documentation/llms.txt).
+
+## Products
+
+- [FormEngine Core](https://formengine.io/react-form-library/): Free, MIT-licensed React library for rendering dynamic forms from JSON. Built-in validation, state management, multi-language support. Works with any UI library.
+- [FormEngine Designer](https://formengine.io/react-form-builder-library/): Visual drag-and-drop form builder. No coding required. Export to JSON, use with FormEngine Core. Works with Material UI, React Suite, and custom components.
+- [Form Components Library](https://formengine.io/react-form-components-library/): Ready-to-use React component library for building forms from JSON schema. Fully compatible with Core and Designer. MIT-licensed.
+- [AI Form Builder](https://formengine.io/ai-form-builder/): Upload a screenshot or PDF — AI produces a JSON spec with schema and validations for FormEngine. Build complex forms in minutes.
+- [DataGrid Component](https://formengine.io/react-form-components-library/data-grid/): React Data Grid component with sorting, filtering, pagination, and more.
+
+## Comparisons
+
+FormEngine compared to popular React form libraries:
+
+- [vs React Hook Form](https://formengine.io/comparison/react-hook-form-alternative/)
+- [vs Formik](https://formengine.io/comparison/formik-alternative/)
+- [vs TanStack Form](https://formengine.io/comparison/tanstack-form-alternative/)
+- [vs React Final Form](https://formengine.io/comparison/react-final-form-alternative/)
+- [vs React JSON Schema Form (RJSF)](https://formengine.io/comparison/react-jsonschema-form-alternative/)
+- [vs Uniforms](https://formengine.io/comparison/uniforms-alternative/)
+- [vs SurveyJS](https://formengine.io/comparison/surveyjs-alternative/)
+- [vs Formily](https://formengine.io/comparison/formily-alternative/)
+- [vs Ant Design Form](https://formengine.io/comparison/ant-design-form-alternative/)
+- [vs React Schema Form](https://formengine.io/comparison/react-schema-form-alternative/)
+
+## Resources
+
+- [Pricing](https://formengine.io/pricing/): FormEngine Core is free forever. Designer license starts at $899/year.
+- [Contact Us](https://formengine.io/contacts/): Contact the FormEngine team. Response within 24 hours.
+
+## External Links
+
+- [GitHub Repository](https://github.com/optimajet/formengine): Source code and issues.
+- [npm: @react-form-builder/core](https://www.npmjs.com/package/@react-form-builder/core): Install via npm.
+- [Form Builder App](https://formbuilder.formengine.io): Live form builder application.
+- [Documentation](https://formengine.io/documentation/): Getting started guide and API reference.

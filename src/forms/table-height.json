@@ -1,0 +1,1514 @@
+{
+  "version": "1",
+  "form": {
+    "key": "Screen",
+    "type": "Screen",
+    "props": {},
+    "children": [
+      {
+        "key": "rsStaticContent1",
+        "type": "RsStaticContent",
+        "props": {
+          "allowHtml": {
+            "value": true
+          },
+          "content": {
+            "value": "This is an example of a <a target=\"_blank\" rel=\"noopener\" href=\"https://rsuitejs.com/components/table/#table-height\">Table Height</a> table."
+          }
+        },
+        "css": {
+          "any": {
+            "string": "  font-size: 18px;"
+          }
+        }
+      },
+      {
+        "key": "rsDivider1",
+        "type": "RsDivider",
+        "props": {},
+        "children": []
+      },
+      {
+        "key": "vStack1",
+        "type": "RsContainer",
+        "props": {},
+        "children": [
+          {
+            "key": "autoHeightToggle",
+            "type": "RsToggle",
+            "props": {
+              "children": {
+                "value": "Auto Height"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "key": "minHeightInput",
+        "type": "RsInput",
+        "props": {
+          "label": {
+            "value": "minHeight (px):"
+          },
+          "type": {
+            "value": "number"
+          },
+          "value": {
+            "value": "200"
+          }
+        },
+        "css": {
+          "any": {
+            "string": "  width: 130px;"
+          }
+        }
+      },
+      {
+        "key": "hStack1",
+        "type": "RsContainer",
+        "props": {},
+        "css": {
+          "any": {
+            "object": {
+              "flexDirection": "row"
+            }
+          }
+        },
+        "children": [
+          {
+            "key": "heightInput",
+            "type": "RsInput",
+            "props": {
+              "label": {
+                "value": "height (px):"
+              },
+              "type": {
+                "value": "number"
+              },
+              "value": {
+                "value": "400"
+              }
+            },
+            "css": {
+              "any": {
+                "string": "  width: 130px;"
+              }
+            },
+            "wrapperCss": {
+              "any": {
+                "object": {
+                  "width": "auto"
+                }
+              }
+            }
+          },
+          {
+            "key": "maxHeightInput",
+            "type": "RsInput",
+            "props": {
+              "label": {
+                "value": "maxHeight (px):"
+              },
+              "type": {
+                "value": "number"
+              }
+            },
+            "css": {
+              "any": {
+                "string": "  width: 130px;"
+              }
+            },
+            "wrapperCss": {
+              "any": {
+                "object": {
+                  "width": "fit-content"
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "key": "rsDivider2",
+        "type": "RsDivider",
+        "props": {}
+      },
+      {
+        "key": "tableHeightTable",
+        "type": "RsTable",
+        "props": {
+          "cellBordered": {
+            "value": true
+          },
+          "autoHeight": {
+            "computeType": "function",
+            "fnSource": "  return form.data.autoHeightToggle"
+          },
+          "height": {
+            "computeType": "function",
+            "fnSource": "  return parseInt(form.data.heightInput)"
+          },
+          "minHeight": {
+            "computeType": "function",
+            "fnSource": "  return parseInt(form.data.minHeightInput)"
+          },
+          "maxHeight": {
+            "computeType": "function",
+            "fnSource": "  return parseInt(form.data.maxHeightInput)"
+          },
+          "data": {
+            "value": [
+              {
+                "id": 1,
+                "name": "Andres Treutel",
+                "firstName": "Andres",
+                "lastName": "Treutel",
+                "avatar": "https://i.pravatar.cc/150?u=Andres",
+                "city": "East Cathyshire",
+                "street": "South Road",
+                "postcode": "29006-5374",
+                "email": "Ricky.Wilderman0@yahoo.com",
+                "phone": "(406) 577-9439 x33699",
+                "gender": "female",
+                "age": 21,
+                "stars": 8320,
+                "followers": 8682,
+                "rating": 4,
+                "progress": 38,
+                "amount": "74928.59",
+                "company": "Mitchell - Grant",
+                "birthdate": "1981-02-25T10:15:17.062Z"
+              },
+              {
+                "id": 2,
+                "name": "Kaylah Kessler-Jacobs",
+                "firstName": "Kaylah",
+                "lastName": "Kessler-Jacobs",
+                "avatar": "https://i.pravatar.cc/150?u=Kaylah",
+                "city": "Danielmouth",
+                "street": "Thaddeus Well",
+                "postcode": "09607-6610",
+                "email": "Dorothy.Lindgren@yahoo.com",
+                "phone": "474-514-1101",
+                "gender": "male",
+                "age": 24,
+                "stars": 4930,
+                "followers": 3811,
+                "rating": 3,
+                "progress": 42,
+                "amount": "55548.44",
+                "company": "Bahringer, Franecki and Feeney",
+                "birthdate": "1958-02-27T11:25:48.877Z"
+              },
+              {
+                "id": 3,
+                "name": "Donnie Larkin",
+                "firstName": "Donnie",
+                "lastName": "Larkin",
+                "avatar": "https://i.pravatar.cc/150?u=Donnie",
+                "city": "Livonia",
+                "street": "Fred Loop",
+                "postcode": "11321",
+                "email": "Raymundo.Sporer@yahoo.com",
+                "phone": "1-696-836-2845 x52019",
+                "gender": "female",
+                "age": 24,
+                "stars": 9076,
+                "followers": 9129,
+                "rating": 3,
+                "progress": 20,
+                "amount": "57377.71",
+                "company": "Osinski - McKenzie",
+                "birthdate": "1978-08-01T06:28:44.618Z"
+              },
+              {
+                "id": 4,
+                "name": "Ephraim Hayes",
+                "firstName": "Ephraim",
+                "lastName": "Hayes",
+                "avatar": "https://i.pravatar.cc/150?u=Ephraim",
+                "city": "South Jamir",
+                "street": "Adan Motorway",
+                "postcode": "67791",
+                "email": "Madaline.Greenfelder@gmail.com",
+                "phone": "555-878-7516 x526",
+                "gender": "female",
+                "age": 37,
+                "stars": 7687,
+                "followers": 4341,
+                "rating": 4,
+                "progress": 39,
+                "amount": "43571.86",
+                "company": "Terry Inc",
+                "birthdate": "2000-06-16T20:45:40.119Z"
+              },
+              {
+                "id": 5,
+                "name": "Laury Weber",
+                "firstName": "Laury",
+                "lastName": "Weber",
+                "avatar": "https://i.pravatar.cc/150?u=Laury",
+                "city": "Garnettstad",
+                "street": "Kuhic Fall",
+                "postcode": "39170-8427",
+                "email": "Rickey_Grant12@yahoo.com",
+                "phone": "230-488-7403 x48141",
+                "gender": "male",
+                "age": 21,
+                "stars": 3037,
+                "followers": 7799,
+                "rating": 3,
+                "progress": 41,
+                "amount": "32874.01",
+                "company": "Morar Group",
+                "birthdate": "1981-09-06T02:23:29.096Z"
+              },
+              {
+                "id": 6,
+                "name": "Reggie Connelly DDS",
+                "firstName": "Reggie",
+                "lastName": "Connelly",
+                "avatar": "https://i.pravatar.cc/150?u=Reggie",
+                "city": "San Angelo",
+                "street": "Glebe Close",
+                "postcode": "11534-6858",
+                "email": "Deangelo_Walker21@hotmail.com",
+                "phone": "1-908-307-7650 x7396",
+                "gender": "male",
+                "age": 36,
+                "stars": 9271,
+                "followers": 3495,
+                "rating": 2,
+                "progress": 97,
+                "amount": "66108.86",
+                "company": "Bailey - Bauch",
+                "birthdate": "1964-07-08T05:09:46.252Z"
+              },
+              {
+                "id": 7,
+                "name": "Astrid Bartell",
+                "firstName": "Astrid",
+                "lastName": "Bartell",
+                "avatar": "https://i.pravatar.cc/150?u=Astrid",
+                "city": "West Wendy",
+                "street": "Tess Well",
+                "postcode": "10088-3661",
+                "email": "Marcelo_Marvin@hotmail.com",
+                "phone": "311-794-8971 x5875",
+                "gender": "female",
+                "age": 35,
+                "stars": 5502,
+                "followers": 3142,
+                "rating": 3,
+                "progress": 50,
+                "amount": "81844.81",
+                "company": "Reichel - Goyette",
+                "birthdate": "1948-12-22T12:34:18.485Z"
+              },
+              {
+                "id": 8,
+                "name": "Mrs. Vito Walker",
+                "firstName": "Vito",
+                "lastName": "Walker",
+                "avatar": "https://i.pravatar.cc/150?u=Vito",
+                "city": "Conroe",
+                "street": "Osinski Isle",
+                "postcode": "77481-2545",
+                "email": "Sedrick_Johnston56@yahoo.com",
+                "phone": "(256) 946-4459",
+                "gender": "female",
+                "age": 26,
+                "stars": 8372,
+                "followers": 9979,
+                "rating": 4,
+                "progress": 74,
+                "amount": "62611.00",
+                "company": "Blanda - Larson",
+                "birthdate": "1965-07-21T14:31:16.489Z"
+              },
+              {
+                "id": 9,
+                "name": "Adelle Mertz",
+                "firstName": "Adelle",
+                "lastName": "Mertz",
+                "avatar": "https://i.pravatar.cc/150?u=Adelle",
+                "city": "West Casimer",
+                "street": "Martin Luther King Drive",
+                "postcode": "94012-9995",
+                "email": "Ruth_Rice21@yahoo.com",
+                "phone": "997.238.8580 x44527",
+                "gender": "female",
+                "age": 45,
+                "stars": 7838,
+                "followers": 8512,
+                "rating": 2,
+                "progress": 41,
+                "amount": "52892.64",
+                "company": "Heathcote - Durgan",
+                "birthdate": "1969-03-07T05:55:33.679Z"
+              },
+              {
+                "id": 10,
+                "name": "Eldridge Blick",
+                "firstName": "Eldridge",
+                "lastName": "Blick",
+                "avatar": "https://i.pravatar.cc/150?u=Eldridge",
+                "city": "Port Izaiahborough",
+                "street": "Shanahan Route",
+                "postcode": "51464",
+                "email": "Nola28@yahoo.com",
+                "phone": "549-671-0607",
+                "gender": "male",
+                "age": 27,
+                "stars": 2729,
+                "followers": 9273,
+                "rating": 4,
+                "progress": 38,
+                "amount": "88940.82",
+                "company": "Gusikowski Inc",
+                "birthdate": "1956-12-10T03:42:28.174Z"
+              },
+              {
+                "id": 11,
+                "name": "Reagan Rath DVM",
+                "firstName": "Reagan",
+                "lastName": "Rath",
+                "avatar": "https://i.pravatar.cc/150?u=Reagan",
+                "city": "North Caylafurt",
+                "street": "Erick Harbors",
+                "postcode": "21850-8783",
+                "email": "Myrtie_Jacobs83@gmail.com",
+                "phone": "599.233.0043 x34610",
+                "gender": "female",
+                "age": 46,
+                "stars": 3248,
+                "followers": 7437,
+                "rating": 4,
+                "progress": 10,
+                "amount": "7142.46",
+                "company": "Tremblay LLC",
+                "birthdate": "1993-06-02T03:57:31.181Z"
+              },
+              {
+                "id": 12,
+                "name": "Willa Luettgen",
+                "firstName": "Willa",
+                "lastName": "Luettgen",
+                "avatar": "https://i.pravatar.cc/150?u=Willa",
+                "city": "Reno",
+                "street": "Smith Street",
+                "postcode": "09516-6968",
+                "email": "Britney_Padberg@hotmail.com",
+                "phone": "1-924-613-4412 x72599",
+                "gender": "male",
+                "age": 33,
+                "stars": 8402,
+                "followers": 8868,
+                "rating": 3,
+                "progress": 13,
+                "amount": "16072.64",
+                "company": "Russel, Tremblay and Miller",
+                "birthdate": "1975-02-21T05:07:47.223Z"
+              },
+              {
+                "id": 13,
+                "name": "Drake Kuhic",
+                "firstName": "Drake",
+                "lastName": "Kuhic",
+                "avatar": "https://i.pravatar.cc/150?u=Drake",
+                "city": "Floydburgh",
+                "street": "Koelpin Overpass",
+                "postcode": "52890",
+                "email": "Ayana_Cole@gmail.com",
+                "phone": "695.568.0479 x3317",
+                "gender": "female",
+                "age": 35,
+                "stars": 9926,
+                "followers": 7477,
+                "rating": 2,
+                "progress": 9,
+                "amount": "53404.17",
+                "company": "Williamson - Zulauf",
+                "birthdate": "1959-04-18T22:36:52.901Z"
+              },
+              {
+                "id": 14,
+                "name": "Mara Blick PhD",
+                "firstName": "Mara",
+                "lastName": "Blick",
+                "avatar": "https://i.pravatar.cc/150?u=Mara",
+                "city": "Gutkowskiworth",
+                "street": "Lueilwitz Green",
+                "postcode": "53320-3390",
+                "email": "Kole50@gmail.com",
+                "phone": "827-818-9055",
+                "gender": "male",
+                "age": 39,
+                "stars": 3740,
+                "followers": 8096,
+                "rating": 4,
+                "progress": 68,
+                "amount": "5253.92",
+                "company": "Torphy - Harber",
+                "birthdate": "1972-01-30T06:31:36.109Z"
+              },
+              {
+                "id": 15,
+                "name": "Rosanna Fisher",
+                "firstName": "Rosanna",
+                "lastName": "Fisher",
+                "avatar": "https://i.pravatar.cc/150?u=Rosanna",
+                "city": "Jerodport",
+                "street": "Abbie Drive",
+                "postcode": "01355-0599",
+                "email": "Christina.Kunze45@hotmail.com",
+                "phone": "1-340-961-7349 x478",
+                "gender": "male",
+                "age": 32,
+                "stars": 9524,
+                "followers": 2458,
+                "rating": 4,
+                "progress": 81,
+                "amount": "46830.00",
+                "company": "Denesik LLC",
+                "birthdate": "1966-11-26T19:13:56.479Z"
+              },
+              {
+                "id": 16,
+                "name": "Kenya Stark",
+                "firstName": "Kenya",
+                "lastName": "Stark",
+                "avatar": "https://i.pravatar.cc/150?u=Kenya",
+                "city": "Zackview",
+                "street": "Monahan Gateway",
+                "postcode": "16122",
+                "email": "Keyon_Beer@gmail.com",
+                "phone": "(369) 552-6177 x834",
+                "gender": "female",
+                "age": 26,
+                "stars": 9264,
+                "followers": 4728,
+                "rating": 3,
+                "progress": 66,
+                "amount": "43219.27",
+                "company": "Deckow, Kub and Waelchi",
+                "birthdate": "1956-03-15T22:15:19.310Z"
+              },
+              {
+                "id": 17,
+                "name": "Kattie Bradtke",
+                "firstName": "Kattie",
+                "lastName": "Bradtke",
+                "avatar": "https://i.pravatar.cc/150?u=Kattie",
+                "city": "Kihnmouth",
+                "street": "Heaney Cliffs",
+                "postcode": "07619",
+                "email": "Jarret.Bogisich9@gmail.com",
+                "phone": "323.409.9154",
+                "gender": "female",
+                "age": 33,
+                "stars": 3255,
+                "followers": 3479,
+                "rating": 3,
+                "progress": 78,
+                "amount": "8686.75",
+                "company": "O'Reilly - Konopelski",
+                "birthdate": "1961-04-03T18:01:45.087Z"
+              },
+              {
+                "id": 18,
+                "name": "Kristofer Lehner",
+                "firstName": "Kristofer",
+                "lastName": "Lehner",
+                "avatar": "https://i.pravatar.cc/150?u=Kristofer",
+                "city": "Pedrofurt",
+                "street": "Ernestina Square",
+                "postcode": "87434",
+                "email": "Eloisa.Steuber@gmail.com",
+                "phone": "1-288-264-2507 x9838",
+                "gender": "male",
+                "age": 30,
+                "stars": 74,
+                "followers": 5615,
+                "rating": 2,
+                "progress": 32,
+                "amount": "14477.37",
+                "company": "Wintheiser - Hills",
+                "birthdate": "1986-11-10T21:25:17.515Z"
+              },
+              {
+                "id": 19,
+                "name": "Birdie Kuhn Jr.",
+                "firstName": "Birdie",
+                "lastName": "Kuhn",
+                "avatar": "https://i.pravatar.cc/150?u=Birdie",
+                "city": "Spencerboro",
+                "street": "Rohan Alley",
+                "postcode": "00543",
+                "email": "Jessy.Rath52@yahoo.com",
+                "phone": "816.739.5955 x534",
+                "gender": "male",
+                "age": 24,
+                "stars": 4404,
+                "followers": 5870,
+                "rating": 3,
+                "progress": 5,
+                "amount": "35413.73",
+                "company": "Heidenreich, Jacobs and Fahey",
+                "birthdate": "1957-10-02T08:27:02.924Z"
+              },
+              {
+                "id": 20,
+                "name": "Howell Nader",
+                "firstName": "Howell",
+                "lastName": "Nader",
+                "avatar": "https://i.pravatar.cc/150?u=Howell",
+                "city": "Huelsburgh",
+                "street": "Estevan Flats",
+                "postcode": "03629",
+                "email": "Kenna_Nader85@hotmail.com",
+                "phone": "624.913.5736 x78079",
+                "gender": "female",
+                "age": 31,
+                "stars": 9021,
+                "followers": 2098,
+                "rating": 3,
+                "progress": 71,
+                "amount": "18579.81",
+                "company": "Pouros, Hane and Wunsch",
+                "birthdate": "1975-01-10T06:06:01.986Z"
+              }
+            ]
+          }
+        },
+        "children": [
+          {
+            "key": "idColumn",
+            "type": "RsColumn",
+            "props": {
+              "fixed": {
+                "value": true
+              },
+              "width": {
+                "value": 70
+              }
+            },
+            "children": [
+              {
+                "key": "idHeaderCell",
+                "type": "RsHeaderCell",
+                "props": {
+                  "children": {
+                    "value": "Id",
+                    "editorType": "string"
+                  }
+                }
+              },
+              {
+                "key": "idCell",
+                "type": "RsCell",
+                "props": {
+                  "dataKey": {
+                    "value": "id"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "key": "firstNameColumn",
+            "type": "RsColumn",
+            "props": {
+              "fixed": {
+                "value": true
+              },
+              "width": {
+                "value": 130
+              }
+            },
+            "children": [
+              {
+                "key": "firstNameHeaderCell",
+                "type": "RsHeaderCell",
+                "props": {
+                  "children": {
+                    "value": "First Name",
+                    "editorType": "string"
+                  }
+                }
+              },
+              {
+                "key": "firstNameCell",
+                "type": "RsCell",
+                "props": {
+                  "dataKey": {
+                    "value": "firstName"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "key": "lastNameColumn",
+            "type": "RsColumn",
+            "props": {
+              "width": {
+                "value": 123
+              }
+            },
+            "children": [
+              {
+                "key": "lastNameHeaderCell",
+                "type": "RsHeaderCell",
+                "props": {
+                  "children": {
+                    "value": "Last Name",
+                    "editorType": "string"
+                  }
+                }
+              },
+              {
+                "key": "lastNameCell",
+                "type": "RsCell",
+                "props": {
+                  "dataKey": {
+                    "value": "lastName"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "key": "genderColumn",
+            "type": "RsColumn",
+            "props": {
+              "width": {
+                "value": 200
+              }
+            },
+            "children": [
+              {
+                "key": "genderHeaderCell",
+                "type": "RsHeaderCell",
+                "props": {
+                  "children": {
+                    "value": "Gender",
+                    "editorType": "string"
+                  }
+                }
+              },
+              {
+                "key": "rsCell1",
+                "type": "RsCell",
+                "props": {
+                  "dataKey": {
+                    "value": "gender"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "key": "cityColumn",
+            "type": "RsColumn",
+            "props": {
+              "flexGrow": {
+                "value": 1
+              }
+            },
+            "children": [
+              {
+                "key": "cityHeaderCell",
+                "type": "RsHeaderCell",
+                "props": {
+                  "children": {
+                    "value": "City",
+                    "editorType": "string"
+                  }
+                }
+              },
+              {
+                "key": "cityCell",
+                "type": "RsCell",
+                "props": {
+                  "dataKey": {
+                    "value": "city"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "localization": {},
+  "languages": [
+    {
+      "code": "en",
+      "dialect": "US",
+      "name": "English",
+      "description": "American English",
+      "bidi": "ltr"
+    }
+  ],
+  "defaultLanguage": "en-US",
+  "default": {
+    "version": "1",
+    "form": {
+      "key": "Screen",
+      "type": "Screen",
+      "props": {},
+      "children": [
+        {
+          "key": "rsStaticContent1",
+          "type": "RsStaticContent",
+          "props": {
+            "allowHtml": {
+              "value": true
+            },
+            "content": {
+              "value": "This is an example of a <a target=\"_blank\" rel=\"noopener\" href=\"https://rsuitejs.com/components/table/#table-height\">Table Height</a> table."
+            }
+          },
+          "css": {
+            "any": {
+              "string": "  font-size: 18px;"
+            }
+          }
+        },
+        {
+          "key": "rsDivider1",
+          "type": "RsDivider",
+          "props": {},
+          "children": []
+        },
+        {
+          "key": "vStack1",
+          "type": "RsContainer",
+          "props": {},
+          "children": [
+            {
+              "key": "autoHeightToggle",
+              "type": "RsToggle",
+              "props": {
+                "children": {
+                  "value": "Auto Height"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "key": "minHeightInput",
+          "type": "RsInput",
+          "props": {
+            "label": {
+              "value": "minHeight (px):"
+            },
+            "type": {
+              "value": "number"
+            },
+            "value": {
+              "value": "200"
+            }
+          },
+          "css": {
+            "any": {
+              "string": "  width: 130px;"
+            }
+          }
+        },
+        {
+          "key": "hStack1",
+          "type": "RsContainer",
+          "props": {},
+          "css": {
+            "any": {
+              "object": {
+                "flexDirection": "row"
+              }
+            }
+          },
+          "children": [
+            {
+              "key": "heightInput",
+              "type": "RsInput",
+              "props": {
+                "label": {
+                  "value": "height (px):"
+                },
+                "type": {
+                  "value": "number"
+                },
+                "value": {
+                  "value": "400"
+                }
+              },
+              "css": {
+                "any": {
+                  "string": "  width: 130px;"
+                }
+              },
+              "wrapperCss": {
+                "any": {
+                  "object": {
+                    "width": "auto"
+                  }
+                }
+              }
+            },
+            {
+              "key": "maxHeightInput",
+              "type": "RsInput",
+              "props": {
+                "label": {
+                  "value": "maxHeight (px):"
+                },
+                "type": {
+                  "value": "number"
+                }
+              },
+              "css": {
+                "any": {
+                  "string": "  width: 130px;"
+                }
+              },
+              "wrapperCss": {
+                "any": {
+                  "object": {
+                    "width": "fit-content"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "key": "rsDivider2",
+          "type": "RsDivider",
+          "props": {}
+        },
+        {
+          "key": "tableHeightTable",
+          "type": "RsTable",
+          "props": {
+            "cellBordered": {
+              "value": true
+            },
+            "autoHeight": {
+              "computeType": "function",
+              "fnSource": "  return form.data.autoHeightToggle"
+            },
+            "height": {
+              "computeType": "function",
+              "fnSource": "  return parseInt(form.data.heightInput)"
+            },
+            "minHeight": {
+              "computeType": "function",
+              "fnSource": "  return parseInt(form.data.minHeightInput)"
+            },
+            "maxHeight": {
+              "computeType": "function",
+              "fnSource": "  return parseInt(form.data.maxHeightInput)"
+            },
+            "data": {
+              "value": [
+                {
+                  "id": 1,
+                  "name": "Andres Treutel",
+                  "firstName": "Andres",
+                  "lastName": "Treutel",
+                  "avatar": "https://i.pravatar.cc/150?u=Andres",
+                  "city": "East Cathyshire",
+                  "street": "South Road",
+                  "postcode": "29006-5374",
+                  "email": "Ricky.Wilderman0@yahoo.com",
+                  "phone": "(406) 577-9439 x33699",
+                  "gender": "female",
+                  "age": 21,
+                  "stars": 8320,
+                  "followers": 8682,
+                  "rating": 4,
+                  "progress": 38,
+                  "amount": "74928.59",
+                  "company": "Mitchell - Grant",
+                  "birthdate": "1981-02-25T10:15:17.062Z"
+                },
+                {
+                  "id": 2,
+                  "name": "Kaylah Kessler-Jacobs",
+                  "firstName": "Kaylah",
+                  "lastName": "Kessler-Jacobs",
+                  "avatar": "https://i.pravatar.cc/150?u=Kaylah",
+                  "city": "Danielmouth",
+                  "street": "Thaddeus Well",
+                  "postcode": "09607-6610",
+                  "email": "Dorothy.Lindgren@yahoo.com",
+                  "phone": "474-514-1101",
+                  "gender": "male",
+                  "age": 24,
+                  "stars": 4930,
+                  "followers": 3811,
+                  "rating": 3,
+                  "progress": 42,
+                  "amount": "55548.44",
+                  "company": "Bahringer, Franecki and Feeney",
+                  "birthdate": "1958-02-27T11:25:48.877Z"
+                },
+                {
+                  "id": 3,
+                  "name": "Donnie Larkin",
+                  "firstName": "Donnie",
+                  "lastName": "Larkin",
+                  "avatar": "https://i.pravatar.cc/150?u=Donnie",
+                  "city": "Livonia",
+                  "street": "Fred Loop",
+                  "postcode": "11321",
+                  "email": "Raymundo.Sporer@yahoo.com",
+                  "phone": "1-696-836-2845 x52019",
+                  "gender": "female",
+                  "age": 24,
+                  "stars": 9076,
+                  "followers": 9129,
+                  "rating": 3,
+                  "progress": 20,
+                  "amount": "57377.71",
+                  "company": "Osinski - McKenzie",
+                  "birthdate": "1978-08-01T06:28:44.618Z"
+                },
+                {
+                  "id": 4,
+                  "name": "Ephraim Hayes",
+                  "firstName": "Ephraim",
+                  "lastName": "Hayes",
+                  "avatar": "https://i.pravatar.cc/150?u=Ephraim",
+                  "city": "South Jamir",
+                  "street": "Adan Motorway",
+                  "postcode": "67791",
+                  "email": "Madaline.Greenfelder@gmail.com",
+                  "phone": "555-878-7516 x526",
+                  "gender": "female",
+                  "age": 37,
+                  "stars": 7687,
+                  "followers": 4341,
+                  "rating": 4,
+                  "progress": 39,
+                  "amount": "43571.86",
+                  "company": "Terry Inc",
+                  "birthdate": "2000-06-16T20:45:40.119Z"
+                },
+                {
+                  "id": 5,
+                  "name": "Laury Weber",
+                  "firstName": "Laury",
+                  "lastName": "Weber",
+                  "avatar": "https://i.pravatar.cc/150?u=Laury",
+                  "city": "Garnettstad",
+                  "street": "Kuhic Fall",
+                  "postcode": "39170-8427",
+                  "email": "Rickey_Grant12@yahoo.com",
+                  "phone": "230-488-7403 x48141",
+                  "gender": "male",
+                  "age": 21,
+                  "stars": 3037,
+                  "followers": 7799,
+                  "rating": 3,
+                  "progress": 41,
+                  "amount": "32874.01",
+                  "company": "Morar Group",
+                  "birthdate": "1981-09-06T02:23:29.096Z"
+                },
+                {
+                  "id": 6,
+                  "name": "Reggie Connelly DDS",
+                  "firstName": "Reggie",
+                  "lastName": "Connelly",
+                  "avatar": "https://i.pravatar.cc/150?u=Reggie",
+                  "city": "San Angelo",
+                  "street": "Glebe Close",
+                  "postcode": "11534-6858",
+                  "email": "Deangelo_Walker21@hotmail.com",
+                  "phone": "1-908-307-7650 x7396",
+                  "gender": "male",
+                  "age": 36,
+                  "stars": 9271,
+                  "followers": 3495,
+                  "rating": 2,
+                  "progress": 97,
+                  "amount": "66108.86",
+                  "company": "Bailey - Bauch",
+                  "birthdate": "1964-07-08T05:09:46.252Z"
+                },
+                {
+                  "id": 7,
+                  "name": "Astrid Bartell",
+                  "firstName": "Astrid",
+                  "lastName": "Bartell",
+                  "avatar": "https://i.pravatar.cc/150?u=Astrid",
+                  "city": "West Wendy",
+                  "street": "Tess Well",
+                  "postcode": "10088-3661",
+                  "email": "Marcelo_Marvin@hotmail.com",
+                  "phone": "311-794-8971 x5875",
+                  "gender": "female",
+                  "age": 35,
+                  "stars": 5502,
+                  "followers": 3142,
+                  "rating": 3,
+                  "progress": 50,
+                  "amount": "81844.81",
+                  "company": "Reichel - Goyette",
+                  "birthdate": "1948-12-22T12:34:18.485Z"
+                },
+                {
+                  "id": 8,
+                  "name": "Mrs. Vito Walker",
+                  "firstName": "Vito",
+                  "lastName": "Walker",
+                  "avatar": "https://i.pravatar.cc/150?u=Vito",
+                  "city": "Conroe",
+                  "street": "Osinski Isle",
+                  "postcode": "77481-2545",
+                  "email": "Sedrick_Johnston56@yahoo.com",
+                  "phone": "(256) 946-4459",
+                  "gender": "female",
+                  "age": 26,
+                  "stars": 8372,
+                  "followers": 9979,
+                  "rating": 4,
+                  "progress": 74,
+                  "amount": "62611.00",
+                  "company": "Blanda - Larson",
+                  "birthdate": "1965-07-21T14:31:16.489Z"
+                },
+                {
+                  "id": 9,
+                  "name": "Adelle Mertz",
+                  "firstName": "Adelle",
+                  "lastName": "Mertz",
+                  "avatar": "https://i.pravatar.cc/150?u=Adelle",
+                  "city": "West Casimer",
+                  "street": "Martin Luther King Drive",
+                  "postcode": "94012-9995",
+                  "email": "Ruth_Rice21@yahoo.com",
+                  "phone": "997.238.8580 x44527",
+                  "gender": "female",
+                  "age": 45,
+                  "stars": 7838,
+                  "followers": 8512,
+                  "rating": 2,
+                  "progress": 41,
+                  "amount": "52892.64",
+                  "company": "Heathcote - Durgan",
+                  "birthdate": "1969-03-07T05:55:33.679Z"
+                },
+                {
+                  "id": 10,
+                  "name": "Eldridge Blick",
+                  "firstName": "Eldridge",
+                  "lastName": "Blick",
+                  "avatar": "https://i.pravatar.cc/150?u=Eldridge",
+                  "city": "Port Izaiahborough",
+                  "street": "Shanahan Route",
+                  "postcode": "51464",
+                  "email": "Nola28@yahoo.com",
+                  "phone": "549-671-0607",
+                  "gender": "male",
+                  "age": 27,
+                  "stars": 2729,
+                  "followers": 9273,
+                  "rating": 4,
+                  "progress": 38,
+                  "amount": "88940.82",
+                  "company": "Gusikowski Inc",
+                  "birthdate": "1956-12-10T03:42:28.174Z"
+                },
+                {
+                  "id": 11,
+                  "name": "Reagan Rath DVM",
+                  "firstName": "Reagan",
+                  "lastName": "Rath",
+                  "avatar": "https://i.pravatar.cc/150?u=Reagan",
+                  "city": "North Caylafurt",
+                  "street": "Erick Harbors",
+                  "postcode": "21850-8783",
+                  "email": "Myrtie_Jacobs83@gmail.com",
+                  "phone": "599.233.0043 x34610",
+                  "gender": "female",
+                  "age": 46,
+                  "stars": 3248,
+                  "followers": 7437,
+                  "rating": 4,
+                  "progress": 10,
+                  "amount": "7142.46",
+                  "company": "Tremblay LLC",
+                  "birthdate": "1993-06-02T03:57:31.181Z"
+                },
+                {
+                  "id": 12,
+                  "name": "Willa Luettgen",
+                  "firstName": "Willa",
+                  "lastName": "Luettgen",
+                  "avatar": "https://i.pravatar.cc/150?u=Willa",
+                  "city": "Reno",
+                  "street": "Smith Street",
+                  "postcode": "09516-6968",
+                  "email": "Britney_Padberg@hotmail.com",
+                  "phone": "1-924-613-4412 x72599",
+                  "gender": "male",
+                  "age": 33,
+                  "stars": 8402,
+                  "followers": 8868,
+                  "rating": 3,
+                  "progress": 13,
+                  "amount": "16072.64",
+                  "company": "Russel, Tremblay and Miller",
+                  "birthdate": "1975-02-21T05:07:47.223Z"
+                },
+                {
+                  "id": 13,
+                  "name": "Drake Kuhic",
+                  "firstName": "Drake",
+                  "lastName": "Kuhic",
+                  "avatar": "https://i.pravatar.cc/150?u=Drake",
+                  "city": "Floydburgh",
+                  "street": "Koelpin Overpass",
+                  "postcode": "52890",
+                  "email": "Ayana_Cole@gmail.com",
+                  "phone": "695.568.0479 x3317",
+                  "gender": "female",
+                  "age": 35,
+                  "stars": 9926,
+                  "followers": 7477,
+                  "rating": 2,
+                  "progress": 9,
+                  "amount": "53404.17",
+                  "company": "Williamson - Zulauf",
+                  "birthdate": "1959-04-18T22:36:52.901Z"
+                },
+                {
+                  "id": 14,
+                  "name": "Mara Blick PhD",
+                  "firstName": "Mara",
+                  "lastName": "Blick",
+                  "avatar": "https://i.pravatar.cc/150?u=Mara",
+                  "city": "Gutkowskiworth",
+                  "street": "Lueilwitz Green",
+                  "postcode": "53320-3390",
+                  "email": "Kole50@gmail.com",
+                  "phone": "827-818-9055",
+                  "gender": "male",
+                  "age": 39,
+                  "stars": 3740,
+                  "followers": 8096,
+                  "rating": 4,
+                  "progress": 68,
+                  "amount": "5253.92",
+                  "company": "Torphy - Harber",
+                  "birthdate": "1972-01-30T06:31:36.109Z"
+                },
+                {
+                  "id": 15,
+                  "name": "Rosanna Fisher",
+                  "firstName": "Rosanna",
+                  "lastName": "Fisher",
+                  "avatar": "https://i.pravatar.cc/150?u=Rosanna",
+                  "city": "Jerodport",
+                  "street": "Abbie Drive",
+                  "postcode": "01355-0599",
+                  "email": "Christina.Kunze45@hotmail.com",
+                  "phone": "1-340-961-7349 x478",
+                  "gender": "male",
+                  "age": 32,
+                  "stars": 9524,
+                  "followers": 2458,
+                  "rating": 4,
+                  "progress": 81,
+                  "amount": "46830.00",
+                  "company": "Denesik LLC",
+                  "birthdate": "1966-11-26T19:13:56.479Z"
+                },
+                {
+                  "id": 16,
+                  "name": "Kenya Stark",
+                  "firstName": "Kenya",
+                  "lastName": "Stark",
+                  "avatar": "https://i.pravatar.cc/150?u=Kenya",
+                  "city": "Zackview",
+                  "street": "Monahan Gateway",
+                  "postcode": "16122",
+                  "email": "Keyon_Beer@gmail.com",
+                  "phone": "(369) 552-6177 x834",
+                  "gender": "female",
+                  "age": 26,
+                  "stars": 9264,
+                  "followers": 4728,
+                  "rating": 3,
+                  "progress": 66,
+                  "amount": "43219.27",
+                  "company": "Deckow, Kub and Waelchi",
+                  "birthdate": "1956-03-15T22:15:19.310Z"
+                },
+                {
+                  "id": 17,
+                  "name": "Kattie Bradtke",
+                  "firstName": "Kattie",
+                  "lastName": "Bradtke",
+                  "avatar": "https://i.pravatar.cc/150?u=Kattie",
+                  "city": "Kihnmouth",
+                  "street": "Heaney Cliffs",
+                  "postcode": "07619",
+                  "email": "Jarret.Bogisich9@gmail.com",
+                  "phone": "323.409.9154",
+                  "gender": "female",
+                  "age": 33,
+                  "stars": 3255,
+                  "followers": 3479,
+                  "rating": 3,
+                  "progress": 78,
+                  "amount": "8686.75",
+                  "company": "O'Reilly - Konopelski",
+                  "birthdate": "1961-04-03T18:01:45.087Z"
+                },
+                {
+                  "id": 18,
+                  "name": "Kristofer Lehner",
+                  "firstName": "Kristofer",
+                  "lastName": "Lehner",
+                  "avatar": "https://i.pravatar.cc/150?u=Kristofer",
+                  "city": "Pedrofurt",
+                  "street": "Ernestina Square",
+                  "postcode": "87434",
+                  "email": "Eloisa.Steuber@gmail.com",
+                  "phone": "1-288-264-2507 x9838",
+                  "gender": "male",
+                  "age": 30,
+                  "stars": 74,
+                  "followers": 5615,
+                  "rating": 2,
+                  "progress": 32,
+                  "amount": "14477.37",
+                  "company": "Wintheiser - Hills",
+                  "birthdate": "1986-11-10T21:25:17.515Z"
+                },
+                {
+                  "id": 19,
+                  "name": "Birdie Kuhn Jr.",
+                  "firstName": "Birdie",
+                  "lastName": "Kuhn",
+                  "avatar": "https://i.pravatar.cc/150?u=Birdie",
+                  "city": "Spencerboro",
+                  "street": "Rohan Alley",
+                  "postcode": "00543",
+                  "email": "Jessy.Rath52@yahoo.com",
+                  "phone": "816.739.5955 x534",
+                  "gender": "male",
+                  "age": 24,
+                  "stars": 4404,
+                  "followers": 5870,
+                  "rating": 3,
+                  "progress": 5,
+                  "amount": "35413.73",
+                  "company": "Heidenreich, Jacobs and Fahey",
+                  "birthdate": "1957-10-02T08:27:02.924Z"
+                },
+                {
+                  "id": 20,
+                  "name": "Howell Nader",
+                  "firstName": "Howell",
+                  "lastName": "Nader",
+                  "avatar": "https://i.pravatar.cc/150?u=Howell",
+                  "city": "Huelsburgh",
+                  "street": "Estevan Flats",
+                  "postcode": "03629",
+                  "email": "Kenna_Nader85@hotmail.com",
+                  "phone": "624.913.5736 x78079",
+                  "gender": "female",
+                  "age": 31,
+                  "stars": 9021,
+                  "followers": 2098,
+                  "rating": 3,
+                  "progress": 71,
+                  "amount": "18579.81",
+                  "company": "Pouros, Hane and Wunsch",
+                  "birthdate": "1975-01-10T06:06:01.986Z"
+                }
+              ]
+            }
+          },
+          "children": [
+            {
+              "key": "idColumn",
+              "type": "RsColumn",
+              "props": {
+                "fixed": {
+                  "value": true
+                },
+                "width": {
+                  "value": 70
+                }
+              },
+              "children": [
+                {
+                  "key": "idHeaderCell",
+                  "type": "RsHeaderCell",
+                  "props": {
+                    "children": {
+                      "value": "Id",
+                      "editorType": "string"
+                    }
+                  }
+                },
+                {
+                  "key": "idCell",
+                  "type": "RsCell",
+                  "props": {
+                    "dataKey": {
+                      "value": "id"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "key": "firstNameColumn",
+              "type": "RsColumn",
+              "props": {
+                "fixed": {
+                  "value": true
+                },
+                "width": {
+                  "value": 130
+                }
+              },
+              "children": [
+                {
+                  "key": "firstNameHeaderCell",
+                  "type": "RsHeaderCell",
+                  "props": {
+                    "children": {
+                      "value": "First Name",
+                      "editorType": "string"
+                    }
+                  }
+                },
+                {
+                  "key": "firstNameCell",
+                  "type": "RsCell",
+                  "props": {
+                    "dataKey": {
+                      "value": "firstName"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "key": "lastNameColumn",
+              "type": "RsColumn",
+              "props": {
+                "width": {
+                  "value": 123
+                }
+              },
+              "children": [
+                {
+                  "key": "lastNameHeaderCell",
+                  "type": "RsHeaderCell",
+                  "props": {
+                    "children": {
+                      "value": "Last Name",
+                      "editorType": "string"
+                    }
+                  }
+                },
+                {
+                  "key": "lastNameCell",
+                  "type": "RsCell",
+                  "props": {
+                    "dataKey": {
+                      "value": "lastName"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "key": "genderColumn",
+              "type": "RsColumn",
+              "props": {
+                "width": {
+                  "value": 200
+                }
+              },
+              "children": [
+                {
+                  "key": "genderHeaderCell",
+                  "type": "RsHeaderCell",
+                  "props": {
+                    "children": {
+                      "value": "Gender",
+                      "editorType": "string"
+                    }
+                  }
+                },
+                {
+                  "key": "rsCell1",
+                  "type": "RsCell",
+                  "props": {
+                    "dataKey": {
+                      "value": "gender"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "key": "cityColumn",
+              "type": "RsColumn",
+              "props": {
+                "flexGrow": {
+                  "value": 1
+                }
+              },
+              "children": [
+                {
+                  "key": "cityHeaderCell",
+                  "type": "RsHeaderCell",
+                  "props": {
+                    "children": {
+                      "value": "City",
+                      "editorType": "string"
+                    }
+                  }
+                },
+                {
+                  "key": "cityCell",
+                  "type": "RsCell",
+                  "props": {
+                    "dataKey": {
+                      "value": "city"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "localization": {},
+    "languages": [
+      {
+        "code": "en",
+        "dialect": "US",
+        "name": "English",
+        "description": "American English",
+        "bidi": "ltr"
+      }
+    ],
+    "defaultLanguage": "en-US"
+  }
+}
