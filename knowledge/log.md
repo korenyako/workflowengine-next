@@ -2,6 +2,32 @@
 
 Chronological log of wiki updates. Newest entries on top.
 
+## 2026-04-14 | Phase 2: светлая тема (commit `4a303ed`)
+
+Свапнули dark→light палитру по всему проекту. Типографика не тронута (Inter / Poppins / Space Grotesk / JetBrains Mono).
+
+**Class swap (sed по src/):**
+- `bg-slate-900` / `bg-gray-900` / `bg-[#0d1117]` → `bg-white`
+- `bg-slate-800/50` / `bg-gray-800/50` → `bg-slate-50` / `bg-slate-100`
+- `bg-gray-700` → `bg-slate-200`
+- `text-white` → `text-slate-900`
+- `text-gray-{100,200,300,400}` → `text-slate-{800,700,600,500}`
+- `text-blue-300` (accent) → `text-blue-600`
+- `hover:bg-gray-800` → `hover:bg-slate-100`
+- `border-gray-800` → `border-slate-200`
+
+**По-ручному:**
+- `globals.css` — body bg/color, links, .article-content (заголовки, параграфы, blockquote, list bullets) — всё под light bg.
+- `layout.tsx` — `data-mantine-color-scheme="light"`, `bg-white text-slate-900` на body.
+- `Navigation.tsx` — белый nav, slate-текст, blue-600 для активного, slate-100 для hover. Документация-линк синхронизирован с другими nav-ссылками.
+- `FooterBlock.tsx` — slate-50 фон с верхним border, slate-текст, белая карточка для company info; убраны `brightness-0 invert` с соц-иконок (теперь рендерятся в своих цветах).
+- `HeroWithCodeBlock.tsx` — бейдж стал универсальным (берёт `cta.href`), убран npm-package-link.
+- `HeroFlow.tsx` — бейдж теперь bg-white вместо тёмного.
+
+**Намеренно оставили тёмным:** декоративные виджеты внутри Hero/CenteredAI блоков (`bg-[#0d1117]`) и code-blocks (`bg-zinc-900`) — это конвенциональное оформление кода даже на светлой странице.
+
+**Логотип:** в Navigation был референс на `/logos/workflowengine.svg`, но файл отсутствовал на диске (404). Скопировал `formengine-black.svg` → `workflowengine.svg` как stopgap, чтобы что-то рендерилось на новой светлой шапке. Заменить на настоящий бренд-ассет.
+
 ## 2026-04-14 | Удалены GitHub и stargazers (WorkflowEngine не опенсорс)
 
 WorkflowEngine — коммерческий закрытый продукт (в отличие от FormEngine Core). Убрали всю опенсорс-инфраструктуру:
