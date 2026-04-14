@@ -69,14 +69,10 @@ const HeroFlow: React.FC<HeroFlowProps> = ({
             />
           </div>
           
-          <Button href="https://github.com/optimajet/workflowengine" variant="primary" size="lg" className="whitespace-nowrap w-full sm:w-auto" target="_blank">
-            <img src="/icons/github.svg" alt="" className="w-5 h-5 mr-2 brightness-0" />
-            Star us on GitHub
-          </Button>
         </div>
       </div>
     </section>
   );
 };
 
-export default HeroFlow; 
+export default HeroFlow;

@@ -22,7 +22,7 @@ const MUIDocsSupportBlock: React.FC = () => {
 
           <Heading level={2}>Support</Heading>
           <Text>
-            Need help getting started? Check out our <a href="https://github.com/optimajet/workflowengine" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-200 transition-colors">GitHub repository</a> or <a href="/contacts" className="text-blue-300 hover:text-blue-200 transition-colors">contact our team</a> for assistance.
+            Need help getting started? Check out our <a href="/contacts" className="text-blue-300 hover:text-blue-200 transition-colors">contact our team</a> for assistance.
           </Text>
         </div>
       </div>

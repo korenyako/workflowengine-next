@@ -73,7 +73,6 @@ export default function RootLayout({
               url: SITE_ORIGIN,
               logo: `${SITE_ORIGIN}/logos/workflowengine.svg`,
               sameAs: [
-                'https://github.com/optimajet/workflowengine',
                 'https://www.linkedin.com/company/optimajet',
                 'https://www.nuget.org/packages/OptimaJet.WorkflowEngine.Core',
                 'https://www.trustpilot.com/review/optimajet.com',

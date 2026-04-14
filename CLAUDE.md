@@ -32,13 +32,13 @@ src/
 │   ├── pricing/              # Live (copy нужно переписать)
 │   ├── contacts/             # Live (форма-заглушка)
 │   └── blog/[slug]/          # MDX, сейчас пусто
+│   # pricing/ удалена — /pricing/ 301-редиректит на optimajet.com
 ├── components/     # ~100 блоков-компонентов (Hero*, Centered*, TwoColumn*, FAQ, ...)
 ├── content/blog/   # MDX-тексты статей (пусто)
-├── data/           # JSON/TS контент (main.json + пережитки FormEngine)
+├── data/           # blog.ts + main.json (остальное удалено в Phase 1)
 ├── forms/          # JSON-схемы форм (legacy от FormEngine, мусор)
 ├── lib/, utils/, styles/
 public/             # Статика, sitemap.xml, robots.txt, _redirects, _headers, logos
-scripts/            # fetch-stargazers.mjs
 netlify/            # Netlify Functions (lead proxy)
 docs/deploy.md      # Полный deploy guide (Docker+Nginx, standalone, rsync)
 knowledge/          # LLM-вики (начинать с INDEX.md)
@@ -54,13 +54,11 @@ npm run dev        # http://localhost:3000
 npm run build      # next build → next-sitemap → html-beautify → /out
 npm run start      # Production-сервер (опционально — для проверки локально)
 npm run lint       # ESLint (next lint)
-npm run fetch:stars  # Обновить public/stargazers.json из GitHub API
 ```
 
 ## Environment
 
 Сборке **env переменные не нужны**.
-- `GITHUB_TOKEN` — опциональный, только для `npm run fetch:stars` (если упираешься в rate-limit).
 
 ## Критичные правила для AI
 
@@ -71,7 +69,8 @@ npm run fetch:stars  # Обновить public/stargazers.json из GitHub API
 5. **`package-lock.json` устарел** после форка (ссылается на удалённые пакеты). Перед деплоем — перегенерировать чистым `npm install`.
 6. **Sitemap**: `public/sitemap.xml` авто-генерится из `next-sitemap` при build. `public/robots.txt` и `public/_redirects` правятся руками — правила в исходном README (FormEngine) + аудит записан в [knowledge/plans/roadmap.md](knowledge/plans/roadmap.md).
 7. **Логотип** в `public/logos/workflowengine.svg` пока является переименованным логотипом FormEngine — заменить при первой возможности.
-8. **Не добавлять `Co-Authored-By: Claude`** в коммиты (см. глобальный `~/.claude/CLAUDE.md`). Git user настроен на `Anton Korenyako`.
+8. **WorkflowEngine — закрытый коммерческий продукт.** Никаких GitHub/MIT/"open-source"/"star us"/community-discussions на сайте. В отличие от FormEngine Core (MIT, в GitHub). Никаких GitHub-иконок в нав/футере, никакой stargazers-интеграции. Подробнее — [knowledge/domain/overview.md](knowledge/domain/overview.md).
+9. **Не добавлять `Co-Authored-By: Claude`** в коммиты (см. глобальный `~/.claude/CLAUDE.md`). Git user настроен на `Anton Korenyako`.
 
 ## Relationship to source project
 

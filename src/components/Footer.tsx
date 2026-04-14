@@ -21,7 +21,6 @@ const Footer: React.FC = () => {
           { text: "Documentation", href: "https://workflowengine.io/documentation/" },
           { text: "Release Notes", href: "https://workflowengine.io/documentation/release-notes" },
           { text: "Roadmap", href: "https://workflowengine.io/documentation/roadmap" },
-          { text: "Community", href: "https://github.com/optimajet/workflowengine/discussions" },
           { text: "Blog", href: "/blog/" },
           { text: "Guides", href: "https://workflowengine.io/documentation/category/guides" },
           { text: "FAQ", href: "https://workflowengine.io/documentation/category/faq" },
@@ -32,7 +31,6 @@ const Footer: React.FC = () => {
       {
         title: "RESOURCES",
         links: [
-          { text: "WorkflowEngine Core MIT License", href: "https://github.com/optimajet/workflowengine/blob/master/LICENSE" },
           { text: "WorkflowEngine License", href: "https://optimajet.com/products/workflowengine/eula/" },
           { text: "Optimajet Limited", href: "https://optimajet.com/" },
           { text: "Component Source", href: "https://www.componentsource.com/product/optimajet-workflowengine/prices" },
@@ -52,9 +50,7 @@ const Footer: React.FC = () => {
       }
     ],
     socialLinks: [
-      { icon: "/icons/github.svg", href: "https://github.com/optimajet/workflowengine" },
       { icon: "/icons/youtube.svg", href: "https://www.youtube.com/@optimajet/videos" },
-      { icon: "/icons/devto.svg", href: "https://dev.to/optimajet" },
       { icon: "/icons/twitter.svg", href: "https://twitter.com/OptimaJet" },
       { icon: "/icons/linkedin.svg", href: "https://hk.linkedin.com/company/optimajet" }
     ],

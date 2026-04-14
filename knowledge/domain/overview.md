@@ -10,6 +10,8 @@ The site sells / documents the **OptimaJet WorkflowEngine** product family. This
 
 A **.NET workflow automation engine** — a library for designing, automating, and executing business processes. Visual workflow designer, flexible API, cross-platform (.NET runtime). Tagline used in metadata: *"Lightweight, cross-platform workflow engine for .NET."*
 
+**Closed-source, commercial product.** Unlike its sibling FormEngine (whose Core is MIT-licensed and lives on GitHub), WorkflowEngine is proprietary. Distributed via NuGet packages + direct downloads. **No GitHub repo, no "star us", no MIT positioning** anywhere on the site — if you see such copy leftover from the FormEngine fork, strip it.
+
 ## Product surface on the site
 
 Planned routes corresponding to product lines (most are stubs after the fork):

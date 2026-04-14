@@ -2,6 +2,21 @@
 
 Chronological log of wiki updates. Newest entries on top.
 
+## 2026-04-14 | Удалены GitHub и stargazers (WorkflowEngine не опенсорс)
+
+WorkflowEngine — коммерческий закрытый продукт (в отличие от FormEngine Core). Убрали всю опенсорс-инфраструктуру:
+
+- Удалены файлы: `.github/workflows/stargazers.yml`, `scripts/fetch-stargazers.mjs`, `src/lib/stargazersCache.ts`, `public/stargazers.json`. Пустые директории `.github/`, `scripts/` удалены.
+- `package.json`: убран скрипт `fetch:stars`.
+- `Navigation.tsx`: убраны GitHub-иконка + счётчик звёзд из top-right (осталась только кнопка Download).
+- `Footer.tsx`: из socialLinks удалены `github.svg` и `devto.svg` (dev.to — тоже опенсорс-платформа), остались youtube/twitter/linkedin. Из DEVELOPERS убрана ссылка "Community" (GitHub Discussions). Из RESOURCES убрана "WorkflowEngine Core MIT License".
+- `layout.tsx`: из JSON-LD `sameAs` убран GitHub URL.
+- `HeroWithCodeBlock.tsx`: убран импорт stargazersCache, снят GitHub/npm-бейдж с версией, снята кнопка "Star us on GitHub". Теперь бейдж универсальный — берёт текст из `props.badge` и CTA-линк из `props.cta.href`.
+- `HeroFlow.tsx`: убрана кнопка "Star us on GitHub".
+- `MUIDocsSupportBlock.tsx`, `MantineDocsSupportBlock.tsx`, `ShadcnDocsSupportBlock.tsx`: убран inline-линк на GitHub repository.
+
+**Не трогали:** `src/data/main.json` (всё ещё FormEngine-копия с open-source / MIT / GitHub) — перепишется целиком в Phase 3. `src/components/ComponentsTable.tsx` (мёртвый, не рендерится) — аналогично.
+
 ## 2026-04-14 | Phase 1 исполнен (commit `06169a3`)
 
 - 301-редиректы в `public/_redirects`: `/pricing/`, `/agreements/eula/`, `/agreements/csa/` → optimajet.com.

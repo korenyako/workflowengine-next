@@ -1,7 +1,5 @@
 import React from "react";
-import Button from "./Button";
 import CodePreview from "./CodePreview";
-import { getCachedStargazers } from "@/lib/stargazersCache";
 
 interface HeroWithCodeBlockProps {
   title: string;
@@ -16,7 +14,6 @@ interface HeroWithCodeBlockProps {
   anchor?: string;
   // Optional explicit target for the anchor (e.g. "_parent") — kept optional so existing pages are unaffected
   anchorTarget?: string;
-  hideStarButton?: boolean;
 }
 
 const HeroWithCodeBlock: React.FC<HeroWithCodeBlockProps> = ({
@@ -28,60 +25,29 @@ const HeroWithCodeBlock: React.FC<HeroWithCodeBlockProps> = ({
   blockBg,
   anchor,
   anchorTarget,
-  hideStarButton,
 }) => {
-  // Version is available immediately from build-time import (no flash)
-  const cached = getCachedStargazers();
-  const version = cached?.latestVersion || "7.5.0";
-
-  // Функция для выделения ключевых слов (закомментирована для будущего использования)
-  const highlightKeywords = (text: string, keywords: string[]) => {
-    let result = text;
-    keywords.forEach(keyword => {
-      const regex = new RegExp(`(${keyword})`, 'gi');
-      result = result.replace(regex, '<mark>$1</mark>');
-    });
-    return result;
-  };
 
   return (
     <section className="relative py-8 lg:py-12 px-4 sm:px-8" style={{ backgroundColor: blockBg }}>
       <div className="max-w-4xl mx-auto text-center">
-        {/* Бейдж с кнопкой Install */}
+        {/* Бейдж с кнопкой CTA */}
         {badge && cta && (
           <div className="flex items-center justify-center mb-8">
-            {/* Десктопная версия - горизонтальный бейдж */}
-            <a 
-              href="https://www.npmjs.com/package/@react-form-builder/core" 
-              target="_blank" 
-              rel="noopener noreferrer"
+            <a
+              href={cta.href}
               className="hidden sm:flex items-center bg-gray-800/50 rounded-full hover:bg-gray-700/50 transition-colors duration-200 cursor-pointer"
             >
-              <span className="flex items-center text-white text-base px-6">
-                <img src="/icons/npmjs.svg" alt="" className="w-10 h-10 mr-4" loading="lazy" />
-                <span>
-                  WorkflowEngine Core Free Open-Source React Form Library {version}
-                </span>
-              </span>
+              <span className="text-white text-base px-6">{badge}</span>
               <div className="flex items-center text-gray-800 bg-gradient-to-r from-blue-300 to-purple-300 hover:from-blue-400 hover:to-purple-400 px-6 py-3 text-base font-semibold rounded-full transition-all duration-200">
                 <img src="/icons/arrow-right.svg" alt="" className="w-4 h-4 mr-1" />
                 {cta.text}
               </div>
             </a>
-
-            {/* Мобильная версия - прямоугольный блок */}
             <a
-              href="https://www.npmjs.com/package/@react-form-builder/core"
-              target="_blank"
-              rel="noopener noreferrer"
+              href={cta.href}
               className="sm:hidden w-full max-w-sm bg-gray-800/50 rounded-xl p-4 hover:bg-gray-700/50 transition-colors duration-200 cursor-pointer"
             >
-              <div className="flex items-start text-white text-sm mb-4 text-left">
-                <img src="/icons/npmjs.svg" alt="" className="w-10 h-10 mr-3 flex-shrink-0 mt-0.5" loading="lazy" />
-                <span>
-                  WorkflowEngine Core Free Open-Source React Form Library {version}
-                </span>
-              </div>
+              <div className="text-white text-sm mb-4 text-left">{badge}</div>
               <div className="flex items-center justify-center text-gray-800 bg-gradient-to-r from-blue-300 to-purple-300 hover:from-blue-400 hover:to-purple-400 px-6 py-3 text-base font-semibold rounded-lg transition-all duration-200">
                 <img src="/icons/arrow-right.svg" alt="" className="w-4 h-4 mr-1" />
                 {cta.text}
@@ -118,21 +84,14 @@ const HeroWithCodeBlock: React.FC<HeroWithCodeBlockProps> = ({
           {description}
         </h3>
         
-        {/* Блок кода с кнопкой Star us */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-none">
+        {/* Блок кода */}
+        <div className="flex items-center justify-center w-full max-w-none">
           <div className="relative w-full max-w-full text-left">
             <CodePreview
               code={code}
               language="bash" variant="hero"
             />
           </div>
-
-          {!hideStarButton && (
-            <Button href="https://github.com/optimajet/workflowengine" variant="primary" size="lg" className="whitespace-nowrap w-full sm:w-auto" target="_blank">
-              <img src="/icons/github.svg" alt="" className="w-5 h-5 mr-2 brightness-0" />
-              Star us on GitHub
-            </Button>
-          )}
         </div>
       </div>
     </section>
