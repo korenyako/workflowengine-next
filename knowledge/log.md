@@ -2,6 +2,15 @@
 
 Chronological log of wiki updates. Newest entries on top.
 
+## 2026-04-14 | Phase 1 исполнен (commit `06169a3`)
+
+- 301-редиректы в `public/_redirects`: `/pricing/`, `/agreements/eula/`, `/agreements/csa/` → optimajet.com.
+- Удалён маршрут `src/app/pricing/` и все `src/components/pricing/*` компоненты. Навигация/футер теперь линкуют Pricing на optimajet.com напрямую.
+- Удалены orphan data-файлы: `core.json`, `designer.json`, `core-mui.json`, `core-mantine.json`, `core-shadcn.json`, `rsuite.json`, `rsuite-page.json`, `pricing-faq.json`, `comparisons.ts`, `comparison-pages.ts`, `libraries.ts`. В `src/data/` остались только `blog.ts` и `main.json`.
+- `.github/workflows/stargazers.yml`: `TARGET_REPO` → `optimajet/workflowengine` (было `formengine`), 6-часовой cron закомментирован пока идёт активная разработка (чтобы не захламлял историю). Оставлен `workflow_dispatch` для ручного запуска.
+
+Соответствующие пункты P1 в [plans/roadmap.md](plans/roadmap.md) теперь закрыты; главное, что осталось для лаунча, — контент в main.json, стабы `/features/`, `/server/`, `/downloads/`, светлая тема, форма Bitrix24, блог (все 20 постов).
+
 ## 2026-04-14 | Решения по content migration
 
 Owner ответил на open questions в [plans/content-migration.md](plans/content-migration.md): DWKit остаётся в 3-way comparison, FormEngine-баннер убираем, блог портируем **весь** (SEO), Pricing/EULA/CSA — 301-редиректы на optimajet.com (как в legacy), тема светлая, типографика как есть. Фазы обновлены, блог выделен в отдельную P0-фазу.

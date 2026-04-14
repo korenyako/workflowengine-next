@@ -22,7 +22,7 @@ Outstanding work after the FormEngine → WorkflowEngine fork (commit `0efe811`)
 - [ ] **Prune dead content references.** Blocks/data that still link to deleted routes:
   - `components/FrameworkLogosBlock.tsx` + `HeroFrameworksBlock.tsx` — all `hrefs` to `/react-form-components-library/<framework>/`
   - `components/Footer.tsx` RESOURCES column still has FormEngine-specific entries
-  - `src/data/core.json`, `designer.json`, `core-mantine.json`, `core-mui.json`, `core-shadcn.json`, `rsuite.json`, `rsuite-page.json`, `comparisons.ts`, `comparison-pages.ts`, `libraries.ts` — **no route consumes these**; delete once replacement copy is in place.
+  - ~~`src/data/core.json`, `designer.json`, `core-mantine.json`, `core-mui.json`, `core-shadcn.json`, `rsuite.json`, `rsuite-page.json`, `comparisons.ts`, `comparison-pages.ts`, `libraries.ts` — **no route consumes these**~~ **Done 2026-04-14 (Phase 1).**
   - `components/ComparisonTable.tsx`, `ComparisonTimeline.tsx`, `ComponentsTable.tsx`, `CodePreview.tsx`, `ArchitectureDiagram.tsx`, `DesignerTree.tsx`, `ChatGPTButton.tsx`, `FormDemoBlock.tsx` (placeholder), `MUI*`/`Mantine*`/`Shadcn*` blocks (placeholders) — decide keep/repurpose/delete.
 - [ ] **Clean homepage JSON** of orphaned block types (`StarsWall`, `FormDemoBlock`) once the new design is in.
 - [ ] **`public/sitemap.xml`** currently auto-generated but from old route set; will self-heal on next build. Verify after route work lands.
