@@ -1,10 +1,12 @@
-# Legacy pricing redirect
-/pricing   /react-form-builder-library/pricing/   301
-/pricing/  /react-form-builder-library/pricing/   301
+# Pricing → optimajet.com (no own pricing page; matches legacy workflowengine.io behavior)
+/pricing              https://optimajet.com/products/workflowengine/price/   301
+/pricing/             https://optimajet.com/products/workflowengine/price/   301
 
-# Archived pages
-/formengine-core-vscode-extension   /react-form-library/   301
-/formengine-core-vscode-extension/  /react-form-library/   301
+# Legal agreements → optimajet.com (matches legacy workflowengine.io 301s)
+/agreements/eula      https://optimajet.com/products/workflowengine/eula/    301
+/agreements/eula/     https://optimajet.com/products/workflowengine/eula/    301
+/agreements/csa       https://optimajet.com/products/workflowengine/csa/     301
+/agreements/csa/      https://optimajet.com/products/workflowengine/csa/     301
 
 # Contact form backend -> Netlify Function
 /backend/lead/   /.netlify/functions/lead   200

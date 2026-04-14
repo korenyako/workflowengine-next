@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
           { text: "WorkflowEngine", href: "/features/" },
           { text: "Workflow Server", href: "/server/" },
           { text: "Downloads", href: "/downloads/" },
-          { text: "Pricing", href: "/pricing/" },
+          { text: "Pricing", href: "https://optimajet.com/products/workflowengine/price/" },
         ]
       },
       {

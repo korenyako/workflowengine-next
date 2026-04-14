@@ -14,13 +14,14 @@ import { getCachedStargazers } from '@/lib/stargazersCache';
 interface NavLink {
   title: string;
   href: string;
+  external?: boolean;
 }
 
 const navLinks: NavLink[] = [
   { title: 'Features', href: '/features' },
   { title: 'Workflow Server', href: '/server' },
   { title: 'Downloads', href: '/downloads' },
-  { title: 'Pricing', href: '/pricing' },
+  { title: 'Pricing', href: 'https://optimajet.com/products/workflowengine/price/', external: true },
   { title: 'Blog', href: '/blog' },
   { title: 'Contact Us', href: '/contacts' },
 ];
@@ -66,19 +67,29 @@ const Navigation: React.FC = () => {
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex lg:items-center lg:space-x-4 ml-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`px-3 py-2 rounded-lg transition-all duration-200 ${
-                  isActive(link.href)
-                    ? 'text-blue-300 bg-gray-800'
-                    : 'text-white hover:text-white hover:bg-gray-800'
-                }`}
-              >
-                {link.title}
-              </Link>
-            ))}
+            {navLinks.map((link) =>
+              link.external ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="px-3 py-2 rounded-lg transition-all duration-200 text-white hover:text-white hover:bg-gray-800"
+                >
+                  {link.title}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`px-3 py-2 rounded-lg transition-all duration-200 ${
+                    isActive(link.href)
+                      ? 'text-blue-300 bg-gray-800'
+                      : 'text-white hover:text-white hover:bg-gray-800'
+                  }`}
+                >
+                  {link.title}
+                </Link>
+              )
+            )}
             <a
               href="https://workflowengine.io/documentation/"
               className="px-3 py-2 rounded-lg transition-all duration-200 text-white hover:text-white hover:bg-gray-800"
@@ -133,15 +144,25 @@ const Navigation: React.FC = () => {
       {isMobileMenuOpen && (
         <div className="fixed inset-0 bg-[#0d1117] z-40 lg:hidden pt-20 overflow-y-auto">
           <div className="px-4 py-4 space-y-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="block px-4 py-3 text-white hover:bg-gray-800 rounded-lg"
-              >
-                {link.title}
-              </Link>
-            ))}
+            {navLinks.map((link) =>
+              link.external ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="block px-4 py-3 text-white hover:bg-gray-800 rounded-lg"
+                >
+                  {link.title}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="block px-4 py-3 text-white hover:bg-gray-800 rounded-lg"
+                >
+                  {link.title}
+                </Link>
+              )
+            )}
             <a
               href="https://workflowengine.io/documentation/"
               className="block px-4 py-3 text-white hover:bg-gray-800 rounded-lg"
