@@ -1,184 +1,78 @@
-# FormEngine Website (Next.js)
+# WorkflowEngine Site (Next.js)
 
-Marketing and documentation website for OptimaJet FormEngine - React form builder ecosystem.
-This is a Next.js rebuild of the original Vite-based site.
+## Knowledge Base
 
-**Live site:** https://formengine.io
+Перед работой с проектом прочитай [knowledge/INDEX.md](knowledge/INDEX.md) и нужные статьи из вики. После значимых изменений — обновляй соответствующие статьи и добавляй запись в [knowledge/log.md](knowledge/log.md).
 
-## Quick Start
+---
 
-```bash
-npm install        # Install dependencies
-npm run dev        # Start dev server (http://localhost:3000)
-npm run build      # Production build (static export to /out)
-npm run start      # Start production server
-npm run lint       # Run ESLint
-```
+Маркетинговый сайт для OptimaJet WorkflowEngine (.NET workflow automation engine). Сделан форком из FormEngine-сайта (см. `../formengine-next`), перепрофилирован под WorkflowEngine. Репо: https://github.com/korenyako/workflowengine-next (private).
 
-## Tech Stack
+**Live site:** https://workflowengine.io (пока не задеплоен; планируется Netlify, как у FormEngine).
 
-- **Next.js 16** (App Router) + **React 19**
-- **TypeScript 5.9**
-- **Tailwind CSS 4** - Styling
-- **Framer Motion** - Animations
-- **@xyflow/react** + **dagre** - Interactive architecture diagrams
-- **highlight.js** - Code syntax highlighting
+## Stack
 
-## Project Structure
+- **Next.js 16** (App Router) в static export режиме (`output: 'export'`, `trailingSlash: true`)
+- **React 19**, **TypeScript 5.9** (`@/*` → `./src/*`)
+- **Tailwind CSS 4** (PostCSS plugin)
+- **Framer Motion**, **@xyflow/react** + **dagre**, **highlight.js**, **next-mdx-remote**
+- `next-sitemap` + `js-beautify` post-build
+
+Полный список — [package.json](package.json). Подробнее — [knowledge/architecture.md](knowledge/architecture.md).
+
+## Structure
 
 ```
 src/
-├── app/                         # Next.js App Router pages
-│   ├── layout.tsx              # Root layout (fonts, nav, footer)
-│   ├── page.tsx                # Homepage
-│   ├── react-form-library/     # Core library docs
-│   ├── react-form-builder-library/  # Builder docs
-│   ├── react-form-components-library/
-│   │   └── data-grid/          # DataGrid docs
-│   ├── ai-form-builder/        # AI form builder
-│   ├── comparison/             # [slug] comparison pages
-│   ├── libraries/              # [slug] library pages
-│   ├── contacts/               # Contact page
-│   ├── pricing/                # Pricing page
-│   └── ...
-│
-├── components/                  # 110+ React components
-│   ├── Navigation.tsx          # Header navigation
-│   ├── Footer.tsx              # Site footer
-│   ├── blocks.tsx              # Content block orchestration
-│   ├── Hero*.tsx               # Hero section variants
-│   ├── Centered*.tsx           # Centered content blocks
-│   ├── ArchitectureDiagram.tsx # React Flow diagrams
-│   ├── ComparisonTable.tsx     # Feature comparisons
-│   ├── FAQBlock.tsx            # FAQ accordion
-│   ├── content/                # CodeBlock, Heading, List
-│   └── icons/                  # SVG icon components
-│
-├── data/                        # JSON content and schemas
-│   ├── main.json               # Homepage blocks (17 types)
-│   ├── core.json               # Core library data
-│   ├── designer.json           # Designer library data
-│   ├── forms/                  # Form schema examples
-│   ├── comparisons.ts          # Comparison data
-│   └── libraries.ts            # Library comparison data
-│
-├── lib/                         # Utility libraries
-│   ├── demoSchemas.ts          # Demo form configs
-│   └── stargazersCache.ts      # GitHub stars cache
-│
-├── utils/
-│   └── seo.ts                  # SEO helpers
-│
-└── styles/
-    └── globals.css             # Global styles + Tailwind
-
-public/                          # Static assets
-├── images/                     # Product images
-├── icons/                      # SVG icons
-├── logos/                      # Brand logos
-├── videos/                     # Demo videos
-├── sitemap.xml                 # SEO sitemap
-├── robots.txt                  # Crawler config
-├── _redirects                  # Netlify redirects
-└── stargazers.json             # GitHub stars cache
+├── app/            # App Router (каждая папка = URL)
+│   ├── page.tsx              # Home (блоки из data/main.json)
+│   ├── features/             # STUB
+│   ├── server/               # STUB
+│   ├── downloads/            # STUB
+│   ├── pricing/              # Live (copy нужно переписать)
+│   ├── contacts/             # Live (форма-заглушка)
+│   └── blog/[slug]/          # MDX, сейчас пусто
+├── components/     # ~100 блоков-компонентов (Hero*, Centered*, TwoColumn*, FAQ, ...)
+├── content/blog/   # MDX-тексты статей (пусто)
+├── data/           # JSON/TS контент (main.json + пережитки FormEngine)
+├── forms/          # JSON-схемы форм (legacy от FormEngine, мусор)
+├── lib/, utils/, styles/
+public/             # Статика, sitemap.xml, robots.txt, _redirects, _headers, logos
+scripts/            # fetch-stargazers.mjs
+netlify/            # Netlify Functions (lead proxy)
+docs/deploy.md      # Полный deploy guide (Docker+Nginx, standalone, rsync)
+knowledge/          # LLM-вики (начинать с INDEX.md)
 ```
 
-## Key Routes
+Карта маршрутов и их статуса — [knowledge/routes.md](knowledge/routes.md).
 
-| Route | Description |
-|-------|-------------|
-| `/` | Homepage |
-| `/react-form-library` | Core library (JSON form renderer) |
-| `/react-form-builder-library` | Visual form builder |
-| `/react-form-components-library` | UI components library |
-| `/react-form-components-library/data-grid` | DataGrid component |
-| `/ai-form-builder` | AI-powered form builder |
-| `/pricing` | Redirects to `/react-form-builder-library/pricing/` |
-| `/comparison/[slug]` | Dynamic comparison pages |
-| `/libraries/[slug]` | Dynamic library pages |
-| `/contacts` | Contact page |
-| `/llms.txt` | Site-level LLMs.txt (static file) |
+## Commands
 
-## Key Configuration
-
-- **next.config.ts** - Static export (`output: 'export'`), trailing slashes enabled
-- **tailwind.config.ts** - Custom fonts, primary blue color scale
-- **tsconfig.json** - Path alias `@/*` → `./src/*`
-
-## Content Management
-
-Page content is driven by JSON files in `src/data/`:
-- `main.json` - Homepage blocks configuration
-- `core.json` - Core library page
-- `designer.json` - Designer library page
-- Block components render based on `type` field
-
-## Build Output
-
-- **Static export** to `/out` folder
-- No server required - deploy anywhere
-- Images unoptimized (static export compatible)
-
-## Deployment
-
-Ready for static hosting:
-- **Netlify** - Uses `_redirects`, `_headers` in public/
-- **Vercel** - Auto-detected
-- **GitHub Pages** - Use `/out` folder
-- Any static file server
-
-## Products Showcased
-
-1. **FormEngine Core** - Open-source JSON form renderer (MIT)
-2. **Form Builder** - Visual drag-and-drop editor (formbuilder.formengine.io)
-3. **Form Components** - RSuite-based UI components
-4. **AI Form Builder** - ChatGPT integration for form generation
-5. **VSCode Extension** - FormEngine Core IDE integration
-
-## Differences from Vite Version
-
-| Aspect | Vite (formengine) | Next.js (formengine-next) |
-|--------|-------------------|---------------------------|
-| Router | React Router DOM | Next.js App Router |
-| Build | Vite + Puppeteer pre-render | Static export |
-| Dev port | 5173 | 3000 |
-| Routing | `src/pages/*.tsx` | `src/app/*/page.tsx` |
-| Layout | In App.tsx | In layout.tsx files |
-
-## Important: External Scripts in Static Export
-
-### GTM (Google Tag Manager)
-
-**Не использовать `next/script` для GTM.** В static export (`output: 'export'`) `next/script` с любой стратегией (`afterInteractive`, `beforeInteractive`) не вставляет обычный `<script>` в HTML. Вместо этого GTM-код попадает в RSC-payload (JSON-данные React Server Components), и его выполнение зависит от гидратации Next.js. Если гидратация тормозит или ломается — GTM не загружается, и все виджеты из него (Calendly, Clarity и т.д.) тоже не работают.
-
-**Правильный подход** — обычный `<script>` через `dangerouslySetInnerHTML` в `<head>`:
-```tsx
-<head>
-  <script dangerouslySetInnerHTML={{ __html: `...GTM code...` }} />
-</head>
+```bash
+npm install        # Зависимости
+npm run dev        # http://localhost:3000
+npm run build      # next build → next-sitemap → html-beautify → /out
+npm run start      # Production-сервер (опционально — для проверки локально)
+npm run lint       # ESLint (next lint)
+npm run fetch:stars  # Обновить public/stargazers.json из GitHub API
 ```
-Это рендерится как настоящий HTML-тег, выполняется сразу при парсинге страницы, без зависимости от Next.js runtime.
 
-### Контактная форма (Битрикс24)
+## Environment
 
-Контактная форма использует встроенный виджет Битрикс24 CRM вместо FormEngine contact form, т.к. static export не имеет бэкенд-прокси (в Vite-версии `/backend/` проксируется на `localhost:8093`, а в Next.js static export это невозможно).
+Сборке **env переменные не нужны**.
+- `GITHUB_TOKEN` — опциональный, только для `npm run fetch:stars` (если упираешься в rate-limit).
 
-Битрикс24 виджет подключается через `useEffect` в `src/app/contacts/page.tsx`, воспроизводя оригинальный embed-код. Нельзя использовать `next/script` — Битрикс24 loader ищет атрибут `data-b24-form` на самом теге `<script>`.
+## Критичные правила для AI
 
-### Общее правило
+1. **Static export** → никаких API routes, middleware, SSR, `next/script`. Всё внешнее — нативный `<script>` или `useEffect`. Детали и паттерны — [knowledge/external-scripts.md](knowledge/external-scripts.md) и [knowledge/decisions.md](knowledge/decisions.md).
+2. **Динамические маршруты** (`[slug]`) обязаны иметь `generateStaticParams()` возвращающий не пустой массив. Для пустого блога используется sentinel-slug `__placeholder__` — см. [knowledge/blog.md](knowledge/blog.md).
+3. **`@react-form-builder/*`, `@mui/*`, `@emotion/*` удалены** из зависимостей (наследие FormEngine). Не восстанавливать без явной необходимости. Компоненты, которые на них завязаны, сейчас рендерят плейсхолдеры — список в [knowledge/decisions.md](knowledge/decisions.md#6-broken-form-viewer-imports-replaced-with-placeholders-not-deleted).
+4. **Блочная система** ([src/components/blocks.tsx](src/components/blocks.tsx)): неизвестные `type` в JSON молча игнорируются, не кидают ошибок. При добавлении нового блока — зарегистрировать его в `components: {}` и в `PageBlocks.tsx` если используется на sub-page.
+5. **`package-lock.json` устарел** после форка (ссылается на удалённые пакеты). Перед деплоем — перегенерировать чистым `npm install`.
+6. **Sitemap**: `public/sitemap.xml` авто-генерится из `next-sitemap` при build. `public/robots.txt` и `public/_redirects` правятся руками — правила в исходном README (FormEngine) + аудит записан в [knowledge/plans/roadmap.md](knowledge/plans/roadmap.md).
+7. **Логотип** в `public/logos/workflowengine.svg` пока является переименованным логотипом FormEngine — заменить при первой возможности.
+8. **Не добавлять `Co-Authored-By: Claude`** в коммиты (см. глобальный `~/.claude/CLAUDE.md`). Git user настроен на `Anton Korenyako`.
 
-Для static export любые внешние скрипты, которые должны работать надёжно (аналитика, виджеты, трекеры), лучше подключать через нативные `<script>` теги или `useEffect`, а не через `next/script`. Компонент `next/script` оптимален для приложений с серверным рендерингом, но в static export создаёт ненужную зависимость от гидратации.
+## Relationship to source project
 
-## Sitemap Rules
-
-- `public/sitemap.xml` must only contain **canonical URLs that return HTTP 200 directly** — no redirects (301/302), no aliases, no non-existent pages.
-- If a URL has a redirect in `_redirects`, only the **target** URL belongs in the sitemap, not the source.
-- Before adding a URL to the sitemap, verify it is not listed in `_redirects` as a redirect source.
-- `robots.txt` Disallow rules and sitemap entries must not contradict each other.
-
-## Notes
-
-- Path alias: `@/` maps to `src/`
-- Uses Next.js App Router (not Pages Router)
-- Static export mode - no API routes
-- Fonts loaded via `next/font/google`
+Форк из `C:/Work/Optimajet/formengine-next` (живой FormEngine marketing site). Отдельная git-история, отдельный GitHub-repo. Синхронизации с upstream нет — фиксы портируются вручную. Подробнее — [knowledge/decisions.md](knowledge/decisions.md#7-fork-strategy-clean-repo-not-git-fork).
