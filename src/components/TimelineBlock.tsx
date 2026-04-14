@@ -29,18 +29,18 @@ function TimelineBlock({ title, subtitle, stages, color, timelinePoints = 10, ti
     if (color === 'blue' && stage.start >= 2) {
       return 'bg-blue-300 rounded-lg p-2 sm:p-3 flex flex-col justify-center h-44'
     }
-    return 'bg-gray-800 rounded-lg p-2 sm:p-3 flex flex-col justify-center h-44'
+    return 'bg-slate-100 rounded-lg p-2 sm:p-3 flex flex-col justify-center h-44'
   }
 
   const getTextStyles = () => {
     if (color === 'blue') {
       return 'text-[#1e2939] font-medium'
     }
-    return 'text-white'
+    return 'text-slate-900'
   }
 
   const getTitleColor = () => {
-    return 'text-white'
+    return 'text-slate-900'
   }
 
   return (
@@ -50,7 +50,7 @@ function TimelineBlock({ title, subtitle, stages, color, timelinePoints = 10, ti
           <h3 className={`text-lg font-subtitle font-semibold tracking-wide ${getTitleColor()}`}>
             {title}
           </h3>
-          <p className="text-lg lg:text-xl leading-normal text-gray-300">{subtitle}</p>
+          <p className="text-lg lg:text-xl leading-normal text-slate-600">{subtitle}</p>
         </div>
       </div>
       

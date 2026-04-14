@@ -41,11 +41,11 @@ const FAQBlock: React.FC<FAQBlockProps> = ({ title, faqItems, blockBg, anchor, p
   const isLightBg = blockBg === '#ffffff' || blockBg === 'white';
 
   // Цвета для текста в зависимости от фона
-  const titleColor = isLightBg ? 'text-gray-900' : 'text-white';
-  const subtitleColor = isLightBg ? 'text-gray-600' : 'text-gray-300';
-  const questionColor = isLightBg ? 'text-gray-900' : 'text-white';
-  const answerColor = isLightBg ? 'text-gray-600' : 'text-gray-300';
-  const linkColor = 'text-blue-300 hover:text-blue-200';
+  const titleColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
+  const subtitleColor = isLightBg ? 'text-gray-600' : 'text-slate-600';
+  const questionColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
+  const answerColor = isLightBg ? 'text-gray-600' : 'text-slate-600';
+  const linkColor = 'text-blue-600 hover:text-blue-700';
 
   // Разделяем FAQ на 3 колонки
   const column1 = faqItems.filter((_, idx) => idx % 3 === 0);
@@ -62,7 +62,7 @@ const FAQBlock: React.FC<FAQBlockProps> = ({ title, faqItems, blockBg, anchor, p
       <div className="max-w-6xl mx-auto">
         {/* Заголовок и подзаголовки */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading font-semibold text-white mb-4 leading-snug whitespace-pre-wrap break-words" style={{ wordBreak: 'keep-all' }}>
+          <h2 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading font-semibold text-slate-900 mb-4 leading-snug whitespace-pre-wrap break-words" style={{ wordBreak: 'keep-all' }}>
             {title.replace(/\s+for\s+/g, ' for\u00A0')}
           </h2>
         </div>
@@ -73,11 +73,11 @@ const FAQBlock: React.FC<FAQBlockProps> = ({ title, faqItems, blockBg, anchor, p
           <div className="space-y-8">
             {column1.map((item, idx) => (
               <div key={idx} className="space-y-3">
-                <h3 className={`font-semibold text-lg text-blue-300 whitespace-pre-wrap break-words`}>
+                <h3 className={`font-semibold text-lg text-blue-600 whitespace-pre-wrap break-words`}>
                   {item.question}
                 </h3>
                 <p
-                  className={`text-lg lg:text-xl ${isLightBg ? 'text-gray-600' : 'text-gray-300'} whitespace-pre-wrap break-words leading-normal`}
+                  className={`text-lg lg:text-xl ${isLightBg ? 'text-gray-600' : 'text-slate-600'} whitespace-pre-wrap break-words leading-normal`}
                   dangerouslySetInnerHTML={{ __html: item.answer }}
                 />
               </div>
@@ -88,11 +88,11 @@ const FAQBlock: React.FC<FAQBlockProps> = ({ title, faqItems, blockBg, anchor, p
           <div className="space-y-8">
             {column2.map((item, idx) => (
               <div key={idx} className="space-y-3">
-                <h3 className={`font-semibold text-lg text-blue-300 whitespace-pre-wrap break-words`}>
+                <h3 className={`font-semibold text-lg text-blue-600 whitespace-pre-wrap break-words`}>
                   {item.question}
                 </h3>
                 <p
-                  className={`text-lg lg:text-xl ${isLightBg ? 'text-gray-600' : 'text-gray-300'} whitespace-pre-wrap break-words leading-normal`}
+                  className={`text-lg lg:text-xl ${isLightBg ? 'text-gray-600' : 'text-slate-600'} whitespace-pre-wrap break-words leading-normal`}
                   dangerouslySetInnerHTML={{ __html: item.answer }}
                 />
               </div>
@@ -103,11 +103,11 @@ const FAQBlock: React.FC<FAQBlockProps> = ({ title, faqItems, blockBg, anchor, p
           <div className="space-y-8">
             {column3.map((item, idx) => (
               <div key={idx} className="space-y-3">
-                <h3 className={`font-semibold text-lg text-blue-300 whitespace-pre-wrap break-words`}>
+                <h3 className={`font-semibold text-lg text-blue-600 whitespace-pre-wrap break-words`}>
                   {item.question}
                 </h3>
                 <p
-                  className={`text-lg lg:text-xl ${isLightBg ? 'text-gray-600' : 'text-gray-300'} whitespace-pre-wrap break-words leading-normal`}
+                  className={`text-lg lg:text-xl ${isLightBg ? 'text-gray-600' : 'text-slate-600'} whitespace-pre-wrap break-words leading-normal`}
                   dangerouslySetInnerHTML={{ __html: item.answer }}
                 />
               </div>

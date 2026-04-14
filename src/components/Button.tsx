@@ -33,10 +33,10 @@ const Button: React.FC<ButtonProps> = ({
       return 'text-gray-800 bg-gradient-to-r from-blue-300 to-purple-300 hover:from-blue-400 hover:to-purple-400';
     }
     if (variant === 'outline-white') {
-      return 'border border-white text-white hover:bg-white hover:text-gray-900';
+      return 'border border-white text-slate-900 hover:bg-white hover:text-gray-900';
     }
     if (variant === 'secondary') {
-      return 'border border-gray-300 text-white hover:bg-white hover:text-gray-900';
+      return 'border border-gray-300 text-slate-900 hover:bg-white hover:text-gray-900';
     }
     return '';
   };

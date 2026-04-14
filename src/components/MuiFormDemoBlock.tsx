@@ -17,8 +17,8 @@ interface MuiFormDemoBlockProps {
 }
 
 const DemoPlaceholder: React.FC = () => (
-  <div className="flex items-center justify-center rounded-lg border border-gray-700 bg-gray-800/50 p-8 min-h-[200px]">
-    <span className="text-gray-400 text-lg">Demo placeholder</span>
+  <div className="flex items-center justify-center rounded-lg border border-slate-300 bg-slate-100 p-8 min-h-[200px]">
+    <span className="text-slate-500 text-lg">Demo placeholder</span>
   </div>
 );
 
@@ -37,16 +37,16 @@ const MuiFormDemoBlock: React.FC<MuiFormDemoBlockProps> = ({
         <div className="max-w-6xl mx-auto">
           {title && (
             <div className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-white mb-4">
+              <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-slate-900 mb-4">
                 {title}
               </h2>
               {subtitle && (
-                <p className="text-xl lg:text-2xl font-subtitle font-semibold text-blue-300 mb-4">
+                <p className="text-xl lg:text-2xl font-subtitle font-semibold text-blue-600 mb-4">
                   {subtitle}
                 </p>
               )}
               {description && (
-                <p className="text-lg lg:text-xl text-gray-300 leading-normal">
+                <p className="text-lg lg:text-xl text-slate-600 leading-normal">
                   {description}
                 </p>
               )}
@@ -56,7 +56,7 @@ const MuiFormDemoBlock: React.FC<MuiFormDemoBlockProps> = ({
             <DemoPlaceholder />
           </div>
           {secondDescription && (
-            <p className="text-lg lg:text-xl text-gray-300 leading-normal text-center mt-8">
+            <p className="text-lg lg:text-xl text-slate-600 leading-normal text-center mt-8">
               {secondDescription}
             </p>
           )}
@@ -78,14 +78,14 @@ const MuiFormDemoBlock: React.FC<MuiFormDemoBlockProps> = ({
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           <div>
             {subtitle && (
-              <h3 className="text-lg font-subtitle font-semibold tracking-wide text-blue-300 mb-4">
+              <h3 className="text-lg font-subtitle font-semibold tracking-wide text-blue-600 mb-4">
                 {subtitle}
               </h3>
             )}
-            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-white mb-6">
+            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-slate-900 mb-6">
               {title}
             </h2>
-            <p className="text-lg lg:text-xl text-gray-300 mb-8 leading-normal">
+            <p className="text-lg lg:text-xl text-slate-600 mb-8 leading-normal">
               {description}
             </p>
           </div>

@@ -28,18 +28,18 @@ const ProductsGridBlock: React.FC<ProductsGridBlockProps> = ({
   const isLightBg = blockBg === '#ffffff' || blockBg === 'white';
   
   // Цвета для текста в зависимости от фона
-  const titleColor = isLightBg ? 'text-gray-900' : 'text-white';
-  const descriptionColor = isLightBg ? 'text-gray-600' : 'text-gray-300';
-  const cardBg = isLightBg ? 'bg-white/50' : 'bg-gray-800/50'; // Полупрозрачный фон как в FAQ
-  const cardTitleColor = isLightBg ? 'text-gray-900' : 'text-white';
-  const cardTextColor = isLightBg ? 'text-gray-600' : 'text-gray-300';
+  const titleColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
+  const descriptionColor = isLightBg ? 'text-gray-600' : 'text-slate-600';
+  const cardBg = isLightBg ? 'bg-white/50' : 'bg-slate-100'; // Полупрозрачный фон как в FAQ
+  const cardTitleColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
+  const cardTextColor = isLightBg ? 'text-gray-600' : 'text-slate-600';
 
   // Функция для определения бейджа на основе названия продукта
   const getProductBadge = (productTitle: string) => {
     if (productTitle.includes('React Form Library')) {
-      return { text: 'Core', color: 'border border-gray-300 text-white' };
+      return { text: 'Core', color: 'border border-gray-300 text-slate-900' };
     } else if (productTitle.includes('React Form Components Library')) {
-      return { text: 'Components', color: 'border border-gray-300 text-white' };
+      return { text: 'Components', color: 'border border-gray-300 text-slate-900' };
     } else if (productTitle.includes('React Form Builder Library')) {
       return { text: 'Form Builder', color: 'bg-gradient-to-r from-blue-300 to-purple-300 text-gray-900' };
     }
@@ -82,7 +82,7 @@ const ProductsGridBlock: React.FC<ProductsGridBlockProps> = ({
               
               {/* Название продукта */}
               <h3 
-                className="font-heading font-semibold tracking-wide mb-4 whitespace-pre-line break-words text-white"
+                className="font-heading font-semibold tracking-wide mb-4 whitespace-pre-line break-words text-slate-900"
                 style={{ fontSize: '2rem' }} // Увеличил с 1.5rem до 2rem
               >
                 {product.title
@@ -93,7 +93,7 @@ const ProductsGridBlock: React.FC<ProductsGridBlockProps> = ({
               </h3>
               
               {/* Описание продукта */}
-              <p className={`text-lg lg:text-xl ${isLightBg ? 'text-gray-600' : 'text-gray-300'} whitespace-pre-wrap break-words leading-normal`}>{product.description}</p>
+              <p className={`text-lg lg:text-xl ${isLightBg ? 'text-gray-600' : 'text-slate-600'} whitespace-pre-wrap break-words leading-normal`}>{product.description}</p>
             </Link>
           );
         })}

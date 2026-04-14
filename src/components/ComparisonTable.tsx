@@ -117,10 +117,10 @@ export function ComparisonTable() {
       <div className="max-w-6xl mx-auto">
         {/* Заголовок */}
         <div className="text-center mb-12">
-                     <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+                     <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
              Feature-by-Feature Comparison — Drag & Drop Form Designer
            </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
             See how WorkflowEngine Designer compares to building forms from scratch or using other solutions
           </p>
         </div>
@@ -131,13 +131,13 @@ export function ComparisonTable() {
             {/* Заголовок таблицы */}
                          <div className="grid grid-cols-3">
               <div className="px-6 py-4">
-                <h3 className="text-lg font-semibold text-white">Feature</h3>
+                <h3 className="text-lg font-semibold text-slate-900">Feature</h3>
               </div>
                              <div className="px-6 py-4 bg-blue-500/10">
-                 <h3 className="text-lg font-subtitle font-semibold text-blue-300">WorkflowEngine</h3>
+                 <h3 className="text-lg font-subtitle font-semibold text-blue-600">WorkflowEngine</h3>
                </div>
                <div className="px-6 py-4">
-                 <h3 className="text-lg font-semibold text-white">Other solutions</h3>
+                 <h3 className="text-lg font-semibold text-slate-900">Other solutions</h3>
                </div>
             </div>
 
@@ -150,18 +150,18 @@ export function ComparisonTable() {
                 }`}
               >
                                                   <div className="px-6 py-4">
-                   <p className="text-gray-300 font-normal">{row.feature}</p>
+                   <p className="text-slate-600 font-normal">{row.feature}</p>
                  </div>
                  <div className="px-6 py-4 bg-blue-500/5">
                   <div className="flex items-start gap-3">
                     {renderIcon(row.formEngine)}
-                    <p className="text-gray-200 text-sm">{row.formEngineText}</p>
+                    <p className="text-slate-700 text-sm">{row.formEngineText}</p>
                   </div>
                 </div>
                 <div className="px-6 py-4">
                   <div className="flex items-start gap-3">
                     {renderIcon(row.inHouse)}
-                    <p className="text-gray-200 text-sm">{row.inHouseText}</p>
+                    <p className="text-slate-700 text-sm">{row.inHouseText}</p>
                   </div>
                 </div>
               </div>
@@ -173,22 +173,22 @@ export function ComparisonTable() {
         <div className="lg:hidden space-y-6">
           {comparisonData.map((row, index) => (
                          <div key={index} className="bg-white/5 rounded-lg p-4">
-                             <h3 className="text-lg font-normal text-white mb-4">{row.feature}</h3>
+                             <h3 className="text-lg font-normal text-slate-900 mb-4">{row.feature}</h3>
               
               <div className="space-y-3">
                                  <div className="bg-blue-500/10 rounded-lg p-3">
-                   <p className="text-sm font-medium text-blue-300 mb-1">WorkflowEngine</p>
+                   <p className="text-sm font-medium text-blue-600 mb-1">WorkflowEngine</p>
                    <div className="flex items-start gap-2">
                      {renderIcon(row.formEngine)}
-                     <p className="text-gray-200 text-sm">{row.formEngineText}</p>
+                     <p className="text-slate-700 text-sm">{row.formEngineText}</p>
                    </div>
                  </div>
                  
                  <div className="bg-white/5 rounded-lg p-3">
-                   <p className="text-sm font-medium text-gray-300 mb-1">Other solutions</p>
+                   <p className="text-sm font-medium text-slate-600 mb-1">Other solutions</p>
                   <div className="flex items-start gap-2">
                     {renderIcon(row.inHouse)}
-                    <p className="text-gray-200 text-sm">{row.inHouseText}</p>
+                    <p className="text-slate-700 text-sm">{row.inHouseText}</p>
                   </div>
                 </div>
               </div>

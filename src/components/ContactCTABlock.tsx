@@ -29,7 +29,7 @@ const ContactCTABlock: React.FC<ContactCTABlockProps> = ({
           <div className="flex items-start gap-4">
             {/* Иконка чата */}
             <div className="flex-shrink-0 mt-1">
-              <ChatIcon className="text-white w-12 h-12" />
+              <ChatIcon className="text-slate-900 w-12 h-12" />
             </div>
             
             {/* Текст */}
@@ -37,7 +37,7 @@ const ContactCTABlock: React.FC<ContactCTABlockProps> = ({
               <h2 className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
                 {title}
               </h2>
-              <p className="text-white text-lg mt-2">
+              <p className="text-slate-900 text-lg mt-2">
                 {description}
               </p>
             </div>

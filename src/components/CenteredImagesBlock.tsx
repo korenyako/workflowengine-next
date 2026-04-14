@@ -46,17 +46,17 @@ const CenteredImagesBlock: React.FC<CenteredImagesBlockProps> = ({
   const isLightBg = blockBg === '#ffffff' || blockBg === 'white';
   
   // Цвета для текста в зависимости от фона
-  const titleColor = isLightBg ? 'text-gray-900' : 'text-white';
-  const subtitleColor = 'text-blue-300'; // Всегда синий для subtitle
-  const textColor = isLightBg ? 'text-gray-600' : 'text-gray-300';
-  const noteColor = isLightBg ? 'text-gray-500' : 'text-gray-400';
+  const titleColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
+  const subtitleColor = 'text-blue-600'; // Всегда синий для subtitle
+  const textColor = isLightBg ? 'text-gray-600' : 'text-slate-600';
+  const noteColor = isLightBg ? 'text-slate-500' : 'text-slate-500';
 
   return (
     <section className={`pt-8 lg:pt-16 px-4 sm:px-8 ${noBottomMargin ? 'pb-0' : 'pb-8 lg:pb-16'}`}>
       <div className="max-w-6xl mx-auto text-center">
         {/* Бейдж Components */}
         {title && title.includes('WorkflowEngine React Form Components Library') && (
-          <div className="mb-6 px-4 py-2 rounded-full text-base font-semibold text-white border border-gray-300 inline-block">
+          <div className="mb-6 px-4 py-2 rounded-full text-base font-semibold text-slate-900 border border-gray-300 inline-block">
             Components
           </div>
         )}
@@ -68,7 +68,7 @@ const CenteredImagesBlock: React.FC<CenteredImagesBlockProps> = ({
         
         {/* Подзаголовок */}
         {subtitle && (
-          <h3 className="text-blue-300 text-lg font-subtitle font-semibold tracking-wide mb-4 whitespace-pre-wrap break-words">
+          <h3 className="text-blue-600 text-lg font-subtitle font-semibold tracking-wide mb-4 whitespace-pre-wrap break-words">
             {subtitle}
           </h3>
         )}

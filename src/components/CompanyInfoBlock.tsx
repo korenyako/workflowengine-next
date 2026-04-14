@@ -20,7 +20,7 @@ const CompanyInfoBlock: React.FC<CompanyInfoBlockProps> = ({
   copyright,
 }) => {
   return (
-    <section className="text-white py-12 bg-transparent">
+    <section className="text-slate-900 py-12 bg-transparent">
       <div className="max-w-6xl mx-auto text-center">
         {/* Логотип */}
         <div className="mb-8">
@@ -35,24 +35,24 @@ const CompanyInfoBlock: React.FC<CompanyInfoBlockProps> = ({
         </div>
         
         {/* Описание компании */}
-        <p className="text-base text-gray-300 mb-8 leading-relaxed">
+        <p className="text-base text-slate-600 mb-8 leading-relaxed">
           {description}
         </p>
         
         {/* Контактная информация */}
         <div className="space-y-2 mb-6">
-          <p className="text-gray-300">{address}</p>
-          <p className="text-gray-300">{phone}</p>
-          <p className="text-gray-300">{email}</p>
+          <p className="text-slate-600">{address}</p>
+          <p className="text-slate-600">{phone}</p>
+          <p className="text-slate-600">{email}</p>
         </div>
         
         {/* Локация */}
-        <p className="text-gray-300 mb-8">
+        <p className="text-slate-600 mb-8">
           {location}
         </p>
         
         {/* Copyright */}
-        <p className="text-base text-gray-300 border-t border-gray-800 pt-6">
+        <p className="text-base text-slate-600 border-t border-slate-200 pt-6">
           {copyright.replace('2024', new Date().getFullYear().toString())}
         </p>
       </div>

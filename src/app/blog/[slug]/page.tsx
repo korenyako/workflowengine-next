@@ -81,15 +81,15 @@ export default async function BlogPostPage({
   })
 
   return (
-    <section className="bg-transparent text-gray-100 px-4 sm:px-8 py-10 md:py-14">
+    <section className="bg-transparent text-slate-800 px-4 sm:px-8 py-10 md:py-14">
       <div className="mx-auto max-w-6xl">
         {/* Breadcrumb */}
-        <nav className="mb-8 text-sm text-gray-500">
-          <Link href="/blog/" className="hover:text-gray-300 transition-colors">
+        <nav className="mb-8 text-sm text-slate-500">
+          <Link href="/blog/" className="hover:text-slate-600 transition-colors">
             Blog
           </Link>
           <span className="mx-2">/</span>
-          <span className="text-gray-400">{post.title}</span>
+          <span className="text-slate-500">{post.title}</span>
         </nav>
 
         {/* Hero + Content + ToC */}
@@ -100,9 +100,9 @@ export default async function BlogPostPage({
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold tracking-tight mb-4">
                 {post.title}
               </h1>
-              <p className="text-2xl text-gray-300 mb-8 leading-relaxed font-light">{post.description}</p>
-              <div className="flex items-center gap-3 text-base text-gray-500">
-                <span className="text-gray-300">{post.author.name}</span>
+              <p className="text-2xl text-slate-600 mb-8 leading-relaxed font-light">{post.description}</p>
+              <div className="flex items-center gap-3 text-base text-slate-500">
+                <span className="text-slate-600">{post.author.name}</span>
                 {post.author.title && (
                   <>
                     <span>&middot;</span>
@@ -142,7 +142,7 @@ export default async function BlogPostPage({
         </div>
 
         <div className="mt-10 mb-10">
-          <div className="w-[30%] border-t border-gray-800"></div>
+          <div className="w-[30%] border-t border-slate-200"></div>
         </div>
       </div>
     </section>

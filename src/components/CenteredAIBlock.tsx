@@ -47,10 +47,10 @@ const CenteredAIBlock: React.FC<CenteredAIBlockProps> = ({
   const isLightBg = blockBg === '#ffffff' || blockBg === 'white';
   
   // Цвета для текста в зависимости от фона
-  const titleColor = isLightBg ? 'text-gray-900' : 'text-white';
-  const subtitleColor = 'text-blue-300'; // Всегда синий для subtitle
-  const textColor = isLightBg ? 'text-gray-600' : 'text-gray-300';
-  const noteColor = isLightBg ? 'text-gray-500' : 'text-gray-400';
+  const titleColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
+  const subtitleColor = 'text-blue-600'; // Всегда синий для subtitle
+  const textColor = isLightBg ? 'text-gray-600' : 'text-slate-600';
+  const noteColor = isLightBg ? 'text-slate-500' : 'text-slate-500';
 
   return (
     <section 
@@ -61,7 +61,7 @@ const CenteredAIBlock: React.FC<CenteredAIBlockProps> = ({
       <div className="max-w-6xl mx-auto text-center">
         {/* Подзаголовок */}
         {subtitle && (
-          <h3 className="text-blue-300 text-lg font-subtitle font-semibold tracking-wide mb-4 whitespace-pre-wrap break-words">
+          <h3 className="text-blue-600 text-lg font-subtitle font-semibold tracking-wide mb-4 whitespace-pre-wrap break-words">
             {subtitle}
           </h3>
         )}
@@ -166,8 +166,8 @@ const GradientButton: React.FC<GradientButtonProps> = ({ title, subtitle, href, 
       
       {/* Текстовый блок */}
       <div className="flex flex-col justify-center min-h-[52px]">
-        <div className="text-white font-body font-semibold text-xl mb-1">{title}</div>
-        <div className="text-blue-300 hover:text-blue-200 transition-colors duration-200 flex items-center gap-2 text-lg">
+        <div className="text-slate-900 font-body font-semibold text-xl mb-1">{title}</div>
+        <div className="text-blue-600 hover:text-blue-700 transition-colors duration-200 flex items-center gap-2 text-lg">
           {subtitle.replace(' →', '')}
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 transition-all duration-200 group-hover:translate-x-1">
             {/* Стрелка влево (по умолчанию) */}

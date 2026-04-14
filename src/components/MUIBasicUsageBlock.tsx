@@ -4,9 +4,9 @@ import { CodeBlock } from "@/components/content/CodeBlock";
 
 const MUIBasicUsageBlock: React.FC = () => {
   return (
-    <section className="text-white py-10 md:py-14 px-4 sm:px-8">
+    <section className="text-slate-900 py-10 md:py-14 px-4 sm:px-8">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-white mb-6 text-center">
+        <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-slate-900 mb-6 text-center">
           Basic Usage
         </h2>
         <Text className="text-center text-lg lg:text-xl font-[Space_Grotesk]">
@@ -105,8 +105,8 @@ const MuiExample = () => {
             />
           </div>
           <div>
-            <div className="flex items-center justify-center rounded-lg border border-gray-700 bg-gray-800/50 p-8 min-h-[200px]">
-              <span className="text-gray-400 text-lg">Demo placeholder</span>
+            <div className="flex items-center justify-center rounded-lg border border-slate-300 bg-slate-100 p-8 min-h-[200px]">
+              <span className="text-slate-500 text-lg">Demo placeholder</span>
             </div>
           </div>
         </div>

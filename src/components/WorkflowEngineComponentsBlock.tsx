@@ -44,9 +44,9 @@ const WorkflowEngineComponentsBlock: React.FC<WorkflowEngineComponentsBlockProps
 }) => {
   // Определяем цвета текста на основе фона
   const isLightBg = blockBg === 'white' || blockBg === '#ffffff' || blockBg === '#f8fafc';
-  const textColor = isLightBg ? 'text-gray-900' : 'text-white';
-  const subtitleColor = 'text-blue-300';
-  const descriptionColor = isLightBg ? 'text-gray-600' : 'text-gray-300';
+  const textColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
+  const subtitleColor = 'text-blue-600';
+  const descriptionColor = isLightBg ? 'text-gray-600' : 'text-slate-600';
 
   // CSS для градиентного текста
   const gradientTextStyle = {
@@ -129,7 +129,7 @@ const WorkflowEngineComponentsBlock: React.FC<WorkflowEngineComponentsBlockProps
                    <div className={`grid ${getGridCols()} gap-8`}>
            {components.map((component, index) => (
              <div key={index} className="group">
-                               <div id={`component-${component.name.toLowerCase().replace(/\s+/g, '-')}`} className={`block h-full p-6 lg:p-8 rounded-xl ${isLightBg ? 'bg-white/50' : 'bg-gray-800/50'}`} style={{ scrollMarginTop: '100px' }}>
+                               <div id={`component-${component.name.toLowerCase().replace(/\s+/g, '-')}`} className={`block h-full p-6 lg:p-8 rounded-xl ${isLightBg ? 'bg-white/50' : 'bg-slate-100'}`} style={{ scrollMarginTop: '100px' }}>
                 <div className="h-full flex flex-col">
                   {/* Заголовок с иконкой */}
                   <div className="flex items-center gap-3 mb-4">
@@ -153,7 +153,7 @@ const WorkflowEngineComponentsBlock: React.FC<WorkflowEngineComponentsBlockProps
                         )}
                       </div>
                     )}
-                    <h3 className={`text-base font-subtitle font-semibold tracking-wide text-blue-300 whitespace-pre-wrap break-words`}>
+                    <h3 className={`text-base font-subtitle font-semibold tracking-wide text-blue-600 whitespace-pre-wrap break-words`}>
                       {component.name}
                     </h3>
                   </div>
@@ -168,7 +168,7 @@ const WorkflowEngineComponentsBlock: React.FC<WorkflowEngineComponentsBlockProps
                           className={`px-3 py-2 rounded-md text-base font-mono transition-colors ${
                             isLightBg
                               ? 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                              : 'bg-gray-700/50 text-blue-300 hover:bg-gray-600/50 hover:text-blue-200'
+                              : 'bg-slate-200 text-blue-600 hover:bg-gray-600/50 hover:text-blue-700'
                           }`}
                         >
                           {chip.label}
@@ -176,7 +176,7 @@ const WorkflowEngineComponentsBlock: React.FC<WorkflowEngineComponentsBlockProps
                       ))}
                     </div>
                   ) : component.description?.includes('•') ? (
-                    <ul className={`text-base lg:text-lg ${isLightBg ? 'text-gray-600' : 'text-gray-300'} leading-relaxed flex-grow space-y-1`}>
+                    <ul className={`text-base lg:text-lg ${isLightBg ? 'text-gray-600' : 'text-slate-600'} leading-relaxed flex-grow space-y-1`}>
                       {component.description.split('\n').map((line, idx) => {
                         const trimmed = line.trim();
                         if (trimmed.startsWith('•')) {
@@ -191,7 +191,7 @@ const WorkflowEngineComponentsBlock: React.FC<WorkflowEngineComponentsBlockProps
                       })}
                     </ul>
                   ) : component.description ? (
-                    <p className={`text-base lg:text-lg ${isLightBg ? 'text-gray-600' : 'text-gray-300'} leading-relaxed flex-grow whitespace-pre-line`}>
+                    <p className={`text-base lg:text-lg ${isLightBg ? 'text-gray-600' : 'text-slate-600'} leading-relaxed flex-grow whitespace-pre-line`}>
                       {component.description}
                     </p>
                   ) : null}
@@ -224,8 +224,8 @@ const WorkflowEngineComponentsBlock: React.FC<WorkflowEngineComponentsBlockProps
                        
                        {/* Текстовый блок */}
                        <div className="flex flex-col justify-center min-h-[52px]">
-                         <div className="text-white font-body font-semibold text-xl mb-1">Documentation</div>
-                         <div className="text-blue-300 hover:text-blue-200 transition-colors duration-200 flex items-center gap-2 text-lg">
+                         <div className="text-slate-900 font-body font-semibold text-xl mb-1">Documentation</div>
+                         <div className="text-blue-600 hover:text-blue-700 transition-colors duration-200 flex items-center gap-2 text-lg">
                            {component.name}
                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 transition-all duration-200 group-hover:translate-x-1">
                              {/* Стрелка влево (по умолчанию) */}

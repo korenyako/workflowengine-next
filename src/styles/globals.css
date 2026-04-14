@@ -20,11 +20,11 @@ html {
 }
 
 body {
-  color: white !important;
+  color: #0f172a !important; /* slate-900 */
   font-family: var(--font-inter), "Inter", sans-serif !important;
   margin: 0;
   padding: 0;
-  background-color: #0d1117 !important;
+  background-color: #ffffff !important;
 }
 
 /* Базовый шрифт для body и элементов без специальных классов */
@@ -73,19 +73,19 @@ code, pre, .font-mono, pre *, code * {
 }
 
 /* Глобальные стили только для текстовых ссылок */
-a:not([class*="bg-"]):not([class*="border-"]):not([class*="text-white"]):not([class*="text-gray"]):not([class*="text-blue"]):not([class*="text-green"]):not([class*="text-yellow"]):not(.btn) {
-  color: rgb(147 197 253); /* text-blue-300 */
+a:not([class*="bg-"]):not([class*="border-"]):not([class*="text-white"]):not([class*="text-gray"]):not([class*="text-blue"]):not([class*="text-green"]):not([class*="text-yellow"]):not([class*="text-slate"]):not(.btn) {
+  color: rgb(37 99 235); /* text-blue-600 */
   transition: color 0.2s ease;
 }
 
-a:not([class*="bg-"]):not([class*="border-"]):not([class*="text-white"]):not([class*="text-gray"]):not([class*="text-blue"]):not([class*="text-green"]):not([class*="text-yellow"]):not(.btn):hover {
-  color: rgb(191 219 254); /* text-blue-200 */
+a:not([class*="bg-"]):not([class*="border-"]):not([class*="text-white"]):not([class*="text-gray"]):not([class*="text-blue"]):not([class*="text-green"]):not([class*="text-yellow"]):not([class*="text-slate"]):not(.btn):hover {
+  color: rgb(29 78 216); /* text-blue-700 */
 }
 
 /* Стили для ссылок в тексте (как теги) */
 .text-link-tag {
-  color: rgb(147 197 253) !important; /* text-blue-300 */
-  background-color: rgba(147, 197, 253, 0.1) !important; /* полупрозрачный синий фон */
+  color: rgb(37 99 235) !important; /* text-blue-600 */
+  background-color: rgba(37, 99, 235, 0.08) !important;
   padding: 2px 6px !important;
   border-radius: 4px !important;
   text-decoration: none !important;
@@ -93,25 +93,25 @@ a:not([class*="bg-"]):not([class*="border-"]):not([class*="text-white"]):not([cl
 }
 
 .text-link-tag:hover {
-  color: rgb(191 219 254) !important; /* text-blue-200 */
-  background-color: rgba(147, 197, 253, 0.2) !important; /* более яркий фон при наведении */
+  color: rgb(29 78 216) !important; /* text-blue-700 */
+  background-color: rgba(37, 99, 235, 0.16) !important;
 }
 
 /* Стили для ссылок в тексте с моноширинным шрифтом (для кода и документации) */
 .text-link-tag-mono {
-  color: rgb(147 197 253) !important; /* text-blue-300 */
-  background-color: rgba(147, 197, 253, 0.1) !important; /* полупрозрачный синий фон */
+  color: rgb(37 99 235) !important; /* text-blue-600 */
+  background-color: rgba(37, 99, 235, 0.08) !important;
   padding: 2px 6px !important;
   border-radius: 4px !important;
   text-decoration: none !important;
   transition: all 0.2s ease !important;
   font-family: var(--font-jetbrains-mono), "JetBrains Mono", "Roboto Mono", "SF Mono", "Monaco", "Inconsolata", "Fira Code", "Droid Sans Mono", "Source Code Pro", "Consolas", "Liberation Mono", "Menlo", "Courier", monospace !important;
-  font-size: 0.875em !important; /* Немного меньше размер для моноширинного шрифта */
+  font-size: 0.875em !important;
 }
 
 .text-link-tag-mono:hover {
-  color: rgb(191 219 254) !important; /* text-blue-200 */
-  background-color: rgba(147, 197, 253, 0.2) !important; /* более яркий фон при наведении */
+  color: rgb(29 78 216) !important; /* text-blue-700 */
+  background-color: rgba(37, 99, 235, 0.16) !important;
 }
 
 /* Стили для выделения кода без ссылки */
@@ -336,7 +336,7 @@ pre::-webkit-scrollbar-corner {
   font-size: 32px !important;
   font-weight: 800 !important;
   margin: 32px 0 16px !important;
-  color: #ffffff !important;
+  color: #0f172a !important; /* slate-900 */
 }
 .article-content h2, .mdx-content h2 {
   font-family: var(--font-poppins), Poppins, ui-sans-serif !important;
@@ -344,7 +344,7 @@ pre::-webkit-scrollbar-corner {
   font-weight: 700 !important;
   line-height: 1.25 !important;
   margin: 64px 0 24px !important;
-  color: #ffffff !important;
+  color: #0f172a !important; /* slate-900 */
 }
 .article-content h3, .mdx-content h3 {
   font-family: var(--font-space-grotesk), 'Space Grotesk', ui-sans-serif !important;
@@ -352,7 +352,7 @@ pre::-webkit-scrollbar-corner {
   font-weight: 600 !important;
   line-height: 1.3 !important;
   margin: 48px 0 16px !important;
-  color: #93c5fd !important;
+  color: #2563eb !important; /* blue-600 */
   letter-spacing: 0.025em !important;
 }
 .article-content h4, .mdx-content h4 {
@@ -360,7 +360,7 @@ pre::-webkit-scrollbar-corner {
   font-size: 18px !important;
   font-weight: 600 !important;
   margin: 32px 0 16px !important;
-  color: #93c5fd !important;
+  color: #2563eb !important; /* blue-600 */
   letter-spacing: 0.025em !important;
 }
 .article-content h5, .mdx-content h5 {
@@ -368,13 +368,13 @@ pre::-webkit-scrollbar-corner {
   font-size: 16px !important;
   font-weight: 600 !important;
   margin: 24px 0 8px !important;
-  color: #93c5fd !important;
+  color: #2563eb !important; /* blue-600 */
   letter-spacing: 0.025em !important;
 }
 
 /* Стили для параграфов в article-content */
 .article-content p {
-  color: #d1d5db !important; /* gray-300 */
+  color: #475569 !important; /* slate-600 */
   font-size: 20px !important;
   font-weight: 300 !important;
   line-height: 1.8 !important;
@@ -383,30 +383,30 @@ pre::-webkit-scrollbar-corner {
 
 
 .article-content a {
-  color: #60a5fa !important; /* blue-400 */
+  color: #2563eb !important; /* blue-600 */
   font-weight: 700 !important;
   text-decoration: none !important;
   transition: color 0.15s ease !important;
 }
 
 .article-content a:hover {
-  color: #93c5fd !important; /* blue-300 */
+  color: #1d4ed8 !important; /* blue-700 */
 }
 
 .article-content strong {
-  color: #ffffff !important;
+  color: #0f172a !important; /* slate-900 */
 }
 
 .article-content blockquote {
-  border-left: 4px solid #60a5fa !important;
-  background: rgba(31, 41, 55, 0.3) !important;
+  border-left: 4px solid #2563eb !important; /* blue-600 */
+  background: rgba(241, 245, 249, 0.8) !important; /* slate-100 */
   border-radius: 0 12px 12px 0 !important;
   padding: 16px 24px !important;
   margin: 32px 0 !important;
 }
 
 .article-content blockquote p {
-  color: #e5e7eb !important; /* gray-200 */
+  color: #334155 !important; /* slate-700 */
 }
 
 /* Стили для списков в article-content */
@@ -427,12 +427,12 @@ pre::-webkit-scrollbar-corner {
   font-size: 20px !important;
   font-weight: 300 !important;
   line-height: 1.8 !important;
-  color: #d1d5db !important;
+  color: #475569 !important; /* slate-600 */
 }
 
 .article-content ul li::before {
   content: "•" !important;
-  color: #93c5fd !important; /* фирменный голубой цвет */
+  color: #2563eb !important; /* blue-600 */
   font-size: 1.2rem !important;
   position: absolute !important;
   left: 0 !important;
@@ -444,7 +444,7 @@ pre::-webkit-scrollbar-corner {
 }
 
 .article-content ol li::marker {
-  color: #93c5fd !important; /* фирменный голубой цвет только для цифр */
+  color: #2563eb !important; /* blue-600 */
 }
 
 /* Глобальные стили для тега mark */

@@ -51,10 +51,10 @@ export default function TableOfContents() {
 
   return (
     <nav className="sticky top-24" aria-label="Table of contents">
-      <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">
+      <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-4">
         On this page
       </p>
-      <ul className="space-y-2 border-l border-gray-700">
+      <ul className="space-y-2 border-l border-slate-300">
         {headings.map((heading) => (
           <li key={heading.id}>
             <a
@@ -67,8 +67,8 @@ export default function TableOfContents() {
                 heading.level === 3 ? 'pl-6' : 'pl-4'
               } ${
                 activeId === heading.id
-                  ? 'border-blue-400 text-blue-300'
-                  : 'border-transparent text-gray-500 hover:text-gray-300'
+                  ? 'border-blue-400 text-blue-600'
+                  : 'border-transparent text-slate-500 hover:text-slate-600'
               }`}
             >
               {heading.text}

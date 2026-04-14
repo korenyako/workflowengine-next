@@ -89,7 +89,7 @@ const CodePreview: React.FC<CodePreviewProps> = ({ code, language, tabs, classNa
               onClick={(e) => { e.stopPropagation(); setActiveTab(index); }}
               className={`px-4 py-3 text-base font-medium transition-colors duration-200 cursor-pointer flex items-center gap-2 border-b-2 ${
                 index === activeTab
-                  ? `text-blue-300 bg-zinc-900 border-blue-300 ${index === 0 ? 'rounded-tl-lg' : ''}`
+                  ? `text-blue-600 bg-zinc-900 border-blue-300 ${index === 0 ? 'rounded-tl-lg' : ''}`
                   : `text-zinc-400 hover:text-zinc-300 hover:bg-zinc-700 border-transparent ${index === 0 ? 'rounded-tl-lg' : ''}`
               }`}
             >
@@ -111,7 +111,7 @@ const CodePreview: React.FC<CodePreviewProps> = ({ code, language, tabs, classNa
         {showCopy && maxHeight && (
           <button
             onClick={(e) => { e.stopPropagation(); handleCodeBlockClick(); }}
-            className="p-2 text-zinc-400 hover:text-white transition-all duration-200 z-10 code-copy-button cursor-pointer absolute top-3 right-3 bg-[#0f172a] rounded"
+            className="p-2 text-zinc-400 hover:text-slate-900 transition-all duration-200 z-10 code-copy-button cursor-pointer absolute top-3 right-3 bg-[#0f172a] rounded"
             title="Copy code"
           >
             {copied ? (
@@ -187,7 +187,7 @@ const CodePreview: React.FC<CodePreviewProps> = ({ code, language, tabs, classNa
         {showCopy && !maxHeight && (
           <button
             onClick={(e) => { e.stopPropagation(); handleCodeBlockClick(); }}
-            className="p-2 text-zinc-400 hover:text-white transition-all duration-200 z-10 code-copy-button cursor-pointer flex-shrink-0 mr-4"
+            className="p-2 text-zinc-400 hover:text-slate-900 transition-all duration-200 z-10 code-copy-button cursor-pointer flex-shrink-0 mr-4"
             style={{ marginTop: '6px' }}
             title="Copy code"
           >

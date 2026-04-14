@@ -15,8 +15,8 @@ const LogosBlock: React.FC<LogosBlockProps> = ({
   const isLightBg = blockBg === '#ffffff' || blockBg === 'white';
   
   // Цвета для текста в зависимости от фона
-  const subtitleColor = 'text-blue-300'; // Всегда синий для subtitle
-  const descriptionColor = isLightBg ? 'text-gray-600' : 'text-gray-300';
+  const subtitleColor = 'text-blue-600'; // Всегда синий для subtitle
+  const descriptionColor = isLightBg ? 'text-gray-600' : 'text-slate-600';
 
   const logos = [
     "/logos/bosch.svg",

@@ -48,9 +48,9 @@ const TrainingFilesBlock: React.FC<TrainingFilesBlockProps> = ({
 
   // Определяем цвета текста на основе фона
   const isLightBg = blockBg === 'white' || blockBg === '#ffffff' || blockBg === '#f8fafc';
-  const textColor = isLightBg ? 'text-gray-900' : 'text-white';
-  const subtitleColor = 'text-blue-300';
-  const descriptionColor = isLightBg ? 'text-gray-600' : 'text-gray-300';
+  const textColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
+  const subtitleColor = 'text-blue-600';
+  const descriptionColor = isLightBg ? 'text-gray-600' : 'text-slate-600';
 
   return (
     <section 
@@ -83,7 +83,7 @@ const TrainingFilesBlock: React.FC<TrainingFilesBlockProps> = ({
         <div className={`grid gap-8 ${files.length === 1 ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'}`}>
           {files.map((file, index) => (
             <div key={index} className="group">
-              <div className={`block h-full p-6 lg:p-8 rounded-xl ${isLightBg ? 'bg-white/50' : 'bg-gray-800/50'}`}>
+              <div className={`block h-full p-6 lg:p-8 rounded-xl ${isLightBg ? 'bg-white/50' : 'bg-slate-100'}`}>
                 <div className="h-full flex flex-col">
                   {/* Заголовок с иконкой */}
                   <div className="flex items-center gap-3 mb-4">
@@ -104,21 +104,21 @@ const TrainingFilesBlock: React.FC<TrainingFilesBlockProps> = ({
                         </div>
                       )}
                     </div>
-                    <h3 className={`text-base font-subtitle font-semibold tracking-wide text-blue-300 whitespace-pre-wrap break-words`}>
+                    <h3 className={`text-base font-subtitle font-semibold tracking-wide text-blue-600 whitespace-pre-wrap break-words`}>
                       {file.name}
                     </h3>
                   </div>
                   
                   {/* Описание */}
-                  <p className={`text-base lg:text-lg ${isLightBg ? 'text-gray-600' : 'text-gray-300'} leading-relaxed mb-4`}>
+                  <p className={`text-base lg:text-lg ${isLightBg ? 'text-gray-600' : 'text-slate-600'} leading-relaxed mb-4`}>
                     {file.description}
                   </p>
                   
                   {/* Список функций */}
-                  <ul className={`text-base lg:text-lg ${isLightBg ? 'text-gray-600' : 'text-gray-300'} leading-relaxed flex-grow mb-6`}>
+                  <ul className={`text-base lg:text-lg ${isLightBg ? 'text-gray-600' : 'text-slate-600'} leading-relaxed flex-grow mb-6`}>
                     {file.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="mb-2 flex items-start">
-                        <span className="text-gray-400 mr-2 mt-1">•</span>
+                        <span className="text-slate-500 mr-2 mt-1">•</span>
                         <span dangerouslySetInnerHTML={{ __html: feature }} />
                       </li>
                     ))}

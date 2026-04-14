@@ -32,18 +32,18 @@ const HeroBlock: React.FC<HeroBlockProps> = ({
   gradientButton = false,
 }) => {
   return (
-    <section className="py-12 text-white text-center">
+    <section className="py-12 text-slate-900 text-center">
       <div className="max-w-4xl mx-auto px-4">
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading font-semibold text-white mb-4 leading-snug whitespace-pre-wrap break-words" style={{ wordBreak: 'keep-all' }}>
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading font-semibold text-slate-900 mb-4 leading-snug whitespace-pre-wrap break-words" style={{ wordBreak: 'keep-all' }}>
           {title.replace(/\s+for\s+/g, ' for\u00A0')}
         </h1>
         {subtitle && (
-          <h3 className="text-lg sm:text-xl text-blue-300 mb-12 font-subtitle font-semibold whitespace-pre-wrap break-words">
+          <h3 className="text-lg sm:text-xl text-blue-600 mb-12 font-subtitle font-semibold whitespace-pre-wrap break-words">
             {subtitle}
           </h3>
         )}
         {description && (
-          <div className="text-xl text-gray-300 mb-8 whitespace-pre-wrap break-words">{description}</div>
+          <div className="text-xl text-slate-600 mb-8 whitespace-pre-wrap break-words">{description}</div>
         )}
         {(primaryCta?.text || secondaryCta?.text) && (
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6">
@@ -71,7 +71,7 @@ const HeroBlock: React.FC<HeroBlockProps> = ({
           </div>
         )}
         {note && (
-          <p className="text-sm text-gray-400 whitespace-pre-wrap break-words">{note}</p>
+          <p className="text-sm text-slate-500 whitespace-pre-wrap break-words">{note}</p>
         )}
       </div>
     </section>

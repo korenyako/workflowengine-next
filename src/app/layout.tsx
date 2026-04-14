@@ -59,7 +59,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${poppins.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
-      data-mantine-color-scheme="dark"
+      data-mantine-color-scheme="light"
       suppressHydrationWarning
     >
       <head>
@@ -82,7 +82,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-screen bg-slate-900 text-slate-100 antialiased font-sans" suppressHydrationWarning>
+      <body className="min-h-screen bg-white text-slate-900 antialiased font-sans" suppressHydrationWarning>
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}

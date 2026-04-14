@@ -32,9 +32,9 @@ const TwoColumnFeatureFullImageBlock: React.FC<TwoColumnFeatureFullImageBlockPro
   const isLightBg = blockBg === '#ffffff' || blockBg === 'white';
   
   // Цвета для текста в зависимости от фона
-  const titleColor = isLightBg ? 'text-gray-900' : 'text-white';
-  const subtitleColor = 'text-blue-300'; // Всегда синий для subtitle
-  const textColor = isLightBg ? 'text-gray-600' : 'text-gray-300';
+  const titleColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
+  const subtitleColor = 'text-blue-600'; // Всегда синий для subtitle
+  const textColor = isLightBg ? 'text-gray-600' : 'text-slate-600';
 
   return (
     <section className="py-16 px-4 sm:px-8">
@@ -50,11 +50,11 @@ const TwoColumnFeatureFullImageBlock: React.FC<TwoColumnFeatureFullImageBlockPro
         
         {/* Текст */}
         <div className="flex-1 w-full">
-          <span className="inline-block bg-blue-600/20 text-blue-300 text-xs font-semibold rounded-full px-4 py-1 mb-4">
+          <span className="inline-block bg-blue-600/20 text-blue-600 text-xs font-semibold rounded-full px-4 py-1 mb-4">
             {subtitle}
           </span>
-          <h3 className="text-lg font-subtitle font-semibold text-blue-300 mb-4 whitespace-pre-wrap break-words">{subtitle}</h3>
-          <h2 className="font-heading font-bold text-white mb-4 whitespace-pre-wrap break-words">{title}</h2>
+          <h3 className="text-lg font-subtitle font-semibold text-blue-600 mb-4 whitespace-pre-wrap break-words">{subtitle}</h3>
+          <h2 className="font-heading font-bold text-slate-900 mb-4 whitespace-pre-wrap break-words">{title}</h2>
           <p className={`text-lg mb-6 ${textColor} whitespace-pre-wrap break-words`}>{description}</p>
           
           {/* Кнопки */}
@@ -77,7 +77,7 @@ const TwoColumnFeatureFullImageBlock: React.FC<TwoColumnFeatureFullImageBlockPro
       
       {/* Блок кода */}
       <div className="max-w-6xl mx-auto mt-12">
-        <pre className="bg-gray-800 text-green-400 rounded-lg p-4 mt-8 font-mono text-sm sm:text-base overflow-x-auto w-full max-w-full">
+        <pre className="bg-slate-100 text-green-400 rounded-lg p-4 mt-8 font-mono text-sm sm:text-base overflow-x-auto w-full max-w-full">
           <code className="break-all">
             {`// Example code block
 const formConfig = {

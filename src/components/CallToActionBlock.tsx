@@ -26,13 +26,13 @@ const CallToActionBlock: React.FC<CallToActionBlockProps> = ({
 }) => {
   return (
     <section 
-      className="text-white py-8 lg:py-16 px-4 sm:px-8 flex justify-center"
+      className="text-slate-900 py-8 lg:py-16 px-4 sm:px-8 flex justify-center"
       style={{ backgroundColor: blockBg }}
     >
       <div className="max-w-4xl w-full text-center">
         <h2 className="text-4xl lg:text-5xl font-bold mb-6">{title}</h2>
         {description && (
-          <p className="text-lg lg:text-xl mb-8 lg:mb-12 text-gray-300">{description}</p>
+          <p className="text-lg lg:text-xl mb-8 lg:mb-12 text-slate-600">{description}</p>
         )}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Button href={button.href} variant="primary" size="lg" className="w-full sm:w-auto">

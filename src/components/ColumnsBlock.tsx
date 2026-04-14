@@ -23,9 +23,9 @@ const ColumnsBlock: React.FC<ColumnsBlockProps> = ({
 }) => {
   // Определяем цвета текста на основе фона
   const isLightBg = blockBg === 'white' || blockBg === '#ffffff' || blockBg === '#f8fafc';
-  const textColor = isLightBg ? 'text-gray-900' : 'text-white';
-  const subtitleColor = 'text-blue-300';
-  const descriptionColor = isLightBg ? 'text-gray-600' : 'text-gray-300';
+  const textColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
+  const subtitleColor = 'text-blue-600';
+  const descriptionColor = isLightBg ? 'text-gray-600' : 'text-slate-600';
 
   // Ограничиваем количество колонок
   const displayColumns = columns.slice(0, maxColumns);
@@ -57,16 +57,16 @@ const ColumnsBlock: React.FC<ColumnsBlockProps> = ({
               {column.href ? (
                 <a 
                   href={column.href} 
-                  className="block h-full p-6 lg:p-8 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200 hover:shadow-lg"
+                  className="block h-full p-6 lg:p-8 rounded-lg border border-gray-200 dark:border-slate-300 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200 hover:shadow-lg"
                 >
                   <div className="h-full flex flex-col">
-                    <h3 className={`text-xl lg:text-2xl font-heading font-bold ${textColor} mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200`}>
+                    <h3 className={`text-xl lg:text-2xl font-heading font-bold ${textColor} mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-700 transition-colors duration-200`}>
                       {column.title}
                     </h3>
                     <p className={`text-base lg:text-lg ${descriptionColor} leading-relaxed flex-grow`}>
                       {column.description}
                     </p>
-                    <div className="mt-4 flex items-center text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors duration-200">
+                    <div className="mt-4 flex items-center text-blue-600 dark:text-blue-700 group-hover:text-blue-700 dark:group-hover:text-blue-600 transition-colors duration-200">
                       <span className="text-sm font-medium">Подробнее</span>
                       <svg 
                         width="16" 
@@ -88,7 +88,7 @@ const ColumnsBlock: React.FC<ColumnsBlockProps> = ({
                   </div>
                 </a>
               ) : (
-                <div className="h-full p-6 lg:p-8 rounded-lg border border-gray-200 dark:border-gray-700">
+                <div className="h-full p-6 lg:p-8 rounded-lg border border-gray-200 dark:border-slate-300">
                   <div className="h-full flex flex-col">
                     <h3 className={`text-xl lg:text-2xl font-heading font-bold ${textColor} mb-4`}>
                       {column.title}

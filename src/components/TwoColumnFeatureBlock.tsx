@@ -26,8 +26,8 @@ const GradientButton: React.FC<GradientButtonProps> = ({ title, subtitle, href, 
       
       {/* Текстовый блок */}
       <div className="flex flex-col justify-center min-h-[52px]">
-        <div className="text-white font-body font-semibold text-xl mb-1">{title}</div>
-        <div className="text-blue-300 hover:text-blue-200 transition-colors duration-200 flex items-center gap-2 text-lg">
+        <div className="text-slate-900 font-body font-semibold text-xl mb-1">{title}</div>
+        <div className="text-blue-600 hover:text-blue-700 transition-colors duration-200 flex items-center gap-2 text-lg">
           {subtitle.replace(' →', '')}
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 transition-all duration-200 group-hover:translate-x-1">
             {/* Стрелка влево (по умолчанию) */}
@@ -105,9 +105,9 @@ const TwoColumnFeatureBlock: React.FC<TwoColumnFeatureBlockProps> = ({
 }) => {
   // Определяем цвета текста на основе фона
   const isLightBg = blockBg === 'white' || blockBg === '#ffffff' || blockBg === '#f8fafc';
-  const textColor = isLightBg ? 'text-gray-900' : 'text-white';
-  const subtitleColor = 'text-blue-300';
-  const descriptionColor = isLightBg ? 'text-gray-600' : 'text-gray-300';
+  const textColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
+  const subtitleColor = 'text-blue-600';
+  const descriptionColor = isLightBg ? 'text-gray-600' : 'text-slate-600';
 
   const contentOrder = imagePosition === 'left' ? 'lg:order-2' : 'lg:order-1';
   const imageOrder = imagePosition === 'left' ? 'lg:order-1' : 'lg:order-2';
@@ -169,7 +169,7 @@ const TwoColumnFeatureBlock: React.FC<TwoColumnFeatureBlockProps> = ({
           {/* Image or Custom Component */}
           <div className={`${imageOrder}`}>
             {secondDescription && (
-              <div className="bg-gray-800 rounded-lg p-4 mb-8 flex items-start gap-3">
+              <div className="bg-slate-100 rounded-lg p-4 mb-8 flex items-start gap-3">
                 <svg className={`w-5 h-5 ${descriptionColor} flex-shrink-0 mt-0.5`} fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                 </svg>

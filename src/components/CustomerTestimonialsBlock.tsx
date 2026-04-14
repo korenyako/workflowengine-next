@@ -25,15 +25,15 @@ const CustomerTestimonialsBlock: React.FC<CustomerTestimonialsBlockProps> = ({
   const isLightBg = blockBg === '#ffffff' || blockBg === 'white';
   
   // Цвета для текста в зависимости от фона
-  const titleColor = isLightBg ? 'text-gray-900' : 'text-white';
-  const textColor = isLightBg ? 'text-gray-600' : 'text-white';
+  const titleColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
+  const textColor = isLightBg ? 'text-gray-600' : 'text-slate-900';
 
   return (
     <section id={anchor} className="py-16 px-4 sm:px-8" style={{ backgroundColor: blockBg }}>
       <div className="max-w-6xl mx-auto">
         {/* Подзаголовок */}
         {subtitle && (
-          <h3 className="text-blue-300 text-lg font-subtitle font-semibold tracking-wide text-center mb-4 whitespace-pre-wrap break-words">
+          <h3 className="text-blue-600 text-lg font-subtitle font-semibold tracking-wide text-center mb-4 whitespace-pre-wrap break-words">
             {subtitle}
           </h3>
         )}
@@ -55,17 +55,17 @@ const CustomerTestimonialsBlock: React.FC<CustomerTestimonialsBlockProps> = ({
               </div>
               
               {/* Текст отзыва */}
-              <p className={`text-lg lg:text-xl text-gray-300 leading-normal mb-6`}>
+              <p className={`text-lg lg:text-xl text-slate-600 leading-normal mb-6`}>
                 {testimonial.text}
               </p>
               
               {/* Имя клиента */}
-              <p className="font-bold text-lg mb-1 text-blue-300">
+              <p className="font-bold text-lg mb-1 text-blue-600">
                 {testimonial.name}
               </p>
               
               {/* Должность и компания */}
-              <p className="text-base text-blue-300">
+              <p className="text-base text-blue-600">
                 {testimonial.title}, {testimonial.company}
               </p>
             </div>

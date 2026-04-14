@@ -23,10 +23,10 @@ const BadgeGridBlock: React.FC<BadgeGridBlockProps> = ({
   const isLightBg = blockBg === '#ffffff' || blockBg === 'white';
   
   // Цвета для текста в зависимости от фона
-  const titleColor = isLightBg ? 'text-gray-900' : 'text-white';
-  const subtitleColor = 'text-blue-300';
-  const badgeBg = isLightBg ? 'bg-gray-50 border-gray-200' : 'bg-gray-800/50 border-gray-700';
-  const badgeTextColor = isLightBg ? 'text-gray-900' : 'text-white';
+  const titleColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
+  const subtitleColor = 'text-blue-600';
+  const badgeBg = isLightBg ? 'bg-gray-50 border-gray-200' : 'bg-slate-100 border-slate-300';
+  const badgeTextColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
 
   // Разделяем бейджи на две строки
   const firstRow = badges.slice(0, 6);

@@ -17,8 +17,8 @@ export default function BlogCategoryFilter({ categories }: BlogCategoryFilterPro
           onClick={() => setActive(cat)}
           className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer ${
             active === cat
-              ? 'bg-blue-500/20 text-blue-300 border border-blue-500/40'
-              : 'text-gray-400 hover:text-white border border-gray-700 hover:border-gray-500'
+              ? 'bg-blue-500/20 text-blue-600 border border-blue-500/40'
+              : 'text-slate-500 hover:text-slate-900 border border-slate-300 hover:border-gray-500'
           }`}
         >
           {cat}

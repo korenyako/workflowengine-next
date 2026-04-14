@@ -35,14 +35,14 @@ const ChatGPTButton: React.FC<ChatGPTButtonProps> = ({
         <div className="flex items-center gap-3 flex-1">
           {/* Плюс с tooltip */}
           <div className="relative group/plus">
-            <div className="w-9 h-9 flex items-center justify-center hover:bg-gray-800 transition-colors duration-200 cursor-pointer rounded-full">
+            <div className="w-9 h-9 flex items-center justify-center hover:bg-slate-100 transition-colors duration-200 cursor-pointer rounded-full">
               <svg 
                 width="20" 
                 height="20" 
                 viewBox="0 0 24 24" 
                 fill="none" 
                 xmlns="http://www.w3.org/2000/svg"
-                className="text-white"
+                className="text-slate-900"
               >
                 <path 
                   d="M12 5v14M5 12h14" 
@@ -54,13 +54,13 @@ const ChatGPTButton: React.FC<ChatGPTButtonProps> = ({
               </svg>
             </div>
             {/* Tooltip для плюса */}
-            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-black text-white text-xs rounded-md opacity-0 group-hover/plus:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
-              Add files and more<span className="text-gray-400 ml-1">/</span>
+            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-black text-slate-900 text-xs rounded-md opacity-0 group-hover/plus:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+              Add files and more<span className="text-slate-500 ml-1">/</span>
             </div>
           </div>
           
           {/* Текст placeholder */}
-          <span className="text-gray-300 text-lg flex-1 text-left">
+          <span className="text-slate-600 text-lg flex-1 text-left">
             {placeholder}
           </span>
         </div>
@@ -69,14 +69,14 @@ const ChatGPTButton: React.FC<ChatGPTButtonProps> = ({
         <div className="flex items-center gap-2">
           {/* Микрофон с tooltip */}
           <div className="relative group/mic">
-            <div className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors duration-200 cursor-pointer">
+            <div className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-slate-100 transition-colors duration-200 cursor-pointer">
               <svg 
                 width="18" 
                 height="18" 
                 viewBox="0 0 24 24" 
                 fill="none" 
                 xmlns="http://www.w3.org/2000/svg"
-                className="text-white"
+                className="text-slate-900"
               >
                 <path 
                   d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" 
@@ -115,14 +115,14 @@ const ChatGPTButton: React.FC<ChatGPTButtonProps> = ({
               </svg>
             </div>
             {/* Tooltip "Dictate" */}
-            <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-black text-white text-xs rounded-md opacity-0 group-hover/mic:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+            <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-black text-slate-900 text-xs rounded-md opacity-0 group-hover/mic:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
               Dictate
             </div>
           </div>
           
           {/* Звуковые волны с tooltip */}
           <div className="relative group/sound">
-            <div className="w-9 h-9 rounded-full bg-gray-700 flex items-center justify-center hover:bg-gray-800 transition-colors duration-200 cursor-pointer">
+            <div className="w-9 h-9 rounded-full bg-slate-200 flex items-center justify-center hover:bg-slate-100 transition-colors duration-200 cursor-pointer">
               <svg 
                 width="18" 
                 height="18" 
@@ -133,7 +133,7 @@ const ChatGPTButton: React.FC<ChatGPTButtonProps> = ({
                 strokeLinecap="round" 
                 strokeLinejoin="round"
                 xmlns="http://www.w3.org/2000/svg"
-                className="text-white"
+                className="text-slate-900"
               >
                 <path d="M2 10v3"/>
                 <path d="M6 6v11"/>
@@ -144,7 +144,7 @@ const ChatGPTButton: React.FC<ChatGPTButtonProps> = ({
               </svg>
             </div>
             {/* Tooltip для звуковых волн */}
-            <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-black text-white text-xs rounded-md opacity-0 group-hover/sound:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+            <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-2 py-1 bg-black text-slate-900 text-xs rounded-md opacity-0 group-hover/sound:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
               Use voice mode
             </div>
           </div>
@@ -154,13 +154,13 @@ const ChatGPTButton: React.FC<ChatGPTButtonProps> = ({
       
       {/* Disclaimer текст */}
       <div className="text-center mt-4">
-        <p className="text-sm text-gray-400">
+        <p className="text-sm text-slate-500">
           ChatGPT can make mistakes. Check important info.{" "}
           <a 
             href="https://chatgpt.com/g/g-68c155ab35808191b59f11872461251c-react-form-builder?model=gpt-5-thinking"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline hover:text-gray-300 transition-colors duration-200"
+            className="underline hover:text-slate-600 transition-colors duration-200"
           >
             See Cookie Preferences.
           </a>

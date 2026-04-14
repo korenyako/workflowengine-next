@@ -33,9 +33,9 @@ const HeroImageBlock: React.FC<HeroImageBlockProps> = ({
   const isLightBg = blockBg === '#ffffff' || blockBg === 'white';
   
   // Цвета для текста в зависимости от фона
-  const titleColor = isLightBg ? 'text-gray-900' : 'text-white';
-  const descriptionColor = isLightBg ? 'text-gray-600' : 'text-gray-300';
-  const noteColor = isLightBg ? 'text-gray-500' : 'text-gray-400';
+  const titleColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
+  const descriptionColor = isLightBg ? 'text-gray-600' : 'text-slate-600';
+  const noteColor = isLightBg ? 'text-slate-500' : 'text-slate-500';
 
   return (
     <section className="pt-16 pb-8 px-4 sm:px-8">
@@ -86,7 +86,7 @@ const HeroImageBlock: React.FC<HeroImageBlockProps> = ({
                 className={`px-8 py-3 text-lg border font-semibold rounded-lg transition ${
                   isLightBg 
                     ? 'border-gray-300 text-gray-700 hover:bg-gray-50' 
-                    : 'border-white text-white hover:bg-white hover:text-gray-900'
+                    : 'border-white text-slate-900 hover:bg-white hover:text-gray-900'
                 }`}
               >
                 {secondaryCta.text}

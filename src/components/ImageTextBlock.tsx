@@ -30,8 +30,8 @@ const ImageTextBlock: React.FC<ImageTextBlockProps> = ({
   const isLightBg = blockBg === '#ffffff' || blockBg === 'white';
   
   // Цвета для текста в зависимости от фона
-  const titleColor = isLightBg ? 'text-gray-900' : 'text-white';
-  const textColor = isLightBg ? 'text-gray-600' : 'text-gray-300';
+  const titleColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
+  const textColor = isLightBg ? 'text-gray-600' : 'text-slate-600';
 
   return (
     <section className="py-16 px-4 sm:px-8">

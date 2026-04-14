@@ -16,7 +16,7 @@ export default function ArticleShell({
       
       {/* Основной контент с отступом сверху для фиксированной навигации */}
       <main className="pt-16 min-h-screen">
-        <section className="bg-transparent text-white">
+        <section className="bg-transparent text-slate-900">
           <div className={`mx-auto max-w-6xl px-4 py-10 md:py-14 ${bottomPadding}`}>
             {title ? (
               <h1 className={`font-[Poppins] text-3xl md:text-4xl leading-tight mb-6 ${textAlign === 'center' ? 'text-center' : 'text-left'}`}>

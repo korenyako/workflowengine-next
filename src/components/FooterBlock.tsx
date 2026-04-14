@@ -47,14 +47,14 @@ const FooterBlock: React.FC<FooterBlockProps> = ({ columns, socialLinks, logo, c
     }
   };
   return (
-    <footer className="text-white py-12 px-4 sm:px-8 bg-transparent">
+    <footer className="text-slate-700 py-12 px-4 sm:px-8 bg-slate-50 border-t border-slate-200">
       <div className="max-w-6xl mx-auto">
         {/* 4 колонки со ссылками */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {columns.map((col, idx) => (
             <div key={idx}>
               {col.title && (
-                <div className="font-bold text-gray-200 mb-4 uppercase tracking-wide text-lg">{col.title}</div>
+                <div className="font-bold text-slate-900 mb-4 uppercase tracking-wide text-lg">{col.title}</div>
               )}
               {col.links.length > 0 && (
                 <ul className="space-y-2">
@@ -62,7 +62,7 @@ const FooterBlock: React.FC<FooterBlockProps> = ({ columns, socialLinks, logo, c
                     <li key={lidx}>
                       <a 
                         href={link.href} 
-                        className="text-gray-400 hover:text-white transition-colors text-base flex items-center gap-2"
+                        className="text-slate-600 hover:text-slate-900 transition-colors text-base flex items-center gap-2"
                         target={link.href.startsWith('http') && !link.href.startsWith('https://workflowengine.io/') ? '_blank' : '_self'}
                         rel={link.href.startsWith('http') && !link.href.startsWith('https://workflowengine.io/') ? 'noopener noreferrer' : undefined}
                       >
@@ -84,7 +84,7 @@ const FooterBlock: React.FC<FooterBlockProps> = ({ columns, socialLinks, logo, c
         {/* Блок Optimajet на 100% ширины */}
         {companyInfo && (
           <div>
-            <div className="bg-gray-800/50 rounded-xl p-6 space-y-4">
+            <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
               {/* Логотип компании */}
               <div>
                 <a 
@@ -98,19 +98,19 @@ const FooterBlock: React.FC<FooterBlockProps> = ({ columns, socialLinks, logo, c
               </div>
               
               {/* Описание компании */}
-              <p className="text-base text-gray-300 leading-relaxed max-w-4xl">
+              <p className="text-base text-slate-600 leading-relaxed max-w-4xl">
                 {companyInfo.description}
               </p>
-              
+
               {/* Контактная информация */}
-              <div className="space-y-1 text-base text-gray-300">
+              <div className="space-y-1 text-base text-slate-600">
                 <p>{companyInfo.address}</p>
                 <p>{companyInfo.phone}</p>
                 <p className="flex items-center gap-2">
                   {companyInfo.email}
                   <button
                     onClick={() => copyToClipboard(companyInfo.email)}
-                    className="text-gray-400 hover:text-white transition-all duration-200 cursor-pointer"
+                    className="text-slate-500 hover:text-slate-900 transition-all duration-200 cursor-pointer"
                     title="Copy email"
                   >
                     {copied ? (
@@ -131,7 +131,7 @@ const FooterBlock: React.FC<FooterBlockProps> = ({ columns, socialLinks, logo, c
         )}
         
         {/* Copyright и социальные сети */}
-        <div className="flex justify-between items-center text-base text-gray-400 pt-8">
+        <div className="flex justify-between items-center text-base text-slate-500 pt-8">
           <div>
             © 2023-{currentYear} Optimajet Limited. All rights reserved.
             <br />
@@ -146,7 +146,7 @@ const FooterBlock: React.FC<FooterBlockProps> = ({ columns, socialLinks, logo, c
                 target="_blank" 
                 rel="noopener noreferrer"
               >
-                <img src={s.icon} alt="" className="w-8 h-8 filter brightness-0 invert opacity-60 hover:opacity-100 transition-opacity" />
+                <img src={s.icon} alt="" className="w-8 h-8 opacity-60 hover:opacity-100 transition-opacity" />
               </a>
             ))}
           </div>

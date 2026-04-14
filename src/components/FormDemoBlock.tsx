@@ -44,23 +44,23 @@ const FormDemoBlock: React.FC<FormDemoBlockProps> = ({
       <section className="py-16 lg:py-24">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-white mb-4">
+            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-slate-900 mb-4">
               {title}
             </h2>
             {subtitle && (
-              <p className="text-xl lg:text-2xl font-subtitle font-semibold text-blue-300 mb-4">
+              <p className="text-xl lg:text-2xl font-subtitle font-semibold text-blue-600 mb-4">
                 {subtitle}
               </p>
             )}
-            <p className="text-lg lg:text-xl text-gray-300 leading-normal">
+            <p className="text-lg lg:text-xl text-slate-600 leading-normal">
               {description}
             </p>
           </div>
-          <div className="rounded-2xl border border-slate-700 bg-slate-800/50 p-12 text-center text-gray-400">
+          <div className="rounded-2xl border border-slate-300 bg-slate-50 p-12 text-center text-slate-500">
             Demo placeholder
           </div>
           {secondDescription && (
-            <p className="text-lg lg:text-xl text-gray-300 leading-normal text-center mt-8">
+            <p className="text-lg lg:text-xl text-slate-600 leading-normal text-center mt-8">
               {secondDescription}
             </p>
           )}
@@ -85,19 +85,19 @@ const FormDemoBlock: React.FC<FormDemoBlockProps> = ({
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           <div className={contentOrder}>
             {subtitle && (
-              <h3 className="text-lg font-subtitle font-semibold tracking-wide text-blue-300 mb-4">
+              <h3 className="text-lg font-subtitle font-semibold tracking-wide text-blue-600 mb-4">
                 {subtitle}
               </h3>
             )}
-            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-white mb-6">
+            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-slate-900 mb-6">
               {title}
             </h2>
-            <p className="text-lg lg:text-xl text-gray-300 mb-8 leading-normal">
+            <p className="text-lg lg:text-xl text-slate-600 mb-8 leading-normal">
               {description}
             </p>
           </div>
           <div className={formOrder}>
-            <div className="rounded-2xl border border-slate-700 bg-slate-800/50 p-12 text-center text-gray-400">
+            <div className="rounded-2xl border border-slate-300 bg-slate-50 p-12 text-center text-slate-500">
               Demo placeholder
             </div>
           </div>
@@ -106,10 +106,10 @@ const FormDemoBlock: React.FC<FormDemoBlockProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-12">
             {features.map((feature) => (
               <div key={feature.title} className="flex flex-col items-start text-left">
-                <h3 className="text-base font-subtitle font-semibold tracking-wide text-blue-300 mb-2">
+                <h3 className="text-base font-subtitle font-semibold tracking-wide text-blue-600 mb-2">
                   {feature.title}
                 </h3>
-                <p className="text-lg lg:text-xl text-gray-300 leading-normal">
+                <p className="text-lg lg:text-xl text-slate-600 leading-normal">
                   {feature.description}
                 </p>
               </div>

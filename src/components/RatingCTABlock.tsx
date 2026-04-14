@@ -68,11 +68,11 @@ const RatingCTABlock: React.FC<RatingCTABlockProps> = ({
   const isLightBg = blockBg === '#ffffff' || blockBg === 'white';
   
   // Цвета для текста в зависимости от фона
-  const titleColor = isLightBg ? 'text-gray-900' : 'text-white';
-  const descriptionColor = isLightBg ? 'text-gray-600' : 'text-gray-300';
-  const sourceColor = isLightBg ? 'text-gray-500' : 'text-gray-400';
-  const badgeBg = isLightBg ? 'border-gray-200' : 'border-gray-700';
-  const badgeTextColor = isLightBg ? 'text-gray-900' : 'text-white';
+  const titleColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
+  const descriptionColor = isLightBg ? 'text-gray-600' : 'text-slate-600';
+  const sourceColor = isLightBg ? 'text-slate-500' : 'text-slate-500';
+  const badgeBg = isLightBg ? 'border-gray-200' : 'border-slate-300';
+  const badgeTextColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
 
   // Маппинг эмодзи на inline-SVG
   const getBadgeIconName = (emoji: string) => {
@@ -129,7 +129,7 @@ const RatingCTABlock: React.FC<RatingCTABlockProps> = ({
                   {[...Array(5)].map((_, i) => (
                     <svg
                       key={i}
-                      className={`w-6 h-6 ${i < rating ? 'text-yellow-400' : 'text-gray-400'}`}
+                      className={`w-6 h-6 ${i < rating ? 'text-yellow-400' : 'text-slate-500'}`}
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >

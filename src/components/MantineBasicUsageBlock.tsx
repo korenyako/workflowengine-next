@@ -4,9 +4,9 @@ import { CodeBlock } from '@/components/content/CodeBlock';
 
 const MantineBasicUsageBlock: React.FC = () => {
   return (
-    <section className="text-white py-10 md:py-14 px-4 sm:px-8">
+    <section className="text-slate-900 py-10 md:py-14 px-4 sm:px-8">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-white mb-6 text-center">
+        <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-slate-900 mb-6 text-center">
           Basic Usage
         </h2>
         <div className="article-content space-y-5 font-[Space_Grotesk] text-lg lg:text-xl leading-8">
@@ -64,8 +64,8 @@ export const App = () => {
         </div>
       </div>
       <div className="max-w-6xl mx-auto">
-        <div className="flex items-center justify-center rounded-lg border border-gray-700 bg-gray-800/50 p-8 min-h-[200px]">
-          <span className="text-gray-400 text-lg">Demo placeholder</span>
+        <div className="flex items-center justify-center rounded-lg border border-slate-300 bg-slate-100 p-8 min-h-[200px]">
+          <span className="text-slate-500 text-lg">Demo placeholder</span>
         </div>
       </div>
     </section>

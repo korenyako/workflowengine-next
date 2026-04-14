@@ -49,7 +49,7 @@ const Navigation: React.FC = () => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full bg-[#0d1117] px-4 py-4 lg:px-8 z-50 border-b border-gray-800">
+      <nav className="fixed top-0 left-0 w-full bg-white px-4 py-4 lg:px-8 z-50 border-b border-slate-200">
         <div className="flex items-center max-w-full">
           {/* Logo */}
           <div className="flex items-center space-x-2 lg:space-x-4">
@@ -69,7 +69,7 @@ const Navigation: React.FC = () => {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="px-3 py-2 rounded-lg transition-all duration-200 text-white hover:text-white hover:bg-gray-800"
+                  className="px-3 py-2 rounded-lg transition-all duration-200 text-slate-700 hover:text-slate-900 hover:bg-slate-100"
                 >
                   {link.title}
                 </a>
@@ -79,8 +79,8 @@ const Navigation: React.FC = () => {
                   href={link.href}
                   className={`px-3 py-2 rounded-lg transition-all duration-200 ${
                     isActive(link.href)
-                      ? 'text-blue-300 bg-gray-800'
-                      : 'text-white hover:text-white hover:bg-gray-800'
+                      ? 'text-blue-600 bg-slate-100'
+                      : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100'
                   }`}
                 >
                   {link.title}
@@ -89,7 +89,7 @@ const Navigation: React.FC = () => {
             )}
             <a
               href="https://workflowengine.io/documentation/"
-              className="px-3 py-2 rounded-lg transition-all duration-200 text-white hover:text-white hover:bg-gray-800"
+              className="px-3 py-2 rounded-lg transition-all duration-200 text-slate-700 hover:text-slate-900 hover:bg-slate-100"
             >
               Documentation
             </a>
@@ -105,7 +105,7 @@ const Navigation: React.FC = () => {
           {/* Mobile menu button */}
           <div className="lg:hidden ml-auto">
             <button
-              className="text-gray-300 hover:text-white transition-colors duration-200"
+              className="text-slate-600 hover:text-slate-900 transition-colors duration-200"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle mobile menu"
             >
@@ -119,14 +119,14 @@ const Navigation: React.FC = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 bg-[#0d1117] z-40 lg:hidden pt-20 overflow-y-auto">
+        <div className="fixed inset-0 bg-white z-40 lg:hidden pt-20 overflow-y-auto">
           <div className="px-4 py-4 space-y-4">
             {navLinks.map((link) =>
               link.external ? (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="block px-4 py-3 text-white hover:bg-gray-800 rounded-lg"
+                  className="block px-4 py-3 text-slate-800 hover:bg-slate-100 rounded-lg"
                 >
                   {link.title}
                 </a>
@@ -134,7 +134,7 @@ const Navigation: React.FC = () => {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="block px-4 py-3 text-white hover:bg-gray-800 rounded-lg"
+                  className="block px-4 py-3 text-slate-800 hover:bg-slate-100 rounded-lg"
                 >
                   {link.title}
                 </Link>
@@ -142,11 +142,11 @@ const Navigation: React.FC = () => {
             )}
             <a
               href="https://workflowengine.io/documentation/"
-              className="block px-4 py-3 text-white hover:bg-gray-800 rounded-lg"
+              className="block px-4 py-3 text-slate-800 hover:bg-slate-100 rounded-lg"
             >
               Documentation
             </a>
-            <div className="pt-4 border-t border-gray-800">
+            <div className="pt-4 border-t border-slate-200">
               <Button variant="primary" size="md" href="/downloads" className="w-full">
                 Download
               </Button>

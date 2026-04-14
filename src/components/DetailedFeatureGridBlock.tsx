@@ -25,12 +25,12 @@ const DetailedFeatureGridBlock: React.FC<DetailedFeatureGridBlockProps> = ({
   const isLightBg = blockBg === '#ffffff' || blockBg === 'white';
   
   // Цвета для текста в зависимости от фона
-  const titleColor = isLightBg ? 'text-gray-900' : 'text-white';
-  const subtitleColor = 'text-blue-300';
-  const textColor = isLightBg ? 'text-gray-600' : 'text-gray-300';
-  const cardBg = isLightBg ? 'bg-gray-50' : 'bg-gray-800';
-  const cardTitleColor = isLightBg ? 'text-gray-900' : 'text-white';
-  const cardTextColor = isLightBg ? 'text-gray-600' : 'text-gray-300';
+  const titleColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
+  const subtitleColor = 'text-blue-600';
+  const textColor = isLightBg ? 'text-gray-600' : 'text-slate-600';
+  const cardBg = isLightBg ? 'bg-gray-50' : 'bg-slate-100';
+  const cardTitleColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
+  const cardTextColor = isLightBg ? 'text-gray-600' : 'text-slate-600';
 
   return (
     <section className="py-16 px-4 sm:px-8">

@@ -27,12 +27,12 @@ export default function BlogCard({ post, size = 'small' }: BlogCardProps) {
           />
         </div>
       )}
-      <h2 className={`font-heading font-semibold text-white mb-2  ${
+      <h2 className={`font-heading font-semibold text-slate-900 mb-2  ${
         size === 'large' ? 'text-2xl lg:text-3xl' : 'text-lg lg:text-xl'
       }`}>
         {post.title}
       </h2>
-      <div className="flex items-center gap-2 text-sm text-gray-500">
+      <div className="flex items-center gap-2 text-sm text-slate-500">
         <span>{post.dateLabel || 'Published'}</span>
         <time dateTime={post.date}>{formattedDate}</time>
         <span>&middot;</span>

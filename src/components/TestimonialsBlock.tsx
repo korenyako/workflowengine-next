@@ -21,12 +21,12 @@ const TestimonialsBlock: React.FC<TestimonialsBlockProps> = ({
   const isLightBg = blockBg === '#ffffff' || blockBg === 'white';
   
   // Цвета для текста в зависимости от фона
-  const titleColor = isLightBg ? 'text-gray-900' : 'text-white';
-  const cardBg = isLightBg ? 'bg-gray-50' : 'bg-gray-800';
-  const cardBorder = isLightBg ? 'border-gray-100' : 'border-gray-700';
-  const cardTextColor = isLightBg ? 'text-gray-700' : 'text-gray-300';
-  const cardAuthorColor = isLightBg ? 'text-gray-900' : 'text-white';
-  const cardRoleColor = isLightBg ? 'text-gray-500' : 'text-gray-400';
+  const titleColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
+  const cardBg = isLightBg ? 'bg-gray-50' : 'bg-slate-100';
+  const cardBorder = isLightBg ? 'border-gray-100' : 'border-slate-300';
+  const cardTextColor = isLightBg ? 'text-gray-700' : 'text-slate-600';
+  const cardAuthorColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
+  const cardRoleColor = isLightBg ? 'text-slate-500' : 'text-slate-500';
 
   return (
     <section className="py-16 px-4 sm:px-8">

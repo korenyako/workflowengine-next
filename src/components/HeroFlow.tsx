@@ -40,8 +40,8 @@ const HeroFlow: React.FC<HeroFlowProps> = ({
         {/* Бейдж с кнопкой Install */}
         {badge && cta && (
           <div className="flex items-center justify-center mb-8">
-            <div className="flex items-center bg-gray-900 rounded-full">
-              <span className="flex items-center text-white text-base px-6 py-2">
+            <div className="flex items-center bg-white rounded-full">
+              <span className="flex items-center text-slate-900 text-base px-6 py-2">
                 <img src="/icons/command-line.svg" alt="" className="w-6 h-6 mr-4" />
                 {badge}
               </span>
@@ -53,10 +53,10 @@ const HeroFlow: React.FC<HeroFlowProps> = ({
           </div>
         )}
         
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading font-semibold text-white mb-4 leading-snug whitespace-pre-wrap break-words" style={{ wordBreak: 'keep-all' }}>
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading font-semibold text-slate-900 mb-4 leading-snug whitespace-pre-wrap break-words" style={{ wordBreak: 'keep-all' }}>
           {title.replace(/\s+for\s+/g, ' for\u00A0')}
         </h1>
-        <h3 className="text-lg sm:text-xl text-blue-300 mb-8 lg:mb-12 font-subtitle font-semibold whitespace-pre-wrap break-words">
+        <h3 className="text-lg sm:text-xl text-blue-600 mb-8 lg:mb-12 font-subtitle font-semibold whitespace-pre-wrap break-words">
           {description}
         </h3>
         

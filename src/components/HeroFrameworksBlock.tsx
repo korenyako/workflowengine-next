@@ -126,10 +126,10 @@ const HeroFrameworksBlock: React.FC<HeroFrameworksBlockProps> = ({
       <div className="max-w-6xl mx-auto">
         {/* Hero text */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading font-semibold text-white mb-4 leading-snug whitespace-pre-wrap break-words" style={{ wordBreak: 'keep-all' }}>
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading font-semibold text-slate-900 mb-4 leading-snug whitespace-pre-wrap break-words" style={{ wordBreak: 'keep-all' }}>
             {title.replace(/\s+for\s+/g, ' for\u00A0')}
           </h1>
-          <h3 className="text-lg sm:text-xl text-blue-300 font-subtitle font-semibold whitespace-pre-wrap break-words">
+          <h3 className="text-lg sm:text-xl text-blue-600 font-subtitle font-semibold whitespace-pre-wrap break-words">
             {description}
           </h3>
         </div>
@@ -140,7 +140,7 @@ const HeroFrameworksBlock: React.FC<HeroFrameworksBlockProps> = ({
             <a
               key={index}
               href={framework.href}
-              className="group flex flex-col items-start p-8 rounded-2xl bg-gray-800/50 hover:bg-gray-700/50 transition-colors duration-200"
+              className="group flex flex-col items-start p-8 rounded-2xl bg-slate-100 hover:bg-slate-200 transition-colors duration-200"
             >
               <div className="w-20 h-20 mb-6 flex items-center justify-center">
                 <img
@@ -149,10 +149,10 @@ const HeroFrameworksBlock: React.FC<HeroFrameworksBlockProps> = ({
                   className="w-full h-full object-contain"
                 />
               </div>
-              <h3 className="text-base font-subtitle font-semibold tracking-wide text-blue-300 mb-2">
+              <h3 className="text-base font-subtitle font-semibold tracking-wide text-blue-600 mb-2">
                 {framework.name}
               </h3>
-              <p className="text-lg text-gray-300 leading-normal">
+              <p className="text-lg text-slate-600 leading-normal">
                 {framework.description}
               </p>
             </a>

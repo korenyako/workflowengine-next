@@ -107,7 +107,7 @@ const ProcessPreview: React.FC<ProcessPreviewProps> = ({
           {/* Кнопка копирования */}
           <button
             onClick={copyToClipboard}
-            className="absolute top-3 right-3 p-2 text-zinc-400 hover:text-white transition-all duration-200 z-10 code-copy-button cursor-pointer"
+            className="absolute top-3 right-3 p-2 text-zinc-400 hover:text-slate-900 transition-all duration-200 z-10 code-copy-button cursor-pointer"
             title="Copy code"
           >
             {copied ? (
@@ -151,7 +151,7 @@ const ProcessPreview: React.FC<ProcessPreviewProps> = ({
     if (currentTab.type === 'form') {
       const tabHeight = imageHeight ? `${imageHeight}px` : '500px';
       return (
-        <div className="rounded-b-lg overflow-hidden p-4 custom-scrollbar flex items-center justify-center text-gray-400" style={{ backgroundColor: '#111827', height: tabHeight, overflowY: 'auto', scrollbarWidth: 'thin', scrollbarColor: '#475569 #0f172a' }}>
+        <div className="rounded-b-lg overflow-hidden p-4 custom-scrollbar flex items-center justify-center text-slate-500" style={{ backgroundColor: '#111827', height: tabHeight, overflowY: 'auto', scrollbarWidth: 'thin', scrollbarColor: '#475569 #0f172a' }}>
           Demo placeholder
         </div>
       );
@@ -171,7 +171,7 @@ const ProcessPreview: React.FC<ProcessPreviewProps> = ({
               onClick={() => handleTabClick(index)}
               className={`px-4 py-3 text-base font-medium transition-colors duration-200 cursor-pointer flex items-center gap-2 border-b-2 ${
                 index === activeTab
-                  ? `text-blue-300 bg-zinc-900 border-blue-300 ${index === 0 ? 'rounded-tl-lg' : ''}`
+                  ? `text-blue-600 bg-zinc-900 border-blue-300 ${index === 0 ? 'rounded-tl-lg' : ''}`
                   : `text-zinc-400 hover:text-zinc-300 hover:bg-zinc-700 border-transparent ${index === 0 ? 'rounded-tl-lg' : ''}`
               }`}
             >

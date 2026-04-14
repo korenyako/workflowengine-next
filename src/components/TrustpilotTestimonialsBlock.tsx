@@ -29,10 +29,10 @@ const TrustpilotTestimonialsBlock: React.FC<TrustpilotTestimonialsBlockProps> = 
   const isLightBg = blockBg === '#ffffff' || blockBg === 'white';
   
   // Цвета для текста в зависимости от фона
-  const titleColor = isLightBg ? 'text-gray-900' : 'text-white';
-  const subtitleColor = 'text-blue-300';
-  const descriptionColor = isLightBg ? 'text-gray-600' : 'text-gray-300';
-  const cardTextColor = isLightBg ? 'text-gray-700' : 'text-white';
+  const titleColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
+  const subtitleColor = 'text-blue-600';
+  const descriptionColor = isLightBg ? 'text-gray-600' : 'text-slate-600';
+  const cardTextColor = isLightBg ? 'text-gray-700' : 'text-slate-900';
   const verifiedColor = 'text-green-500';
 
   return (
@@ -48,7 +48,7 @@ const TrustpilotTestimonialsBlock: React.FC<TrustpilotTestimonialsBlockProps> = 
           <h2 
             className={`text-3xl lg:text-4xl font-bold mb-4 ${titleColor} whitespace-pre-wrap break-words`}
             dangerouslySetInnerHTML={{
-              __html: title.replace('developer-friendly', '<span class="text-blue-300 font-mono">developer-friendly</span>').replace(' and ', '<br>and ')
+              __html: title.replace('developer-friendly', '<span class="text-blue-600 font-mono">developer-friendly</span>').replace(' and ', '<br>and ')
             }}
           >
           </h2>
@@ -82,12 +82,12 @@ const TrustpilotTestimonialsBlock: React.FC<TrustpilotTestimonialsBlockProps> = 
               </div>
 
               {/* Review title */}
-              <h3 className={`font-semibold text-base mb-3 text-blue-300 whitespace-pre-wrap break-words`}>
+              <h3 className={`font-semibold text-base mb-3 text-blue-600 whitespace-pre-wrap break-words`}>
                 &ldquo;{review.title}&rdquo;
               </h3>
 
               {/* Review text */}
-              <p className={`text-lg lg:text-xl ${isLightBg ? 'text-gray-600' : 'text-gray-300'} mb-6 leading-normal whitespace-pre-wrap break-words`}>
+              <p className={`text-lg lg:text-xl ${isLightBg ? 'text-gray-600' : 'text-slate-600'} mb-6 leading-normal whitespace-pre-wrap break-words`}>
                 {review.text}
               </p>
 
@@ -102,7 +102,7 @@ const TrustpilotTestimonialsBlock: React.FC<TrustpilotTestimonialsBlockProps> = 
                   <svg className="w-4 h-4" fill="#00B67A" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
-                  <span className={`text-sm ${isLightBg ? 'text-gray-600' : 'text-gray-300'}`}>Validated Reviewer</span>
+                  <span className={`text-sm ${isLightBg ? 'text-gray-600' : 'text-slate-600'}`}>Validated Reviewer</span>
                 </div>
               )}
             </div>

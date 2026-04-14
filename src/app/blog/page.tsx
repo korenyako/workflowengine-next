@@ -37,14 +37,14 @@ export const metadata: Metadata = {
 
 export default function BlogIndex() {
   return (
-    <section className="bg-transparent text-gray-100 px-4 sm:px-8">
+    <section className="bg-transparent text-slate-800 px-4 sm:px-8">
       <div className="mx-auto max-w-6xl py-10 md:py-14">
         {/* Header */}
         <div className="mb-16">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-semibold text-white mb-4">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-semibold text-slate-900 mb-4">
             Blog
           </h1>
-          <p className="text-xl lg:text-2xl font-subtitle font-semibold tracking-wide text-blue-300">
+          <p className="text-xl lg:text-2xl font-subtitle font-semibold tracking-wide text-blue-600">
             Releases, integrations, and developer insights
           </p>
         </div>
@@ -57,7 +57,7 @@ export default function BlogIndex() {
         </div>
 
         {blogPosts.length === 0 && (
-          <p className="text-center text-gray-500 py-20 text-lg">
+          <p className="text-center text-slate-500 py-20 text-lg">
             No posts yet. Stay tuned!
           </p>
         )}

@@ -200,10 +200,10 @@ export function ComponentsTable({ showHeader = true, showFooter = true }: Compon
         {/* Заголовок */}
         {showHeader && (
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
               React Form Component library
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               Ready to use, MIT-licensed, and free.
             </p>
           </div>
@@ -215,13 +215,13 @@ export function ComponentsTable({ showHeader = true, showFooter = true }: Compon
             {/* Заголовок таблицы */}
             <div className="grid grid-cols-3">
               <div className="px-6 py-4">
-                <h3 className="text-lg font-semibold text-white">Component</h3>
+                <h3 className="text-lg font-semibold text-slate-900">Component</h3>
               </div>
               <div className="px-6 py-4">
-                <h3 className="text-lg font-semibold text-white">Description</h3>
+                <h3 className="text-lg font-semibold text-slate-900">Description</h3>
               </div>
               <div className="px-6 py-4">
-                <h3 className="text-lg font-semibold text-white">License</h3>
+                <h3 className="text-lg font-semibold text-slate-900">License</h3>
               </div>
             </div>
 
@@ -237,20 +237,20 @@ export function ComponentsTable({ showHeader = true, showFooter = true }: Compon
                    {row.documentationUrl ? (
                      <a
                        href={row.documentationUrl}
-                       className="text-blue-300 hover:text-blue-200 transition-colors cursor-pointer underline"
+                       className="text-blue-600 hover:text-blue-700 transition-colors cursor-pointer underline"
                      >
                        {row.component}
                      </a>
                    ) : (
-                     <p className="text-gray-300">{row.component}</p>
+                     <p className="text-slate-600">{row.component}</p>
                    )}
                  </div>
                 <div className="px-6 py-4">
-                  <p className="text-gray-200 text-sm">{row.description}</p>
+                  <p className="text-slate-700 text-sm">{row.description}</p>
                 </div>
                 <div className="px-6 py-4">
                   <div className="flex items-center gap-2">
-                    <span className="text-gray-200 text-sm">MIT License</span>
+                    <span className="text-slate-700 text-sm">MIT License</span>
                     <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">Free</span>
                   </div>
                 </div>
@@ -267,17 +267,17 @@ export function ComponentsTable({ showHeader = true, showFooter = true }: Compon
                  {row.documentationUrl ? (
                    <a
                      href={row.documentationUrl}
-                     className="text-blue-300 hover:text-blue-200 transition-colors cursor-pointer underline"
+                     className="text-blue-600 hover:text-blue-700 transition-colors cursor-pointer underline"
                    >
                      {row.component}
                    </a>
                  ) : (
-                   <span className="text-gray-300">{row.component}</span>
+                   <span className="text-slate-600">{row.component}</span>
                  )}
                </h3>
-              <p className="text-gray-200 text-sm mb-3">{row.description}</p>
+              <p className="text-slate-700 text-sm mb-3">{row.description}</p>
               <div className="flex items-center gap-2">
-                <span className="text-gray-200 text-sm">MIT License</span>
+                <span className="text-slate-700 text-sm">MIT License</span>
                 <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">Free</span>
               </div>
             </div>
@@ -287,7 +287,7 @@ export function ComponentsTable({ showHeader = true, showFooter = true }: Compon
         {/* Футер */}
         {showFooter && (
           <div className="text-center mt-12">
-            <p className="text-lg lg:text-xl mb-8 leading-normal text-gray-300 whitespace-pre-wrap break-words">
+            <p className="text-lg lg:text-xl mb-8 leading-normal text-slate-600 whitespace-pre-wrap break-words">
               With WorkflowEngine, you get a comprehensive package of ready-to-use components that can be easily customized to meet your specific needs.
             </p>
                          <div className="flex justify-center">

@@ -284,10 +284,10 @@ const ArchitectureBlock: React.FC<ArchitectureBlockProps> = ({
     <section className={`pt-16 px-4 sm:px-8 ${hasChildren ? 'pb-8' : 'pb-16'}`}>
       <div className="max-w-6xl mx-auto">
         <div className={`text-center ${hasChildren ? 'mb-12' : 'mb-8'}`}>
-          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4">
+          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-slate-900 mb-4">
             {title}
           </h2>
-          <p className="text-lg lg:text-xl text-gray-300">
+          <p className="text-lg lg:text-xl text-slate-600">
             {description}
           </p>
         </div>
