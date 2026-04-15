@@ -47,3 +47,25 @@ Why things are the way they are. Each decision lists **context** → **choice** 
 **Context:** New product, new repo, no desire to inherit FormEngine's history.
 **Choice:** File-copy from `formengine-next`, fresh `git init`, new GitHub repo ([korenyako/workflowengine-next](https://github.com/korenyako/workflowengine-next), private). Original project at `C:/Work/Optimajet/formengine-next` stays untouched.
 **Consequence:** Clean history starting at commit `0efe811`. No automatic sync from upstream — any shared bug fixes need manual port.
+
+## 8. Brand palette: `#93d8ff → #85afff` cyan-blue, no purple
+
+**Context:** FormEngine era used a pastel blue-purple gradient (`from-blue-300 to-purple-300`) on CTAs and decorative pills. Purple does not fit the WorkflowEngine identity (closed-source .NET B2B product) and no longer matches any planned brand direction.
+**Choice:** Single gradient `#93d8ff → #85afff` — extracted from the brand icon set's [layers.svg](../public/icons/layers.svg). Hover darkens to `#7dc3f4 → #6e99ec`. Applied across 9 components: `Button` (primary), `BundleSizeTableBlock`, `ComparisonTimeline`, `ComponentsTable`, `ContactCTABlock`, `HeroWithCodeBlock`, `LargeCenteredImageBlock`, `ProductsGridBlock`, `TimelineBlock`.
+**Consequence:** Consistent brand feel across the site. Any new UI with an accent colour should reuse these hex codes (or the predefined classes that wrap them). Purple is allowed only inside the deliberate OpenAI-rainbow borders on AI-related components (`ChatGPTButton`, `CenteredAIBlock`, `HeroBlock.gradientButton`) — those aren't used on current pages but left in place for possible reuse.
+
+## 9. Buttons: solid fill, no gradient; secondary outlined
+
+**Context:** The brand gradient looks right on icon backgrounds and decorative pills but feels visually busy on action buttons.
+**Choice:** Buttons themselves get a flat solid colour.
+- **Primary:** `bg-[#93d8ff] hover:bg-[#7dc3f4] text-gray-900`.
+- **Secondary:** outlined — `border border-[#93d8ff] bg-transparent text-slate-900`; hover fills with `#93d8ff` (same as primary, so the two read as a family).
+
+Gradient remains on non-button surfaces (icon containers, badges, table highlights). See [Button.tsx](../src/components/Button.tsx).
+**Consequence:** Cleaner CTA hierarchy on light backgrounds. When adding a new button, reuse the `variant="primary"` / `variant="secondary"` props — don't hand-roll gradient classes.
+
+## 10. `Link` prefetch disabled
+
+**Context:** Next's `<Link>` prefetches the target route by default. Under `output: 'export'`, prefetching a URL whose slug isn't in `generateStaticParams` (e.g. `/blog/why-use-a-workflow-engine/` before the blog is ported) crashes dev HMR with *Failed to fetch* and spams the console. Prefetching also buys little in a pure static site — the browser cache already handles repeat visits.
+**Choice:** [Button.tsx](../src/components/Button.tsx) passes `prefetch={false}` to `<Link>` unconditionally.
+**Consequence:** No prefetch errors while the blog is empty. Any future primitive that wraps `next/link` should do the same until there's a concrete reason to re-enable it.

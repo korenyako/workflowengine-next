@@ -2,6 +2,21 @@
 
 Chronological log of wiki updates. Newest entries on top.
 
+## 2026-04-15 | Phase 3.x: iterative homepage polish
+
+Серия небольших коммитов по итогам визуального review главной:
+
+- **Core Features** на home — заменил `DetailedFeatureGridBlock` (2 колонки, карточки с фоном) на `FeaturesGridBlock` (3 колонки × 2 ряда, без фоновых карточек, иконки по центру). Контент 6 фич — **verbatim с workflowengine.io** (включая intro-параграф про SQL/NoSQL провайдеры). Тайтл «Core Features» теперь `uppercase tracking-wide`, размер `text-3xl/4xl/5xl` (было `text-8xl` hero-scale). Commit `d21f07b`.
+- **LogosBlock** градиентные маски слева/справа: жёстко `from-white` (было условие `isLightBg ? white : '#0d1117'`, но `blockBg` не передавался → получался тёмный `#0d1117` на светлом фоне). Commit `1ab7605`.
+- **Hero H1**: глобальные `h1/h2/h3 @apply` правила из [globals.css](../src/styles/globals.css) удалены — они клэмпили размер тайтла, споря с utility-классами. H1 в [HeroBlock](../src/components/HeroBlock.tsx) поднят с `text-5xl→text-8xl` до `text-5xl→text-8xl` (финально, после двух итераций по размеру), `font-bold`, `leading-tight`. Контейнер `max-w-4xl` → `max-w-5xl` чтобы контент не был зажат по ширине. Commits `fc7bb4c`, `1af7926`.
+- **Hero CTA**: одна кнопка «Why Use Workflow Engine» вместо Download + See Features. Ведёт на `https://workflowengine.io/blog/why-use-a-workflow-engine/` (внешняя ссылка — пост пока не портирован; в Phase 4 переключим на внутренний `/blog/why-use-a-workflow-engine/`). Commit `be4c4f9`, `58afffe`.
+- **Hero chips**: subtitle-строка «HTML5 Designer · Customizable · Parallel Branching · Versioning» вынесена в массив `chips: string[]` и рендерится пилюлями (`bg-blue-50 text-blue-700`, без рамки). В `HeroBlock` добавлен optional проп `chips`; при его наличии `subtitle` не рендерится. Не-hero-страницы (`/features/`, `/server/`) используют обычный `subtitle` — прежнее поведение сохранено. Commit `1af7926`, `beea599`.
+- **Бренд-палитра**: pastel `blue-300 → purple-300` градиент FormEngine-эпохи заменён в 9 компонентах на фирменный cyan-blue `#93d8ff → #85afff` (взят из [public/icons/layers.svg](../public/icons/layers.svg)). Hover тёмная вариация `#7dc3f4 → #6e99ec`. Commit `a3ea922`.
+- **Кнопки без градиента**: по требованию убран градиент именно с кнопок (иконки, бейджи, badges градиент сохранили). `Button.tsx` primary → `bg-[#93d8ff] hover:bg-[#7dc3f4]` сплошной, `text-gray-900`. Также пропатчены `HeroWithCodeBlock` badge-CTA и `ComponentsTable` Documentation-CTA. Commit `3cf6bb6`.
+- **Secondary button → outlined**: `border border-[#93d8ff] bg-transparent text-slate-900`, на hover заливается тем же `#93d8ff` (визуально стекается с primary). Commit `7d1e46d`.
+- **Fix «Failed to fetch»**: hero CTA через `<Link>` с дефолтным prefetch пытался префетчить статический slug которого нет в `generateStaticParams` → dev-HMR крашился. Решение: `prefetch={false}` в [Button.tsx](../src/components/Button.tsx) для всех внутренних ссылок (префетч не критичен в static export) + CTA переключена на внешний URL до Phase 4. Commit `58afffe`.
+- **Логотип**: реальный WorkflowEngine бренд-SVG загружен пользователем в `public/logos/workflowengine.svg`. 13 `fill="white"` в тексте wordmark заменены на `fill="#0f172a"` (slate-900) — стандарт для light nav. Commit `a27825e`.
+
 ## 2026-04-14 | Phase 3: launch-minimum content
 
 Контент с workflowengine.io портирован в блочную систему.
