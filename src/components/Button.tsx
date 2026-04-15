@@ -36,7 +36,7 @@ const Button: React.FC<ButtonProps> = ({
       return 'border border-white text-slate-900 hover:bg-white hover:text-gray-900';
     }
     if (variant === 'secondary') {
-      return 'border border-gray-300 text-slate-900 hover:bg-white hover:text-gray-900';
+      return 'border border-[#93d8ff] text-slate-900 bg-transparent hover:bg-[#93d8ff] hover:text-gray-900';
     }
     return '';
   };
