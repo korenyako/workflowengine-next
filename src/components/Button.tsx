@@ -30,7 +30,7 @@ const Button: React.FC<ButtonProps> = ({
 
   const getVariantClasses = () => {
     if (variant === 'primary') {
-      return 'text-gray-800 bg-gradient-to-r from-blue-300 to-purple-300 hover:from-blue-400 hover:to-purple-400';
+      return 'text-gray-800 bg-gradient-to-r from-[#93d8ff] to-[#85afff] hover:from-[#7dc3f4] hover:to-[#6e99ec]';
     }
     if (variant === 'outline-white') {
       return 'border border-white text-slate-900 hover:bg-white hover:text-gray-900';

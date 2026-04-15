@@ -34,7 +34,7 @@ const ContactCTABlock: React.FC<ContactCTABlockProps> = ({
             
             {/* Текст */}
             <div>
-              <h2 className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+              <h2 className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-[#6e99ec] to-[#85afff] bg-clip-text text-transparent">
                 {title}
               </h2>
               <p className="text-slate-900 text-lg mt-2">

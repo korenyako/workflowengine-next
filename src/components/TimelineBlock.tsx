@@ -24,7 +24,7 @@ function TimelineBlock({ title, subtitle, stages, color, timelinePoints = 10, ti
       return 'bg-blue-300 rounded-lg p-2 sm:p-3 flex flex-col justify-center h-44'
     }
     if (color === 'blue' && stage.ready) {
-      return 'bg-gradient-to-r from-blue-300 to-purple-300 rounded-lg p-2 sm:p-3 flex flex-col justify-center h-44'
+      return 'bg-gradient-to-r from-[#93d8ff] to-[#85afff] rounded-lg p-2 sm:p-3 flex flex-col justify-center h-44'
     }
     if (color === 'blue' && stage.start >= 2) {
       return 'bg-blue-300 rounded-lg p-2 sm:p-3 flex flex-col justify-center h-44'

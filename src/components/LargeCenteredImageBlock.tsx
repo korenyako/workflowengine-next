@@ -106,7 +106,7 @@ const LargeCenteredImageBlock: React.FC<LargeCenteredImageBlockProps> = ({
       <div className="max-w-6xl mx-auto text-center">
         {/* Бейдж Form Builder */}
         {title.includes('WorkflowEngine React Form Builder Library') && (
-          <div className="mb-6 px-4 py-2 rounded-full text-base font-semibold text-gray-800 bg-gradient-to-r from-blue-300 to-purple-300 inline-block">
+          <div className="mb-6 px-4 py-2 rounded-full text-base font-semibold text-gray-800 bg-gradient-to-r from-[#93d8ff] to-[#85afff] inline-block">
             Form Builder
           </div>
         )}

@@ -41,7 +41,7 @@ const ProductsGridBlock: React.FC<ProductsGridBlockProps> = ({
     } else if (productTitle.includes('React Form Components Library')) {
       return { text: 'Components', color: 'border border-gray-300 text-slate-900' };
     } else if (productTitle.includes('React Form Builder Library')) {
-      return { text: 'Form Builder', color: 'bg-gradient-to-r from-blue-300 to-purple-300 text-gray-900' };
+      return { text: 'Form Builder', color: 'bg-gradient-to-r from-[#93d8ff] to-[#85afff] text-gray-900' };
     }
     return null;
   };

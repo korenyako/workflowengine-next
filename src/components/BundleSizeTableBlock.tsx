@@ -104,7 +104,7 @@ const BundleSizeTableBlock: React.FC<BundleSizeTableBlockProps> = ({
                     <div
                       className={`absolute inset-y-0 left-0 rounded-lg transition-all duration-500 ${
                         bundle.highlighted
-                          ? 'bg-gradient-to-r from-blue-500 to-purple-500'
+                          ? 'bg-gradient-to-r from-[#85afff] to-[#6e99ec]'
                           : 'bg-gradient-to-r from-slate-700 to-slate-600'
                       }`}
                       style={{ width: `${barPercent}%` }}

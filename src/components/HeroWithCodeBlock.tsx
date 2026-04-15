@@ -38,7 +38,7 @@ const HeroWithCodeBlock: React.FC<HeroWithCodeBlockProps> = ({
               className="hidden sm:flex items-center bg-slate-100 rounded-full hover:bg-slate-200 transition-colors duration-200 cursor-pointer"
             >
               <span className="text-slate-900 text-base px-6">{badge}</span>
-              <div className="flex items-center text-gray-800 bg-gradient-to-r from-blue-300 to-purple-300 hover:from-blue-400 hover:to-purple-400 px-6 py-3 text-base font-semibold rounded-full transition-all duration-200">
+              <div className="flex items-center text-gray-800 bg-gradient-to-r from-[#93d8ff] to-[#85afff] hover:from-[#7dc3f4] hover:to-[#6e99ec] px-6 py-3 text-base font-semibold rounded-full transition-all duration-200">
                 <img src="/icons/arrow-right.svg" alt="" className="w-4 h-4 mr-1" />
                 {cta.text}
               </div>
@@ -48,7 +48,7 @@ const HeroWithCodeBlock: React.FC<HeroWithCodeBlockProps> = ({
               className="sm:hidden w-full max-w-sm bg-slate-100 rounded-xl p-4 hover:bg-slate-200 transition-colors duration-200 cursor-pointer"
             >
               <div className="text-slate-900 text-sm mb-4 text-left">{badge}</div>
-              <div className="flex items-center justify-center text-gray-800 bg-gradient-to-r from-blue-300 to-purple-300 hover:from-blue-400 hover:to-purple-400 px-6 py-3 text-base font-semibold rounded-lg transition-all duration-200">
+              <div className="flex items-center justify-center text-gray-800 bg-gradient-to-r from-[#93d8ff] to-[#85afff] hover:from-[#7dc3f4] hover:to-[#6e99ec] px-6 py-3 text-base font-semibold rounded-lg transition-all duration-200">
                 <img src="/icons/arrow-right.svg" alt="" className="w-4 h-4 mr-1" />
                 {cta.text}
               </div>

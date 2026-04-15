@@ -124,7 +124,7 @@ export function ComparisonTimeline() {
                   key={index}
                   className={`rounded-lg p-2 sm:p-3 flex flex-col justify-center h-32 ${
                     stage.ready
-                      ? 'bg-gradient-to-l from-purple-300 to-blue-300 text-gray-800'
+                      ? 'bg-gradient-to-l from-[#85afff] to-[#93d8ff] text-gray-800'
                       : 'bg-blue-300'
                   }`}
                   style={{
