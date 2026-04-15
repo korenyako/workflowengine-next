@@ -50,9 +50,9 @@ const LogosBlock: React.FC<LogosBlockProps> = ({
         {/* Логотипы */}
         <div className="relative overflow-hidden">
           {/* Градиентная маска слева */}
-          <div className={`absolute left-0 top-0 w-20 h-full z-10 ${isLightBg ? 'bg-gradient-to-r from-white to-transparent' : 'bg-gradient-to-r from-[#0d1117] to-transparent'}`}></div>
+          <div className="absolute left-0 top-0 w-20 h-full z-10 bg-gradient-to-r from-white to-transparent"></div>
           {/* Градиентная маска справа */}
-          <div className={`absolute right-0 top-0 w-20 h-full z-10 ${isLightBg ? 'bg-gradient-to-l from-white to-transparent' : 'bg-gradient-to-l from-[#0d1117] to-transparent'}`}></div>
+          <div className="absolute right-0 top-0 w-20 h-full z-10 bg-gradient-to-l from-white to-transparent"></div>
           
           <div className="flex items-center gap-6 lg:gap-8 xl:gap-12 animate-scroll">
             {/* Первый набор логотипов */}
