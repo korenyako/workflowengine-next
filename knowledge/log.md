@@ -2,6 +2,24 @@
 
 Chronological log of wiki updates. Newest entries on top.
 
+## 2026-04-14 | Phase 3: launch-minimum content
+
+Контент с workflowengine.io портирован в блочную систему.
+
+**Homepage ([src/data/main.json](../src/data/main.json)):** полностью переписана. HeroBlock + LogosBlock + «Supported Workflow Processes» (3 use-case cards) + «Core Features» (6 cards) + ProductsGridBlock («Which Product Do I Need?» с WE / Workflow Server / DWKit) + CustomerTestimonialsBlock (ProcessMAP, Innovum, Wine.Create) + ContactCTABlock. Все FormEngine-упоминания (open-source, MIT, GitHub, @react-form-builder) ушли.
+
+**Features page ([src/data/features.json](../src/data/features.json) + [src/app/features/page.tsx](../src/app/features/page.tsx)):** 11 feature-блоков в `TwoColumnDetailedFeaturesBlock` (5+6). Сгруппированы: Designer / Core Components / Versioning / Parallel / Timers в левой колонке; XML I/O / Localization / Compatibility / BPMN 2.0 / Integration / Security в правой.
+
+**Server page ([src/data/server.json](../src/data/server.json) + [src/app/server/page.tsx](../src/app/server/page.tsx)):** Hero + «Why Workflow Server» (4 benefit-cards) + двухколоночный блок Workflow API / Callback API + системные требования (OS / DB / hardware / app modes) + CTA.
+
+**Downloads page ([src/app/downloads/page.tsx](../src/app/downloads/page.tsx)):** hard-coded page (не через block-систему — таблицы). Hero с текущей версией `20.0.8` (2026-01-04). Таблица 3 продуктов (.NET Core build, Sample, Workflow Server). Список из 6 NuGet-пакетов (Core + 5 DB providers) с прямыми ссылками на nuget.org. Список 3 Designer npm-пакетов (vanilla/React/Angular). Contact CTA в конце.
+
+**ContactForm ([src/components/ContactForm.tsx](../src/components/ContactForm.tsx)):** плейсхолдер заменён на реальную форму. Поля first_name / last_name / email / phone / company / job_title / details — POST на `/backend/lead/` (Netlify 301 → Netlify Function [netlify/functions/lead.ts](../netlify/functions/lead.ts), которая шлёт лид в Bitrix24 CRM). Форма сама валидирует required-поля, показывает состояния submitting / success / error. **Для работы в проде нужен env-var `BITRIX_URL` + опциональный `BITRIX_ASSIGNED_BY_ID`** в Netlify. В `netlify/functions/lead.ts` поправлены строки, где оставались «Formengine.io» / «formengine.io». Удалён неиспользуемый `src/styles/contacts.css`.
+
+**Logos:** оставлены существующие 9 SVG (Bosch, Engie, Philips, Nelnet, Dell, Acer, Santos, Ideagen, Novartis) — это общие клиенты OptimaJet, из них Dell и Nelnet явно подтверждены на workflowengine.io. Полный список с workflowengine.io (KPMG, Airbus, Wolters Kluwer, ProcessMAP и т.д.) требует источения SVG — отложено.
+
+**Что осталось:** блог (все 20 постов — Phase 4), аудит роутов sitemap/robots, логотип WorkflowEngine (сейчас stopgap `formengine-black.svg`), курация логотипов под exact workflowengine.io-список.
+
 ## 2026-04-14 | Phase 2: светлая тема (commit `4a303ed`)
 
 Свапнули dark→light палитру по всему проекту. Типографика не тронута (Inter / Poppins / Space Grotesk / JetBrains Mono).

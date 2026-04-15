@@ -1,0 +1,91 @@
+[
+  {
+    "type": "HeroBlock",
+    "props": {
+      "title": "Features",
+      "subtitle": "What's inside Workflow Engine",
+      "description": "Workflow Engine gives you every building block needed to design, version, and execute workflows of any complexity — visually, programmatically, or via REST."
+    }
+  },
+  {
+    "type": "TwoColumnDetailedFeaturesBlock",
+    "props": {
+      "subtitle": "Feature set",
+      "title": "Everything you need to orchestrate work",
+      "columns": [
+        {
+          "items": [
+            {
+              "icon": "/icons/dragndrop.svg",
+              "title": "HTML5 Visual Designer",
+              "text": "A built-in drag & drop designer lets business users and developers create interactive workflows of any complexity in a web browser — no need to draft them programmatically. Fully customizable down to individual form controls."
+            },
+            {
+              "icon": "/icons/layers.svg",
+              "title": "Core Components",
+              "text": "Activities, Transitions, Actions, Actors, Commands, and Timers — the building blocks of any process. Consistent business semantics regardless of how complex your workflow grows."
+            },
+            {
+              "icon": "/icons/edit.svg",
+              "title": "Version Control",
+              "text": "Built-in versioning tracks every change to your workflows. When you update a scheme, decide whether existing processes finish on the old version or migrate to the new one."
+            },
+            {
+              "icon": "/icons/layout.svg",
+              "title": "Parallel Workflows",
+              "text": "Split a workflow into multiple branches that execute concurrently. When all branches complete, they merge back and the process continues."
+            },
+            {
+              "icon": "/icons/features.svg",
+              "title": "Timers",
+              "text": "Attach custom timers to transitions — intervals in ms / seconds / minutes / hours / days, or specific date/time triggers. UTC by default, with custom formats supported."
+            }
+          ]
+        },
+        {
+          "items": [
+            {
+              "icon": "/icons/code.svg",
+              "title": "XML Import / Export",
+              "text": "Workflows are stored as versioned XML definitions in your database. Export for backup and sharing; import to reuse across projects and environments."
+            },
+            {
+              "icon": "/icons/language.svg",
+              "title": "Localization Support",
+              "text": "Localize states, command names, and input parameters into any language, right from the Designer toolbar. No code required."
+            },
+            {
+              "icon": "/icons/database-table.svg",
+              "title": "Compatibility",
+              "text": "Runs on .NET / .NET Core — any environment that supports the runtime. Ships with providers for Microsoft SQL Server, PostgreSQL, Oracle, MySQL, MongoDB, Azure SQL, and Redis."
+            },
+            {
+              "icon": "/icons/complex.svg",
+              "title": "BPMN 2.0 Support",
+              "text": "Model your processes in any BPMN 2.0 tool and execute them inside Workflow Engine — letting analysts and developers work in the notation they already know."
+            },
+            {
+              "icon": "/icons/backend.svg",
+              "title": "Integration Options",
+              "text": "Embed as a .NET component, or run Workflow Server and call via REST API. The Designer can be embedded natively or via iframe when styles need isolation."
+            },
+            {
+              "icon": "/icons/lock.svg",
+              "title": "Your Own Security Layer",
+              "text": "Workflow Engine ships with no embedded security — by design. Plug in whatever auth and access control model your application already uses, without fighting hardcoded rules."
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "type": "ContactCTABlock",
+    "props": {
+      "title": "Want a deeper look?",
+      "description": "Talk to our team about fit, licensing, and integration for your project.",
+      "buttonText": "Contact Sales",
+      "buttonHref": "/contacts/"
+    }
+  }
+]

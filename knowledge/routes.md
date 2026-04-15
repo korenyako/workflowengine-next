@@ -8,12 +8,12 @@ All routes are statically exported. Each URL corresponds to a folder under [src/
 
 | Route | Source | Status |
 |-------|--------|--------|
-| `/` | [app/page.tsx](../src/app/page.tsx) | Renders `main.json` via `<Blocks />`. Content still FormEngine-flavored. |
-| `/features/` | [app/features/page.tsx](../src/app/features/page.tsx) | **Stub** — placeholder hero only |
-| `/server/` | [app/server/page.tsx](../src/app/server/page.tsx) | **Stub** — placeholder hero only |
-| `/downloads/` | [app/downloads/page.tsx](../src/app/downloads/page.tsx) | **Stub** — placeholder hero only |
-| `/pricing/` | [app/pricing/page.tsx](../src/app/pricing/page.tsx) + `layout.tsx` | Live, renders FormEngine pricing — needs WorkflowEngine rewrite |
-| `/contacts/` | [app/contacts/page.tsx](../src/app/contacts/page.tsx) + `layout.tsx` | Live; Bitrix24 form currently stubbed. See [external-scripts.md](external-scripts.md) |
+| `/` | [app/page.tsx](../src/app/page.tsx) | Renders `main.json` via `<Blocks />`. **WorkflowEngine content (Phase 3)**. |
+| `/features/` | [app/features/page.tsx](../src/app/features/page.tsx) | Live; renders `features.json` via `<PageBlocks />`. 11 feature sections. |
+| `/server/` | [app/server/page.tsx](../src/app/server/page.tsx) | Live; renders `server.json` via `<PageBlocks />`. |
+| `/downloads/` | [app/downloads/page.tsx](../src/app/downloads/page.tsx) | Live; hard-coded page with version tables + NuGet + npm lists. |
+| `/pricing/` | — | **Route deleted (Phase 1).** 301-redirect to optimajet.com via `public/_redirects`. |
+| `/contacts/` | [app/contacts/page.tsx](../src/app/contacts/page.tsx) + `layout.tsx` | Live; real contact form posting to Bitrix24 via Netlify function (Phase 3). |
 | `/blog/` | [app/blog/page.tsx](../src/app/blog/page.tsx) | Blog index; reads `src/data/blog.ts` (currently empty array) |
 | `/blog/[slug]/` | [app/blog/[slug]/page.tsx](../src/app/blog/[slug]/page.tsx) | Dynamic; emits `/blog/__placeholder__/` while empty (see [decisions.md](decisions.md)) |
 | `/404` | [app/not-found.tsx](../src/app/not-found.tsx) | Standard not-found |
