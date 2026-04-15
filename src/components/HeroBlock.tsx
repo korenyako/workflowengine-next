@@ -34,7 +34,7 @@ const HeroBlock: React.FC<HeroBlockProps> = ({
   return (
     <section className="py-12 text-slate-900 text-center">
       <div className="max-w-4xl mx-auto px-4">
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading font-semibold text-slate-900 mb-4 leading-snug whitespace-pre-wrap break-words" style={{ wordBreak: 'keep-all' }}>
+        <h1 className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-heading font-bold text-slate-900 mb-6 leading-tight whitespace-pre-wrap break-words" style={{ wordBreak: 'keep-all' }}>
           {title.replace(/\s+for\s+/g, ' for\u00A0')}
         </h1>
         {subtitle && (

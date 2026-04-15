@@ -53,17 +53,8 @@ h1, h2 {
   font-family: var(--font-inter), "Inter", sans-serif;
 }
 
-h1 {
-  @apply text-4xl sm:text-5xl leading-normal;
-}
-
-h2 {
-  @apply text-3xl sm:text-4xl leading-tight;
-}
-
-h3 {
-  @apply text-2xl leading-tight;
-}
+/* Note: do not declare global sizes for h1/h2/h3 here — it fights the
+   per-block Tailwind utility classes and produces inconsistent sizing. */
 
 /* Явное определение для моноширинного шрифта */
 code, pre, .font-mono, pre *, code * {
