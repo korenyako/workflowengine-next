@@ -135,7 +135,7 @@ const FeaturesGridBlock: React.FC<FeaturesGridBlockProps> = ({
         )}
         
         {title && (
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading font-semibold text-slate-900 mb-4 leading-snug whitespace-pre-wrap break-words" style={{ wordBreak: 'keep-all' }}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-slate-900 mb-6 uppercase tracking-wide whitespace-pre-wrap break-words" style={{ wordBreak: 'keep-all' }}>
             {title.replace(/\s+for\s+/g, ' for\u00A0')}
           </h2>
         )}

@@ -48,41 +48,42 @@
     }
   },
   {
-    "type": "DetailedFeatureGridBlock",
+    "type": "FeaturesGridBlock",
     "props": {
-      "subtitle": "Capabilities",
       "title": "Core Features",
-      "text": "Everything you need to design, version, and execute workflows of any complexity.",
+      "description": "Workflow Engine supports SQL and NoSQL databases. You can also choose providers for MS SQL Server, SQL Azure, PostgreSQL, Oracle, MySQL, MongoDB, CosmosDB. Workflow Engine and Workflow Server are unique solutions with the widest range of features that allow you to develop executable workflows of any complexity:",
+      "centered": true,
+      "iconSize": 48,
       "features": [
         {
           "icon": "/icons/dragndrop.svg",
-          "title": "HTML5 Visual Designer",
-          "text": "Design, model, edit and visualize your workflows in a web browser with a built-in drag & drop designer."
+          "title": "HTML5 visual designer",
+          "text": "Design, model, edit and visualize your workflows in a web-browser."
         },
         {
           "icon": "/icons/layers.svg",
-          "title": "Business-Oriented Scheme Elements",
-          "text": "Available elements include: Activity, Transition, Action, Actor, Command, and Timer — the building blocks of any process."
+          "title": "Business-oriented scheme elements",
+          "text": "Available elements include: Activity, Transition, Action, Actor, Command, and Timer. Your users will be able to change process schemes by themselves."
         },
         {
           "icon": "/icons/edit.svg",
-          "title": "Versioning & Process Scheme Update",
-          "text": "Built-in version control. When you update a workflow, choose whether existing processes finish on the old scheme or migrate to the new one."
+          "title": "Process scheme update",
+          "text": "There are two types of running process scheme update: the old process uses the old scheme and the old process is updated in a new scheme."
         },
         {
           "icon": "/icons/layout.svg",
-          "title": "Parallel Workflow Support",
-          "text": "Split workflows into branches that execute activities concurrently. Successful completion of all branches merges them back into a single flow."
+          "title": "Parallel workflow support",
+          "text": "Split workflows into branches that execute tasks concurrently."
         },
         {
           "icon": "/icons/code.svg",
-          "title": "XML Import / Export",
-          "text": "Workflows are stored as versioned XML in your database. Export for backup or sharing; import to reuse across environments."
+          "title": "XML import/export",
+          "text": "Export your workflows for further reuse and sharing."
         },
         {
           "icon": "/icons/language.svg",
-          "title": "Localization Support",
-          "text": "Translate states, command names, and input parameters into any language. Localization constants are managed directly from the Designer toolbar."
+          "title": "Localization support",
+          "text": "Translate the user interface to various languages."
         }
       ]
     }
