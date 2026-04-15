@@ -5,6 +5,7 @@ interface HeroBlockProps {
   title: string;
   description?: string | React.ReactNode;
   subtitle?: string;
+  chips?: string[];
   primaryCta?: {
     text: string;
     href: string;
@@ -25,6 +26,7 @@ const HeroBlock: React.FC<HeroBlockProps> = ({
   title,
   description,
   subtitle,
+  chips,
   primaryCta,
   secondaryCta,
   note,
@@ -33,11 +35,23 @@ const HeroBlock: React.FC<HeroBlockProps> = ({
 }) => {
   return (
     <section className="py-12 text-slate-900 text-center">
-      <div className="max-w-4xl mx-auto px-4">
-        <h1 className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-heading font-bold text-slate-900 mb-6 leading-tight whitespace-pre-wrap break-words" style={{ wordBreak: 'keep-all' }}>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading font-bold text-slate-900 mb-6 leading-tight whitespace-pre-wrap break-words" style={{ wordBreak: 'keep-all' }}>
           {title.replace(/\s+for\s+/g, ' for\u00A0')}
         </h1>
-        {subtitle && (
+        {chips && chips.length > 0 && (
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10">
+            {chips.map((chip) => (
+              <span
+                key={chip}
+                className="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-sm sm:text-base font-semibold font-subtitle"
+              >
+                {chip}
+              </span>
+            ))}
+          </div>
+        )}
+        {subtitle && !chips && (
           <h3 className="text-lg sm:text-xl text-blue-600 mb-12 font-subtitle font-semibold whitespace-pre-wrap break-words">
             {subtitle}
           </h3>

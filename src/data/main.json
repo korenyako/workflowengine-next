@@ -3,7 +3,7 @@
     "type": "HeroBlock",
     "props": {
       "title": "Workflow Engine",
-      "subtitle": "HTML5 Designer · Customizable · Parallel Branching · Versioning",
+      "chips": ["HTML5 Designer", "Customizable", "Parallel Branching", "Versioning"],
       "description": "Workflow Engine is the perfect solution for managing business entity life cycles. Use the embedded drag & drop designer to create processes in your system and manage workflows via a simple API — integrated as a .NET component or via REST.",
       "primaryCta": {
         "text": "Why Use Workflow Engine",
