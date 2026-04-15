@@ -44,7 +44,7 @@ const HeroBlock: React.FC<HeroBlockProps> = ({
             {chips.map((chip) => (
               <span
                 key={chip}
-                className="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-sm sm:text-base font-semibold font-subtitle"
+                className="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 text-blue-700 text-sm sm:text-base font-semibold font-subtitle"
               >
                 {chip}
               </span>
