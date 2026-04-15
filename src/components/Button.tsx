@@ -75,7 +75,7 @@ const Button: React.FC<ButtonProps> = ({
     }
 
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} className={classes} prefetch={false}>
         {content}
       </Link>
     );
