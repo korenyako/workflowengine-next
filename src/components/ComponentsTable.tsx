@@ -293,7 +293,7 @@ export function ComponentsTable({ showHeader = true, showFooter = true }: Compon
                          <div className="flex justify-center">
                <a 
                  href="https://workflowengine.io/documentation/components-library" 
-                 className="inline-flex items-center px-8 py-4 text-lg bg-gradient-to-r from-[#93d8ff] to-[#85afff] text-gray-800 font-semibold rounded-lg hover:from-[#7dc3f4] hover:to-[#6e99ec] transition-all duration-200"
+                 className="inline-flex items-center px-8 py-4 text-lg bg-[#93d8ff] text-gray-900 font-semibold rounded-lg hover:bg-[#7dc3f4] transition-all duration-200"
                >
                  Documentation
                </a>
