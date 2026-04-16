@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "./Button";
+import { Icon } from "@/lib/icons";
 
 type Chip = string | { icon?: string; label: string };
 
@@ -51,7 +52,7 @@ const HeroBlock: React.FC<HeroBlockProps> = ({
                   key={label}
                   className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 text-slate-900 text-sm font-medium shadow-sm"
                 >
-                  {icon && <img src={icon} alt="" className="w-4 h-4" />}
+                  {icon && <Icon name={icon} size={16} className="text-slate-700" />}
                   {label}
                 </span>
               );
