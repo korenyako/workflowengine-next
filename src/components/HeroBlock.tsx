@@ -1,11 +1,13 @@
 import React from "react";
 import Button from "./Button";
 
+type Chip = string | { icon?: string; label: string };
+
 interface HeroBlockProps {
   title: string;
   description?: string | React.ReactNode;
   subtitle?: string;
-  chips?: string[];
+  chips?: Chip[];
   primaryCta?: {
     text: string;
     href: string;
@@ -41,14 +43,19 @@ const HeroBlock: React.FC<HeroBlockProps> = ({
         </h1>
         {chips && chips.length > 0 && (
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10">
-            {chips.map((chip) => (
-              <span
-                key={chip}
-                className="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 text-blue-700 text-sm sm:text-base font-semibold font-subtitle"
-              >
-                {chip}
-              </span>
-            ))}
+            {chips.map((chip) => {
+              const label = typeof chip === 'string' ? chip : chip.label;
+              const icon = typeof chip === 'string' ? undefined : chip.icon;
+              return (
+                <span
+                  key={label}
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 text-slate-900 text-sm font-medium shadow-sm"
+                >
+                  {icon && <img src={icon} alt="" className="w-4 h-4" />}
+                  {label}
+                </span>
+              );
+            })}
           </div>
         )}
         {subtitle && !chips && (
