@@ -60,7 +60,7 @@ const BundleSizeTableBlock: React.FC<BundleSizeTableBlockProps> = ({
   return (
     <section className="py-16 lg:py-24 px-4 sm:px-8" style={{ backgroundColor: blockBg }}>
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-slate-900 mb-4 text-center">
+        <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading text-slate-900 mb-4 text-center">
           {title}
         </h2>
         <p className="text-lg lg:text-xl text-slate-700 text-center mb-12 max-w-5xl mx-auto">

@@ -35,7 +35,7 @@ const TestimonialsBlock: React.FC<TestimonialsBlockProps> = ({
       </div>
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {testimonials.map((t, idx) => (
-          <div key={idx} className={`${cardBg} rounded-xl p-8 flex flex-col items-center text-center h-full border ${cardBorder}`}>
+          <div key={idx} className={`${cardBg} rounded-xl p-8 flex flex-col items-center text-center h-full border-2 ${cardBorder}`}>
             <p className={`text-lg italic mb-6 ${cardTextColor} whitespace-pre-wrap break-words`}>"{t.text}"</p>
             <div className={`font-semibold ${cardAuthorColor} whitespace-pre-wrap break-words`}>{t.author}</div>
             {t.role && <div className={`text-sm ${cardRoleColor} whitespace-pre-wrap break-words`}>{t.role}</div>}

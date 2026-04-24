@@ -19,42 +19,35 @@ const ContactCTABlock: React.FC<ContactCTABlockProps> = ({
   description = "Ask and we'll get back with you in 1 business day.",
   buttonText = "Contact Us",
   buttonHref = "/contacts",
-  blockBg = "#101828"
 }) => {
   return (
-    <section className="py-8 lg:py-16 px-4 sm:px-8" style={{ backgroundColor: '#101828' }}>
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
-          {/* Левая часть - иконка и текст */}
-          <div className="flex items-start gap-4">
-            {/* Иконка чата */}
-            <div className="flex-shrink-0 mt-1">
-              <ChatIcon className="text-slate-900 w-12 h-12" />
-            </div>
-            
-            {/* Текст */}
-            <div>
-              <h2 className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-[#6e99ec] to-[#85afff] bg-clip-text text-transparent">
-                {title}
-              </h2>
-              <p className="text-slate-900 text-lg mt-2">
-                {description}
-              </p>
-            </div>
+    <section data-merge-footer className="pt-12 pb-[88px] lg:pt-16 lg:pb-[112px] px-6 sm:px-10 lg:px-16 bg-[#4286F4] rounded-t-[40px] lg:rounded-t-[48px] mx-4 sm:mx-6 lg:mx-8 mt-6 lg:mt-8">
+      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div className="flex items-start gap-4">
+          <div className="flex-shrink-0 mt-1">
+            <ChatIcon className="text-white w-12 h-12" />
           </div>
-          
-          {/* Правая часть - кнопка */}
-          <div className="flex-shrink-0 w-full lg:w-auto">
-            <Button 
-              href={buttonHref && buttonHref.startsWith('/') && buttonHref !== '/' && !buttonHref.includes('#') && !buttonHref.includes('?') && !buttonHref.endsWith('/') ? buttonHref + '/' : buttonHref} 
-              variant="primary" 
-              size="lg"
-              className="w-full lg:w-auto"
-              target={buttonHref?.startsWith('http') && !buttonHref?.startsWith('https://workflowengine.io/') ? '_blank' : '_self'}
-            >
-              {buttonText}
-            </Button>
+
+          <div>
+            <h2 className="text-3xl lg:text-5xl font-heading text-white">
+              {title}
+            </h2>
+            <p className="text-lg text-white/80 mt-2">
+              {description}
+            </p>
           </div>
+        </div>
+
+        <div className="flex-shrink-0 w-full lg:w-auto">
+          <Button
+            href={buttonHref && buttonHref.startsWith('/') && buttonHref !== '/' && !buttonHref.includes('#') && !buttonHref.includes('?') && !buttonHref.endsWith('/') ? buttonHref + '/' : buttonHref}
+            variant="secondary"
+            size="lg"
+            className="w-full lg:w-auto !border-white !text-white !bg-transparent hover:!bg-white hover:!text-[#4286F4]"
+            target={buttonHref?.startsWith('http') && !buttonHref?.startsWith('https://workflowengine.io/') ? '_blank' : '_self'}
+          >
+            {buttonText}
+          </Button>
         </div>
       </div>
     </section>

@@ -14,7 +14,7 @@ interface FooterColumn {
 }
 
 interface SocialLink {
-  icon: string; // emoji или svg/name
+  icon: string;
   href: string;
 }
 
@@ -47,14 +47,14 @@ const FooterBlock: React.FC<FooterBlockProps> = ({ columns, socialLinks, logo, c
     }
   };
   return (
-    <footer className="text-slate-700 py-12 px-4 sm:px-8 bg-slate-50 border-t border-slate-200">
+    <footer className="text-slate-700 pt-24 pb-12 px-4 sm:px-8 bg-[#F1F5F9] rounded-t-[40px] lg:rounded-t-[48px] mx-4 sm:mx-6 lg:mx-8 mt-4 lg:mt-6">
       <div className="max-w-6xl mx-auto">
         {/* 4 колонки со ссылками */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-32">
           {columns.map((col, idx) => (
             <div key={idx}>
               {col.title && (
-                <div className="font-bold text-slate-900 mb-4 uppercase tracking-wide text-lg">{col.title}</div>
+                <div className="text-sm uppercase tracking-[0.2em] font-mono font-medium text-[#4286F4] mb-4">{col.title}</div>
               )}
               {col.links.length > 0 && (
                 <ul className="space-y-2">
@@ -62,13 +62,13 @@ const FooterBlock: React.FC<FooterBlockProps> = ({ columns, socialLinks, logo, c
                     <li key={lidx}>
                       <a 
                         href={link.href} 
-                        className="text-slate-600 hover:text-slate-900 transition-colors text-base flex items-center gap-2"
+                        className="text-slate-900 hover:text-[#4286F4] transition-colors text-base flex items-center gap-2"
                         target={link.href.startsWith('http') && !link.href.startsWith('https://workflowengine.io/') ? '_blank' : '_self'}
                         rel={link.href.startsWith('http') && !link.href.startsWith('https://workflowengine.io/') ? 'noopener noreferrer' : undefined}
                       >
                         {link.text}
                         {link.badge && (
-                          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-[#4286F4]/15 text-[#4286F4]">
                             {link.badge}
                           </span>
                         )}
@@ -83,27 +83,43 @@ const FooterBlock: React.FC<FooterBlockProps> = ({ columns, socialLinks, logo, c
         
         {/* Блок Optimajet на 100% ширины */}
         {companyInfo && (
-          <div>
-            <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
-              {/* Логотип компании */}
-              <div>
-                <a 
-                  href="https://optimajet.com/" 
-                  target="_blank" 
+          <div className="border-b border-slate-300 pb-8">
+            <div className="space-y-4">
+              {/* Логотип + соцсети */}
+              <div className="flex items-center justify-between gap-4">
+                <a
+                  href="https://optimajet.com/"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block hover:opacity-80 transition-opacity"
                 >
                   <img src={companyInfo.logo} alt="OptimaJet" className="h-8" />
                 </a>
+                {socialLinks && socialLinks.length > 0 && (
+                  <div className="flex items-center gap-3">
+                    {socialLinks.map((s, idx) => (
+                      <a
+                        key={idx}
+                        href={s.href}
+                        className="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={s.icon}
+                      >
+                        <img src={s.icon} alt="" className="w-8 h-8" />
+                      </a>
+                    ))}
+                  </div>
+                )}
               </div>
               
               {/* Описание компании */}
-              <p className="text-base text-slate-600 leading-relaxed max-w-4xl">
+              <p className="text-sm text-slate-600 leading-relaxed max-w-4xl">
                 {companyInfo.description}
               </p>
 
               {/* Контактная информация */}
-              <div className="space-y-1 text-base text-slate-600">
+              <div className="space-y-1 text-sm text-slate-600">
                 <p>{companyInfo.address}</p>
                 <p>{companyInfo.phone}</p>
                 <p className="flex items-center gap-2">
@@ -130,25 +146,34 @@ const FooterBlock: React.FC<FooterBlockProps> = ({ columns, socialLinks, logo, c
           </div>
         )}
         
-        {/* Copyright и социальные сети */}
-        <div className="flex justify-between items-center text-base text-slate-500 pt-8">
-          <div>
-            © 2023-{currentYear} Optimajet Limited. All rights reserved.
-            <br />
-            We ❤️ React
-          </div>
-          <div className="flex space-x-3">
-            {socialLinks && socialLinks.map((s, idx) => (
-              <a 
-                key={idx} 
-                href={s.href} 
-                className="w-8 h-8 rounded-full flex items-center justify-center transition-colors" 
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <img src={s.icon} alt="" className="w-8 h-8 opacity-60 hover:opacity-100 transition-opacity" />
-              </a>
-            ))}
+        {/* Copyright + legal links */}
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4 text-sm text-slate-500 pt-8">
+          <div>© {currentYear} Optimajet Limited. All rights reserved.</div>
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            <a
+              href="https://optimajet.com/products/workflowengine/eula/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-slate-900 transition-colors"
+            >
+              License Agreement
+            </a>
+            <a
+              href="https://optimajet.com/products/workflowengine/csa/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-slate-900 transition-colors"
+            >
+              Customer Support Agreement
+            </a>
+            <a
+              href="https://workflowengine.io/agreements/policy/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-slate-900 transition-colors"
+            >
+              Privacy Policy
+            </a>
           </div>
         </div>
       </div>

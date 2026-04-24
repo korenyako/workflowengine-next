@@ -6,7 +6,7 @@ const MUIBasicUsageBlock: React.FC = () => {
   return (
     <section className="text-slate-900 py-10 md:py-14 px-4 sm:px-8">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-slate-900 mb-6 text-center">
+        <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading text-slate-900 mb-6 text-center">
           Basic Usage
         </h2>
         <Text className="text-center text-lg lg:text-xl font-[Space_Grotesk]">
@@ -105,7 +105,7 @@ const MuiExample = () => {
             />
           </div>
           <div>
-            <div className="flex items-center justify-center rounded-lg border border-slate-300 bg-slate-100 p-8 min-h-[200px]">
+            <div className="flex items-center justify-center rounded-lg border-2 border-slate-300 bg-slate-100 p-8 min-h-[200px]">
               <span className="text-slate-500 text-lg">Demo placeholder</span>
             </div>
           </div>

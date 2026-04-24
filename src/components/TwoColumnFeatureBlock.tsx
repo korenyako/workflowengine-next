@@ -29,7 +29,7 @@ const GradientButton: React.FC<GradientButtonProps> = ({ title, subtitle, href, 
         <div className="text-slate-900 font-body font-semibold text-xl mb-1">{title}</div>
         <div className="text-blue-600 hover:text-blue-700 transition-colors duration-200 flex items-center gap-2 text-lg">
           {subtitle.replace(' →', '')}
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 transition-all duration-200 group-hover:translate-x-1">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4">
             {/* Стрелка влево (по умолчанию) */}
             <path 
               d="m8.25 4.5 7.5 7.5-7.5 7.5" 
@@ -123,7 +123,7 @@ const TwoColumnFeatureBlock: React.FC<TwoColumnFeatureBlockProps> = ({
                 {subtitle}
               </h3>
             )}
-            <h2 className={`text-3xl lg:text-4xl xl:text-5xl font-heading font-bold ${textColor} mb-6 whitespace-pre-wrap break-words`}>
+            <h2 className={`text-3xl lg:text-4xl xl:text-5xl font-heading ${textColor} mb-6 whitespace-pre-wrap break-words`}>
               {title}
             </h2>
                     <p className={`text-lg lg:text-xl ${descriptionColor} mb-8 leading-normal whitespace-pre-wrap break-words`}>

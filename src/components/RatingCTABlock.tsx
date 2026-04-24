@@ -175,7 +175,7 @@ const RatingCTABlock: React.FC<RatingCTABlockProps> = ({
               {firstRow.map((badge, idx) => (
                 <div 
                   key={idx} 
-                  className={`${badgeBg} rounded-full px-3 py-2 flex items-center gap-2 border-2 transition-all duration-200 hover:shadow-lg flex-shrink-0`}
+                  className={`${badgeBg} border-2 rounded-full px-3 py-2 flex items-center gap-2 transition-opacity duration-200 hover:opacity-80 flex-shrink-0`}
                 >
                   {/* Иконка */}
                   <div className="flex-shrink-0">
@@ -206,7 +206,7 @@ const RatingCTABlock: React.FC<RatingCTABlockProps> = ({
               {secondRow.map((badge, idx) => (
                 <div 
                   key={idx + 6} 
-                  className={`${badgeBg} rounded-full px-3 py-2 flex items-center gap-2 border-2 transition-all duration-200 hover:shadow-lg flex-shrink-0`}
+                  className={`${badgeBg} border-2 rounded-full px-3 py-2 flex items-center gap-2 transition-opacity duration-200 hover:opacity-80 flex-shrink-0`}
                 >
                   {/* Иконка */}
                   <div className="flex-shrink-0">

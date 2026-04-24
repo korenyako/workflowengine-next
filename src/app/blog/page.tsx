@@ -41,10 +41,10 @@ export default function BlogIndex() {
       <div className="mx-auto max-w-6xl py-10 md:py-14">
         {/* Header */}
         <div className="mb-16">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-semibold text-slate-900 mb-4">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading text-slate-900 mb-4">
             Blog
           </h1>
-          <p className="text-xl lg:text-2xl font-subtitle font-semibold tracking-wide text-blue-600">
+          <p className="text-xl lg:text-2xl font-subtitle font-semibold tracking-wide text-[#4286F4]">
             Releases, integrations, and developer insights
           </p>
         </div>

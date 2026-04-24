@@ -17,7 +17,7 @@ interface MuiFormDemoBlockProps {
 }
 
 const DemoPlaceholder: React.FC = () => (
-  <div className="flex items-center justify-center rounded-lg border border-slate-300 bg-slate-100 p-8 min-h-[200px]">
+  <div className="flex items-center justify-center rounded-lg border-2 border-slate-300 bg-slate-100 p-8 min-h-[200px]">
     <span className="text-slate-500 text-lg">Demo placeholder</span>
   </div>
 );
@@ -37,7 +37,7 @@ const MuiFormDemoBlock: React.FC<MuiFormDemoBlockProps> = ({
         <div className="max-w-6xl mx-auto">
           {title && (
             <div className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-slate-900 mb-4">
+              <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading text-slate-900 mb-4">
                 {title}
               </h2>
               {subtitle && (
@@ -82,7 +82,7 @@ const MuiFormDemoBlock: React.FC<MuiFormDemoBlockProps> = ({
                 {subtitle}
               </h3>
             )}
-            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-slate-900 mb-6">
+            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading text-slate-900 mb-6">
               {title}
             </h2>
             <p className="text-lg lg:text-xl text-slate-600 mb-8 leading-normal">

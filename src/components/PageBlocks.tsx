@@ -28,29 +28,26 @@ import LogosBlock from "./LogosBlock";
 import BadgeGridBlock from "./BadgeGridBlock";
 import RatingCTABlock from "./RatingCTABlock";
 import ContactCTABlock from "./ContactCTABlock";
+import CustomerStoryBlock from "./CustomerStoryBlock";
+import CompatibilityBlock from "./CompatibilityBlock";
 import CustomerTestimonialsBlock from "./CustomerTestimonialsBlock";
+import ReviewsStripBlock from "./ReviewsStripBlock";
 import { ComparisonTimeline } from "./ComparisonTimeline";
 import ColumnsBlock from "./ColumnsBlock";
-import WorkflowEngineComponentsBlock from "./WorkflowEngineComponentsBlock";
-import { ComponentsTableBlock } from "./ComponentsTableBlock";
 import ArchitectureBlock from "./ArchitectureBlock";
 import DesignerTree from "./DesignerTree";
 import { ComponentsTable } from "./ComponentsTable";
 import FrameworkLogosBlock from "./FrameworkLogosBlock";
 import HeroFrameworksBlock from "./HeroFrameworksBlock";
-import HowToUseBlock from "./HowToUseBlock";
 import BundleSizeTableBlock from "./BundleSizeTableBlock";
 import MUIInstallationBlock from "./MUIInstallationBlock";
 import MUIBasicUsageBlock from "./MUIBasicUsageBlock";
-import MUIComponentsListBlock from "./MUIComponentsListBlock";
 import MUIDocsSupportBlock from "./MUIDocsSupportBlock";
 import MantineInstallationBlock from "./MantineInstallationBlock";
 import MantineBasicUsageBlock from "./MantineBasicUsageBlock";
-import MantineComponentsListBlock from "./MantineComponentsListBlock";
 import MantineDocsSupportBlock from "./MantineDocsSupportBlock";
 import ShadcnInstallationBlock from "./ShadcnInstallationBlock";
 import ShadcnBasicUsageBlock from "./ShadcnBasicUsageBlock";
-import ShadcnComponentsListBlock from "./ShadcnComponentsListBlock";
 import ShadcnDocsSupportBlock from "./ShadcnDocsSupportBlock";
 import MuiFormDemoBlock from "./MuiFormDemoBlock";
 
@@ -82,29 +79,26 @@ const components: Record<string, React.ComponentType<any>> = {
   BadgeGridBlock,
   RatingCTABlock,
   ContactCTABlock,
+  CustomerStoryBlock,
+  CompatibilityBlock,
   CustomerTestimonialsBlock,
+  ReviewsStripBlock,
   ComparisonTimeline,
   ColumnsBlock,
-  WorkflowEngineComponentsBlock,
-  ComponentsTableBlock,
   ArchitectureBlock,
   DesignerTree,
   ComponentsTable,
   FrameworkLogosBlock,
   HeroFrameworksBlock,
-  HowToUseBlock,
   BundleSizeTableBlock,
   MUIInstallationBlock,
   MUIBasicUsageBlock,
-  MUIComponentsListBlock,
   MUIDocsSupportBlock,
   MantineInstallationBlock,
   MantineBasicUsageBlock,
-  MantineComponentsListBlock,
   MantineDocsSupportBlock,
   ShadcnInstallationBlock,
   ShadcnBasicUsageBlock,
-  ShadcnComponentsListBlock,
   ShadcnDocsSupportBlock,
   MuiFormDemoBlock,
 };
@@ -118,58 +112,38 @@ interface PageBlocksProps {
   blocks: BlockData[];
 }
 
-// Функция для определения цвета фона блока
-const getBlockBackgroundColor = (index: number, total: number, blockType: string, props: any): string => {
-  if (props.blockBg) {
-    return props.blockBg;
-  }
-
-  // По умолчанию все блоки имеют прозрачный фон
-  return 'transparent';
-};
+// Slide-card surface: см. knowledge/design-rules.md §7.
+const isCard = (props: Record<string, any>): boolean => props.surface === 'card';
 
 const PageBlocks: React.FC<PageBlocksProps> = ({ blocks }) => {
   return (
-    <>
-      {/* Основной контент */}
-      <div className="w-full overflow-x-hidden">
-        {blocks.map((block: BlockData, i: number) => {
-          const { type, props } = block;
-          const Component = components[type];
-          if (!Component) {
-            console.warn(`Component "${type}" not found`);
-            return null;
-          }
+    <div className="w-full overflow-x-hidden">
+      {blocks.map((block: BlockData, i: number) => {
+        const { type, props } = block;
+        const Component = components[type];
+        if (!Component) {
+          console.warn(`Component "${type}" not found`);
+          return null;
+        }
 
-          const backgroundColor = getBlockBackgroundColor(i, blocks.length, type, props);
+        const content = <Component {...props} />;
 
-          return (
-            <React.Fragment key={type + i}>
-              {/* Отступ перед LogosBlock */}
-              {type === 'LogosBlock' && (
-                <div className="h-16"></div>
-              )}
-              <div style={{ backgroundColor }} className="w-full overflow-x-hidden">
-                <Component {...props} />
+        return (
+          <React.Fragment key={type + i}>
+            {type === 'LogosBlock' && <div className="h-16" />}
+            {isCard(props) ? (
+              <div className="mx-4 sm:mx-6 lg:mx-8 my-6 lg:my-8 bg-slate-100 rounded-[40px] lg:rounded-[48px] overflow-hidden">
+                {content}
               </div>
-              {/* Отступы после блоков */}
-              {type === 'CenteredImagesBlock' && (
-                <div className="h-16"></div>
-              )}
-              {type === 'FAQBlock' && (
-                <div className="h-16"></div>
-              )}
-              {type === 'CustomerTestimonialsBlock' && (
-                <div className="h-16"></div>
-              )}
-              {type === 'ContactCTABlock' && (
-                <div className="h-16"></div>
-              )}
-            </React.Fragment>
-          );
-        })}
-      </div>
-    </>
+            ) : (
+              <div style={props.blockBg ? { backgroundColor: props.blockBg } : undefined}>
+                {content}
+              </div>
+            )}
+          </React.Fragment>
+        );
+      })}
+    </div>
   );
 };
 

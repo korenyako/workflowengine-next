@@ -17,6 +17,7 @@
 ## Решения
 
 - [decisions](decisions.md) — Ключевые архитектурные решения и их причины (static export, GTM без `next/script`, Bitrix24, `__placeholder__` slug, форк-стратегия, и т.д.).
+- [design-rules](design-rules.md) — Визуальные правила сайта (без теней, hover через прозрачность, контур по фону, плоские кнопки).
 
 ## Планы
 

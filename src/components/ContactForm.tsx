@@ -41,7 +41,7 @@ const ContactForm = () => {
   return (
     <div className="max-w-3xl mx-auto">
       <div className="text-center mb-10">
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-semibold text-slate-900 mb-4 leading-snug">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading text-slate-900 mb-4 leading-snug">
           Contact us
         </h1>
         <p className="text-lg text-slate-600">
@@ -50,8 +50,8 @@ const ContactForm = () => {
       </div>
 
       {status === "success" ? (
-        <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-8 text-center">
-          <h2 className="text-2xl font-heading font-semibold text-emerald-900 mb-2">
+        <div className="rounded-3xl bg-emerald-50 p-8 text-center">
+          <h2 className="text-2xl font-heading text-emerald-900 mb-2">
             Message sent
           </h2>
           <p className="text-emerald-800">
@@ -61,7 +61,7 @@ const ContactForm = () => {
       ) : (
         <form
           onSubmit={handleSubmit}
-          className="rounded-xl border border-slate-200 bg-white p-6 sm:p-8 space-y-5"
+          className="rounded-3xl bg-slate-50 p-6 sm:p-8 space-y-5"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <Field name="first_name" label="First name" required />
@@ -78,7 +78,7 @@ const ContactForm = () => {
           <Field name="details" label="How can we help?" as="textarea" rows={4} />
 
           {status === "error" && errorMessage && (
-            <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-red-800 text-sm">
+            <div className="rounded-2xl bg-red-100 px-4 py-3 text-red-800 text-sm">
               {errorMessage}
             </div>
           )}
@@ -86,7 +86,7 @@ const ContactForm = () => {
           <button
             type="submit"
             disabled={status === "submitting"}
-            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 bg-[#4286F4] text-white font-semibold rounded-full hover:bg-[#2e6ad4] disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
           >
             {status === "submitting" ? "Sending..." : "Send message"}
           </button>
@@ -111,7 +111,7 @@ interface FieldProps {
 
 function Field({ name, label, type = "text", required, as = "input", rows }: FieldProps) {
   const base =
-    "w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-slate-900 placeholder:text-slate-400 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600/20 transition-colors";
+    "w-full rounded-lg border-2 border-slate-300 bg-white px-4 py-2.5 text-slate-900 placeholder:text-slate-400 focus:border-[#4286F4] focus:outline-none focus:ring-2 focus:ring-[#4286F4]/20 transition-colors";
 
   return (
     <label className="block">

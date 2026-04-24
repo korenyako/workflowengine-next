@@ -25,7 +25,7 @@ const BadgeGridBlock: React.FC<BadgeGridBlockProps> = ({
   // Цвета для текста в зависимости от фона
   const titleColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
   const subtitleColor = 'text-blue-600';
-  const badgeBg = isLightBg ? 'bg-gray-50 border-gray-200' : 'bg-slate-100 border-slate-300';
+  const badgeBg = isLightBg ? 'bg-gray-50' : 'bg-slate-100';
   const badgeTextColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
 
   // Разделяем бейджи на две строки
@@ -35,7 +35,7 @@ const BadgeGridBlock: React.FC<BadgeGridBlockProps> = ({
   return (
     <section className="py-16 px-4 sm:px-8">
       <div className="max-w-6xl mx-auto text-center mb-12">
-        <h2 className={`text-3xl lg:text-4xl xl:text-5xl font-bold mb-4 ${titleColor} whitespace-pre-wrap break-words`}>
+        <h2 className={`text-3xl lg:text-4xl xl:text-5xl font-heading mb-4 ${titleColor} whitespace-pre-wrap break-words`}>
           {title}
         </h2>
         {subtitle && (
@@ -51,7 +51,7 @@ const BadgeGridBlock: React.FC<BadgeGridBlockProps> = ({
           {firstRow.map((badge, idx) => (
             <div 
               key={idx} 
-              className={`${badgeBg} rounded-xl px-4 py-3 flex items-center gap-3 border transition-all duration-200 hover:scale-105 hover:shadow-lg flex-shrink-0`}
+              className={`${badgeBg} rounded-2xl px-4 py-3 flex items-center gap-3 transition-opacity duration-200 hover:opacity-80 flex-shrink-0`}
             >
               {/* Иконка */}
               <div className="flex-shrink-0">
@@ -85,7 +85,7 @@ const BadgeGridBlock: React.FC<BadgeGridBlockProps> = ({
           {secondRow.map((badge, idx) => (
             <div 
               key={idx + 6} 
-              className={`${badgeBg} rounded-xl px-4 py-3 flex items-center gap-3 border transition-all duration-200 hover:scale-105 hover:shadow-lg flex-shrink-0`}
+              className={`${badgeBg} rounded-2xl px-4 py-3 flex items-center gap-3 transition-opacity duration-200 hover:opacity-80 flex-shrink-0`}
             >
               {/* Иконка */}
               <div className="flex-shrink-0">

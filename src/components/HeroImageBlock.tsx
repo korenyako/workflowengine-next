@@ -83,7 +83,7 @@ const HeroImageBlock: React.FC<HeroImageBlockProps> = ({
             {secondaryCta && (
               <a
                 href={secondaryCta.href}
-                className={`px-8 py-3 text-lg border font-semibold rounded-lg transition ${
+                className={`px-8 py-3 text-lg border-2 font-semibold rounded-lg transition ${
                   isLightBg 
                     ? 'border-gray-300 text-gray-700 hover:bg-gray-50' 
                     : 'border-white text-slate-900 hover:bg-white hover:text-gray-900'

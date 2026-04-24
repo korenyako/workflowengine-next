@@ -36,7 +36,7 @@ const CenteredProcessBlock: React.FC<CenteredProcessBlockProps> = ({
 
       {/* Title */}
       <div className="text-center mb-6">
-        <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-slate-900 mb-6 whitespace-pre-wrap break-words">
+        <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading text-slate-900 mb-6 whitespace-pre-wrap break-words">
           {title}
         </h2>
       </div>

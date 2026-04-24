@@ -63,13 +63,13 @@ const Navigation: React.FC = () => {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex lg:items-center lg:space-x-4 ml-8">
+          <div className="hidden lg:flex lg:items-center lg:space-x-2 ml-8">
             {navLinks.map((link) =>
               link.external ? (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="px-3 py-2 rounded-lg transition-all duration-200 text-slate-700 hover:text-slate-900 hover:bg-slate-100"
+                  className="px-4 py-2 rounded-full transition-colors duration-200 text-slate-700 hover:bg-slate-100"
                 >
                   {link.title}
                 </a>
@@ -77,10 +77,8 @@ const Navigation: React.FC = () => {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-3 py-2 rounded-lg transition-all duration-200 ${
-                    isActive(link.href)
-                      ? 'text-blue-600 bg-slate-100'
-                      : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100'
+                  className={`px-4 py-2 rounded-full transition-colors duration-200 text-slate-700 ${
+                    isActive(link.href) ? 'bg-slate-100' : 'hover:bg-slate-100'
                   }`}
                 >
                   {link.title}
@@ -89,7 +87,7 @@ const Navigation: React.FC = () => {
             )}
             <a
               href="https://workflowengine.io/documentation/"
-              className="px-3 py-2 rounded-lg transition-all duration-200 text-slate-700 hover:text-slate-900 hover:bg-slate-100"
+              className="px-4 py-2 rounded-full transition-colors duration-200 text-slate-700 hover:bg-slate-100"
             >
               Documentation
             </a>
@@ -126,7 +124,7 @@ const Navigation: React.FC = () => {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="block px-4 py-3 text-slate-800 hover:bg-slate-100 rounded-lg"
+                  className="block px-4 py-3 text-slate-800 hover:bg-slate-100 rounded-full"
                 >
                   {link.title}
                 </a>
@@ -134,7 +132,7 @@ const Navigation: React.FC = () => {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="block px-4 py-3 text-slate-800 hover:bg-slate-100 rounded-lg"
+                  className="block px-4 py-3 text-slate-800 hover:bg-slate-100 rounded-full"
                 >
                   {link.title}
                 </Link>
@@ -142,7 +140,7 @@ const Navigation: React.FC = () => {
             )}
             <a
               href="https://workflowengine.io/documentation/"
-              className="block px-4 py-3 text-slate-800 hover:bg-slate-100 rounded-lg"
+              className="block px-4 py-3 text-slate-800 hover:bg-slate-100 rounded-full"
             >
               Documentation
             </a>

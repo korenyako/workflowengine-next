@@ -97,7 +97,7 @@
     min-height: 2em;
     padding: 0.75rem 1rem;
     color: white;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-inter), 'Inter', sans-serif;
     font-weight: 400;
     font-size: 16px;
 }
@@ -154,7 +154,7 @@
 
 .orgChartOrganizationalChart > li > ol > li > div {
     background-color: #1f2937 !important; /* bg-gray-800 как в меню Resources */
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-inter), 'Inter', sans-serif;
     font-weight: 400;
     font-size: 16px;
     color: #9ca3af !important; /* text-gray-400 как в меню Resources */
@@ -182,7 +182,7 @@
 /* TERTIARY - элементы третьего уровня (стиль как меню Resources) */
 .orgChartOrganizationalChart > li > ol > li > ol > li > div {
     background-color: #1f2937 !important; /* bg-gray-800 как в меню Resources */
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-inter), 'Inter', sans-serif;
     font-weight: 400;
     font-size: 16px;
     color: #9ca3af !important; /* text-gray-400 как в меню Resources */
@@ -199,7 +199,7 @@
 /* QUATERNARY */
 .orgChartOrganizationalChart > li > ol > li > ol > li > ol > li > div {
     background-color: #2b2b2b;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-inter), 'Inter', sans-serif;
     font-weight: 400;
     font-size: 16px;
 }
@@ -207,7 +207,7 @@
 /* QUINARY */
 .orgChartOrganizationalChart > li > ol > li > ol > li > ol > li > ol > li > div {
     background-color: #2b2b2b;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-inter), 'Inter', sans-serif;
     font-weight: 400;
     font-size: 16px;
 }

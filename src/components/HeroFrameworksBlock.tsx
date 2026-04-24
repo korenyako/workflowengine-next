@@ -126,7 +126,7 @@ const HeroFrameworksBlock: React.FC<HeroFrameworksBlockProps> = ({
       <div className="max-w-6xl mx-auto">
         {/* Hero text */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading font-semibold text-slate-900 mb-4 leading-snug whitespace-pre-wrap break-words" style={{ wordBreak: 'keep-all' }}>
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading text-slate-900 mb-4 leading-snug whitespace-pre-wrap break-words" style={{ wordBreak: 'keep-all' }}>
             {title.replace(/\s+for\s+/g, ' for\u00A0')}
           </h1>
           <h3 className="text-lg sm:text-xl text-blue-600 font-subtitle font-semibold whitespace-pre-wrap break-words">

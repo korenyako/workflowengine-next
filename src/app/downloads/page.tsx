@@ -54,10 +54,10 @@ export default function DownloadsPage() {
       {/* Hero */}
       <section className="py-12 text-center">
         <div className="max-w-4xl mx-auto px-4">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading font-semibold text-slate-900 mb-4 leading-snug">
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading text-slate-900 mb-4 leading-snug">
             Downloads
           </h1>
-          <h3 className="text-lg sm:text-xl text-blue-600 mb-8 font-subtitle font-semibold">
+          <h3 className="text-lg sm:text-xl text-[#4286F4] mb-8 font-subtitle font-semibold">
             Latest builds, samples, and packages
           </h3>
           <p className="text-xl text-slate-600">
@@ -70,10 +70,10 @@ export default function DownloadsPage() {
       <section className="py-12 px-4 sm:px-8">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-10">
-            <h3 className="text-lg font-subtitle font-semibold tracking-wide text-blue-600 mb-2">Binaries</h3>
-            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-slate-900">Product downloads</h2>
+            <h3 className="text-lg font-subtitle font-semibold tracking-wide text-[#4286F4] mb-2">Binaries</h3>
+            <h2 className="text-3xl lg:text-4xl font-heading text-slate-900">Product downloads</h2>
           </div>
-          <div className="border border-slate-200 rounded-xl overflow-hidden bg-white">
+          <div className="border-2 border-slate-200 rounded-3xl overflow-hidden">
             <table className="w-full text-left">
               <thead className="bg-slate-50 text-slate-900 text-sm uppercase tracking-wide">
                 <tr>
@@ -97,7 +97,7 @@ export default function DownloadsPage() {
                         href={b.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+                        className="inline-flex items-center px-4 py-2 bg-[#4286F4] text-white font-semibold rounded-full hover:bg-[#2e6ad4] transition-colors"
                       >
                         Download
                       </a>
@@ -114,15 +114,15 @@ export default function DownloadsPage() {
       <section className="py-12 px-4 sm:px-8">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-10">
-            <h3 className="text-lg font-subtitle font-semibold tracking-wide text-blue-600 mb-2">NuGet packages</h3>
-            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-slate-900">Core library & providers</h2>
+            <h3 className="text-lg font-subtitle font-semibold tracking-wide text-[#4286F4] mb-2">NuGet packages</h3>
+            <h2 className="text-3xl lg:text-4xl font-heading text-slate-900">Core library & providers</h2>
             <p className="text-lg text-slate-600 mt-4">
               All packages are published to{' '}
               <a
                 href="https://www.nuget.org/profiles/OptimaJet"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-700"
+                className="text-[#4286F4] hover:text-[#2e6ad4]"
               >
                 nuget.org/profiles/OptimaJet
               </a>
@@ -133,7 +133,7 @@ export default function DownloadsPage() {
             {nugetPackages.map((p) => (
               <li
                 key={p.name}
-                className="flex items-center justify-between bg-white border border-slate-200 rounded-lg px-6 py-4"
+                className="flex items-center justify-between border-2 border-slate-200 rounded-2xl px-6 py-4"
               >
                 <div>
                   <code className="font-mono text-slate-900 font-semibold">{p.name}</code>
@@ -143,7 +143,7 @@ export default function DownloadsPage() {
                   href={`https://www.nuget.org/packages/${p.name}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 hover:text-blue-700 text-sm font-semibold"
+                  className="text-[#4286F4] hover:text-[#2e6ad4] text-sm font-semibold"
                 >
                   View on NuGet →
                 </a>
@@ -157,8 +157,8 @@ export default function DownloadsPage() {
       <section className="py-12 px-4 sm:px-8">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-10">
-            <h3 className="text-lg font-subtitle font-semibold tracking-wide text-blue-600 mb-2">Designer</h3>
-            <h2 className="text-3xl lg:text-4xl font-heading font-bold text-slate-900">Designer frontend packages</h2>
+            <h3 className="text-lg font-subtitle font-semibold tracking-wide text-[#4286F4] mb-2">Designer</h3>
+            <h2 className="text-3xl lg:text-4xl font-heading text-slate-900">Designer frontend packages</h2>
             <p className="text-lg text-slate-600 mt-4">
               Embed the Workflow Designer directly in your web application.
             </p>
@@ -167,7 +167,7 @@ export default function DownloadsPage() {
             {designerPackages.map((p) => (
               <li
                 key={p.name}
-                className="flex items-center justify-between bg-white border border-slate-200 rounded-lg px-6 py-4"
+                className="flex items-center justify-between border-2 border-slate-200 rounded-2xl px-6 py-4"
               >
                 <div>
                   <code className="font-mono text-slate-900 font-semibold">{p.name}</code>
@@ -177,7 +177,7 @@ export default function DownloadsPage() {
                   href={`https://www.npmjs.com/package/${p.name}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 hover:text-blue-700 text-sm font-semibold"
+                  className="text-[#4286F4] hover:text-[#2e6ad4] text-sm font-semibold"
                 >
                   View on npm →
                 </a>
@@ -190,7 +190,7 @@ export default function DownloadsPage() {
       {/* Contact CTA */}
       <section className="py-16 px-4 sm:px-8">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-2xl lg:text-3xl font-heading font-bold text-slate-900 mb-4">
+          <h2 className="text-2xl lg:text-3xl font-heading text-slate-900 mb-4">
             Need an enterprise build or custom packaging?
           </h2>
           <p className="text-lg text-slate-600 mb-8">
@@ -198,7 +198,7 @@ export default function DownloadsPage() {
           </p>
           <a
             href="/contacts/"
-            className="inline-flex items-center px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+            className="inline-flex items-center px-8 py-4 bg-[#4286F4] text-white font-semibold rounded-full hover:bg-[#2e6ad4] transition-colors"
           >
             Contact Sales
           </a>

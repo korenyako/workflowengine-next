@@ -2,18 +2,198 @@
   {
     "type": "HeroBlock",
     "props": {
-      "title": "Workflow Engine",
-      "chips": [
-        { "icon": "mouse-pointer", "label": "HTML5 Designer" },
-        { "icon": "settings-2", "label": "Customizable" },
-        { "icon": "git-branch", "label": "Parallel Branching" },
-        { "icon": "history", "label": "Versioning" }
+      "title": "Embed Workflow Automation Into Your .NET App",
+      "reviewBadges": [
+        {
+          "logo": "/logos/G2.svg",
+          "sourceLabel": "G2",
+          "rating": 4.7,
+          "href": "#reviews"
+        },
+        {
+          "logo": "/logos/trustpilot.svg",
+          "sourceLabel": "Trustpilot",
+          "rating": 4.5,
+          "href": "#reviews"
+        }
       ],
-      "description": "Workflow Engine is the perfect solution for managing business entity life cycles. Use the embedded drag & drop designer to create processes in your system and manage workflows via a simple API — integrated as a .NET component or via REST.",
+      "description": "A drag & drop designer and a simple API — everything you need to build, run, and manage business processes inside your application.",
+      "highlights": [
+        "Visual Designer",
+        ".NET Native",
+        "Parallel Branching",
+        "Versioning"
+      ],
       "primaryCta": {
-        "text": "Why Use Workflow Engine",
-        "href": "https://workflowengine.io/blog/why-use-a-workflow-engine/"
+        "text": "Getting Started",
+        "href": "https://workflowengine.io/documentation/",
+        "size": "xl"
+      },
+      "secondaryCta": {
+        "text": "Live Demo",
+        "href": "#",
+        "size": "xl"
       }
+    }
+  },
+  {
+    "type": "DesignerScreenshotBlock",
+    "props": {
+      "image": {
+        "src": "/photos/screenshots/scheme-wfe.png",
+        "alt": "Workflow Engine HTML5 drag & drop designer"
+      }
+    }
+  },
+  {
+    "type": "DetailedFeatureGridBlock",
+    "props": {
+      "surface": "card",
+      "subtitle": "Use cases",
+      "title": "Built for Real Business Scenarios",
+      "text": "From simple approvals to long-running orchestrations — Workflow Engine handles the full spectrum of business process automation.",
+      "layout": "tabs",
+      "features": [
+        {
+          "icon": "file-pen",
+          "tabLabel": "Approval Workflow",
+          "title": "Approval Workflow",
+          "text": "Business processes where someone needs to sign off at a specific stage. An approval workflow is a sequence of tasks that routes data through human decisions — approvals, rejections, or escalations.",
+          "benefit": "Cut approval cycles from days to hours. Replace email chains and status-check meetings with automated routing that notifies the right person at the right time.",
+          "details": "Automates any process involving manager or executive decisions: purchase order approvals, contract reviews, document sign-offs, budget authorizations, and employee onboarding steps."
+        },
+        {
+          "icon": "database",
+          "tabLabel": "Data Processing",
+          "title": "Data Processing",
+          "text": "Sequential or parallel operations on data, files, and documents. Every step is traceable, auditable, and visible in the workflow designer.",
+          "benefit": "Build data pipelines visually — and modify them in minutes, not sprints. See the entire processing flow at a glance instead of digging through code.",
+          "details": "Executes actions on triggers or events. Processes incoming data from external systems and IoT devices. Handles file operations (create, read, write, move, delete) and HTTP calls (POST/GET requests)."
+        },
+        {
+          "icon": "clock",
+          "tabLabel": "Long-Running Process",
+          "title": "Long-Running Process",
+          "text": "Persistent workflows that can run for hours, days, or months. The workflow sends a request to an external system, saves its state, and waits — picking up exactly where it left off when a response arrives.",
+          "benefit": "Run thousands of concurrent long-lived processes without worrying about state loss. Processes survive server restarts, support horizontal scaling, and are fail-safe by design.",
+          "details": "Automates any process that involves waiting for external responses or actions: order fulfillment tracking, multi-stage onboarding, SLA-based escalations, recurring timer-based jobs, and never-ending monitoring workflows."
+        }
+      ],
+      "testimonial": {
+        "photo": "/photos/marcio-lima.jpg",
+        "logo": "/logos/winecreate.svg",
+        "text": "The workflow is super flexible, visual and easy to extend, allowing us to customize it to our needs in a timely fashion.",
+        "name": "Márcio Lima",
+        "title": "Senior Software Engineer",
+        "company": "Wine.Create"
+      }
+    }
+  },
+  {
+    "type": "FeaturesGridBlock",
+    "props": {
+      "title": "Why Teams Choose Workflow Engine",
+      "description": "A complete toolkit for building, running, and managing business workflows inside your .NET applications.",
+      "centered": false,
+      "iconSize": 48,
+      "features": [
+        {
+          "icon": "mouse-pointer-click",
+          "title": "Visual Drag & Drop Designer",
+          "text": "Design and edit workflows in the browser — no IDE required. Business users can modify process schemes without touching code."
+        },
+        {
+          "icon": "waypoints",
+          "title": "No-Code Scheme Editing",
+          "text": "Built-in elements like Activity, Transition, Action, Actor, Command, and Timer let non-developers build and adjust process flows on their own."
+        },
+        {
+          "icon": "timer",
+          "title": "Live Process Updates",
+          "text": "Update running workflows without downtime. Choose whether active processes continue on the old scheme or migrate to the new one automatically."
+        },
+        {
+          "icon": "branch",
+          "title": "Parallel Branching",
+          "text": "Split workflows into concurrent branches that execute tasks in parallel — then merge results back into a single flow."
+        },
+        {
+          "icon": "xml",
+          "title": "Portable Workflows",
+          "text": "Export and import workflow schemes as XML. Share configurations across projects, environments, or teams."
+        },
+        {
+          "icon": "local",
+          "title": "Multi-Language UI",
+          "text": "Ship the designer interface in any language. Built-in localization support for global teams and international products."
+        }
+      ]
+    }
+  },
+  {
+    "type": "CustomerStoryBlock",
+    "props": {
+      "logo": "/logos/bfsaul.png",
+      "logoAlt": "B.F. Saul",
+      "title": "How B.F. Saul automated 500+ processes and replaced SharePoint",
+      "metrics": [
+        { "value": "1 year", "label": "Dev time saved" },
+        { "value": "60%", "label": "Cost reduction" }
+      ],
+      "image": "/photos/stories/bf-saul.webp",
+      "imageAlt": "B.F. Saul case study",
+      "href": "/blog/bf-saul/",
+      "linkText": "Read story",
+      "imageSide": "right"
+    }
+  },
+  {
+    "type": "ProductsGridBlock",
+    "props": {
+      "surface": "card",
+      "title": "Which Product Do I Need?",
+      "description": "Three ways to run Workflow Engine, depending on your stack and project stage.",
+      "products": [
+        {
+          "icon": "/logos/workflowengine-square.svg",
+          "title": "Workflow Engine",
+          "description": "An embedded component designed to be fully integrated into your .NET or .NET Core project.",
+          "whyChoose": "The right choice if you already have a .NET information system.",
+          "href": "/features/"
+        },
+        {
+          "icon": "/logos/workflowserver-square.svg",
+          "title": "Workflow Server",
+          "description": "A stand-alone cross-platform application with an admin panel and integration API. Supports Windows, macOS, Linux, and Docker.",
+          "whyChoose": "The right choice if you need a ready-to-use cross-platform workflow solution.",
+          "href": "/server/"
+        },
+        {
+          "icon": "/logos/dwkit-square.svg",
+          "title": "DWKit",
+          "description": "A low-code platform to build your workflow process from scratch and get going. Start with a Proof of Concept.",
+          "whyChoose": "The right choice if you need to develop a workflow solution from scratch.",
+          "href": "https://dwkit.com/"
+        }
+      ]
+    }
+  },
+  {
+    "type": "CustomerStoryBlock",
+    "props": {
+      "logo": "/logos/lks-next.svg",
+      "logoAlt": "LKS Next",
+      "logoHeight": "h-16",
+      "title": "How LKS Next unified 500+ employees across 4 countries",
+      "metrics": [
+        { "value": "€100K", "label": "Saved annually" },
+        { "value": "50,000", "label": "Workflows automated" }
+      ],
+      "image": "/photos/stories/lks-next.webp",
+      "imageAlt": "LKS Next case study",
+      "href": "/blog/lks-next/",
+      "linkText": "Read story",
+      "imageSide": "left"
     }
   },
   {
@@ -24,121 +204,59 @@
     }
   },
   {
-    "type": "DetailedFeatureGridBlock",
+    "type": "ReviewsStripBlock",
     "props": {
-      "subtitle": "Use cases",
-      "title": "Supported Workflow Processes",
-      "text": "From simple approvals to long-running orchestrations — Workflow Engine covers the full spectrum of business process scenarios.",
-      "features": [
+      "anchor": "reviews",
+      "subtitle": "Independent reviews",
+      "title": "What verified customers say",
+      "reviews": [
         {
-          "icon": "/icons/edit.svg",
-          "title": "Document Approval / Human Approval",
-          "text": "Common business processes that require someone to sign off on the data at a certain stage. An approval workflow is a logical sequence of tasks, including human approvals and rejections, to process data."
+          "source": "/logos/G2.svg",
+          "href": "https://www.g2.com/sellers/optimajet",
+          "rating": 5,
+          "text": "The HTML5 designer is exceptional. The product offers excellent plugins and documentation, along with a wide range of customization possibilities.",
+          "name": "Lavrentios Penklidis",
+          "title": "CBDO, Adnow Media"
         },
         {
-          "icon": "/icons/database-table.svg",
-          "title": "Data Processing",
-          "text": "Data processing is a series of operations carried out on data, files, and documents. These operations are traceable and can be organized sequentially or in parallel."
+          "source": "/logos/G2.svg",
+          "href": "https://www.g2.com/sellers/optimajet",
+          "rating": 5,
+          "text": "We found it very easy to embed it into our ASP.net core based solution. The documentation was very good and the sample was comprehensive.",
+          "name": "Sanjeev Musafir",
+          "title": "Partner, Dataview Consulting"
         },
         {
-          "icon": "/icons/layers.svg",
-          "title": "Long Running Process",
-          "text": "A persistent workflow that can last for hours, days, or months. For example, the workflow sends an order to an external system and waits for a response."
-        }
-      ]
-    }
-  },
-  {
-    "type": "FeaturesGridBlock",
-    "props": {
-      "title": "Core Features",
-      "description": "Workflow Engine supports SQL and NoSQL databases. You can also choose providers for MS SQL Server, SQL Azure, PostgreSQL, Oracle, MySQL, MongoDB, CosmosDB. Workflow Engine and Workflow Server are unique solutions with the widest range of features that allow you to develop executable workflows of any complexity:",
-      "centered": true,
-      "iconSize": 48,
-      "features": [
-        {
-          "icon": "/icons/dragndrop.svg",
-          "title": "HTML5 visual designer",
-          "text": "Design, model, edit and visualize your workflows in a web-browser."
+          "source": "/logos/G2.svg",
+          "href": "https://www.g2.com/sellers/optimajet",
+          "rating": 5,
+          "text": "Excellent feature set. Good support and documentation. We were satisfied with everything, no real flaws identified.",
+          "name": "Vlad Shchelkunov",
+          "title": "Founder, Bonvivants"
         },
         {
-          "icon": "/icons/layers.svg",
-          "title": "Business-oriented scheme elements",
-          "text": "Available elements include: Activity, Transition, Action, Actor, Command, and Timer. Your users will be able to change process schemes by themselves."
+          "source": "/logos/trustpilot.svg",
+          "href": "https://www.trustpilot.com/review/optimajet.com",
+          "rating": 5,
+          "text": "It is robust and get the job done. Designing workflow is easy to use and interface is user friendly. Overall very happy as a customer.",
+          "name": "Manish Hingorani",
+          "title": "Head of IT, Acer Computer Australia"
         },
         {
-          "icon": "/icons/edit.svg",
-          "title": "Process scheme update",
-          "text": "There are two types of running process scheme update: the old process uses the old scheme and the old process is updated in a new scheme."
+          "source": "/logos/trustpilot.svg",
+          "href": "https://www.trustpilot.com/review/optimajet.com",
+          "rating": 5,
+          "text": "Integrating with existing application was very easy. Documentation was very thorough, and support was helpful.",
+          "name": "Scott Goodin",
+          "title": "VP Software Engineering, TADERA"
         },
         {
-          "icon": "/icons/layout.svg",
-          "title": "Parallel workflow support",
-          "text": "Split workflows into branches that execute tasks concurrently."
-        },
-        {
-          "icon": "/icons/code.svg",
-          "title": "XML import/export",
-          "text": "Export your workflows for further reuse and sharing."
-        },
-        {
-          "icon": "/icons/language.svg",
-          "title": "Localization support",
-          "text": "Translate the user interface to various languages."
-        }
-      ]
-    }
-  },
-  {
-    "type": "ProductsGridBlock",
-    "props": {
-      "title": "Which Product Do I Need?",
-      "description": "Three ways to run Workflow Engine, depending on your stack and project stage.",
-      "products": [
-        {
-          "icon": "",
-          "title": "Workflow Engine",
-          "description": "An embedded component designed to be fully integrated into your .NET or .NET Core project. The right choice if you already have a .NET information system.",
-          "href": "/features/"
-        },
-        {
-          "icon": "",
-          "title": "Workflow Server",
-          "description": "A stand-alone cross-platform application with an admin panel and integration API. Supports Windows, macOS, Linux, and Docker. The right choice if you need a ready-to-use cross-platform workflow solution.",
-          "href": "/server/"
-        },
-        {
-          "icon": "",
-          "title": "DWKit",
-          "description": "A low-code platform to build your workflow process from scratch and get going. Start with a Proof of Concept. The right choice if you need to develop a workflow solution from scratch.",
-          "href": "https://dwkit.com/"
-        }
-      ]
-    }
-  },
-  {
-    "type": "CustomerTestimonialsBlock",
-    "props": {
-      "subtitle": "What customers say",
-      "title": "Trusted in production",
-      "testimonials": [
-        {
-          "text": "Workflow Engine offers exactly what the name suggests, including robust performance and flexibility.",
-          "name": "Eugene Kouroptev",
-          "title": "VP of Product Development",
-          "company": "ProcessMAP"
-        },
-        {
-          "text": "Workflow Engine was the best fit for our needs. It provides a flexible and extensible architecture, a powerful workflow engine and an intuitive visual workflow designer.",
-          "name": "Mark West",
-          "title": "CEO",
-          "company": "Innovum Technologies"
-        },
-        {
-          "text": "The workflow is super flexible, visual and easy to extend, allowing us to customize it to our needs.",
-          "name": "Márcio Lima",
-          "title": "Senior Software Engineer",
-          "company": "Wine.Create"
+          "source": "/logos/trustpilot.svg",
+          "href": "https://www.trustpilot.com/review/optimajet.com",
+          "rating": 5,
+          "text": "OptimaJet provides a robust and versatile software product and backs it up with excellent support. Adding the workflow engine has been a tremendous value to our company.",
+          "name": "David Nickelsen",
+          "title": "Director of Software, CivicServe"
         }
       ]
     }

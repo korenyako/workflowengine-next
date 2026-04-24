@@ -2,43 +2,48 @@
   {
     "type": "HeroBlock",
     "props": {
-      "title": "Workflow Server",
-      "subtitle": "Ready-to-use workflow engine for any stack",
+      "title": "Ready-to-use workflow engine for any stack",
       "description": "Workflow Server is a ready-to-use Workflow Engine-based application that you can deploy into your infrastructure. Integrate with any system over REST API — Windows, Linux, macOS, Docker.",
       "primaryCta": {
         "text": "Download",
-        "href": "/downloads/"
+        "href": "/downloads/",
+        "size": "lg"
       },
       "secondaryCta": {
         "text": "Contact Sales",
-        "href": "/contacts/"
+        "href": "/contacts/",
+        "size": "lg"
       }
     }
   },
   {
-    "type": "DetailedFeatureGridBlock",
+    "type": "FeaturesGridBlock",
     "props": {
+      "surface": "card",
       "subtitle": "Why Workflow Server",
       "title": "Run workflows without embedding code",
-      "text": "Everything Workflow Engine offers, wrapped in a deployable application with a REST API and an admin panel.",
+      "description": "Everything Workflow Engine offers, wrapped in a deployable application with a REST API and an admin panel.",
+      "centered": false,
+      "iconSize": 48,
+      "columns": 2,
       "features": [
         {
-          "icon": "/icons/ready.svg",
+          "icon": "rocket",
           "title": "Ready-to-use",
           "text": "100% ready to run. Launch it and start creating processes via HTTP API straight away — no host application required."
         },
         {
-          "icon": "/icons/features.svg",
+          "icon": "clock",
           "title": "Full-featured & high performance",
           "text": "Covers every workflow case — including document approval — and delivers reliable performance under production load."
         },
         {
-          "icon": "/icons/backend.svg",
+          "icon": "server",
           "title": "REST API",
           "text": "Manage workflows with simple GET and POST requests. Process instance creation, command execution, state queries, inbox / outbox — all over HTTP."
         },
         {
-          "icon": "/icons/window.svg",
+          "icon": "monitor",
           "title": "Cross-platform",
           "text": "Runs on Windows, Linux, and macOS. Ships as a console application, Windows Service, or Docker container."
         }
@@ -46,56 +51,56 @@
     }
   },
   {
-    "type": "TwoColumnDetailedFeaturesBlock",
+    "type": "FeaturesGridBlock",
     "props": {
+      "surface": "card",
       "subtitle": "API",
       "title": "Two APIs, one server",
-      "columns": [
+      "description": "Drive workflows from any system and react to state changes anywhere in your stack.",
+      "centered": true,
+      "iconSize": 48,
+      "columns": 2,
+      "features": [
         {
-          "items": [
-            {
-              "icon": "/icons/backend.svg",
-              "title": "Workflow API",
-              "text": "Create process instances, execute commands, query state, and manage inbox / outbox folders — the full lifecycle of a running workflow, over HTTP."
-            }
-          ]
+          "icon": "server",
+          "title": "Workflow API",
+          "text": "Create process instances, execute commands, query state, and manage inbox / outbox folders — the full lifecycle of a running workflow, over HTTP."
         },
         {
-          "items": [
-            {
-              "icon": "/icons/notification.svg",
-              "title": "Callback API",
-              "text": "Wire Workflow Server into microservice architectures by pointing external URLs at event hooks: action and condition execution, status changes, and more."
-            }
-          ]
+          "icon": "webhook",
+          "title": "Callback API",
+          "text": "Wire Workflow Server into microservice architectures by pointing external URLs at event hooks: action and condition execution, status changes, and more."
         }
       ]
     }
   },
   {
-    "type": "DetailedFeatureGridBlock",
+    "type": "FeaturesGridBlock",
     "props": {
       "subtitle": "Requirements",
       "title": "System requirements",
-      "text": "Minimum specs for running Workflow Server in production.",
+      "description": "Minimum specs for running Workflow Server in production.",
+      "centered": false,
+      "iconSize": 48,
+      "columns": 2,
       "features": [
         {
-          "icon": "/icons/window.svg",
+          "icon": "monitor",
           "title": "Operating system",
           "text": "Windows, Linux, or macOS. Docker container deployment fully supported."
         },
         {
-          "icon": "/icons/database-table.svg",
+          "icon": "database",
           "title": "Supported databases",
           "text": "Microsoft SQL Server, PostgreSQL, Oracle, MySQL, and MongoDB."
         },
         {
-          "icon": "/icons/backend.svg",
+          "icon": "server",
           "title": "Minimum hardware",
           "text": "1 CPU core @ 1 GHz, 1 GB RAM, 5 GB disk. Scales horizontally to match your workload."
         },
         {
-          "icon": "/icons/layers.svg",
+          "icon": "layers",
           "title": "Application modes",
           "text": "Run as a standalone console application or as a Windows Service — choose whichever fits your deployment model."
         }

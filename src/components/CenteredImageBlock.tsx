@@ -30,7 +30,7 @@ const GradientButton: React.FC<GradientButtonProps> = ({ title, subtitle, href, 
         <div className="text-slate-900 font-body font-semibold text-xl mb-1">{title}</div>
         <div className="text-blue-600 hover:text-blue-700 transition-colors duration-200 flex items-center gap-2 text-lg">
           {subtitle.replace(' →', '')}
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 transition-all duration-200 group-hover:translate-x-1">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4">
             {/* Стрелка влево (по умолчанию) */}
             <path 
               d="m8.25 4.5 7.5 7.5-7.5 7.5" 
@@ -112,15 +112,15 @@ const CenteredImageBlock: React.FC<CenteredImageBlockProps> = ({
       style={anchor ? { scrollMarginTop: '100px' } : {}}
     >
       <div className="max-w-6xl mx-auto text-center">
-        {/* Подзаголовок */}
+        {/* Eyebrow (см. design-rules §typography) */}
         {subtitle && (
-          <h3 className="text-blue-600 text-lg font-subtitle font-semibold tracking-wide mb-4 whitespace-pre-wrap break-words">
+          <h3 className="text-sm uppercase tracking-[0.2em] font-mono font-medium text-[#4286F4] mb-4 whitespace-pre-wrap break-words">
             {subtitle}
           </h3>
         )}
         
         {/* Заголовок */}
-        <h2 className={`text-3xl lg:text-4xl xl:text-5xl font-heading font-bold ${titleColor} mb-6 whitespace-pre-wrap break-words`}>
+        <h2 className={`text-3xl lg:text-4xl xl:text-5xl font-heading ${titleColor} mb-6 whitespace-pre-wrap break-words`}>
           {title}
         </h2>
         

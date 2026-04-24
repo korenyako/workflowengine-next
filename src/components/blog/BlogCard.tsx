@@ -19,15 +19,15 @@ export default function BlogCard({ post, size = 'small' }: BlogCardProps) {
       className="group block"
     >
       {post.cover && (
-        <div className={`overflow-hidden mb-4 ${size === 'large' ? 'aspect-[16/9]' : 'aspect-[16/10]'}`}>
+        <div className={`overflow-hidden rounded-3xl mb-4 ${size === 'large' ? 'aspect-[16/9]' : 'aspect-[16/10]'}`}>
           <img
             src={post.cover}
             alt={post.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-full object-cover group-hover:opacity-80 transition-opacity duration-300"
           />
         </div>
       )}
-      <h2 className={`font-heading font-semibold text-slate-900 mb-2  ${
+      <h2 className={`font-heading text-slate-900 mb-2  ${
         size === 'large' ? 'text-2xl lg:text-3xl' : 'text-lg lg:text-xl'
       }`}>
         {post.title}

@@ -97,7 +97,7 @@ export default async function BlogPostPage({
           <div className="flex-1 min-w-0">
             {/* Hero */}
             <div className="mb-16">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold tracking-tight mb-4">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading tracking-tight mb-4">
                 {post.title}
               </h1>
               <p className="text-2xl text-slate-600 mb-8 leading-relaxed font-light">{post.description}</p>
@@ -122,7 +122,7 @@ export default async function BlogPostPage({
               <img
                 src={post.cover}
                 alt={post.title}
-                className="w-full object-cover mb-12 max-h-[480px]"
+                className="w-full object-cover rounded-3xl mb-12 max-h-[480px]"
               />
             )}
 

@@ -44,7 +44,7 @@ const FormDemoBlock: React.FC<FormDemoBlockProps> = ({
       <section className="py-16 lg:py-24">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-slate-900 mb-4">
+            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading text-slate-900 mb-4">
               {title}
             </h2>
             {subtitle && (
@@ -56,7 +56,7 @@ const FormDemoBlock: React.FC<FormDemoBlockProps> = ({
               {description}
             </p>
           </div>
-          <div className="rounded-2xl border border-slate-300 bg-slate-50 p-12 text-center text-slate-500">
+          <div className="rounded-2xl border-2 border-slate-300 bg-slate-50 p-12 text-center text-slate-500">
             Demo placeholder
           </div>
           {secondDescription && (
@@ -89,7 +89,7 @@ const FormDemoBlock: React.FC<FormDemoBlockProps> = ({
                 {subtitle}
               </h3>
             )}
-            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-slate-900 mb-6">
+            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-heading text-slate-900 mb-6">
               {title}
             </h2>
             <p className="text-lg lg:text-xl text-slate-600 mb-8 leading-normal">
@@ -97,7 +97,7 @@ const FormDemoBlock: React.FC<FormDemoBlockProps> = ({
             </p>
           </div>
           <div className={formOrder}>
-            <div className="rounded-2xl border border-slate-300 bg-slate-50 p-12 text-center text-slate-500">
+            <div className="rounded-2xl border-2 border-slate-300 bg-slate-50 p-12 text-center text-slate-500">
               Demo placeholder
             </div>
           </div>

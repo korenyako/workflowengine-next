@@ -63,7 +63,7 @@ const HeroWithCodeBlock: React.FC<HeroWithCodeBlockProps> = ({
           const linkTarget = (typeof anchorTarget === 'string' && anchorTarget.length) ? anchorTarget : undefined;
           return (
             <h1
-              className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading font-semibold text-slate-900 mb-4 leading-snug whitespace-pre-wrap break-words"
+              className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading text-slate-900 mb-4 leading-snug whitespace-pre-wrap break-words"
               style={{ wordBreak: 'keep-all' }}
             >
               <a

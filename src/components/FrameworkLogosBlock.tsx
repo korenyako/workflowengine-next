@@ -135,7 +135,7 @@ const FrameworkLogosBlock: React.FC<FrameworkLogosBlockProps> = ({
         {/* Заголовок */}
         <div className="text-center mb-12">
           {title && (
-            <h2 className={`text-4xl sm:text-5xl lg:text-6xl font-heading font-semibold mb-4 leading-tight ${titleColor}`}>
+            <h2 className={`text-4xl sm:text-5xl lg:text-6xl font-heading mb-4 leading-tight ${titleColor}`}>
               {title}
             </h2>
           )}

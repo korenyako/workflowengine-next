@@ -1,13 +1,12 @@
 import React from "react";
 import Link from "next/link";
-import LibraryIcon from "./icons/LibraryIcon";
-import ComponentsIcon from "./icons/ComponentsIcon";
-import DragDropEditorIcon from "./icons/DragDropEditorIcon";
+import { ArrowRight } from "lucide-react";
 
 interface Product {
-  icon: string; // путь к SVG иконке или имя React компонента
+  icon: string;
   title: string;
   description: string;
+  whyChoose?: string;
   href?: string;
 }
 
@@ -22,24 +21,13 @@ const ProductsGridBlock: React.FC<ProductsGridBlockProps> = ({
   title,
   description,
   products,
-  blockBg,
 }) => {
-  // Определяем, светлый ли фон
-  const isLightBg = blockBg === '#ffffff' || blockBg === 'white';
-  
-  // Цвета для текста в зависимости от фона
-  const titleColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
-  const descriptionColor = isLightBg ? 'text-gray-600' : 'text-slate-600';
-  const cardBg = isLightBg ? 'bg-white/50' : 'bg-slate-100'; // Полупрозрачный фон как в FAQ
-  const cardTitleColor = isLightBg ? 'text-gray-900' : 'text-slate-900';
-  const cardTextColor = isLightBg ? 'text-gray-600' : 'text-slate-600';
-
   // Функция для определения бейджа на основе названия продукта
   const getProductBadge = (productTitle: string) => {
     if (productTitle.includes('React Form Library')) {
-      return { text: 'Core', color: 'border border-gray-300 text-slate-900' };
+      return { text: 'Core', color: 'border-2 border-gray-300 text-slate-900' };
     } else if (productTitle.includes('React Form Components Library')) {
-      return { text: 'Components', color: 'border border-gray-300 text-slate-900' };
+      return { text: 'Components', color: 'border-2 border-gray-300 text-slate-900' };
     } else if (productTitle.includes('React Form Builder Library')) {
       return { text: 'Form Builder', color: 'bg-gradient-to-r from-[#93d8ff] to-[#85afff] text-gray-900' };
     }
@@ -49,51 +37,48 @@ const ProductsGridBlock: React.FC<ProductsGridBlockProps> = ({
   return (
     <section className="py-16 px-4 sm:px-8">
       <div className="max-w-6xl mx-auto text-center mb-16">
-        <h2 className={`text-3xl lg:text-4xl font-bold mb-6 ${titleColor} whitespace-pre-wrap break-words`}>{title}</h2>
-        <p className={`text-lg lg:text-xl max-w-4xl mx-auto ${descriptionColor} whitespace-pre-wrap break-words`}>{description}</p>
+        <h2 className="text-4xl lg:text-5xl xl:text-6xl font-heading text-slate-900 mb-6 whitespace-pre-wrap break-words">{title}</h2>
+        <p className="text-xl text-slate-600 max-w-4xl mx-auto whitespace-pre-wrap break-words">{description}</p>
       </div>
-      
+
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {products.map((product, idx) => {
           const badge = getProductBadge(product.title);
-          
+
           return (
             <Link
               key={idx}
               href={product.href && product.href.startsWith('/') && product.href !== '/' && !product.href.includes('#') && !product.href.includes('?') && !product.href.endsWith('/') ? product.href + '/' : (product.href || '#')}
-              className={`${cardBg} rounded-xl p-8 flex flex-col items-center text-center h-full transition-all duration-200 hover:scale-105 hover:shadow-lg cursor-pointer`}
+              className="flex flex-col h-full transition-opacity duration-200 hover:opacity-80 cursor-pointer"
             >
-              {/* Бейдж продукта */}
-              {badge && (
-                <div className={`mb-6 px-4 py-2 rounded-full text-base font-semibold ${badge.color}`}>
-                  {badge.text}
+              <div className="bg-white rounded-3xl p-8 flex flex-col items-center text-center flex-1 relative z-10">
+                {badge && (
+                  <div className={`mb-6 px-4 py-2 rounded-full text-base font-semibold ${badge.color}`}>
+                    {badge.text}
+                  </div>
+                )}
+
+                {product.icon && product.icon.startsWith('/') && (
+                  <img src={product.icon} alt="" className="w-20 h-20 mb-4" />
+                )}
+
+                <h3 className="text-2xl lg:text-3xl font-heading text-slate-900 mb-3 whitespace-pre-line break-words">
+                  {product.title
+                    .replace('React Form Library', 'React\nForm Library')
+                    .replace('React Form Builder Library', 'React\nForm Builder\nLibrary')
+                    .replace('React Form Components Library', 'React Form\nComponents Library')
+                  }
+                </h3>
+
+                <p className="text-lg text-slate-600 whitespace-pre-wrap break-words">{product.description}</p>
+              </div>
+
+              {product.whyChoose && (
+                <div className="bg-[#4286F4]/10 text-[#4286F4] font-semibold rounded-2xl -mt-8 pt-12 pb-4 px-5 text-sm leading-relaxed relative z-0 flex items-start gap-2 text-left">
+                  <ArrowRight className="w-4 h-4 flex-shrink-0 mt-0.5" aria-hidden />
+                  <span>{product.whyChoose}</span>
                 </div>
               )}
-              
-              {/* Иконка продукта - скрыта */}
-              {/* <div className="mb-6 w-12 h-12">
-                {product.icon === 'LibraryIcon' && <LibraryIcon size={48} />}
-                {product.icon === 'ComponentsIcon' && <ComponentsIcon size={48} />}
-                {product.icon === 'DragDropEditorIcon' && <DragDropEditorIcon size={48} />}
-                {!product.icon.startsWith('/') && !['LibraryIcon', 'ComponentsIcon', 'DragDropEditorIcon'].includes(product.icon) && (
-                  <img src={product.icon} alt="" className="w-12 h-12" style={{ filter: 'brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(246deg) brightness(104%) contrast(97%)' }} />
-                )}
-              </div> */}
-              
-              {/* Название продукта */}
-              <h3 
-                className="font-heading font-semibold tracking-wide mb-4 whitespace-pre-line break-words text-slate-900"
-                style={{ fontSize: '2rem' }} // Увеличил с 1.5rem до 2rem
-              >
-                {product.title
-                  .replace('React Form Library', 'React\nForm Library')
-                  .replace('React Form Builder Library', 'React\nForm Builder\nLibrary')
-                  .replace('React Form Components Library', 'React Form\nComponents Library')
-                }
-              </h3>
-              
-              {/* Описание продукта */}
-              <p className={`text-lg lg:text-xl ${isLightBg ? 'text-gray-600' : 'text-slate-600'} whitespace-pre-wrap break-words leading-normal`}>{product.description}</p>
             </Link>
           );
         })}

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter, Poppins, Space_Grotesk, JetBrains_Mono } from 'next/font/google'
+import { DM_Sans, Inter, JetBrains_Mono } from 'next/font/google'
 import '@/styles/globals.css'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
@@ -15,17 +15,10 @@ const inter = Inter({
   display: 'swap',
 })
 
-const poppins = Poppins({
-  weight: ['500', '600', '700', '800'],
+const dmSans = DM_Sans({
+  axes: ['opsz'],
   subsets: ['latin'],
-  variable: '--font-poppins',
-  display: 'swap',
-})
-
-const spaceGrotesk = Space_Grotesk({
-  weight: ['400', '500', '600'],
-  subsets: ['latin'],
-  variable: '--font-space-grotesk',
+  variable: '--font-dm-sans',
   display: 'swap',
 })
 
@@ -58,7 +51,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${poppins.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+      className={`${inter.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}
       data-mantine-color-scheme="light"
       suppressHydrationWarning
     >

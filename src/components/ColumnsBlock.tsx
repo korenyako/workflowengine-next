@@ -43,7 +43,7 @@ const ColumnsBlock: React.FC<ColumnsBlockProps> = ({
               </h3>
             )}
             {title && (
-              <h2 className={`text-3xl lg:text-4xl xl:text-5xl font-heading font-bold ${textColor} mb-6`}>
+              <h2 className={`text-3xl lg:text-4xl xl:text-5xl font-heading ${textColor} mb-6`}>
                 {title}
               </h2>
             )}
@@ -55,12 +55,12 @@ const ColumnsBlock: React.FC<ColumnsBlockProps> = ({
           {displayColumns.map((column, index) => (
             <div key={index} className="group">
               {column.href ? (
-                <a 
-                  href={column.href} 
-                  className="block h-full p-6 lg:p-8 rounded-lg border border-gray-200 dark:border-slate-300 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-200 hover:shadow-lg"
+                <a
+                  href={column.href}
+                  className="block h-full p-6 lg:p-8 rounded-3xl border-2 border-gray-200 dark:border-slate-300 transition-opacity duration-200 hover:opacity-80"
                 >
                   <div className="h-full flex flex-col">
-                    <h3 className={`text-xl lg:text-2xl font-heading font-bold ${textColor} mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-700 transition-colors duration-200`}>
+                    <h3 className={`text-xl lg:text-2xl font-heading ${textColor} mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-700 transition-colors duration-200`}>
                       {column.title}
                     </h3>
                     <p className={`text-base lg:text-lg ${descriptionColor} leading-relaxed flex-grow`}>
@@ -74,7 +74,7 @@ const ColumnsBlock: React.FC<ColumnsBlockProps> = ({
                         viewBox="0 0 24 24" 
                         fill="none" 
                         xmlns="http://www.w3.org/2000/svg" 
-                        className="ml-2 w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+                        className="ml-2 w-4 h-4"
                       >
                         <path 
                           d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" 
@@ -88,9 +88,9 @@ const ColumnsBlock: React.FC<ColumnsBlockProps> = ({
                   </div>
                 </a>
               ) : (
-                <div className="h-full p-6 lg:p-8 rounded-lg border border-gray-200 dark:border-slate-300">
+                <div className="h-full p-6 lg:p-8 rounded-3xl border-2 border-gray-200 dark:border-slate-300">
                   <div className="h-full flex flex-col">
-                    <h3 className={`text-xl lg:text-2xl font-heading font-bold ${textColor} mb-4`}>
+                    <h3 className={`text-xl lg:text-2xl font-heading ${textColor} mb-4`}>
                       {column.title}
                     </h3>
                     <p className={`text-base lg:text-lg ${descriptionColor} leading-relaxed flex-grow`}>

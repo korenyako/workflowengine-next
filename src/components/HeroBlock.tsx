@@ -1,24 +1,35 @@
 import React from "react";
 import Button from "./Button";
-import { Icon } from "@/lib/icons";
+import ReviewChip from "./ReviewChip";
+import { Check } from "lucide-react";
 
-type Chip = string | { icon?: string; label: string };
+interface ReviewBadge {
+  logo: string;
+  sourceLabel: string;
+  rating: number;
+  href: string;
+}
 
 interface HeroBlockProps {
   title: string;
   description?: string | React.ReactNode;
   subtitle?: string;
-  chips?: Chip[];
+  highlights?: string[];
+  reviewBadges?: ReviewBadge[];
   primaryCta?: {
     text: string;
     href: string;
-    size?: "sm" | "md" | "lg";
+    size?: "sm" | "md" | "lg" | "xl";
     icon?: React.ReactNode;
   };
   secondaryCta?: {
     text: string;
     href: string;
-    size?: "sm" | "md" | "lg";
+    size?: "sm" | "md" | "lg" | "xl";
+  };
+  textLink?: {
+    text: string;
+    href: string;
   };
   note?: string;
   blockBg?: string;
@@ -29,9 +40,11 @@ const HeroBlock: React.FC<HeroBlockProps> = ({
   title,
   description,
   subtitle,
-  chips,
+  highlights,
+  reviewBadges,
   primaryCta,
   secondaryCta,
+  textLink,
   note,
   blockBg,
   gradientButton = false,
@@ -39,36 +52,36 @@ const HeroBlock: React.FC<HeroBlockProps> = ({
   return (
     <section className="py-12 text-slate-900 text-center">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading font-bold text-slate-900 mb-6 leading-tight whitespace-pre-wrap break-words" style={{ wordBreak: 'keep-all' }}>
-          {title.replace(/\s+for\s+/g, ' for\u00A0')}
-        </h1>
-        {chips && chips.length > 0 && (
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10">
-            {chips.map((chip) => {
-              const label = typeof chip === 'string' ? chip : chip.label;
-              const icon = typeof chip === 'string' ? undefined : chip.icon;
-              return (
-                <span
-                  key={label}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 text-slate-900 text-sm font-medium shadow-sm"
-                >
-                  {icon && <Icon name={icon} size={16} className="text-slate-700" />}
-                  {label}
-                </span>
-              );
-            })}
+        {reviewBadges && reviewBadges.length > 0 && (
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
+            {reviewBadges.map((b) => (
+              <ReviewChip key={b.sourceLabel} {...b} />
+            ))}
           </div>
         )}
-        {subtitle && !chips && (
-          <h3 className="text-lg sm:text-xl text-blue-600 mb-12 font-subtitle font-semibold whitespace-pre-wrap break-words">
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading text-slate-900 mb-6 whitespace-pre-wrap break-words" style={{ wordBreak: 'keep-all' }}>
+          {title.replace(/\s+for\s+/g, ' for\u00A0')}
+        </h1>
+        {subtitle && (
+          <h3 className="text-lg sm:text-xl text-[#4286F4] mb-12 font-subtitle font-semibold whitespace-pre-wrap break-words">
             {subtitle}
           </h3>
         )}
         {description && (
           <div className="text-xl text-slate-600 mb-8 whitespace-pre-wrap break-words">{description}</div>
         )}
+        {highlights && highlights.length > 0 && (
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-8">
+            {highlights.map((h) => (
+              <div key={h} className="inline-flex items-center gap-2 text-sm text-slate-700">
+                <Check size={16} strokeWidth={2.5} className="text-[#4286F4]" />
+                <span>{h}</span>
+              </div>
+            ))}
+          </div>
+        )}
         {(primaryCta?.text || secondaryCta?.text) && (
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-4">
             {primaryCta?.text && (
               gradientButton ? (
                 <div className="relative inline-block group">
@@ -92,6 +105,16 @@ const HeroBlock: React.FC<HeroBlockProps> = ({
             )}
           </div>
         )}
+        {textLink?.text && (
+          <a
+            href={textLink.href}
+            target={textLink.href.startsWith('http') ? '_blank' : '_self'}
+            rel={textLink.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+            className="inline-block text-sm text-[#4286F4] hover:text-[#2e6ad4] underline underline-offset-4 transition-colors mb-6"
+          >
+            {textLink.text}
+          </a>
+        )}
         {note && (
           <p className="text-sm text-slate-500 whitespace-pre-wrap break-words">{note}</p>
         )}
@@ -100,4 +123,4 @@ const HeroBlock: React.FC<HeroBlockProps> = ({
   );
 };
 
-export default HeroBlock; 
+export default HeroBlock;

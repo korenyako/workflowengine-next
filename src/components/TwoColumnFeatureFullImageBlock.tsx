@@ -54,7 +54,7 @@ const TwoColumnFeatureFullImageBlock: React.FC<TwoColumnFeatureFullImageBlockPro
             {subtitle}
           </span>
           <h3 className="text-lg font-subtitle font-semibold text-blue-600 mb-4 whitespace-pre-wrap break-words">{subtitle}</h3>
-          <h2 className="font-heading font-bold text-slate-900 mb-4 whitespace-pre-wrap break-words">{title}</h2>
+          <h2 className="font-heading text-slate-900 mb-4 whitespace-pre-wrap break-words">{title}</h2>
           <p className={`text-lg mb-6 ${textColor} whitespace-pre-wrap break-words`}>{description}</p>
           
           {/* Кнопки */}

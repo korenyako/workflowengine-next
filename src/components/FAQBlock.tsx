@@ -62,7 +62,7 @@ const FAQBlock: React.FC<FAQBlockProps> = ({ title, faqItems, blockBg, anchor, p
       <div className="max-w-6xl mx-auto">
         {/* Заголовок и подзаголовки */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading font-semibold text-slate-900 mb-4 leading-snug whitespace-pre-wrap break-words" style={{ wordBreak: 'keep-all' }}>
+          <h2 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading text-slate-900 mb-4 leading-snug whitespace-pre-wrap break-words" style={{ wordBreak: 'keep-all' }}>
             {title.replace(/\s+for\s+/g, ' for\u00A0')}
           </h2>
         </div>

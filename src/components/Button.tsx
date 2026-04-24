@@ -4,7 +4,7 @@ import Link from 'next/link';
 interface ButtonProps {
   children: React.ReactNode;
   variant?: 'primary' | 'secondary' | 'outline-white';
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
   href?: string;
   onClick?: () => void;
   className?: string;
@@ -26,17 +26,17 @@ const Button: React.FC<ButtonProps> = ({
   icon,
 }) => {
   const baseClasses =
-    'inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-200';
+    'inline-flex items-center justify-center font-semibold rounded-full transition-colors duration-200';
 
   const getVariantClasses = () => {
     if (variant === 'primary') {
-      return 'text-gray-900 bg-[#93d8ff] hover:bg-[#7dc3f4]';
+      return 'text-white bg-[#4286F4] hover:bg-[#2e6ad4]';
     }
     if (variant === 'outline-white') {
-      return 'border border-white text-slate-900 hover:bg-white hover:text-gray-900';
+      return 'border-2 border-white text-slate-900 hover:bg-white hover:text-gray-900';
     }
     if (variant === 'secondary') {
-      return 'border border-[#93d8ff] text-slate-900 bg-transparent hover:bg-[#93d8ff] hover:text-gray-900';
+      return 'border-2 border-[#4286F4] text-[#4286F4] bg-transparent hover:bg-[#4286F4] hover:text-white';
     }
     return '';
   };
@@ -45,6 +45,7 @@ const Button: React.FC<ButtonProps> = ({
     sm: 'px-4 py-2 text-sm',
     md: 'px-6 py-3 text-base',
     lg: 'px-8 py-3 text-lg',
+    xl: 'px-12 py-5 text-2xl',
   };
 
   const disabledClasses = disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer';

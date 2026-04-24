@@ -123,7 +123,7 @@ const ArchitectureDiagram: React.FC = () => {
               className="relative w-full max-w-full cursor-pointer"
               onClick={handleCodeBlockClick}
             >
-              <pre className="bg-white text-left rounded-lg px-4 sm:px-8 py-4 overflow-x-auto text-sm sm:text-lg font-mono flex items-center border border-slate-300 w-full max-w-full">
+              <pre className="bg-white text-left rounded-lg px-4 sm:px-8 py-4 overflow-x-auto text-sm sm:text-lg font-mono flex items-center border-2 border-slate-300 w-full max-w-full">
                 <code className="pr-12 break-all">
                   <span style={{ color: '#81D4FA' }}>$</span>
                   <span style={{ color: '#BEF264' }}> npm i @react-form-builder/core</span>
@@ -153,7 +153,7 @@ const ArchitectureDiagram: React.FC = () => {
           {/* API for component metadata - справа сверху */}
           <button
             onClick={() => handleButtonClick("API for component metadata")}
-            className="absolute top-8 right-4 sm:top-12 sm:right-8 lg:top-16 lg:right-16 bg-slate-100 hover:bg-indigo-700 text-slate-900 px-4 py-3 rounded-lg transition-all duration-200 border border-slate-300 hover:border-indigo-600 text-sm sm:text-base font-medium max-w-48 text-center"
+            className="absolute top-8 right-4 sm:top-12 sm:right-8 lg:top-16 lg:right-16 bg-slate-100 hover:bg-indigo-700 text-slate-900 px-4 py-3 rounded-lg transition-all duration-200 border-2 border-slate-300 hover:border-indigo-600 text-sm sm:text-base font-medium max-w-48 text-center"
           >
             API for component metadata
           </button>
@@ -161,7 +161,7 @@ const ArchitectureDiagram: React.FC = () => {
           {/* Form renderer (FormViewer) - справа снизу */}
           <button
             onClick={() => handleButtonClick("Form renderer (FormViewer)")}
-            className="absolute bottom-8 right-4 sm:bottom-12 sm:right-8 lg:bottom-16 lg:right-16 bg-slate-100 hover:bg-indigo-700 text-slate-900 px-4 py-3 rounded-lg transition-all duration-200 border border-slate-300 hover:border-indigo-600 text-sm sm:text-base font-medium max-w-48 text-center"
+            className="absolute bottom-8 right-4 sm:bottom-12 sm:right-8 lg:bottom-16 lg:right-16 bg-slate-100 hover:bg-indigo-700 text-slate-900 px-4 py-3 rounded-lg transition-all duration-200 border-2 border-slate-300 hover:border-indigo-600 text-sm sm:text-base font-medium max-w-48 text-center"
           >
             Form renderer (FormViewer)
           </button>
@@ -169,7 +169,7 @@ const ArchitectureDiagram: React.FC = () => {
           {/* Validation - слева снизу */}
           <button
             onClick={() => handleButtonClick("Validation")}
-            className="absolute bottom-8 left-4 sm:bottom-12 sm:left-8 lg:bottom-16 lg:left-16 bg-slate-100 hover:bg-indigo-700 text-slate-900 px-4 py-3 rounded-lg transition-all duration-200 border border-slate-300 hover:border-indigo-600 text-sm sm:text-base font-medium max-w-48 text-center"
+            className="absolute bottom-8 left-4 sm:bottom-12 sm:left-8 lg:bottom-16 lg:left-16 bg-slate-100 hover:bg-indigo-700 text-slate-900 px-4 py-3 rounded-lg transition-all duration-200 border-2 border-slate-300 hover:border-indigo-600 text-sm sm:text-base font-medium max-w-48 text-center"
           >
             Validation
           </button>
@@ -177,7 +177,7 @@ const ArchitectureDiagram: React.FC = () => {
           {/* Localization - слева сверху */}
           <button
             onClick={() => handleButtonClick("Localization")}
-            className="absolute top-8 left-4 sm:top-12 sm:left-8 lg:top-16 lg:left-16 bg-slate-100 hover:bg-indigo-700 text-slate-900 px-4 py-3 rounded-lg transition-all duration-200 border border-slate-300 hover:border-indigo-600 text-sm sm:text-base font-medium max-w-48 text-center"
+            className="absolute top-8 left-4 sm:top-12 sm:left-8 lg:top-16 lg:left-16 bg-slate-100 hover:bg-indigo-700 text-slate-900 px-4 py-3 rounded-lg transition-all duration-200 border-2 border-slate-300 hover:border-indigo-600 text-sm sm:text-base font-medium max-w-48 text-center"
           >
             Localization
           </button>

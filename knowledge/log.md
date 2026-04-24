@@ -2,6 +2,247 @@
 
 Chronological log of wiki updates. Newest entries on top.
 
+## 2026-04-17 | ContactCTABlock ↔ Footer: бесшовная стыковка
+
+[ContactCTABlock.tsx](../src/components/ContactCTABlock.tsx): секции убраны нижние скругления (`rounded-[40px]` → `rounded-t-[40px] lg:rounded-t-[48px]`) и добавлен маркер `data-merge-footer`. В [globals.css](../src/styles/globals.css) — глобальное правило `body:has(section[data-merge-footer]) > footer` обнуляет у Footer `margin-top` и верхние радиусы через `!important`. Две плитки (бежевая CTA и светлая Footer-обёртка) теперь образуют одну слитую форму с закруглённым верхом и плоским стыком — приём тот же, что в CodePreview tabs+code (`rounded-t-lg` + `rounded-b-lg`), только в направлении снизу-вверх.
+
+На страницах без CTA (`/contacts`, `/blog`, `/downloads`) `:has()` не сработает — Footer сохранит свой обычный `rounded-t-[40px]` и `mt-4`. `!important` нужен из-за того, что Tailwind-утилиты на самом Footer имеют specificity `0,1,0`, а селектор `body:has(...) > footer` — ниже.
+
+## 2026-04-17 | Eyebrow: tracking 0.1em → 0.2em + фикс базовой типографики в @layer base
+
+Увеличено межбуквенное на eyebrow-метках: `tracking-widest` (0.1em) → `tracking-[0.2em]`. Обновлены 5 компонентов: [LogosBlock](../src/components/LogosBlock.tsx), [DetailedFeatureGridBlock](../src/components/DetailedFeatureGridBlock.tsx), [FeaturesGridBlock](../src/components/FeaturesGridBlock.tsx), [CustomerTestimonialsBlock](../src/components/CustomerTestimonialsBlock.tsx), [ReviewsStripBlock](../src/components/ReviewsStripBlock.tsx). Канон в [design-rules.md](design-rules.md) приведён в соответствие.
+
+**Подводный камень Tailwind v4.** Первый заход не сработал: DevTools показывал `letter-spacing: -0.28px` (то есть `-0.02em` при 14px), несмотря на `tracking-[0.2em]` в классах. Причина — в [globals.css:36](../src/styles/globals.css) правило `h1..h6 { letter-spacing: -0.02em }` лежало вне cascade-layers. В Tailwind v4 unlayered-CSS всегда бьёт утилиты (независимо от specificity), поэтому утилита проигрывала тег-селектору. Фикс — завернул базовую heading-типографику в `@layer base`. Теперь утилиты `tracking-*`/`leading-*`/`font-*` на h1–h6 работают как ожидается, а дефолт `-0.02em` сохраняется там, где явных утилит нет. Общее правило: любая базовая типографика в `globals.css`, поверх которой может потребоваться утилита, должна быть в `@layer base`.
+
+## 2026-04-16 | Border: единая толщина 2px
+
+Новое правило: если элементу нужен контур — всегда `border-2` (2px). Tailwind default `border` (1px) — не использовать. Распространяется на всё: кнопки secondary, карточки, инпуты, бейджи, таблицы.
+
+Sed-прогон `border` → `border-2` по всем `.tsx`/`.ts` в `src/` (с word boundary, чтобы не задеть `border-slate-*`, `border-collapse` и т.д.): Button secondary/outline-white, ArchitectureDiagram, BlogCategoryFilter, CenteredImagesBlock, ColumnsBlock, ContactForm, CustomerTestimonialsBlock nav-arrows, FormDemoBlock, HeroImageBlock, Mantine/MUI blocks, ProductsGridBlock badges, RatingCTABlock, ReviewsStripBlock, TestimonialsBlock, PropsTable (тоже 2px — единая норма), downloads/page.tsx.
+
+Правило зафиксировано в [design-rules.md §3](design-rules.md) + чек-лист пункт 10. Build `npm run build` зелёный.
+
+## 2026-04-16 | Nav: pill-shape + активный без смены цвета текста
+
+[Navigation.tsx](../src/components/Navigation.tsx): навигационные ссылки приведены к единому pill-style:
+
+- `rounded-lg` → `rounded-full` (desktop + mobile, все ссылки включая external и Documentation).
+- Активная ссылка: было `text-[#4286F4] bg-slate-100` → стало только `bg-slate-100`, цвет текста остаётся `text-slate-700` как у неактивных. Визуально активная = как hover-ed, но sticky — обычный паттерн для rounded-pill nav (pencil.dev / Jitter / Deel).
+- `transition-all` → `transition-colors` (нам не нужно анимировать всё, достаточно цвет фона).
+- `space-x-4` → `space-x-2`, `px-3 py-2` → `px-4 py-2` — чуть плотнее набор и просторнее внутри pill, лучше читается.
+
+## 2026-04-16 | FeaturesGrid: карточки + цветные иконки
+
+[FeaturesGridBlock.tsx](../src/components/FeaturesGridBlock.tsx) (Core Features на главной) — каждая фича обернута в `bg-slate-100 rounded-3xl p-8`, иконки получили ротацию цвета по индексу:
+
+```ts
+const ICON_COLORS = [
+  'text-[#4286F4]',  // brand blue
+  'text-[#F97316]',  // orange-500
+  'text-[#A855F7]',  // purple-500
+  'text-[#10B981]',  // emerald-500
+  'text-[#EC4899]',  // pink-500
+  'text-[#F59E0B]',  // amber-500
+];
+```
+
+Секция остаётся flat (не card), но теперь внутри неё — grid из слейт-карточек на белом фоне. Это инверсия ритма: card-слайды — слейт-слаб с white-картами внутри, FeaturesGrid — white-section со slate-картами. «Вдох» между card-слайдами сохраняется.
+
+Gap между карточками `gap-8` → `gap-6` — визуально плотнее, сетка читается единой. Build `npm run build` зелёный.
+
+## 2026-04-16 | Eyebrow: DM Sans → mono, wider tracking
+
+Eyebrow-роль (метка-подпись над h2: «Use cases», «What customers say», «Trusted by global organizations») переключена с DM Sans на JetBrains Mono для терминал-стиля:
+
+- `font-subtitle font-semibold` → `font-mono font-medium`
+- `tracking-wide` (0.025em) → `tracking-widest` (0.1em) — заметный шаг шире
+- `text-sm` + `uppercase` + `text-[#4286F4]` сохранены
+
+Затронуто 4 live-блока: [LogosBlock](../src/components/LogosBlock.tsx), [DetailedFeatureGridBlock](../src/components/DetailedFeatureGridBlock.tsx), [FeaturesGridBlock](../src/components/FeaturesGridBlock.tsx), [CustomerTestimonialsBlock](../src/components/CustomerTestimonialsBlock.tsx). Legacy-блоки с `font-subtitle font-semibold` без `text-sm uppercase` (subtitle в традиционном смысле — `text-lg text-blue-600` над крупными блоками) не трогались — это другая роль.
+
+Обновлена таблица type scale в [design-rules.md §0](design-rules.md). Build `npm run build` зелёный.
+
+## 2026-04-16 | Brand blue: `#93d8ff` → `#4286F4`
+
+Основной синий сайта унифицирован на `#4286F4` (Google-like blue, RGB 66/134/244). Прежний стек (light cyan `#93d8ff`, Tailwind `blue-600`/`-700`/`-50`/`-100`) сведён к одному токену с derived-оттенками:
+
+| Роль | Было | Стало |
+|-|-|-|
+| Primary button bg | `#93d8ff` + `text-gray-900` | `#4286F4` + `text-white` (контраст) |
+| Primary hover | `#7dc3f4` | `#2e6ad4` (darker) |
+| Secondary outlined | `border-[#93d8ff] text-slate-900` | `border-[#4286F4] text-[#4286F4]` |
+| Eyebrow / subtitle / icon / link | `text-blue-600` | `text-[#4286F4]` |
+| Hover link | `text-blue-700` | `text-[#2e6ad4]` |
+| Chip / tint bg | `bg-blue-50` / `bg-blue-100` | `bg-[#4286F4]/10` / `bg-[#4286F4]/15` |
+| Focus ring (ContactForm input) | `focus:ring-blue-600/20` | `focus:ring-[#4286F4]/20` |
+
+**Файлы (live):** [Button.tsx](../src/components/Button.tsx), [HeroBlock.tsx](../src/components/HeroBlock.tsx) (chips + subtitle), [DetailedFeatureGridBlock.tsx](../src/components/DetailedFeatureGridBlock.tsx), [FeaturesGridBlock.tsx](../src/components/FeaturesGridBlock.tsx), [TwoColumnDetailedFeaturesBlock.tsx](../src/components/TwoColumnDetailedFeaturesBlock.tsx), [LogosBlock.tsx](../src/components/LogosBlock.tsx), [CustomerTestimonialsBlock.tsx](../src/components/CustomerTestimonialsBlock.tsx), [ContactCTABlock.tsx](../src/components/ContactCTABlock.tsx), [Navigation.tsx](../src/components/Navigation.tsx) (active state), [FooterBlock.tsx](../src/components/FooterBlock.tsx) (nav-badge), [ContactForm.tsx](../src/components/ContactForm.tsx) (submit + input focus), [BlogCategoryFilter.tsx](../src/components/blog/BlogCategoryFilter.tsx), [app/downloads/page.tsx](../src/app/downloads/page.tsx) (CTA + links + eyebrows), [app/blog/page.tsx](../src/app/blog/page.tsx).
+
+**globals.css:** `.text-link-tag`, `.text-link-tag-mono`, глобальные ссылки — все `rgb(37 99 235)` → `rgb(66 134 244)`, `rgb(29 78 216)` → `rgb(46 106 212)`, rgba-альфа-варианты обновлены.
+
+**Градиенты `from-[#93d8ff] to-[#85afff]`:** встречаются только в легаси-блоках (CenteredImage/Code/Video/AI/LargeCentered, HeroWithCodeBlock, BundleSizeTableBlock, ComparisonTimeline) — не в live JSON. Оставлены до первого использования или удаления самих блоков.
+
+Build `npm run build` зелёный (9 страниц).
+
+## 2026-04-16 | Футер: слайд-карточка с верхними радиусами
+
+Футер [FooterBlock.tsx](../src/components/FooterBlock.tsx) приведён к визуальному языку слайдов:
+
+- Bg `bg-slate-50 border-t border-slate-200` → `bg-slate-100` (совпадает со слайдами; `border-t` убран — граница теперь через контраст фонов, §3).
+- `rounded-t-[40px] lg:rounded-t-[48px]` — только верхние углы, нижние прилипают к нижнему краю экрана без радиуса.
+- Боковые поля `mx-4 sm:mx-6 lg:mx-8` — как у card-блоков, оставляют полосы белого страничного фона по краям.
+- `mt-6 lg:mt-8` — тот же вертикальный ритм, что между card-блоками.
+
+Внутренняя карточка компании (`bg-white rounded-3xl`) теперь контрастирует с slate-100 родителем, как и внутренние карточки в card-блоках (§9).
+
+Правило зафиксировано как расширение §7 в [design-rules.md](../knowledge/design-rules.md).
+
+## 2026-04-16 | Слайд-карточки: контентные блоки как rounded-surfaces
+
+Главная перестроена по паттерну pencil.dev / Jitter / Kit / Mintlify / Deel: контентные блоки — крупные rounded-карточки на белом фоне страницы, чередуются с плоскими секциями.
+
+**Механика (wrapper-level):**
+- В [blocks.tsx](../src/components/blocks.tsx) и [PageBlocks.tsx](../src/components/PageBlocks.tsx) выпилена функция `getBlockBackgroundColor` и заменена на проверку `props.surface === 'card'`.
+- Card-блок оборачивается в `<div className="mx-4 sm:mx-6 lg:mx-8 my-6 lg:my-8 bg-slate-100 rounded-[40px] lg:rounded-[48px] overflow-hidden">`.
+- Block-компоненты не трогались — их внутренний `<section className="py-16 px-4 sm:px-8">` работает как inner padding внутри карточки.
+- Заодно почищены `blockBg`-ветки (legacy полноэкранного фона) — остался только fallback на `style={{ backgroundColor }}` для flat-блоков, если проп задан.
+
+**Главная, переведена 4 блока ([main.json](../src/data/main.json)):**
+- `DetailedFeatureGridBlock` (Use cases) — card
+- `ProductsGridBlock` (Which Product) — card
+- `CustomerTestimonialsBlock` (What customers say) — card
+- `ContactCTABlock` — card
+
+Плоскими остались: `HeroBlock` (full-bleed), `LogosBlock` (strip), `FeaturesGridBlock` (Core Features — «вдох» между card-ами).
+
+**Card-in-card фикс:** внутренние карточки в `DetailedFeatureGridBlock` и `ProductsGridBlock` были `bg-slate-100 rounded-3xl` → сливались бы с родительским слайдом. Переведены на `bg-white rounded-3xl`. Правило зафиксировано в чек-листе дизайн-ревью (§9).
+
+**ContactCTABlock:** ранее внутри себя держал `<div bg-slate-100 rounded-3xl>` — теперь это делает внешняя обёртка. Внутри осталась только flex-раскладка иконка/текст/кнопка.
+
+**Правило зафиксировано** в [design-rules.md §7 Слайд-карточки](../knowledge/design-rules.md). Радиус `rounded-[40px] lg:rounded-[48px]` (крупнее чем `rounded-3xl`=24px) — главная визуальная подпись слайдов. Цвет слайда `bg-slate-100` (#F1F5F9), может потом перейти в warm beige токен.
+
+Build `npm run build` зелёный.
+
+## 2026-04-16 | Иконки: переход на lucide-react + удаление легаси-блоков
+
+**Подход к иконкам:**
+- Установлен `lucide-react` ([package.json](../package.json)).
+- **Прямой импорт** в каждом блоке без централизованной обёртки — вместо прежнего `<Icon name=.../>` из `src/lib/icons.tsx` (удалён).
+- **Stroke-width:** `1.5` для чипов в Hero, `2` для всех остальных иконок (feature-карточки, кнопки).
+- Для data-driven блоков в каждом блоке держится локальный `Record<string, LucideIcon>` — маппинг строковых имён из JSON в lucide-компоненты.
+
+**Live-блоки переведены на lucide:**
+- [HeroBlock.tsx](../src/components/HeroBlock.tsx): чипы (`mouse-pointer`, `settings-2`, `git-branch`, `history`) — `strokeWidth={1.5}`.
+- [DetailedFeatureGridBlock.tsx](../src/components/DetailedFeatureGridBlock.tsx): 7 иконок (`file-pen`, `database`, `layers`, `rocket`, `clock`, `server`, `monitor`) — `strokeWidth={2}`.
+- [FeaturesGridBlock.tsx](../src/components/FeaturesGridBlock.tsx): 6 иконок Core Features — удалён большой switch над 25 React-обёртками.
+- [TwoColumnDetailedFeaturesBlock.tsx](../src/components/TwoColumnDetailedFeaturesBlock.tsx): 12 иконок (включая `git-fork`, `shield`, `webhook`, `languages`, `code-xml`).
+
+**Данные JSON** ([main.json](../src/data/main.json), [features.json](../src/data/features.json), [server.json](../src/data/server.json)): все `/icons/*.svg`-пути и эмодзи заменены на kebab-case-имена lucide-иконок.
+
+**Удалено:**
+- [src/lib/icons.tsx](../src/lib/icons.tsx) — централизованный wrapper (~35 иконок в REGISTRY).
+- [src/components/icons/](../src/components/icons/) — ~35 React-обёрток над SVG-иконками FormEngine.
+- Папка [public/icons/](../public/icons/) почищена с 75 SVG до 3 (остались только бренд-иконки соцсетей: `youtube.svg`, `twitter.svg`, `linkedin.svg` — их не поставляет lucide в последних версиях).
+
+**Удалены легаси FormEngine-блоки** (не использовались в live JSON, зависели от удалённых иконок):
+- `HowToUseBlock.tsx`, `TrainingFilesBlock.tsx`, `WorkflowEngineComponentsBlock.tsx`, `ComponentsTableBlock.tsx`.
+- Каскадно (они импортили `WorkflowEngineComponentsBlock`): `ShadcnComponentsListBlock.tsx`, `MUIComponentsListBlock.tsx`, `MantineComponentsListBlock.tsx`.
+- Зарегистрированные записи убраны из [blocks.tsx](../src/components/blocks.tsx) и [PageBlocks.tsx](../src/components/PageBlocks.tsx).
+
+**Бренд-иконки соцсетей — исключение:** lucide-react >= 0.400 удалил `Youtube`/`Twitter`/`Linkedin` (в пользу нейтральных UI-иконок). Для бренд-марок в [FooterBlock.tsx](../src/components/FooterBlock.tsx) оставлены `<img src="/icons/*.svg">` — это brand identity, не UI-иконки. Правило: **UI-иконки идут через lucide, бренд-иконки могут оставаться как SVG.**
+
+Build `npm run build` зелёный (9 статичных страниц).
+
+## 2026-04-16 | Type scale: унификация текстовых стилей на главной
+
+Разобрал главную по всем блокам — насчитал 5 разных размеров h2 (от browser-default до `text-3xl lg:text-4xl`), 4 варианта body-текста, параллельную цветовую гамму `text-gray-*` ⟷ `text-slate-*` через мёртвую ветку `isLightBg`, несколько мест с `tracking-wide`/`uppercase` поверх `.font-heading` (нейтрализуются cascade layers, но мусорят markup). В [design-rules.md §0](../knowledge/design-rules.md) зафиксирована единая type-scale из 7 ролей (Display/Section/Card/Eyebrow/Lead/Body/Meta).
+
+**Применено на главной (7 блоков):**
+
+- [HeroBlock](../src/components/HeroBlock.tsx) — убран `leading-tight` с h1 (дублирует `.font-heading` lh 1.1).
+- [LogosBlock](../src/components/LogosBlock.tsx) — subtitle приведён к eyebrow-роли (`text-sm uppercase tracking-wide`), убрано ветвление `isLightBg`.
+- [DetailedFeatureGridBlock](../src/components/DetailedFeatureGridBlock.tsx) — добавлен размер h2 (`text-4xl lg:text-5xl xl:text-6xl`) и card h3 (`text-2xl lg:text-3xl`); субтайтл переставлен над h2 как eyebrow; убрано ветвление.
+- [FeaturesGridBlock](../src/components/FeaturesGridBlock.tsx) — убраны `uppercase tracking-wide` с h2; карточные h3 перешли из «синий label `text-base`» в Card-role (`text-2xl lg:text-3xl`, slate-900); субтайтл → eyebrow.
+- [ProductsGridBlock](../src/components/ProductsGridBlock.tsx) — удалён inline `style={{ fontSize: '2rem' }}` и `tracking-wide` на card h3; размеры через Tailwind; `bg-white/50 : bg-slate-100` сведены к `bg-slate-100`.
+- [CustomerTestimonialsBlock](../src/components/CustomerTestimonialsBlock.tsx) — subtitle → eyebrow; имя/должность перестали быть «жирный синий», теперь `text-slate-900 font-semibold` + meta `text-slate-500`; quote-SVG был `fill="white"` (невидим на белом) → `#cbd5e1`.
+- [ContactCTABlock](../src/components/ContactCTABlock.tsx) — **ликвидирована единственная тёмная секция** `#101828` с нечитаемым `text-slate-900` текстом и градиентным heading. Переделано в `bg-slate-100 rounded-3xl` карточку со светлым контрастом, иконка → `text-blue-600`. Сайт теперь полностью light-theme без исключений.
+
+Все `isLightBg` ветвления удалены в 6 блоках — сайт только светлый, tailwind `text-gray-*` сведён к `text-slate-*`. Build `npm run build` зелёный.
+
+## 2026-04-16 | Design-rules sweep: применение правил к live-компонентам
+
+Проход по всему сайту с приведением в соответствие дизайн-правилам ([design-rules.md](design-rules.md)). Билд `npm run build` зелёный.
+
+**Кнопки → pill-shape и брендовый цвет:**
+- [Button.tsx](../src/components/Button.tsx): `rounded-lg` → `rounded-full`, `transition-all` → `transition-colors`.
+- [app/downloads/page.tsx](../src/app/downloads/page.tsx): три inline-кнопки `bg-blue-600 rounded-lg` → `bg-[#93d8ff] text-gray-900 rounded-full hover:bg-[#7dc3f4]`.
+- [ContactForm.tsx](../src/components/ContactForm.tsx): submit-кнопка приведена к брендовому primary + pill.
+- [BlogCategoryFilter.tsx](../src/components/blog/BlogCategoryFilter.tsx): фильтр-чипы → `rounded-full`, активный заменён на `bg-blue-100 text-blue-700` (убран border вместе с bg).
+
+**Убраны тени (§1):**
+- [HeroBlock.tsx](../src/components/HeroBlock.tsx): chips убран `shadow-sm` + `border`, возвращён паттерн `bg-blue-50 text-blue-700`.
+- [BadgeGridBlock.tsx](../src/components/BadgeGridBlock.tsx): `hover:shadow-lg hover:scale-105` × 2 → `hover:opacity-80` + убран border в палитре.
+- [ColumnsBlock.tsx](../src/components/ColumnsBlock.tsx): `hover:shadow-lg` → `hover:opacity-80`.
+- [ProductsGridBlock.tsx](../src/components/ProductsGridBlock.tsx): `hover:scale-105 hover:shadow-lg` → `hover:opacity-80`.
+- [RatingCTABlock.tsx](../src/components/RatingCTABlock.tsx): `hover:shadow-lg` × 2 → `hover:opacity-80`; `border-2` → `border`.
+
+**Убраны hover-трансформы (§2):**
+- `group-hover:translate-x-1` на SVG-стрелках удалено в 8 компонентах ([CenteredImage/Code/Video/AI/LargeCentered]Block, TwoColumnFeatureBlock, WorkflowEngineComponentsBlock, ColumnsBlock).
+- [BlogCard.tsx](../src/components/blog/BlogCard.tsx): `group-hover:scale-105` на превью → `group-hover:opacity-80`.
+
+**Убраны bg+border конфликты (§3):**
+- [FooterBlock.tsx](../src/components/FooterBlock.tsx): карточка Optimajet `bg-white + border` → `bg-white rounded-3xl` (контраст с `bg-slate-50` футера).
+- [ContactForm.tsx](../src/components/ContactForm.tsx): форма `bg-white + border` → `bg-slate-50` без бордера; success/error-карточки приведены к чистому bg.
+- [BadgeGridBlock.tsx](../src/components/BadgeGridBlock.tsx): `bg-gray-50 border-gray-200` → `bg-gray-50`.
+- [app/downloads/page.tsx](../src/app/downloads/page.tsx): карточка таблицы и списки — убран `bg-white` (страница уже белая), border остался как единственная граница.
+
+**Скругление §5 (rounded-2xl/3xl):**
+- Карточки в DetailedFeatureGridBlock, TwoColumnDetailedFeaturesBlock, ProductsGridBlock, BadgeGridBlock, ColumnsBlock: `rounded-xl/lg` → `rounded-3xl`.
+- Обложки блога ([BlogCard](../src/components/blog/BlogCard.tsx), [blog/[slug]](../src/app/blog/[slug]/page.tsx)) — cover теперь `rounded-3xl`.
+
+**Чистка `font-bold`/`font-semibold` поверх heading (§0):**
+- Доведены до `font-heading` h2/h3 в DetailedFeatureGridBlock, TwoColumnDetailedFeaturesBlock, ProductsGridBlock, CustomerTestimonialsBlock, ContactCTABlock, BadgeGridBlock.
+
+**Не тронуто (осознанно):**
+- `font-semibold` на `.font-subtitle` — subtitle token отдельный, вес дивергирует.
+- `font-bold` на div-ах (column titles футера и т.п.) — не heading-элементы, §0 не применяется.
+- Nav-links (`rounded-lg` + hover:bg) — это не кнопки, §4 не применяется.
+- ArchitectureDiagram, ComponentsTable, CodePreview, ProcessPreview, HeroWithCodeBlock, FrameworkLogosBlock, HeroFrameworksBlock, TimelineBlock, ChatGPTButton, формовьюеры (FormDemoBlock, MuiFormDemoBlock, MUIBasicUsageBlock, MantineBasicUsageBlock) — **не используются в live JSON/страницах**, легаси FormEngine; приведутся при подключении или удалятся.
+- Инпут в ContactForm (`bg-white + border-slate-300`) — частный случай §3: форма теперь `bg-slate-50`, контраст минимален → border сохранён.
+
+## 2026-04-16 | Типографика: swap на DM Sans (pencil.dev) + Inter
+
+Поменяли типографический стек по референсу pencil.dev для заголовков; body-шрифт оставлен Inter (отступление от pencil.dev, у них Rubik Light):
+
+- **Заголовки:** Poppins → **DM Sans** (opsz axis, `next/font/google`). Инвариант: `font-weight: 600`, `letter-spacing: -0.02em`, `line-height: 1.1`. Правило вынесено в `h1–h6` и `.font-heading` в [globals.css](../src/styles/globals.css).
+- **Body:** **Inter** (без изменений).
+- **Subtitle:** Space Grotesk → **DM Sans** (та же семья что и заголовки; токен `fontFamily.subtitle` оставлен для будущей дивергенции).
+- **JetBrains Mono** — оставлен для кода.
+
+Обновлены: [layout.tsx](../src/app/layout.tsx), [tailwind.config.ts](../tailwind.config.ts), [globals.css](../src/styles/globals.css) (включая article-content h1–h5 и .flow-container), [designer-tree.css](../src/styles/designer-tree.css), [ArchitectureBlock.module.css](../src/styles/ArchitectureBlock.module.css).
+
+Component sweep: удалены `font-bold`/`font-extrabold`/`font-semibold` рядом с `font-heading` во всех .tsx — вес теперь держит сам класс `.font-heading` (600). 35 файлов.
+
+Правило зафиксировано в [design-rules.md §0 Типографика](design-rules.md).
+
+## 2026-04-16 | Design rules зафиксированы
+
+Создан [design-rules.md](design-rules.md) — свод визуальных правил сайта. Главный инвариант: граница элемента создаётся одним способом — либо контуром, либо контрастом фонов.
+
+Правила:
+- никаких теней (ни `shadow-*`, ни `drop-shadow-*`); единственное исключение — focus-ring для `:focus-visible` (a11y);
+- hover/active/disabled — только через прозрачность/затемнение/высветление; никаких `scale`/`translate`/`shadow`;
+- есть `bg-*` → нельзя `border-*`; прозрачный элемент → контур допустим;
+- инпуты: контур появляется, только если контраст фона инпута и окружения недостаточен;
+- hairline-разделители секций — разрешены (трактуются как типографика, не border);
+- кнопки плоские, без градиентов, **pill-shape** (`rounded-full`): primary с фоном (`bg-[#93d8ff]`), secondary контурная (`border` + `bg-transparent`);
+- все секции/блоки/карточки/медиа — со скруглёнными углами (временно `rounded-2xl` / `rounded-3xl`, точные пропорции TBD);
+- медиа — контур разрешён.
+
+Открытые вопросы (focus-ring, active/disabled через прозрачность, hairlines, медиа) закрыты предварительно «да», с корректировкой при появлении реальных кейсов.
+
+Обновлён [INDEX.md](INDEX.md) — добавлена ссылка на design-rules в секцию «Решения».
+
 ## 2026-04-15 | Phase 3.x: iterative homepage polish
 
 Серия небольших коммитов по итогам визуального review главной:

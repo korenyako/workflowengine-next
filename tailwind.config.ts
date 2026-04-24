@@ -11,8 +11,8 @@ const config: Config = {
       fontFamily: {
         // Используем CSS переменные от next/font
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        heading: ['var(--font-poppins)', 'system-ui', 'sans-serif'],
-        subtitle: ['var(--font-space-grotesk)', 'sans-serif'],
+        heading: ['var(--font-dm-sans)', 'system-ui', 'sans-serif'],
+        subtitle: ['var(--font-dm-sans)', 'system-ui', 'sans-serif'],
         mono: ['var(--font-jetbrains-mono)', 'monospace'],
       },
       colors: {
