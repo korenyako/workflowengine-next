@@ -74,8 +74,8 @@ const ProductsGridBlock: React.FC<ProductsGridBlockProps> = ({
               </div>
 
               {product.whyChoose && (
-                <div className="bg-[#4286F4]/10 text-[#4286F4] font-semibold rounded-2xl -mt-8 pt-12 pb-4 px-5 text-sm leading-relaxed relative z-0 flex items-start gap-2 text-left">
-                  <ArrowRight className="w-4 h-4 flex-shrink-0 mt-0.5" aria-hidden />
+                <div className="bg-[#4286F4]/10 text-slate-900 font-normal rounded-2xl -mt-8 pt-12 pb-4 px-5 text-sm leading-relaxed relative z-0 flex items-start gap-2 text-left">
+                  <ArrowRight className="w-4 h-4 flex-shrink-0 mt-0.5 text-[#4286F4]" aria-hidden />
                   <span>{product.whyChoose}</span>
                 </div>
               )}

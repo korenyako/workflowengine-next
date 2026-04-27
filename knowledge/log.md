@@ -2,6 +2,35 @@
 
 Chronological log of wiki updates. Newest entries on top.
 
+## 2026-04-25 | /features и /server переписаны под общий паттерн + новые блоки
+
+**Большая ревизия страниц `/features` и `/server`** — обе приведены к единому паттерну: `HeroBlock` → серия `FeaturesGridBlock` с/без `surface: "card"` → `CenteredImageBlock` для секций со схемами → `CompatibilityBlock` (только `/features`) → `ContactCTABlock`. Убрана старая каша из `TwoColumnDetailedFeaturesBlock` (плотная 2×N сетка, плохо читалась — пользователь жаловался). Контент берётся со старого workflowengine.io.
+
+**Новые блоки:**
+
+- [CustomerStoryBlock](../src/components/CustomerStoryBlock.tsx) — split-card 50/50 (текст + фото) для customer stories. Принимает `eyebrow`, `logo` + `logoAlt`, `title`, `metrics[]`, `image`, `imageAlt`, `href`, `linkText`, `imageSide: 'left' | 'right'`. Анимированная стрелка в Read-story ссылке (chevron→arrow + translate-x на hover через `group`). Используется на главной для B.F. Saul и LKS Next.
+- [CompatibilityBlock](../src/components/CompatibilityBlock.tsx) — eyebrow/eyebrowLogo + title + description + ряды tech-логотипов. На `/features` показывает .NET runtime + 8 БД (MSSQL, MongoDB, Redis, Azure Cosmos, MySQL, Azure SQL, Oracle, PostgreSQL). Per-logo `maxH?: number` и `small?: boolean` для разных пропорций брендов (text-логотипы типа Oracle/Redis/MySQL ужимаются). `eyebrowLogo?: string` рендерит картинку вместо текстового eyebrow — используем для крупного фиолетового .NET-логотипа.
+
+**FeaturesGridBlock** ([src/components/FeaturesGridBlock.tsx](../src/components/FeaturesGridBlock.tsx)) — массово прокачан:
+
+- `columns: 2 | 3 | 4` — управляет grid-cols (раньше всегда 3); 2 нужен для секций с 2 крупными карточками (Two APIs, Integration Options, Benefits).
+- `image?: string` + `imageAlt?: string` — рендерит картинку под сеткой карточек (используется в HTML5 Visual Designer на `/features` со схемой `scheme.png`).
+- На уровне Feature: `href?: string` делает карточку кликабельной (с `group hover:bg-slate-200`); `linkText?: string` рендерит «{linkText} →» внизу карточки с анимированной стрелкой (тот же паттерн, что в CustomerStoryBlock).
+- Inline-HTML в `text` — если паттерн `/<\/?[a-z][^>]*>/i` находит теги, рендерится через `dangerouslySetInnerHTML` со стилизованными `<a>` (синие, underline). Использовано в Integration Options / Designer integration для расстановки ссылок по тексту, как на старом сайте.
+- Добавлены 14 иконок: `users`, `database`, `server`, `shield`, `rotate-ccw`, `terminal`, `headset`, `zap`, `infinity`, `rocket`, `clock`, `monitor`, `webhook`. Для всех новых иконок — палитра `ICON_COLORS` с ротацией (blue/orange/purple/emerald/pink/amber).
+
+**DetailedFeatureGridBlock** ([src/components/DetailedFeatureGridBlock.tsx](../src/components/DetailedFeatureGridBlock.tsx)) — табы переведены в горизонтальный layout (раньше вертикальный список слева). Каждый таб подкрашивается своим цветом из `TAB_COLORS`/`TAB_BG_TINTS` (blue/orange/purple), и активный таб мэтчит цвет с карточкой «What's In It For Me?» (`TAB_BG_TINTS[activeTab]`). В testimonial-блоке ниже: лого компании заменил аватар (`testimonial.logo` рендерится в подписи вместо `testimonial.photo`); цитата увеличена до `text-2xl lg:text-3xl font-semibold`; ширина выровнена с остальными секциями (`max-w-5xl` → `max-w-6xl`).
+
+**ContactCTABlock** ([src/components/ContactCTABlock.tsx](../src/components/ContactCTABlock.tsx)) — инвертирован под бренд: фон `bg-[#4286F4]`, тексты белые, кнопка `secondary` с override на белый контур+текст. Notch-эффект с футером (см. предыдущая запись 2026-04-17) сохраняется.
+
+**FooterBlock** ([src/components/FooterBlock.tsx](../src/components/FooterBlock.tsx)) — фон `bg-[#ECF3FE]` (синеватый), `pt-24 pb-12` чтобы дать воздух под notch-стыком; ссылки в меню `text-slate-900 hover:text-[#4286F4]` (раньше slate-600); social-иконки перенесены в первую строку белой карточки (рядом с лого Optimajet); добавлены 3 legal-ссылки (License Agreement, Customer Support Agreement, Privacy Policy) справа от копирайта; копирайт упрощён до текущего года и `text-sm`.
+
+**DesignerScreenshotBlock** — добавлена возможность `surface: "card"` (рендерится в slate-100 обёртке через `PageBlocks`/`blocks` дисптчер); внутренний контейнер сменил `border-2 border-slate-200 overflow-hidden` на `bg-white p-4 sm:p-6 lg:p-12` — белая карточка с воздушным padding'ом вокруг скриншота, без рамки.
+
+**Logo darkening** — testimonial и customer-story логотипы получили `[filter:brightness(0)_saturate(0)]` (превращает в чёрные силуэты), потому что винайл-цветные SVG-логотипы (winecreate `#9CA3AF` gray, lks-next white-text) теряются на slate-100 фоне. Для PNG-логотипов с собственным цветным bg (bfsaul.png) фильтр оставляет проблемы — это known limitation, opt-out пока не сделан, есть `keepColor` flag в `CompatibilityBlock` (нужно перенести в общий паттерн при следующей итерации).
+
+**Прогрессивные горизонтальные отступы карточек** — `mx-4 sm:mx-12 lg:mx-16 xl:mx-32 2xl:mx-64` применены синхронно в 4 местах: [blocks.tsx](../src/components/blocks.tsx) (card-обёртка home), [PageBlocks.tsx](../src/components/PageBlocks.tsx) (card-обёртка остальных страниц), [ContactCTABlock](../src/components/ContactCTABlock.tsx), [FooterBlock](../src/components/FooterBlock.tsx). На 1920px-мониторе боковые поля 256px вместо прежних 32px. Все 4 места обязаны иметь одинаковые `mx-*` значения, иначе ContactCTA↔Footer notch-стык поедет горизонтально.
+
 ## 2026-04-17 | ContactCTABlock ↔ Footer: бесшовная стыковка
 
 [ContactCTABlock.tsx](../src/components/ContactCTABlock.tsx): секции убраны нижние скругления (`rounded-[40px]` → `rounded-t-[40px] lg:rounded-t-[48px]`) и добавлен маркер `data-merge-footer`. В [globals.css](../src/styles/globals.css) — глобальное правило `body:has(section[data-merge-footer]) > footer` обнуляет у Footer `margin-top` и верхние радиусы через `!important`. Две плитки (бежевая CTA и светлая Footer-обёртка) теперь образуют одну слитую форму с закруглённым верхом и плоским стыком — приём тот же, что в CodePreview tabs+code (`rounded-t-lg` + `rounded-b-lg`), только в направлении снизу-вверх.

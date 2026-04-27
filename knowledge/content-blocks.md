@@ -13,11 +13,15 @@ Pages are composed of **blocks** — typed React components rendered from JSON c
 3. Renderer iterates blocks, looks up the component by `type`, passes `props`. **Unknown types are silently dropped** (`if (!Component) return null`).
 4. A similar but larger registry lives in [components/PageBlocks.tsx](../src/components/PageBlocks.tsx) (used for data-driven sub-pages).
 
-## Current registry (blocks.tsx — homepage only)
+## Current registry (blocks.tsx — homepage)
 
-`HeroWithCodeBlock`, `HeroBlock`, `HeroImageBlock`, `CenteredImageBlock`, `CenteredCodeBlock`, `CenteredVideoBlock`, `LargeCenteredImageBlock`, `CenteredImagesBlock`, `CenteredAIBlock`, `TwoColumnFeatureBlock`, `TwoColumnFeatureFullImageBlock`, `ImageTextBlock`, `FeaturesGridBlock`, `DetailedFeatureGridBlock`, `IconTitleTextBlock`, `CodeHighlightBlock`, `CodePreview`, `TwoColumnDetailedFeaturesBlock`, `CallToActionBlock`, `TestimonialsBlock`, `FAQBlock`, `TrustpilotTestimonialsBlock`, `ProductsGridBlock`, `LogosBlock`, `BadgeGridBlock`, `RatingCTABlock`, `ContactCTABlock`, `CustomerTestimonialsBlock`, `ComparisonTimeline`, `ColumnsBlock`, `WorkflowEngineComponentsBlock`, `ComponentsTableBlock`.
+`HeroWithCodeBlock`, `HeroBlock`, `HeroImageBlock`, `CenteredImageBlock`, `CenteredCodeBlock`, `CenteredVideoBlock`, `LargeCenteredImageBlock`, `CenteredImagesBlock`, `CenteredAIBlock`, `TwoColumnFeatureBlock`, `TwoColumnFeatureFullImageBlock`, `ImageTextBlock`, `FeaturesGridBlock`, `DetailedFeatureGridBlock`, `IconTitleTextBlock`, `CodeHighlightBlock`, `CodePreview`, `TwoColumnDetailedFeaturesBlock`, `CallToActionBlock`, `TestimonialsBlock`, `FAQBlock`, `TrustpilotTestimonialsBlock`, `ProductsGridBlock`, `LogosBlock`, `BadgeGridBlock`, `RatingCTABlock`, `ContactCTABlock`, `CustomerStoryBlock`, `CompatibilityBlock`, `CustomerTestimonialsBlock`, `ReviewsStripBlock`, `ComparisonTimeline`, `ColumnsBlock`, `DesignerScreenshotBlock`.
 
-`PageBlocks.tsx` additionally registers: `ArchitectureBlock`, `DesignerTree`, `ComponentsTable`, `FrameworkLogosBlock`, `HeroFrameworksBlock`, `HowToUseBlock`, `BundleSizeTableBlock`, plus the MUI/Mantine/Shadcn stubs.
+`PageBlocks.tsx` additionally registers: `ArchitectureBlock`, `DesignerTree`, `ComponentsTable`, `FrameworkLogosBlock`, `HeroFrameworksBlock`, `BundleSizeTableBlock`, plus the MUI/Mantine/Shadcn stubs. Both registries also include `CustomerStoryBlock` and `CompatibilityBlock`.
+
+## Surface card wrapping
+
+Both `blocks.tsx` and `PageBlocks.tsx` apply a uniform card wrapper when `props.surface === "card"`: `mx-4 sm:mx-12 lg:mx-16 xl:mx-32 2xl:mx-64 my-6 lg:my-8 bg-slate-100 rounded-[40px] lg:rounded-[48px] overflow-hidden`. The same `mx-*` chain is duplicated on `ContactCTABlock` и `FooterBlock` — these three locations must stay synchronized, otherwise the CTA↔Footer notch effect breaks horizontally.
 
 ## Layout hooks
 

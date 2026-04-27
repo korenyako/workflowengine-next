@@ -92,7 +92,7 @@ const Blocks: React.FC = () => {
           <React.Fragment key={type + i}>
             {type === 'LogosBlock' && <div className="h-16" />}
             {isCard(props) ? (
-              <div className="mx-4 sm:mx-6 lg:mx-8 my-6 lg:my-8 bg-slate-100 rounded-[40px] lg:rounded-[48px] overflow-hidden">
+              <div className="mx-4 sm:mx-12 lg:mx-16 xl:mx-32 2xl:mx-64 my-6 lg:my-8 bg-slate-100 rounded-[40px] lg:rounded-[48px] overflow-hidden">
                 {content}
               </div>
             ) : (

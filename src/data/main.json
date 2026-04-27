@@ -39,6 +39,7 @@
   {
     "type": "DesignerScreenshotBlock",
     "props": {
+      "surface": "card",
       "image": {
         "src": "/photos/screenshots/scheme-wfe.png",
         "alt": "Workflow Engine HTML5 drag & drop designer"

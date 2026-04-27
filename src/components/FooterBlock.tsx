@@ -47,7 +47,7 @@ const FooterBlock: React.FC<FooterBlockProps> = ({ columns, socialLinks, logo, c
     }
   };
   return (
-    <footer className="text-slate-700 pt-24 pb-12 px-4 sm:px-8 bg-[#F1F5F9] rounded-t-[40px] lg:rounded-t-[48px] mx-4 sm:mx-6 lg:mx-8 mt-4 lg:mt-6">
+    <footer className="text-slate-700 pt-24 pb-12 px-4 sm:px-8 bg-[#F1F5F9] rounded-t-[40px] lg:rounded-t-[48px] mx-4 sm:mx-12 lg:mx-16 xl:mx-32 2xl:mx-64 mt-4 lg:mt-6">
       <div className="max-w-6xl mx-auto">
         {/* 4 колонки со ссылками */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-32">
