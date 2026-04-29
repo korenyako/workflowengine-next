@@ -69,7 +69,7 @@ npm run lint       # ESLint (next lint)
 5. **`package-lock.json` устарел** после форка (ссылается на удалённые пакеты). Перед деплоем — перегенерировать чистым `npm install`.
 6. **Sitemap**: `public/sitemap.xml` авто-генерится из `next-sitemap` при build. `public/robots.txt` и `public/_redirects` правятся руками — правила в исходном README (FormEngine) + аудит записан в [knowledge/plans/roadmap.md](knowledge/plans/roadmap.md).
 7. **Логотип** в `public/logos/workflowengine.svg` пока является переименованным логотипом FormEngine — заменить при первой возможности.
-8. **WorkflowEngine — закрытый коммерческий продукт.** Никаких GitHub/MIT/"open-source"/"star us"/community-discussions на сайте. В отличие от FormEngine Core (MIT, в GitHub). Никаких GitHub-иконок в нав/футере, никакой stargazers-интеграции. Подробнее — [knowledge/domain/overview.md](knowledge/domain/overview.md).
+8. **WorkflowEngine — закрытый коммерческий продукт.** Никакого FormEngine-стиля community-фрейминга: «star us»/stargazers-интеграции, MIT/"open-source"-позиционирования, GitHub-иконок в нав/футере. **НО** GitHub-репо `optimajet/WorkflowEngine.NET` существует и используется реальным workflowengine.io (например, на `/downloads/`) как pointer на исходники/документацию — ссылки уместны в таких местах, это не community-CTA. Подробнее — [knowledge/domain/overview.md](knowledge/domain/overview.md).
 9. **Не добавлять `Co-Authored-By: Claude`** в коммиты (см. глобальный `~/.claude/CLAUDE.md`). Git user настроен на `Anton Korenyako`.
 
 ## Relationship to source project

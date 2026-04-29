@@ -10,7 +10,7 @@ The site sells / documents the **OptimaJet WorkflowEngine** product family. This
 
 A **.NET workflow automation engine** — a library for designing, automating, and executing business processes. Visual workflow designer, flexible API, cross-platform (.NET runtime). Tagline used in metadata: *"Lightweight, cross-platform workflow engine for .NET."*
 
-**Closed-source, commercial product.** Unlike its sibling FormEngine (whose Core is MIT-licensed and lives on GitHub), WorkflowEngine is proprietary. Distributed via NuGet packages + direct downloads. **No GitHub repo, no "star us", no MIT positioning** anywhere on the site — if you see such copy leftover from the FormEngine fork, strip it.
+**Closed-source, commercial product.** Unlike its sibling FormEngine (whose Core is MIT-licensed), WorkflowEngine is proprietary. Distributed via NuGet packages + direct downloads. The product still has a GitHub repo at `optimajet/WorkflowEngine.NET` — links to it are fine where the real workflowengine.io references it (e.g. on `/downloads/`). What is **not** OK is FormEngine-style community framing: no "star us" / stargazers integration, no MIT positioning, no "open-source" language, no GitHub icons in nav/footer chrome. The repo link is a download/source-of-truth pointer, not a community CTA — treat it as such.
 
 ## Product surface on the site
 
