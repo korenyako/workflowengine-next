@@ -26,18 +26,16 @@
 src/
 ├── app/            # App Router (каждая папка = URL)
 │   ├── page.tsx              # Home (блоки из data/main.json)
-│   ├── features/             # STUB
-│   ├── server/               # STUB
-│   ├── downloads/            # STUB
-│   ├── pricing/              # Live (copy нужно переписать)
-│   ├── contacts/             # Live (форма-заглушка)
-│   └── blog/[slug]/          # MDX, сейчас пусто
+│   ├── features/             # Live (data/features.json)
+│   ├── server/               # Live (data/server.json)
+│   ├── downloads/            # Live (TSX, не JSON)
+│   ├── contacts/             # Live (форма через Bitrix24)
+│   └── blog/[slug]/          # MDX, сейчас пусто (sentinel slug)
 │   # pricing/ удалена — /pricing/ 301-редиректит на optimajet.com
-├── components/     # ~100 блоков-компонентов (Hero*, Centered*, TwoColumn*, FAQ, ...)
+├── components/     # ~25 компонентов: 12 блок-типов (зарегистрированы в blocks.tsx/PageBlocks.tsx) + Footer/Nav/Button/ContactForm/ReviewChip
 ├── content/blog/   # MDX-тексты статей (пусто)
-├── data/           # blog.ts + main.json (остальное удалено в Phase 1)
-├── forms/          # JSON-схемы форм (legacy от FormEngine, мусор)
-├── lib/, utils/, styles/
+├── data/           # main.json, features.json, server.json, blog.ts
+├── utils/, styles/ # seo helpers + globals.css
 public/             # Статика, sitemap.xml, robots.txt, _redirects, _headers, logos
 netlify/            # Netlify Functions (lead proxy)
 docs/deploy.md      # Полный deploy guide (Docker+Nginx, standalone, rsync)
@@ -64,8 +62,8 @@ npm run lint       # ESLint (next lint)
 
 1. **Static export** → никаких API routes, middleware, SSR, `next/script`. Всё внешнее — нативный `<script>` или `useEffect`. Детали и паттерны — [knowledge/external-scripts.md](knowledge/external-scripts.md) и [knowledge/decisions.md](knowledge/decisions.md).
 2. **Динамические маршруты** (`[slug]`) обязаны иметь `generateStaticParams()` возвращающий не пустой массив. Для пустого блога используется sentinel-slug `__placeholder__` — см. [knowledge/blog.md](knowledge/blog.md).
-3. **`@react-form-builder/*`, `@mui/*`, `@emotion/*` удалены** из зависимостей (наследие FormEngine). Не восстанавливать без явной необходимости. Компоненты, которые на них завязаны, сейчас рендерят плейсхолдеры — список в [knowledge/decisions.md](knowledge/decisions.md#6-broken-form-viewer-imports-replaced-with-placeholders-not-deleted).
-4. **Блочная система** ([src/components/blocks.tsx](src/components/blocks.tsx)): неизвестные `type` в JSON молча игнорируются, не кидают ошибок. При добавлении нового блока — зарегистрировать его в `components: {}` и в `PageBlocks.tsx` если используется на sub-page.
+3. **`@react-form-builder/*`, `@mui/*`, `@emotion/*` удалены** из зависимостей (наследие FormEngine). Не восстанавливать без явной необходимости. Все компоненты, которые на них опирались, удалены в post-fork cleanup `2026-04-29`. Если потребуется блок, существовавший в FormEngine-форке (HeroWithCodeBlock, FAQBlock, IconTitleTextBlock, CodePreview, и т.д.) — копировать из `../formengine-next` и регистрировать заново.
+4. **Блочная система** ([src/components/blocks.tsx](src/components/blocks.tsx) для главной, [PageBlocks.tsx](src/components/PageBlocks.tsx) для sub-pages): неизвестные `type` в JSON молча игнорируются. Текущий registry — 12 блоков (см. [knowledge/content-blocks.md](knowledge/content-blocks.md)). При добавлении нового блока — зарегистрировать в **обоих** registry синхронно.
 5. **`package-lock.json` устарел** после форка (ссылается на удалённые пакеты). Перед деплоем — перегенерировать чистым `npm install`.
 6. **Sitemap**: `public/sitemap.xml` авто-генерится из `next-sitemap` при build. `public/robots.txt` и `public/_redirects` правятся руками — правила в исходном README (FormEngine) + аудит записан в [knowledge/plans/roadmap.md](knowledge/plans/roadmap.md).
 7. **Логотип** в `public/logos/workflowengine.svg` пока является переименованным логотипом FormEngine — заменить при первой возможности.

@@ -2,6 +2,21 @@
 
 Chronological log of wiki updates. Newest entries on top.
 
+## 2026-04-29 | Post-fork cleanup: удалили ~50 неиспользуемых компонентов и legacy-ассеты
+
+**Большая чистка** (commit `7398b44`, 122 файла, −21670/+3 строк). Сайт изначально был форком `formengine-next`, и за месяц переписывания страниц накопилось много блоков/ассетов, никем не используемых. Удалили всё — `formengine-next` остаётся source-of-truth, любой блок можно портировать обратно при необходимости.
+
+**Что удалили:**
+
+- **Компоненты** (~50 файлов): 4 orphan-блока без регистрации (`CenteredProcessBlock`, `CompanyInfoBlock`, `FormDemoBlock`, `TimelineBlock`, `HeroFlow`), 14 form-builder-domain стабов (MUI/Mantine/Shadcn install/usage/docs, `MuiFormDemoBlock`, `BundleSizeTableBlock`, `ComponentsTable`, `FrameworkLogosBlock`, `HeroFrameworksBlock`, `ArchitectureBlock`+`ArchitectureDiagram`, `DesignerTree`), 24 generic-design-блока, не используемых ни в одном текущем JSON (`HeroWithCodeBlock`, `HeroImageBlock`, `CenteredCodeBlock`/`Video`/`Images`/`AI`+`ChatGPTButton`, `LargeCenteredImageBlock`, `TwoColumnFeatureBlock`/`FullImage`/`Detailed`, `ImageTextBlock`, `IconTitleTextBlock`, `CodeHighlightBlock`, `CodePreview`, `ProcessPreview`, `CallToActionBlock`, `TestimonialsBlock`, `TrustpilotTestimonialsBlock`, `FAQBlock`, `BadgeGridBlock`, `RatingCTABlock`, `ComparisonTimeline`, `ColumnsBlock`), вся папка `src/components/content/` (MDX-обвязка, ни одного импортёра).
+- **Папки целиком**: `src/forms/` (18 legacy form-схем, ~480KB), `public/ads-images/` (9 баннеров), `public/comparison/`, `public/react-form-builder-library/`, `public/images/blog/` (3 FormEngine-обложки).
+- **Утилиты**: `src/lib/bir1706.ts` (32KB demo-схема FormEngine, никем не импортирована — папка `src/lib/` теперь не существует), 3 orphan CSS-файла (`ArchitectureBlock.module.css`, `designer-tree.css`, `demo-components.css`).
+- **Ассеты**: 24 FormEngine-картинки в `public/images/` (form-scan, react-form-builder, screenshots, components, logic, validation и т.д.), 5 неиспользуемых лого (`formengine.svg`, `formengine-black.svg`, `formbuilder.svg`, `tech/netcore.svg`, `trustpilot-star.svg`), 1 фото `eugene-kouroptev.jpg`.
+
+**Registry в `blocks.tsx` и `PageBlocks.tsx`** ужалась с ~33 блоков до **12** — ровно тех типов, что реально используются в `main.json`/`features.json`/`server.json`: `HeroBlock`, `CenteredImageBlock`, `FeaturesGridBlock`, `DetailedFeatureGridBlock`, `ProductsGridBlock`, `LogosBlock`, `ContactCTABlock`, `CustomerStoryBlock`, `CompatibilityBlock`, `CustomerTestimonialsBlock`, `ReviewsStripBlock`, `DesignerScreenshotBlock`. Плюс служебные `Footer`/`Navigation`/`Button`/`ContactForm`/`ReviewChip` — итого 25 `.tsx` в `src/components/`.
+
+**Подхвачено в вики:** `architecture.md` (структура каталогов: убрал `lib/`, `forms/`, `scripts/`, обновил счётчик компонентов), `content-blocks.md` (registry список + инструкция «добавить новый блок»), `decisions.md` (§6 form-viewer placeholders помечен resolved; §8 — palette теперь `#4286F4`, не `#93d8ff→#85afff`), `roadmap.md` (P1 «Prune dead blocks» + P2 «Remove unused / Kill schemas / bir1706» отмечены done), `CLAUDE.md` (структура каталогов и §3-§4 правила обновлены под новое состояние).
+
 ## 2026-04-25 | /features и /server переписаны под общий паттерн + новые блоки
 
 **Большая ревизия страниц `/features` и `/server`** — обе приведены к единому паттерну: `HeroBlock` → серия `FeaturesGridBlock` с/без `surface: "card"` → `CenteredImageBlock` для секций со схемами → `CompatibilityBlock` (только `/features`) → `ContactCTABlock`. Убрана старая каша из `TwoColumnDetailedFeaturesBlock` (плотная 2×N сетка, плохо читалась — пользователь жаловался). Контент берётся со старого workflowengine.io.

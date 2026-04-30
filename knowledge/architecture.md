@@ -24,15 +24,12 @@ See [package.json](../package.json) for full deps list.
 ```
 src/
 ├── app/            # App Router pages — each folder = URL
-├── components/     # ~100 React components, mostly "blocks" (page sections)
+├── components/     # ~25 React components — block-based page sections + Footer/Nav/Button helpers
 ├── content/blog/   # Blog MDX sources (currently empty)
-├── data/           # JSON/TS content for pages (main.json, blog.ts, etc.)
-├── forms/          # JSON form schemas (historical, most unused after fork)
-├── lib/            # Utilities (stargazersCache, etc.)
-├── styles/         # globals.css, a few component-specific CSS
+├── data/           # JSON/TS content for pages (main.json, features.json, server.json, blog.ts)
+├── styles/         # globals.css
 └── utils/seo.ts    # SITE_ORIGIN, SITE_NAME, DEFAULT_OG_IMAGE
 public/             # Static assets, sitemap.xml, robots.txt, _redirects, _headers
-scripts/            # Build-time scripts (fetch-stargazers.mjs)
 netlify/            # Netlify functions (lead proxy)
 docs/deploy.md      # Full deploy guide (Docker + Nginx, standalone, direct copy)
 ```

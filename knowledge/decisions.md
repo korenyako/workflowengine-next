@@ -36,11 +36,9 @@ Why things are the way they are. Each decision lists **context** → **choice** 
 **Choice:** Removed the rewrite entirely.
 **Consequence:** If a local dev backend is ever needed again, proxy through a separate tool (or revive the rewrite and live with the build caveat).
 
-## 6. Broken form-viewer imports replaced with placeholders, not deleted
+## 6. Broken form-viewer imports → placeholders → deleted (resolved)
 
-**Context:** Fork removed `src/components/formengine/` (MUI/Mantine form viewers) and the `@react-form-builder/*` npm packages. Several block components still import from those paths and are referenced by JSON data files.
-**Choice:** Rewrite the affected components ([ContactForm.tsx](../src/components/ContactForm.tsx), [FormDemoBlock.tsx](../src/components/FormDemoBlock.tsx), [ProcessPreview.tsx](../src/components/ProcessPreview.tsx), [MUIBasicUsageBlock.tsx](../src/components/MUIBasicUsageBlock.tsx), [MantineBasicUsageBlock.tsx](../src/components/MantineBasicUsageBlock.tsx), [MuiFormDemoBlock.tsx](../src/components/MuiFormDemoBlock.tsx)) to render a gray "Demo placeholder" instead of deleting them, preserving the JSON interface.
-**Consequence:** Build is green. When replacing homepage copy, either remove these block references from JSON data or re-purpose the placeholders.
+**Historical.** The initial fork removed `src/components/formengine/` and the `@react-form-builder/*` packages, leaving several blocks with broken imports. They were temporarily rewritten as gray "Demo placeholder" components to keep the build green while JSON data still referenced them. Once the home/features/server JSON was rewritten with WorkflowEngine content (no longer referencing those types), the placeholders had no callers and were deleted in the post-fork cleanup ([log.md](log.md) `2026-04-29`). [ContactForm.tsx](../src/components/ContactForm.tsx) is the one survivor — it's a real Bitrix24-backed form, not a placeholder.
 
 ## 7. Fork strategy: clean repo, not git fork
 
@@ -51,8 +49,8 @@ Why things are the way they are. Each decision lists **context** → **choice** 
 ## 8. Brand palette: `#93d8ff → #85afff` cyan-blue, no purple
 
 **Context:** FormEngine era used a pastel blue-purple gradient (`from-blue-300 to-purple-300`) on CTAs and decorative pills. Purple does not fit the WorkflowEngine identity (closed-source .NET B2B product) and no longer matches any planned brand direction.
-**Choice:** Single gradient `#93d8ff → #85afff` — extracted from the brand icon set's [layers.svg](../public/icons/layers.svg). Hover darkens to `#7dc3f4 → #6e99ec`. Applied across 9 components: `Button` (primary), `BundleSizeTableBlock`, `ComparisonTimeline`, `ComponentsTable`, `ContactCTABlock`, `HeroWithCodeBlock`, `LargeCenteredImageBlock`, `ProductsGridBlock`, `TimelineBlock`.
-**Consequence:** Consistent brand feel across the site. Any new UI with an accent colour should reuse these hex codes (or the predefined classes that wrap them). Purple is allowed only inside the deliberate OpenAI-rainbow borders on AI-related components (`ChatGPTButton`, `CenteredAIBlock`, `HeroBlock.gradientButton`) — those aren't used on current pages but left in place for possible reuse.
+**Choice:** Brand accent now uses solid `#4286F4` (with hover `#2e6ad4`) — the lighter `#93d8ff → #85afff` gradient was used briefly during the FormEngine→WorkflowEngine transition but proved too pastel for a B2B .NET product. Applied across `Button` (primary), `ContactCTABlock` (inverted), `ProductsGridBlock`, `ReviewsStripBlock`, `CompatibilityBlock`, eyebrow text site-wide, and link colours.
+**Consequence:** Consistent brand feel across the site. Any new UI with an accent colour should reuse `#4286F4`. Purple is no longer present anywhere — the AI-rainbow components that used to host it (`ChatGPTButton`, `CenteredAIBlock`) were deleted in the post-fork cleanup.
 
 ## 9. Buttons: solid fill, no gradient; secondary outlined
 

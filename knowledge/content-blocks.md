@@ -8,27 +8,30 @@ Pages are composed of **blocks** — typed React components rendered from JSON c
 
 ## How it works
 
-1. JSON file in `src/data/` (e.g. [main.json](../src/data/main.json)) defines an array of `{ type, props }` objects.
-2. [components/blocks.tsx](../src/components/blocks.tsx) maintains a `components: Record<string, React.ComponentType>` registry mapping `type` strings to block components.
-3. Renderer iterates blocks, looks up the component by `type`, passes `props`. **Unknown types are silently dropped** (`if (!Component) return null`).
-4. A similar but larger registry lives in [components/PageBlocks.tsx](../src/components/PageBlocks.tsx) (used for data-driven sub-pages).
+1. JSON file in `src/data/` ([main.json](../src/data/main.json), [features.json](../src/data/features.json), [server.json](../src/data/server.json)) defines an array of `{ type, props }` objects.
+2. [components/blocks.tsx](../src/components/blocks.tsx) maintains a `components: Record<string, React.ComponentType>` registry mapping `type` strings to block components. It is the renderer for `main.json` (home).
+3. [components/PageBlocks.tsx](../src/components/PageBlocks.tsx) is the same renderer pattern, used by `/features` and `/server` (and any future data-driven sub-page).
+4. Both renderers iterate blocks, look up the component by `type`, pass `props`. Unknown types are silently dropped in `blocks.tsx`; `PageBlocks.tsx` logs a `console.warn`.
 
-## Current registry (blocks.tsx — homepage)
+## Current registry (12 blocks)
 
-`HeroWithCodeBlock`, `HeroBlock`, `HeroImageBlock`, `CenteredImageBlock`, `CenteredCodeBlock`, `CenteredVideoBlock`, `LargeCenteredImageBlock`, `CenteredImagesBlock`, `CenteredAIBlock`, `TwoColumnFeatureBlock`, `TwoColumnFeatureFullImageBlock`, `ImageTextBlock`, `FeaturesGridBlock`, `DetailedFeatureGridBlock`, `IconTitleTextBlock`, `CodeHighlightBlock`, `CodePreview`, `TwoColumnDetailedFeaturesBlock`, `CallToActionBlock`, `TestimonialsBlock`, `FAQBlock`, `TrustpilotTestimonialsBlock`, `ProductsGridBlock`, `LogosBlock`, `BadgeGridBlock`, `RatingCTABlock`, `ContactCTABlock`, `CustomerStoryBlock`, `CompatibilityBlock`, `CustomerTestimonialsBlock`, `ReviewsStripBlock`, `ComparisonTimeline`, `ColumnsBlock`, `DesignerScreenshotBlock`.
+Both `blocks.tsx` and `PageBlocks.tsx` register the same set:
 
-`PageBlocks.tsx` additionally registers: `ArchitectureBlock`, `DesignerTree`, `ComponentsTable`, `FrameworkLogosBlock`, `HeroFrameworksBlock`, `BundleSizeTableBlock`, plus the MUI/Mantine/Shadcn stubs. Both registries also include `CustomerStoryBlock` and `CompatibilityBlock`.
+`HeroBlock`, `CenteredImageBlock`, `FeaturesGridBlock`, `DetailedFeatureGridBlock`, `ProductsGridBlock`, `LogosBlock`, `ContactCTABlock`, `CustomerStoryBlock`, `CompatibilityBlock`, `CustomerTestimonialsBlock`, `ReviewsStripBlock`, `DesignerScreenshotBlock`.
+
+If you need a block that existed in the FormEngine fork (e.g. `HeroWithCodeBlock`, `TwoColumnFeatureBlock`, `FAQBlock`, `IconTitleTextBlock`, `CodePreview`, `BadgeGridBlock`, …) — copy it back from `../formengine-next` and register it. They were removed in the post-fork cleanup (see [log.md](log.md) `2026-04-29` entry) since none of the current JSON files referenced them.
 
 ## Surface card wrapping
 
-Both `blocks.tsx` and `PageBlocks.tsx` apply a uniform card wrapper when `props.surface === "card"`: `mx-4 sm:mx-12 lg:mx-16 xl:mx-32 2xl:mx-64 my-6 lg:my-8 bg-slate-100 rounded-[40px] lg:rounded-[48px] overflow-hidden`. The same `mx-*` chain is duplicated on `ContactCTABlock` и `FooterBlock` — these three locations must stay synchronized, otherwise the CTA↔Footer notch effect breaks horizontally.
+Both `blocks.tsx` and `PageBlocks.tsx` apply a uniform card wrapper when `props.surface === "card"`: `mx-4 sm:mx-12 lg:mx-16 xl:mx-32 2xl:mx-64 my-6 lg:my-8 bg-slate-100 rounded-[40px] lg:rounded-[48px] overflow-hidden`. The same `mx-*` chain is duplicated on `ContactCTABlock` and `FooterBlock` — these three locations must stay synchronized, otherwise the CTA↔Footer notch effect breaks horizontally.
 
 ## Layout hooks
 
-`blocks.tsx` adds vertical spacers before `LogosBlock` and after `CenteredImagesBlock`, `FAQBlock`, `CustomerTestimonialsBlock`, `ContactCTABlock`. Block-level background: `props.blockBg` overrides default `transparent`.
+`blocks.tsx` adds a vertical spacer before `LogosBlock`. Block-level background: `props.blockBg` overrides default `transparent`.
 
-## Known limitations (post-fork)
+## Adding a new block
 
-- Many blocks still contain FormEngine-specific copy / links to deleted routes (`/react-form-library`, `/comparison/...`, etc.). See [plans/roadmap.md](plans/roadmap.md).
-- `src/data/main.json` still references `StarsWall` (silently dropped, component deleted) and `FormDemoBlock` (rendered as placeholder — see [decisions.md](decisions.md)).
-- Sub-page JSON data files (`core.json`, `designer.json`, `core-mantine.json`, `core-mui.json`, `core-shadcn.json`, `rsuite-page.json`, `rsuite.json`) are leftovers from FormEngine — **no live route currently consumes them**.
+1. Create the component in `src/components/MyBlock.tsx`.
+2. Import + register it in **both** `blocks.tsx` and `PageBlocks.tsx`. Keep imports alphabetical inside the registry to make diffs predictable.
+3. Reference it from the relevant JSON: `{ "type": "MyBlock", "props": { ... } }`.
+4. If the block needs to sit inside a slate-100 rounded card, add `"surface": "card"` to its props.

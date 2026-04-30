@@ -19,6 +19,8 @@ Outstanding work after the FormEngine → WorkflowEngine fork (commit `0efe811`)
 - [x] ~~Remove GitHub / stargazers / open-source framing.~~ **Phase 1.5** (`5101f9c`). WorkflowEngine is closed-source.
 - [x] ~~Light theme migration.~~ **Phase 2.**
 - [x] ~~Purple → brand cyan-blue palette.~~ **Phase 3.x** (`a3ea922`).
+- [x] ~~Rebrand FormEngine fork to Workflow Engine site.~~ Major site restructure (`64dc468`): home/`/features`/`/server` rewritten with WE content (use cases, customer stories, compatibility), Footer rebuild, CTA↔Footer notch merge, `CustomerStoryBlock` + `CompatibilityBlock` components.
+- [x] ~~Post-fork cleanup.~~ `2026-04-29` (`7398b44`). Deleted ~50 unused components (form-builder stubs, generic blocks not in any current JSON), orphan dirs (`src/forms/`, `public/ads-images/`, `public/comparison/`, `public/react-form-builder-library/`), `src/lib/bir1706.ts`, FormEngine images and unused logos. `blocks.tsx`/`PageBlocks.tsx` registries trimmed from ~33 to 12 block types. Net: −21670 lines. Source for porting back any block: `../formengine-next`.
 
 ## P0 — next up
 
@@ -29,9 +31,6 @@ Outstanding work after the FormEngine → WorkflowEngine fork (commit `0efe811`)
 
 - [ ] **Regenerate `package-lock.json`.** Still references removed `@react-form-builder/*`, `@mui/*`, `@emotion/*` packages. Run a clean `npm install` on a healthy network.
 - [ ] **Set `BITRIX_URL` (+ optional `BITRIX_ASSIGNED_BY_ID`) in Netlify.** Without it, `/backend/lead/` returns 500 and the contact form fails.
-- [ ] **Prune dead FormEngine blocks / JSON references.** Dead links and orphan components still in the tree:
-  - `components/FrameworkLogosBlock.tsx`, `HeroFrameworksBlock.tsx` — hrefs to `/react-form-components-library/<framework>/`.
-  - `components/ComparisonTable.tsx`, `ComparisonTimeline.tsx`, `ComponentsTable.tsx`, `CodePreview.tsx`, `ArchitectureDiagram.tsx`, `DesignerTree.tsx`, `ChatGPTButton.tsx`, `FormDemoBlock.tsx`, `MUI*` / `Mantine*` / `Shadcn*` blocks (placeholders) — decide keep / repurpose / delete.
 - [ ] **Curate customer logos.** `LogosBlock` hard-codes a 9-logo set of shared OptimaJet clients (Bosch, Engie, Philips, Nelnet, Dell, Acer, Santos, Ideagen, Novartis). The workflowengine.io live set adds Airbus, KPMG, Wolters Kluwer, ProcessMAP, Techlogix, Technocom, MediaOcean, GE Honda, Wine.Create. Needs SVG sourcing — or pick a shorter curated list.
 - [ ] **`public/sitemap.xml`** — auto-generated at build time, but check for stale FormEngine URLs after next deploy.
 - [ ] **`public/robots.txt`, `public/_redirects`, `public/_headers`** — audit for FormEngine leftovers.
@@ -39,7 +38,7 @@ Outstanding work after the FormEngine → WorkflowEngine fork (commit `0efe811`)
 
 ## P2 — nice to have
 
-- [ ] **Remove unused components wholesale** after P0/P1 are done (many "MUI", "Mantine", "Shadcn", "Designer" blocks).
-- [ ] **Kill unused form schemas** in `src/forms/` — most orphaned after the viewer removal in Phase 1.
-- [ ] **Re-audit `src/lib/bir1706.ts`** — FormEngine demo schema, not referenced anywhere now; likely deletable.
+- [x] ~~Remove unused components wholesale.~~ Done in `7398b44`.
+- [x] ~~Kill unused form schemas in `src/forms/`.~~ Done in `7398b44`.
+- [x] ~~Re-audit `src/lib/bir1706.ts`.~~ Done in `7398b44` (deleted; `src/lib/` no longer exists).
 - [ ] **Port `docs/deploy.md`** — still says `formengine.io` in examples and variable names.
