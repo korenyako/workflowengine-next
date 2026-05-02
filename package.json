@@ -18,7 +18,8 @@
     "next": "^16.1.5",
     "next-mdx-remote": "^6.0.0",
     "react": "^19.2.3",
-    "react-dom": "^19.2.3"
+    "react-dom": "^19.2.3",
+    "rehype-highlight": "^7.0.2"
   },
   "devDependencies": {
     "@netlify/functions": "^5.1.2",

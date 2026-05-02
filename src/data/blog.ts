@@ -33,7 +33,7 @@ export const blogPosts: BlogPost[] = [
     author: { name: 'Optimajet Team' },
     category: 'Engineering',
     tags: [],
-    cover: '/images/blog/how-to-choose-the-right-embedded-workflow-automation-tool/preview.jpg',
+    cover: '/images/blog/how-to-choose-the-right-embedded-workflow-automation-tool/preview.png',
     readingTime: '10 minutes',
   },
   {

@@ -181,6 +181,30 @@ a:not([class*="bg-"]):not([class*="border-"]):not([class*="text-white"]):not([cl
 
 
 
+/* === Code blocks (MDX fenced ``` блоки в article-content) ===
+   <pre> — внешняя карточка (фон, padding, radius). <code class="hljs ..."> внутри
+   получает только highlight.js-токены (через theme импортированную в page.tsx)
+   и задаёт font-family / size / line-height для самого кода. */
+.article-content pre {
+  background: #0f172a !important; /* slate-900 */
+  border-radius: 12px !important;
+  padding: 20px 24px !important;
+  margin: 32px 0 !important;
+  white-space: pre-wrap !important;
+  overflow-wrap: anywhere !important;
+}
+
+.article-content pre code.hljs {
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  display: block;
+  font-family: var(--font-jetbrains-mono), "JetBrains Mono", "Roboto Mono", "SF Mono", "Monaco", "Inconsolata", "Fira Code", "Droid Sans Mono", "Source Code Pro", "Consolas", "Liberation Mono", "Menlo", "Courier", monospace !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  color: #e2e8f0 !important; /* slate-200 — fallback если theme не подгружена */
+}
+
 /* Стили для скроллбара в блоках кода */
 pre::-webkit-scrollbar {
   width: 4px;
@@ -287,6 +311,10 @@ pre::-webkit-scrollbar-corner {
 
 .article-content blockquote p {
   color: #334155 !important; /* slate-700 */
+}
+
+.article-content blockquote p:last-child {
+  margin-bottom: 0 !important;
 }
 
 .article-content ul {

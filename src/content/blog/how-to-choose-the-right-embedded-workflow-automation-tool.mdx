@@ -1,4 +1,4 @@
-![How to choose the right embedded workflow automation tool](/images/blog/how-to-choose-the-right-embedded-workflow-automation-tool/preview.jpg)
+![How to choose the right embedded workflow automation tool](/images/blog/how-to-choose-the-right-embedded-workflow-automation-tool/preview.png)
 
 ## What is business process automation?
 
@@ -127,7 +127,7 @@ In the Workflow Engine, the process for paying for courses would resemble this:
 
 At this point, significant disparities between the two companies' strategies start by weighing benefits and drawbacks.
 
-**Camunda tables**
+#### Camunda tables
 
 There are complex abstractions to implement BPMN in Camunda, you be the judge!
 
@@ -145,7 +145,7 @@ All of this data is also kept for history, including changes to the specified ab
 
 It can be difficult to deal with this because of the one-to-many relationship and the BPMN notation, in which these abstractions are not explicitly emphasized (but are built by Camunda). To be completely honest, these abstractions are included for a reason, and this is arguably the most obvious method to embrace BPMN.
 
-**Workflow Engine tables**
+#### Workflow Engine tables
 
 Compared to Camunda, this solution is much simpler in every way:
 
@@ -157,13 +157,13 @@ The same data, including that related to process execution, is recorded for hist
 
 Other configuration data (permissions, global values, and so on) are also stored by each solution, but this information is less interesting.
 
-**Process abstractions in Camunda**
+#### Process abstractions in Camunda
 
 What specific information is obtained when processes are formed is also crucial with regard to data saving. In Camunda, this is a full-fledged, 98% working BPMN, described in the OMG standard. This means that there are about 400 semantic constructs and about 12 key abstractions.
 
 ![BPMN events](/images/blog/how-to-choose-the-right-embedded-workflow-automation-tool/bpmn-events-1.png "BPMN events")
 
-**Process abstractions in Workflow Engine**
+#### Process abstractions in Workflow Engine
 
 In this solution, everything is quite simple - there are only two main abstractions - `Activity` and `Transition`.
 

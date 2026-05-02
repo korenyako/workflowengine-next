@@ -34,6 +34,30 @@ Chronological log of wiki updates. Newest entries on top.
 
 **Author** добавлен 31 посту: `author: { name: 'Optimajet Team' }` в [blog.ts](../src/data/blog.ts). На легаси-сайте автора не было — это дефолт от имени бренда. Рендеринг даты/автора в [page.tsx](../src/app/blog/[slug]/page.tsx) и [BlogCard](../src/components/blog/BlogCard.tsx) обёрнут в conditional (`post.author && ...`, `formattedDate && ...`) — даты по-прежнему отсутствуют.
 
+---
+
+**Вторая итерация (того же дня) — после первого коммита:**
+
+**Подсветка кода в постах** — подключён `rehype-highlight` (npm-зависимость) в [page.tsx](../src/app/blog/[slug]/page.tsx) через `MDXRemote.options.mdxOptions.rehypePlugins`. Build-time: парсит fenced-блоки с `language-csharp`/`language-xml`/etc., добавляет hljs-классы (`hljs-keyword`, `hljs-string`, `hljs-comment` и т.д.) на `<span>`-токены. Тема `highlight.js/styles/stackoverflow-dark.css` импортирована в этой же page.tsx (загружается только на блог-страницах). Поддерживает все языки, в которых писал легаси-блог (csharp, xml, kotlin, bash, json, и т.д.).
+
+**Стили code-блоков переписаны** ([globals.css](../src/styles/globals.css)):
+- Раньше: `.hljs` правило задавало bg/padding/radius на `<code class="hljs">` (внутри `<pre>`).
+- Теперь: `<pre>` — внешняя «карточка» (slate-900 bg, `border-radius: 12px`, `padding: 20px 24px`, `margin: 32px 0`, `white-space: pre-wrap`, `overflow-wrap: anywhere`). `<code class="hljs">` внутри — прозрачный фон, без своего radius/padding, `display: block`, моноширинный 14px / line-height 1.6. Переход на pre-wrap убирает горизонтальный скролл — длинные строки переносятся по словам, очень длинные токены (URL) ломаются принудительно.
+
+**Inline lead-images добавлены оставшимся 23 постам** — теперь все 31 пост имеют `![<title>](<cover>)` первой строкой MDX-тела. Делал скриптом [add-inline-images.js](../../we-blog-html/converter/add-inline-images.js) в tmp-конвертере, парсил slug+title+cover из blog.ts. У 8 постов inline уже был — пропустил.
+
+**`how-to-choose-the-right-...` — preview.jpg → preview.png.** Пользователь заменил файл, обновлены ссылки в blog.ts (cover) и MDX (inline). Старый jpg удалён.
+
+**Blockquote для списков клиентов в `workflow-industries`.** 9 строк `**Our clients:** ...` обёрнуты в markdown blockquote (`>`-prefix) для визуального выделения. У 8 строк `>`-prefix добавлен в начало; одна (Real Estate) была частью предыдущего абзаца — вынесена в отдельный абзац (текст не менялся, только структура). См. [knowledge/blog.md](blog.md#cover-vs-inline-image-важно) — теперь `blockquote` используется в 2 местах: цитата OAI в `workflow-server-goes-openapi` и Our clients строки в `workflow-industries`.
+
+**Заголовочная иерархия — 11 фиксов структурной разметки** (текст не менялся):
+- `new-release-of-the-workflow-server-3-0:18` — `#### [link]` CTA → обычный параграф (h4 у нас 18px, body 20px — было визуально меньше body, выглядело сломанно).
+- `does-it-make-sense-to-build-...:43` — `**You will spend a lot of time on maintenance**` → `### ...` (соседние секции `###`).
+- `how-to-choose-...` × 4 — `**Camunda tables**`, `**Workflow Engine tables**`, `**Process abstractions in Camunda**`, `**Process abstractions in Workflow Engine**` под `### Basic abstractions...` → `#### h4`.
+- `parallel-branches-continued` × 4 — `**Commands:**`, `**Root Process**`, `**Sub-process "RollBack"**`, `**Sub-process "FastApprove"**` под `## Create a Scheme` → `### h3`. У `**Commands:**` убрано двоеточие.
+
+**Blockquote отступ** — добавлено `.article-content blockquote p:last-child { margin-bottom: 0 }`. Раньше у `<p>` внутри blockquote был `margin-bottom: 32px` (от общего `.article-content p` правила), что давало ~32px пустоты под текстом цитаты, поверх собственного 16px padding'а blockquote.
+
 ## 2026-04-30 | Phase 4: блог портирован целиком (31 пост из workflowengine.io)
 
 **SEO-критичная миграция** — пользователь обозначил, что в `/blog/` уходит ~90% входящего трафика. Все 31 пост (план фиксировал 20 на `2026-04-14`, реальное число оказалось 31) портированы 1:1 со старого сайта; **слаги сохранены**, пути `/blog/<slug>/` соответствуют легаси.

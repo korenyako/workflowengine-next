@@ -1,3 +1,5 @@
+![Parallel Branches. Continued](/images/blog/parallel-branches-continued/other-tracks.jpg)
+
 ## Source Code
 
 Feel free to download the [source code](https://workflowengine.io/downloads/parallel-branches-sample.zip).
@@ -24,14 +26,14 @@ We added some flags to Transitions for parallel branches.
 
 Let’s create the scheme of the process with a root process and two sub-processes.
 
-**Commands:**
+### Commands
 
 -   approve – for direct transition to the main branch;
 -   denied – for reverse transition to the main branch;
 -   rollback – for sub-process rollback;
 -   fastapprove – for sub-process fastapprove.
 
-**Root Process**
+### Root Process
 
 Activities:
 
@@ -42,7 +44,7 @@ Activities:
 
 If you want to create transitions between activities, use the “approve” command for direct transition and the “denied” command for reverse.
 
-**Sub-process “RollBack”**
+### Sub-process “RollBack”
 
 This process is used to execute a rollback.
 
@@ -67,7 +69,7 @@ The outcoming transition:
 -   Is fork: true;
 -   Merge sub-process via set state: true.
 
-**Sub-process "FastApprove"**
+### Sub-process "FastApprove"
 
 This process is used to execute fast approve and to change the state of the main process to Final.
 

@@ -2,10 +2,15 @@ import type { Metadata } from 'next'
 import fs from 'fs'
 import path from 'path'
 import { MDXRemote } from 'next-mdx-remote/rsc'
+import rehypeHighlight from 'rehype-highlight'
 import { blogPosts, getBlogPostBySlug } from '@/data/blog'
 import TableOfContents from '@/components/blog/TableOfContents'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+// Highlight.js theme — imported here so it only loads on blog post pages.
+// `.hljs {...}` base rule lives in globals.css; this adds token-specific
+// colors (keywords, strings, comments, etc.) for the dark slate-900 surface.
+import 'highlight.js/styles/stackoverflow-dark.css'
 
 const CONTENT_DIR = path.join(process.cwd(), 'src', 'content', 'blog')
 
@@ -136,7 +141,10 @@ export default async function BlogPostPage({
               data-blog-content
               className="article-content"
             >
-              <MDXRemote source={source} />
+              <MDXRemote
+                source={source}
+                options={{ mdxOptions: { rehypePlugins: [rehypeHighlight] } }}
+              />
             </article>
           </div>
 
