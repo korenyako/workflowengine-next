@@ -42,3 +42,4 @@ Outstanding work after the FormEngine → WorkflowEngine fork (commit `0efe811`)
 - [x] ~~Kill unused form schemas in `src/forms/`.~~ Done in `7398b44`.
 - [x] ~~Re-audit `src/lib/bir1706.ts`.~~ Done in `7398b44` (deleted; `src/lib/` no longer exists).
 - [ ] **Port `docs/deploy.md`** — still says `formengine.io` in examples and variable names.
+- [ ] **Оптимизировать blog-изображения.** `public/images/blog/` сейчас **~19MB / 76 файлов** (72 PNG/JPEG/JPEG, 4 webp/avif). Скачано 1:1 с легаси-сайта без сжатия. Самые тяжёлые: `how-to-implement-bpm-in-your-company/img.png` (2.9MB), `choosing-a-business-rules-management-tool/img.png` (449KB), и т.д. Конвертировать всё (кроме SVG, если будут) в **webp** с разумным quality (80-85), целевой размер для cover-картинок до 100-200KB, для inline-content до 300-500KB. Параллельно обновить ссылки в `src/content/blog/*.mdx` (inline) и `src/data/blog.ts` (cover) на новые `.webp`-пути. Можно скриптом на `sharp` или CLI `cwebp`.
