@@ -1,0 +1,233 @@
+## Source Code
+
+Feel free to download the [source code](https://workflowengine.io/downloads/parallel-approval-without-branches-sample.zip).
+
+## Introduction
+
+Sometimes we need to obtain document approval from multiple participants at the same time. All the participants should approve the document in parallel. For this purpose, you can use parallel branches. However, quite often people who have the right to approve the document are different at each stage. You will have to make the generation of the scheme to make it possible. As a result, your project will become more complicated.
+
+However, there is a fairly simple solution to uniformly describe this logic. In this case you won’t have to use parallel branches or the generation of the scheme. The solution is based on the ability of the engine to save any objects in variables (parameters) of the process, and pass the parameters to code actions. You can modify and use it in your own solution.
+
+## The Project
+
+![Parallel approval without branches](/images/blog/parallel-approval-without-branches/parallel-approval-without-branches.png)
+
+Please, note that another project, called Business, was added to the solution. It has two classes.
+
+-   **Approvers.** This class is used to keep the information about users who can approve or have already approved the document. The class is designed so as to be serializable into JSON. The code of this class is trivial, so it doesn’t require any additional notes.
+
+```csharp
+public class Approvers
+{
+    //Must be а public property to serialize to JSON
+        public Dictionary<string, bool> ApproversDictionary { get; set; }
+
+        public Approvers(List<string> ids)
+        {
+           if (ids == null) //Required for correct deserialization from JSON
+           {
+               ApproversDictionary = new Dictionary<string, bool>();
+           }
+           else
+           {
+               ApproversDictionary = ids.ToDictionary(id => id, id => false);
+           }
+        }
+
+        [JsonIgnore]
+        public bool IsApproved
+        {
+            get { return ApproversDictionary.Values.All(v => v); }
+        }
+
+        public void Approve(string id)
+        {
+            ApproversDictionary[id] = true;
+        }
+
+     ...
+
+        public List GetAvailiableApprovers()
+        {
+            return ApproversDictionary.Where(s => !s.Value).Select(s=>s.Key).ToList();
+        }
+}
+```
+
+-   **ApproversProvider.** This is a static class that has only one static method. GetApprovers. This method contains the logic that determines approvers at each stage. In our example, this method takes the string parameter, depending on which we can define the list of identifiers of approvers. This is just one of the options, and your application may have a completely different logic.
+
+```csharp
+public static class ApproversProvider
+{
+    public static Approvers GetApprovers(ProcessInstance processInstance, string name)
+    {
+        switch (name)
+        {
+            case "Stage1": 
+                return new Approvers(new List{"user1","user2"});
+            case "Stage2":
+                return new Approvers(new List {"user3","user4","user5" });
+            default:
+                return new Approvers(new List());
+        }
+    }
+}
+```
+
+## The Scheme
+
+Let’s focus on more important details of the scheme.
+
+Please, note that parameter Approvers (type Business.Approvers) is added to scheme parameters. This parameter keeps information about the approvers between command execution times in memory.
+
+Further, there are Actions and Conditions that we need to determine our logic. The scheme contains two Actions, one Condition and one Rule.
+
+-   **FillApprovers.** This method is called at the beginning of each stage. It gets the Approvers object from ApproversProvider.GetApprovers method, and saves it to process variables (parameters).
+
+```csharp
+void FillApprovers (ProcessInstance processInstance, WorkflowRuntime runtime, string parameter)
+{
+    processInstance.SetParameter ("Approvers",ApproversProvider.GetApprovers(processInstance,parameter));
+}
+```
+
+-   **Approve.** This Action registers document approval by a user who executes a command.
+
+```csharp
+void Approve (ProcessInstance processInstance, WorkflowRuntime runtime, string parameter)
+{
+    if (string.IsNullOrEmpty(processInstance.CurrentCommand) ||
+        processInstance.CurrentCommand.Equals("start",StringComparison.InvariantCultureIgnoreCase))
+            return;
+    var approvers = processInstance.GetParameter<Approvers>("Approvers");
+  approvers.Approve(processInstance.IdentityId);
+}
+```
+
+-   \*\*IsApproveComplete.\*\*\* This condition is used to receive information whether all users approved the document.
+
+```csharp
+bool IsApproveComplete (ProcessInstance processInstance, WorkflowRuntime runtime, string parameter)
+{
+    var approvers = processInstance.GetParameter<Approvers>("Approvers");
+    return approvers.IsApproved;
+}
+```
+
+-   **Approver.** This rule is used to check whether identityId is registered in the Approvers object and whether or not the user approved the document before.
+
+```csharp
+IEnumerable<string> Approver (ProcessInstance processInstance, string parameter)
+{
+    var approvers = processInstance.GetParameter<Approvers>("Approvers");
+    return approvers.GetAvailiableApprovers();
+}
+```
+
+The process described in the scheme consists of four stages. Draft and Final are ordinary stages represented by one Activity. Stage1 and Stage2 consist of two Activities each. Stage1 demonstrates how the approval process works. Stage2 works the same way as Stage1.
+
+First, the process enters Stage1lnit Activity and executes FillApprovers action. Then Approvers object is saved to process variables. When this action is completed, the process enters Stage1 Activity. This activity has two outgoing transitions of which one is triggered by the Approve command and the other by Auto transition. When we set Stage1 to current Activity, the engine will try to execute all outgoing auto transitions. It will check IsApproveComplete condition. In case no one approves the document, the condition will return false and the engine will stop the transitional process.
+
+The engine also checks the Approver Rule command before returning to the list of available commands. If a user with specified id is supposed to approve the document at this stage and he hasn’t done it yet, the engine will return the Approve command to the state available for execution.
+
+As we can see, the command Transition, which is triggered by the Approve command, is cyclic. When the Approve command is executed, the engine will execute the Approve action. This action will modify the Approvers object in the variables of the process. It will notify us that the user, who executed the command, has approved the document.
+
+When this action is completed, the engine will check the IsApproveComplete condition. If there are no more users who should approve the document, it will execute transition to Stage2lnit. If there are still users who should do it, the transition process will be stopped and it will wait for further commands.
+
+Let’s proceed to the demo.
+
+## The Demo
+
+First, execute the Start command.
+
+```
+...
+The process is not created.
+CreateInstance - OK.
+ProcessId = 'b6f1b7d4-...'. CurrentState: Draft, CurrentActivity: Draft
+Current user is undefined.
+Enter code of operation:3
+Available commands:
+- start (LocalizedName:start, Classifier:Direct)
+Enter command:start
+ExecuteCommand - OK.
+ProcessId = 'b6f1b7d4-...'. CurrentState: Stage1, CurrentActivity: Stage1
+```
+
+Then, when you get the list of available commands, you will see only the Deny command. Set user id for command execution. You can do it by using 0. It will set current user operation.
+
+```
+ProcessId = 'b6f1b7d4-...'. CurrentState: Stage1, CurrentActivity: Stage1
+Current user is undefined.
+Enter code of operation:3
+Available commands:
+- deny (LocalizedName:deny, Classifier:Reverse)
+Enter command:
+ProcessId = 'b6f1b7d4-...'. CurrentState: Stage1, CurrentActivity: Stage1
+Current user is undefined.
+Enter code of operation:0
+Enter user id:user1
+```
+
+Now you can get and execute the Approve command. Execute this command and get the list of available commands. Again, you will see only the Deny command. You need to change user to user2 and execute the Approve command one more time.
+
+```
+ProcessId = 'b6f1b7d4-...'. CurrentState: Stage1, CurrentActivity: Stage1
+Current user = user1.
+...
+Enter command:approve
+ExecuteCommand - OK.
+ProcessId = 'b6f1b7d4-...'. CurrentState: Stage1, CurrentActivity: Stage1
+Current user = user1.
+Enter code of operation:3
+Available commands:
+- deny (LocalizedName:deny, Classifier:Reverse)
+Enter command:
+ProcessId = 'b6f1b7d4-...'. CurrentState: Stage1, CurrentActivity: Stage1
+Current user = user1.
+Enter code of operation:0
+Enter user id:user2
+ProcessId = 'b6f1b7d4-...'. CurrentState: Stage1, CurrentActivity: Stage1
+Current user = user2.
+Enter code of operation:3
+Available commands:
+- approve (LocalizedName:approve, Classifier:Direct)
+- deny (LocalizedName:deny, Classifier:Reverse)
+Enter command:approve
+ExecuteCommand - OK.
+ProcessId = 'b6f1b7d4-...'. CurrentState: Stage2, CurrentActivity: Stage2
+```
+
+We can see that the process has changed its state to Stage2. It means that the first state was completed. Now you need to execute the Approve command for user4, user5 and user6 to obtain document approval from all the participants.
+
+```
+ProcessId = 'b6f1b7d4-...'. CurrentState: Stage2, CurrentActivity: Stage2
+Current user = user2.
+Enter code of operation:0
+Enter user id:user3
+ProcessId = 'b6f1b7d4-...'. CurrentState: Stage2, CurrentActivity: Stage2
+Current user = user3.
+Enter code of operation:3
+...
+Enter command:approve
+ExecuteCommand - OK.
+ProcessId = 'b6f1b7d4-...'. CurrentState: Stage2, CurrentActivity: Stage2
+Current user = user3.
+Enter code of operation:0
+Enter user id:user4
+ProcessId = 'b6f1b7d4-...'. CurrentState: Stage2, CurrentActivity: Stage2
+Current user = user4.
+...
+Enter command:approve
+ExecuteCommand - OK.
+ProcessId = 'b6f1b7d4-...'. CurrentState: Stage2, CurrentActivity: Stage2
+Current user = user4.
+Enter code of operation:0
+Enter user id:user5
+ProcessId = 'b6f1b7d4-...'. CurrentState: Stage2, CurrentActivity: Stage2
+Current user = user5.
+...
+Enter command:approve
+ExecuteCommand - OK.
+ProcessId = 'b6f1b7d4-...'. CurrentState: Final, CurrentActivity: Final
+```

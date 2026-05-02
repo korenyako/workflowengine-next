@@ -7,11 +7,13 @@ interface BlogCardProps {
 }
 
 export default function BlogCard({ post, size = 'small' }: BlogCardProps) {
-  const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  })
+  const formattedDate = post.date
+    ? new Date(post.date).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      })
+    : null
 
   return (
     <Link
@@ -27,15 +29,24 @@ export default function BlogCard({ post, size = 'small' }: BlogCardProps) {
           />
         </div>
       )}
-      <h2 className={`font-heading text-slate-900 mb-2  ${
+      <h2 className={`font-heading text-slate-900 mb-3  ${
         size === 'large' ? 'text-2xl lg:text-3xl' : 'text-lg lg:text-xl'
       }`}>
         {post.title}
       </h2>
+      {/* Description (first paragraph only — for posts with multi-paragraph
+          descriptions like the lifted-up subtitle, only the first shows on cards). */}
+      <p className="text-base text-slate-600 leading-relaxed mb-3">
+        {post.description.split('\n\n')[0]}
+      </p>
       <div className="flex items-center gap-2 text-sm text-slate-500">
-        <span>{post.dateLabel || 'Published'}</span>
-        <time dateTime={post.date}>{formattedDate}</time>
-        <span>&middot;</span>
+        {formattedDate && (
+          <>
+            <span>{post.dateLabel || 'Published'}</span>
+            <time dateTime={post.date}>{formattedDate}</time>
+            <span>&middot;</span>
+          </>
+        )}
         <span>{post.readingTime}</span>
       </div>
     </Link>

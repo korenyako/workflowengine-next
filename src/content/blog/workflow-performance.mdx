@@ -1,0 +1,74 @@
+## Introduction
+
+We’ve tested the performance of Workflow Engine and are happy to share the results with you. The tests were conducted on Windows and Linux. The standard version without further optimizations was tested.
+
+Here we go…
+
+## Test description
+
+We’ve measured the performance with SoapUI, a free automated testing tool, using the Simple strategy ([SoapUI strategies](https://www.soapui.org/load-testing/simulating-different-types-of-load.html)) with different amount of threads: 1, 4, 8, and 16 threads. The control performance measurement was done over a set of 10 000 processes.
+
+A scheme comprising three Activities and two Transitions is used in the test:
+
+![Workflow Scheme](/images/blog/workflow-performance/workflow-scheme.png)
+
+A single test consists of 14 steps executed successively. Each step in the test is a call of one of the basic API methods. You can read full description for Workflow Engine [here](https://workflowengine.io/documentation/main-terms/basic-operations/), and for Workflow Server [here](https://workflowengine.io/documentation/workflow-server/workflow-api/).
+
+<table><thead><tr><th>#</th><th>Step title</th><th>Description</th></tr></thead><tbody><tr><td>Step 1</td><td>createinstance</td><td>Creating of an instance</td></tr><tr><td>Step 2</td><td>isexistprocess</td><td>Checking whether a process exists</td></tr><tr><td>Step 3</td><td>getinstanceinfo1</td><td>Getting a process instance with all parameters</td></tr><tr><td>Step 4</td><td>getcommands1</td><td>Getting a list of available commands</td></tr><tr><td>Step 5</td><td>executecommand1</td><td>Executing a command</td></tr><tr><td>Step 6</td><td>getinstanceinfo2</td><td>Getting a process instance with all parameters</td></tr><tr><td>Step 7</td><td>getcommands2</td><td>Getting a list of available commands</td></tr><tr><td>Step 8</td><td>executecommand2</td><td>Executing a command</td></tr><tr><td>Step 9</td><td>getinstanceinfo3</td><td>Getting a process instance with all parameters</td></tr><tr><td>Step 10</td><td>getstates</td><td>Getting a list of available states</td></tr><tr><td>Step 11</td><td>setstate1</td><td>Setting process state</td></tr><tr><td>Step 12</td><td>getinstanceinfo4</td><td>Getting a process instance with all parameters</td></tr><tr><td>Step 13</td><td>setstate3</td><td>Setting process state</td></tr><tr><td>Step 14</td><td>getinstanceinfo5</td><td>Getting a process instance with all parameters</td></tr></tbody></table>
+
+## Windows Test
+
+We used a dedicated server with the following configuration for the test:
+
+-   [Intel® Xeon® E3-1275 v5 Quad-Core Skylake (4 core, 8 threads)](https://ark.intel.com/products/88177/Intel-Xeon-Processor-E3-1275-v5-8M-Cache-3-60-GHz-)
+-   HARD DRIVE 2 x 480 GB SSD SATA-III Data Center Series
+-   RAM 64 GB DDR4 ECC
+-   MS Windows 2016
+-   MS SQL Server 2017 Developer Edition
+-   .NET Core 2.1
+-   Workflow Server 2.3
+
+Workflow Server, the database and the testing tool were deployed to a single server in this test. 500 000 processes were created in the database before running the control test.
+
+![Workflow Scheme](/images/blog/workflow-performance/workflow-engine.png)
+
+## Windows test results
+
+<table><thead><tr><th>Test</th><th>Total Time</th><th>Avg test time (ms)</th><th>Tests per second</th><th>Operations per second</th></tr></thead><tbody><tr><td>1 thread</td><td>10:12</td><td>38.81</td><td>16.34</td><td>228</td></tr><tr><td>4 threads</td><td>3:19</td><td>49.01</td><td>50.13</td><td>701</td></tr><tr><td><strong>8 threads</strong></td><td><strong>2:12</strong></td><td><strong>75.45</strong></td><td><strong>75.79</strong></td><td><strong>1 061</strong></td></tr><tr><td>16 threads</td><td>2:07</td><td>175.65</td><td>78.25</td><td>1 095</td></tr></tbody></table>
+
+The results of the test show that using eight threads is the optimal solution. It provides you with the best combination of a single test time and overall performance.
+
+You should also pay attention to CPU and memory usage by the apps. I made the following screenshot during the test:
+
+![Workflow Scheme](/images/blog/workflow-performance/task-manager.png)
+
+.NET Core Host is a Workflow Server’s process launched in the console. You can see that Workflow Server uses 27.5% CPU and 27.9 RAM. The SoapUI tool which generates loads is deployed to the same server in our test and uses 45% CPU. If we deployed SoapUI to another server, then Workflow Engine’s performance would be higher.
+
+## Linux test
+
+We used DigitalOcean’s One-Click Docker Droplet of the following configuration for this test:
+
+-   2 CPUs
+-   4 GB RAM
+-   80 GB SSD
+-   PostgreSQL
+-   .NET Core 2.1
+-   Workflow Server 2.3
+
+In this test, Workflow Server and the database are deployed to one server, and the utility is deployed to another server. Ping between the servers is 5ms-the servers are located in different data centers in the same region. 150 000 processes were created in the database before running the control test.
+
+![Workflow Scheme](/images/blog/workflow-performance/workflow-server.png)
+
+## Linux test results
+
+<table><thead><tr><th>Test</th><th>Total Time</th><th>Avg test time (ms)</th><th>Tests per second</th><th>Operations per second</th></tr></thead><tbody><tr><td>Thread 1</td><td>54:34</td><td>291.01</td><td>3.05</td><td>42.7</td></tr><tr><td>Thread 4</td><td>13:41</td><td>302.88</td><td>12.17</td><td>170.38</td></tr><tr><td><strong>Thread 8</strong></td><td><strong>10:05</strong></td><td><strong>458.83</strong></td><td><strong>16.52</strong></td><td><strong>231.28</strong></td></tr><tr><td>Thread 16</td><td>8:28</td><td>787.75</td><td>19.7</td><td>275.80</td></tr></tbody></table>
+
+The results of the test show that using eight threads is the optimal solution. It provides you with the best combination of a single test time and overall performance. Let’s have a look at resource load in the Digital Ocean’s admin panel.
+
+![Workflow Scheme](/images/blog/workflow-performance/digital-ocean-load.png)
+
+## Conclusion
+
+Workflow Engine demonstrates perfect performance both on weak machines and powerful servers. A well-thought-through architecture ensures stable processing times even with default database settings and hundred thousands to millions of processes, including active/unfinished ones.
+
+You can process up to 1000 basic operations per second with an average time of processing one request of 5 to 30 milliseconds on an average server. This is enough for any solution from corporate systems to IoT platforms.

@@ -1,0 +1,161 @@
+## Source Code
+
+Feel free to download the [source code](https://workflowengine.io/downloads/parallel-branches-sample.zip).
+
+## Introduction
+
+Since version 1.5 Workflow Engine comes with an ability to define and use forks (parallel processes). Each fork defines a sub-process.
+
+This article explains how to define, use and control parallel branches. You may find an example in the [Alternative to Windows Workflow Foundation article](https://workflowengine.io/blog/alternative-to-windows-workflow-foundation/).
+
+**Warning:** the functional doesn’t work with the free license of Workflow Engine. It requires more limits of the scheme. The sample has a trial license key that allows you to use this functionality.
+
+## Parallel branches terms
+
+![Parallel branches](/images/blog/parallel-branches-continued/parallel-branches.png)
+
+We added some flags to Transitions for parallel branches.
+
+-   Is fork. Transition marked by this flag starts or ends a sub-process;
+-   Merge sub-process via set state. It changes the current activity of the parent process to the final activity of the sub-process and results in merging of a parent process and a sub-process;
+-   Disable parent process control. If a parent process is set to an activity where the sub-process cannot exist, it disables the auto-removing of the sub-process.
+
+## Create a Scheme
+
+Let’s create the scheme of the process with a root process and two sub-processes.
+
+**Commands:**
+
+-   approve – for direct transition to the main branch;
+-   denied – for reverse transition to the main branch;
+-   rollback – for sub-process rollback;
+-   fastapprove – for sub-process fastapprove.
+
+**Root Process**
+
+Activities:
+
+-   Draft;
+-   MainState1;
+-   MainState2;
+-   Final.
+
+If you want to create transitions between activities, use the “approve” command for direct transition and the “denied” command for reverse.
+
+**Sub-process “RollBack”**
+
+This process is used to execute a rollback.
+
+Activities:
+
+-   Rollback.
+
+The process starts with MainState1 activity and it has two transitions:
+
+The incoming transition:
+
+-   Type: AA;
+-   Classifier: NotSpecified;
+-   Is fork: true.
+
+The outcoming transition:
+
+-   Type: AC;
+-   Classifier: Direct;
+-   Trigger type: Command;
+-   Command: rollback;
+-   Is fork: true;
+-   Merge sub-process via set state: true.
+
+**Sub-process "FastApprove"**
+
+This process is used to execute fast approve and to change the state of the main process to Final.
+
+Activities:
+
+-   FastApprove.
+
+The process starts with Draft activity and it has two transitions:
+
+The incoming transition:
+
+-   Type: AA;
+-   Classifier: NotSpecified;
+-   Is fork: true.
+
+The outcoming transition:
+
+-   Type: AC;
+-   Classifier: Direct;
+-   Trigger type: Command;
+-   Command: fastapprove;
+-   Is fork: true;
+-   Merge sub-process via set state: true.
+
+As a result, your scheme should look [like this](https://workflowengine.io/downloads/sample-parallel-scheme.txt).
+
+## Test
+
+```
+Operation:
+0 - CreateInstance
+1 - GetAvailableCommands
+2 - ExecuteCommand
+3 - GetAvailableState
+4 - SetState
+5 - DeleteProcess
+9 - Exit
+The process isn`t created.
+CreateInstance - OK.
+ProcessId = 'c3b6c1c2-a2b8-4ae0-b208-72351cdc9f43'. CurrentState: Draft, CurrentActivity: Draft
+Enter code of operation:2
+Available commands:
+- approve (LocalizedName:approve, Classifier:Direct)
+- fastapprove (LocalizedName:fastapprove, Classifier:Direct)
+Enter command:approve
+ExecuteCommand - OK.
+ProcessId = 'c3b6c1c2-a2b8-4ae0-b208-72351cdc9f43'. CurrentState: MainState1, CurrentActivity: MainState1
+Enter code of operation:2
+Available commands:
+- approve (LocalizedName:approve, Classifier:Direct)
+- denial (LocalizedName:denial, Classifier:Reverse)
+- rollback (LocalizedName:rollback, Classifier:Reverse)
+- fastapprove (LocalizedName:fastapprove, Classifier:Direct)
+Enter command:fastapprove
+ExecuteCommand - OK.
+ProcessId = 'c3b6c1c2-a2b8-4ae0-b208-72351cdc9f43'. CurrentState: Final, CurrentActivity: Final
+Enter code of operation:4
+Available state to set:
+- Draft
+- MainState1
+- MainState2
+- Final
+Enter state:draft
+SetState - OK.
+ProcessId = 'c3b6c1c2-a2b8-4ae0-b208-72351cdc9f43'. CurrentState: Draft, CurrentActivity: Draft
+Enter code of operation:2
+Available commands:
+- approve (LocalizedName:approve, Classifier:Direct)
+- fastapprove (LocalizedName:fastapprove, Classifier:Direct)
+Enter command:approve
+ExecuteCommand - OK.
+ProcessId = 'c3b6c1c2-a2b8-4ae0-b208-72351cdc9f43'. CurrentState: MainState1, CurrentActivity: MainState1
+Enter code of operation:2
+Available commands:
+- approve (LocalizedName:approve, Classifier:Direct)
+- denial (LocalizedName:denial, Classifier:Reverse)
+- rollback (LocalizedName:rollback, Classifier:Reverse)
+- fastapprove (LocalizedName:fastapprove, Classifier:Direct)
+Enter command:approve
+ExecuteCommand - OK.
+ProcessId = 'c3b6c1c2-a2b8-4ae0-b208-72351cdc9f43'. CurrentState: MainState2, CurrentActivity: MainState2
+Enter code of operation:2
+Available commands:
+- approve (LocalizedName:approve, Classifier:Direct)
+- denial (LocalizedName:denial, Classifier:Reverse)
+- rollback (LocalizedName:rollback, Classifier:Reverse)
+- fastapprove (LocalizedName:fastapprove, Classifier:Direct)
+Enter command:rollback
+ExecuteCommand - OK.
+ProcessId = 'c3b6c1c2-a2b8-4ae0-b208-72351cdc9f43'. CurrentState: Draft, CurrentActivity: Draft
+```

@@ -1,0 +1,58 @@
+## What is Workflow Server?
+
+_Workflow Server_ — It is a powerful software solution for business process management (BPM) which is designed to automate a wide variety of tasks and workflows. It supports the design, modeling, execution, monitoring, and optimization of business processes workflows. Furthermore, it is possible to automate complete tasks or create notifications for task completion or interventions — from the beginning of a process to its fulfillment. Besides, the Workflow Server implements another solution as core in the business layer, the [Workflow Engine](https://workflowengine.io/) that is based on a `.NET library` and a `JavaScript` component with a `C# API` for process control. It is responsible for workflow processing and provides a graphic designer for creating workflow schemes.
+
+## Main Workflow Server functionalities
+
+The Workflow Server main functionalities are resumed below:
+
+-   Form Manager module.
+-   Logging and reports features.
+-   HTTP API integration through Workflow API and Callback API.
+-   Security settings which include LDAP and OpenID integrations.
+
+Workflow Server GUI is really intuitive and easy to use. In the admin panel users can define several settings such as: file and DB logs, access credentials, role-based access control, reports generation, frontend customization, git configuration export and import and many others. In addition, the Form manager module provides an end-user interface to manage, inherit and build forms. The drag-and-drop built-in visual designer that is available in the section: _'Workflow' -> 'Manage schemes'_, allows easily to create and modify schemes, manage and visualize workflow processes.
+
+![Workflow Server scheme instance](/images/blog/workflow-server-overview/wfs-scheme-instance.png "Workflow Server 3.0")
+
+Furthermore, Workflow Server provides robust options regarding security and those required to manage user accounts. The available methods are:
+
+-   Create users through the admin panel interface.
+-   Create and editing users by the Workflow API.
+-   Importing users via LDAP.
+-   Automatic user creation when logging in by external sources that support OpenId (Facebook, Google, Okta).
+
+### API Integration - Workflow API and Callback API
+
+Workflow Server was designed by considering a microservice architecture approach which enables the continuous delivery and deployment of large and complex systems as well as their maintenance, scalability, testing and integration. It is a complete solution with an administration panel, APIs for process control, and the frontend. It can be integrated with NodeJS, PHP, Ruby, .NET, or Java applications through REST APIs.
+
+-   _Workflow API_ - It is enabled for managing processes once a scheme has been created. It provides an interface to create a process based on the scheme, get the list of available commands, and execute a command. In each section there are available code examples of how to call methods from an external system by using the API.
+    
+-   _Callback API_ - Several Callback servers can be connected to the Workflow Server through the admin panel on the Callback API page and queries by using GET or POST methods can be implemented for retrieving data from the servers. Callback API allows hosting code related to Actions, Conditions or Rules on third-party servers.
+    
+
+### LDAP Integration
+
+Nowadays, companies store usernames, passwords, email addresses, printer connections, and other static data within directories. As is well known LDAP is an open application protocol for accessing and maintaining this kind of information and also tackle authentication, so users can sign on just once and access many different files on the server. Workflow server supports importing users settings via LDAP. This functionality is available in the section: _'Settings' -> 'Security'_ tab. Accordingly, user properties must be defined in the Workflow configuration to encrypt the LDAP password in the database.
+
+### OpenID Integration
+
+Workflow server implements IdentityServer which is a combination of middleware and services and also uses OpenID Connect and OAuth 2.0 as authentication protocols. The application of these two protocols is highly recommended to solve frequent security problems of today’s mobile and web applications. Basically, the IdentityServer middleware adds the necessary protocol heads, so client applications can talk to it using those standard protocols. Running inside the Workflow Server, it is used to authenticate users. Authentication can be completed by login and password and through external sources that support OpenId (Facebook, Google, Okta and others).
+
+## Workflow Sever in a Docker container
+
+Workflow Server can be deployed in a Docker container by executing a single command: `startcontainer.bat` and it represents an outstanding advantage. Containers are self-contained components of software which include an application, system libraries, system settings, and everything else the application needs in order to be run. Containers help to ensure that an application can be deployed and executed properly no matter where it is hosted. A Docker container is partitioned from each other into different user space environments, and each container runs as if it were the only system on the host machine.
+
+## Workflow Server is multi-tenancy and scalable horizontally
+
+_Multi-tenancy_ is a reference to the mode of software operation where multiple independent instances of one or multiple applications operate in a shared environment. The instances which are known as _tenants_ are logically isolated, but physically integrated. WorkflowServer supports multi-tenancy and is possible to transfer a Tenant Id to a process and use it.
+
+On the other hand, enterprises that are growing rapidly pay special attention to scalability when evaluating hardware and software. The scalability is the measure of a system’s ability to increase or decrease in performance and cost in response to changes in application and system processing demands. In the multi-server mode, any number of WorkflowServer instances can be connected to a single database. All these instances are independent; the only thing that unifies them in a cluster is the common database (or schema). The servers can be disconnected and connected to the database at any time; for the cluster to keep on working, one server is enough.
+
+![Workflow Server Multi-tenancy](/images/blog/workflow-server-overview/multi-tenant.png "Workflow Server Multi-tenancy")
+
+## Workflow Server plugins and localization features
+
+Workflow Server works well with plugins. They extend the Workflow Server functionality, and concretely is possible to customize elements in the Workflow Designer, add predefined actions, conditions or authorization rules to the schemes designer. Besides, the add-on or extensions, can perform additional processing of the Workflow Runtime standard events.
+
+Regarding the localization features, Workflow Server supports several languages as part of the translation process, enabling the adaptation of a text or visual material into another language according to the cultural or linguistic characteristics of the target audience.

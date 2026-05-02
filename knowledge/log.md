@@ -2,6 +2,77 @@
 
 Chronological log of wiki updates. Newest entries on top.
 
+## 2026-05-02 | Blog: типографика, обложки, карточки — итерация polish
+
+Серия мелких правок по блогу после визуального ревью с пользователем.
+
+**Типографика статей** ([globals.css](../src/styles/globals.css), `.article-content`):
+
+- **Синий — только для ссылок.** В `.article-content` синий цвет (`#4286F4` бренд) теперь только на `<a>`. h1-h5 → `slate-900`. List bullet `•` и numbered `::marker` → `slate-400`. Blockquote `border-left` → `slate-300`. Раньше h3/h4/h5 + bullets + marker + blockquote-border все были `#2563eb` (Tailwind blue-600), что не совпадало с брендом и делало h3 визуально неотличимым от ссылки.
+- **Brand alignment.** Ссылки переведены с `#2563eb` / `#1d4ed8` на `#4286F4` / `#2e6ad4` — бренд из CLAUDE.md / [decisions.md](decisions.md).
+- **Заголовки унифицированы.** Общий блок `:is(h1,h2,h3,h4,h5)` задаёт font-family / color / `letter-spacing -0.02em` / `line-height 1.2`. Уровни различаются только размером + весом + margin. Шкала: 32/28/22/18/18 (h4=h5 по запросу — h5 в постах не встречается, h4 — 1 раз). Раньше было 5 разных line-height (1.1/1.15/1.3), 2 letter-spacing (-0.02em / -0.01em), 5 уникальных margin-паттернов.
+- **Веса в теле статьи.** `<p>` и `<li>`: 300 → 400 (читаемее на длинных параграфах). `<a>`: 700 (видимое выделение ссылок на фоне 400 body). Заголовки h1-h3 — 800, h4-h5 — 600.
+- **Hero post-страницы.** [page.tsx:105](../src/app/blog/[slug]/page.tsx#L105) — снят `font-light`, `text-slate-600` → `text-slate-700`. Контраст hero ↔ body больше.
+- **Удалены dead-классы** из globals.css: `.text-link-tag` + hover, `.text-link-tag-mono` + hover, `.code-highlight`, `.highlight-keyword`, `.code-copy-button`, `.code-block:hover .code-copy-button`, `.custom-scrollbar*` (8 правил), `.hljs`, глобальный `mark`. Подтверждено grep'ом — нигде в `src/` не использовались. CSS-файл: 492 → 360 строк (−27%).
+
+**Cover / inline images — новая семантика:**
+
+- **`cover` теперь только для карточки на `/blog/` + OG/Twitter превью.** На post-странице обложка больше не рендерится — убран блок `{post.cover && <img>}` из [page.tsx](../src/app/blog/[slug]/page.tsx). Раньше cover дублировался с inline-картинкой первой строки тела (cover в hero + inline в начале статьи = одна и та же картинка дважды на странице).
+- **Inline-картинка в начале MDX тела** служит lead-image для post-страницы. У 8 постов есть такая картинка (унаследовано с легаси-сайта), у остальных 23 нет — у них post-страница начинается сразу с h2.
+- **Для 8 постов с inline-картинкой** `cover` указывает на тот же файл что и inline (`cover: '/images/blog/<slug>/<inline-name>'`). Раньше cover был отдельный `preview.png`/`preview.jpg`/etc., но визуально identical с inline — пользователь решил консолидировать на один файл. Orphan-файлы `preview.*` остались на диске (~5MB) — их можно почистить отдельно.
+
+**BlogCard на индексе** ([BlogCard.tsx](../src/components/blog/BlogCard.tsx)):
+
+- Добавлен рендер `description` под заголовком: `<p className="text-base text-slate-600 leading-relaxed mb-3">{post.description.split('\n\n')[0]}</p>`. Без `line-clamp` — описание показывается целиком (самые длинные у `how-to-speed-up-...` и `optimajet-vs-nintex-pros-and-cons` — по 5-6 строк).
+- **Multi-paragraph description: только первый абзац на карточках.** Описание разделяется на абзацы по `\n\n`. Карточка показывает первый, post-страница — все (см. [page.tsx:105-109](../src/app/blog/[slug]/page.tsx#L105-L109), `description.split('\n\n').map(...)`). Полезно когда description вмещает поднятый из тела subtitle (см. ниже про `how-to-choose-...`).
+
+**MDX edits per-post** (контент-фиксы):
+
+- **Дубликаты заголовков** убраны: `# H1` в начале тела дублировал `<h1>{post.title}</h1>` из page.tsx hero. Убраны в [how-to-choose-the-right-embedded-workflow-automation-tool.mdx](../src/content/blog/how-to-choose-the-right-embedded-workflow-automation-tool.mdx), [workflow-designer-customization.mdx](../src/content/blog/workflow-designer-customization.mdx), [workflow-server-designer-integration.mdx](../src/content/blog/workflow-server-designer-integration.mdx). Корень — на легаси-сайте у этих 3 постов h1 был дубликатом и в hero, и в `.article-container` (у остальных постов h1 был только в hero). Конвертер копирует всё из article-container, поэтому дубль приехал в MDX.
+- **how-to-choose-the-right-...** — особый случай: 2 интро-абзаца («Using the course payment process…» + «Any developer in an enterprise environment…») подняты из тела в `description` через `\n\n`-разделитель. На post-странице оба абзаца рендерятся как subtitle; в карточке показывается только первый. Внутри MDX: H1 удалён, секция «Choose the right workflow automation tool» (h2 + paragraph) тоже удалена — дублировала title и поднятый subtitle. Оставшийся explanatory текст про критерии Use Case / BPMN под новым h2 «Comparison criteria».
+- **parallel-approval-without-branches.mdx** — у блока «The process of buying online courses must be automated» сняты markdown-blockquote-маркеры (`>`). На легаси-сайте этот блок не был оформлен как цитата; в нашей рендере `.article-content blockquote` рисовал голубую рамку слева — выглядело некорректно.
+
+**Author** добавлен 31 посту: `author: { name: 'Optimajet Team' }` в [blog.ts](../src/data/blog.ts). На легаси-сайте автора не было — это дефолт от имени бренда. Рендеринг даты/автора в [page.tsx](../src/app/blog/[slug]/page.tsx) и [BlogCard](../src/components/blog/BlogCard.tsx) обёрнут в conditional (`post.author && ...`, `formattedDate && ...`) — даты по-прежнему отсутствуют.
+
+## 2026-04-30 | Phase 4: блог портирован целиком (31 пост из workflowengine.io)
+
+**SEO-критичная миграция** — пользователь обозначил, что в `/blog/` уходит ~90% входящего трафика. Все 31 пост (план фиксировал 20 на `2026-04-14`, реальное число оказалось 31) портированы 1:1 со старого сайта; **слаги сохранены**, пути `/blog/<slug>/` соответствуют легаси.
+
+**Конвейер миграции** (одноразовый, инструменты сложены в `C:/Users/Green/AppData/Local/Temp/we-blog-html/`):
+
+1. `curl` тащит сырой HTML каждой страницы `/blog/<slug>/` → 31 файл.
+2. `convert.js` (cheerio + turndown) парсит `<div.article-container>`, конвертит body в Markdown, кладёт в `src/content/blog/<slug>.mdx`. Метаданные (title, description, og:image, reading-time) собираются в `posts.json`.
+3. `generate-blog-ts.js` мапит `posts.json` + ручной category-словарь в [src/data/blog.ts](../src/data/blog.ts).
+4. `download-images.js` скачивает 76 изображений (covers + inline) в `public/images/blog/<slug>/`.
+
+**Подводные камни MDX (next-mdx-remote v6, MDX v3):**
+
+- `style="text-align: left"` в табличных ячейках → `style` prop ждёт объект, не строку. Решение в конвертере: `articleEl.find('[style]').removeAttr('style')` перед turndown.
+- `xlink:href` на SVG `<use>` → JSX не парсит `:` в имени атрибута. Решение: переименовываем все namespaced-атрибуты, отбрасывая префикс (`xlink:href` → `href`, работает во всех современных браузерах).
+- Markdown emphasis-маркеры (`*`, `_`, `~`, `[`, `]`) внутри inline-HTML (table cells) MDX парсит как разметку → `Expected closing tag </td>`. Решение: walk text-nodes внутри `<table>` и заменяем эти символы на HTML-entities (`&#42;` и т.д.).
+- Карты «remote URL → local path» некорректно работают, когда у двух постов одинаковое имя файла обложки (`machines.jpg` пересекается у `workflow-solutions` и `why-developers-never-use-state-machines`). Map переключён на ключ по local-path — каждое целевое расположение скачивается независимо, даже при совпадающем удалённом URL.
+
+**Структурные изменения в проекте:**
+
+- [src/data/blog.ts](../src/data/blog.ts): `date` и `author` помечены `optional` в `BlogPost` — у легаси-постов нет ни даты, ни автора (на старом сайте они не отображались, в HTML/sitemap отсутствуют). Шаг 2 в knowledge/blog.md.
+- [src/components/blog/BlogCard.tsx](../src/components/blog/BlogCard.tsx) + [src/app/blog/[slug]/page.tsx](../src/app/blog/[slug]/page.tsx): рендеринг даты и автора обёрнут в conditional — если поля отсутствуют, целые секции скрываются. `openGraph` метаданные тоже conditionally дёргают `publishedTime`/`authors`.
+- Sentinel-слаг `__placeholder__` больше не генерится — `blogPosts.length > 0`, fallback в `generateStaticParams` не срабатывает.
+- Build: 39 страниц (8 базовых + 31 блог-пост). Лимит 14s на dev-машине.
+
+**Категории расставлены вручную в `generate-blog-ts.js`** по содержанию:
+- **Case Study** (3): `workflow-engine-for-{bpm-software,ehs-management-software,regulatory-management}`.
+- **Engineering** (17): технические how-to, сравнения, внутренности (parallel branches, designer customization/integration, performance, code quality, vs state machine, state-machines critique, и т.д.).
+- **Product** (11): обзоры/релизы/бизнес-фрейминг (server overview, low-code platform, BPM/BRMS guides, why use a workflow engine).
+- `Open Source` остаётся в `BLOG_CATEGORIES` пустым — фильтр-кнопка отрендерится, но ничего не покажет; не критично.
+
+**Что НЕ перенесено и нужно ловить руками:**
+- Даты публикации — у легаси-сайта их нет. Если найдутся в Wayback Machine или в Drupal-бэкапе OptimaJet, подставить в `blog.ts` для каждого поста + выставить `dateLabel`.
+- Автор — никаких имён на источнике; постится от имени бренда. Если будет выбран дефолт (например, «OptimaJet Team»), добавить в `blog.ts` к каждой записи или обернуть в фолбэк в [page.tsx](../src/app/blog/[slug]/page.tsx).
+- Highlight.js — code-блоки рендерятся как plain `<pre><code>`. На старом сайте была подсветка; не реализована в этой версии (`MDXRemote` без `components` map). Out of scope.
+- В одной таблице (`workflow-solutions`) inline-SVG для plus/minus использовал `<use xlink:href="#plus">` со ссылкой на `<svg id="plus">` в первой ячейке — после переноса SVG-ссылка может не разрешаться в некоторых браузерах из-за того, что MDX-рендер оборачивает таблицу в shadow-боксы. Проверить визуально после деплоя.
+
+**Файлы-артефакты (вне репо):** `C:/Users/Green/AppData/Local/Temp/we-blog-html/` (сырой HTML 31 поста + конвертер). Хранить ровно до подтверждения деплоя; потом можно удалить.
+
 ## 2026-04-29 | Post-fork cleanup: удалили ~50 неиспользуемых компонентов и legacy-ассеты
 
 **Большая чистка** (commit `7398b44`, 122 файла, −21670/+3 строк). Сайт изначально был форком `formengine-next`, и за месяц переписывания страниц накопилось много блоков/ассетов, никем не используемых. Удалили всё — `formengine-next` остаётся source-of-truth, любой блок можно портировать обратно при необходимости.

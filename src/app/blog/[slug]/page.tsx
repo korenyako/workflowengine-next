@@ -39,8 +39,8 @@ export function generateMetadata({
         url: `https://workflowengine.io/blog/${post.slug}/`,
         siteName: 'WorkflowEngine',
         type: 'article',
-        publishedTime: post.date,
-        authors: [post.author.name],
+        ...(post.date && { publishedTime: post.date }),
+        ...(post.author && { authors: [post.author.name] }),
         images: [
           {
             url: post.cover || '/images/og-image.png',
@@ -74,11 +74,13 @@ export default async function BlogPostPage({
 
   const source = fs.readFileSync(filePath, 'utf-8')
 
-  const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
+  const formattedDate = post.date
+    ? new Date(post.date).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      })
+    : null
 
   return (
     <section className="bg-transparent text-slate-800 px-4 sm:px-8 py-10 md:py-14">
@@ -100,31 +102,34 @@ export default async function BlogPostPage({
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading tracking-tight mb-4">
                 {post.title}
               </h1>
-              <p className="text-2xl text-slate-600 mb-8 leading-relaxed font-light">{post.description}</p>
+              <div className="text-2xl text-slate-700 mb-8 leading-relaxed space-y-4">
+                {post.description.split('\n\n').map((para, i) => (
+                  <p key={i}>{para}</p>
+                ))}
+              </div>
               <div className="flex items-center gap-3 text-base text-slate-500">
-                <span className="text-slate-600">{post.author.name}</span>
-                {post.author.title && (
+                {post.author && (
                   <>
+                    <span className="text-slate-600">{post.author.name}</span>
+                    {post.author.title && (
+                      <>
+                        <span>&middot;</span>
+                        <span>{post.author.title}</span>
+                      </>
+                    )}
                     <span>&middot;</span>
-                    <span>{post.author.title}</span>
                   </>
                 )}
-                <span>&middot;</span>
-                <span>{post.dateLabel || 'Published'}</span>
-                <time dateTime={post.date}>{formattedDate}</time>
-                <span>&middot;</span>
+                {formattedDate && (
+                  <>
+                    <span>{post.dateLabel || 'Published'}</span>
+                    <time dateTime={post.date}>{formattedDate}</time>
+                    <span>&middot;</span>
+                  </>
+                )}
                 <span>{post.readingTime}</span>
               </div>
             </div>
-
-            {/* Cover */}
-            {post.cover && (
-              <img
-                src={post.cover}
-                alt={post.title}
-                className="w-full object-cover rounded-3xl mb-12 max-h-[480px]"
-              />
-            )}
 
             {/* Article */}
             <article

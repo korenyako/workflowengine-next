@@ -1,0 +1,353 @@
+![How to choose the right embedded workflow automation tool](/images/blog/how-to-choose-the-right-embedded-workflow-automation-tool/preview.jpg)
+
+## What is business process automation?
+
+Business process automation is often presented through marketing, so it might be difficult to understand what it means. I've mostly seen two implementations:
+
+1.  Sequential or parallel execution of blocks of code when saving the intermediate state and execution history of these pieces of code (with logic) to the database. The possibility to handle the change of these sequences correctly.
+2.  The same idea, but in addition to calling external systems that already use complicated logic, rather than just executing blocks of code. This is called microservice orchestration.
+
+In 100% of cases, visualization of what is happening is required, because the sequence of these blocks is perceived as a business process.
+
+80% require to visualize the change of these blocks without involving programmers.
+
+If visualization and changing pieces of code are not required, then in general, programmers might have several alternatives:
+
+-   Chain of Responsibility Pattern;
+-   State machine pattern;
+-   Using Petri Nets;
+-   Our any `if-else` and `switch-case`;
+-   Another in-house development variant.
+
+Furthermore, it is worth mentioning BPMN that usually can complement business process automation tasks. BPMN is an XML file format that contains a list of visual abstractions that are mapped into it and how they interact with one another. Because BPMN is well-known, well-described, and has set conventions about style, a programmer will be able to load such files into his application and execute them correctly, thus resolving the problem of visualization clarity.
+
+## An example of a task that BPM engines solve
+
+Business-wise, automation activities frequently resemble the following:
+
+**The process of buying online courses must be automated.**
+
+Text description:
+
+-   A user selects the course to pay for;
+-   Enters an e-mail;
+-   Clicks "pay";
+-   Website displays a modal window with a page from acquiring;
+-   The user makes the payment;
+-   Acquiring sends payment confirmation;
+-   The system sends a notification to the user by e-mail with the details of access to the online course;
+-   If the user has not made the payment within 10 minutes after opening the modal window, it is necessary to send the user an email with a promo code.
+
+In BPMN format it will look like this:
+
+![BPMN process example](/images/blog/how-to-choose-the-right-embedded-workflow-automation-tool/bpmn-process-example.png "BPMN process example")
+
+Here, it's crucial to visualize the data and modify the squares' order using the graphical user interface (GUI).
+
+This problem can be solved by a developer implementing a tool that enables:
+
+-   Visually create a similar diagram;
+-   Attach pieces of code to each square;
+-   Save the variables of the ongoing process (email, payment amount, promotional code, and so on);
+-   Create tests for all output;
+-   Run this in docker or kubernetes;
+-   Check that everything is "alive" on the production environment;
+-   Be able to migrate current processes to a new scheme version when it becomes available.
+
+The typical developer method can be used to complete all of this (CI/CD, feature flags, code reviews, and so on).
+
+## Comparison criteria
+
+I've chosen a traditional approach for comparing both tools by considering Use Cases and BPMN support:
+
+1.  **Use Case** - often engines can be delivered as a standalone container or even a separate application, and sometimes as libraries. As a developer, I prefer the second option because I don't need to overhaul my CI/CD pipelines and can continue to use my existing application elements without the annoying integration with a standalone container.
+2.  **BPMN support** - some engines offer support for BPMN, a formal standard for describing business processes. This standard is very powerful and quite complex. There are dozens of tools that produce a description of business processes in this format, and it would seem that they can be reused. However, practice has proven that BPMN alone is never sufficient for automation because each unique system will have its own features. For instance, Camunda does not support the cycle element, but BPMN does. Therefore, just because one engine supports BPMN doesn't mean that your business processes in this format can be quickly and easily automated in that engine.
+
+Let's compare Camunda 7 and Workflow Engine:
+
+<table><thead><tr><th>Parameter name</th><th>Workflow Engine</th><th>Camunda 7</th></tr></thead><tbody><tr><td>Programming language</td><td>C#, .NET</td><td>JVM Based - Java, Kotlin etc.</td></tr><tr><td>Integration options</td><td>Embedding</td><td>Embedding, REST API</td></tr><tr><td>BPMN support</td><td>No</td><td>Yes</td></tr><tr><td>Supported databases</td><td>MySQL, Oracle, PostgreSQL, SQL Server (Azure SQL), MongoDB</td><td>MySQL, Oracle, PostgreSQL, SQL Server, H2, CockroachDB</td></tr><tr><td>Documentation</td><td>Extensive</td><td>Extensive</td></tr><tr><td>Number of stars on GitHub</td><td>700+</td><td>3000+</td></tr><tr><td>Community</td><td>Small</td><td>Big</td></tr><tr><td>Horizontal scaling</td><td>Yes, through the database</td><td>Yes, through the database</td></tr><tr><td>Framework for testing</td><td>No</td><td>Yes</td></tr><tr><td>Administration Application</td><td>No</td><td>Yes</td></tr><tr><td>Is there a completely free license option for production?</td><td>Yes</td><td>Yes</td></tr><tr><td>The cost of paid licenses</td><td>$, one-time</td><td>$$$$, annually</td></tr></tbody></table>
+
+Between these two technologies, there is essentially no difference. If you have C#, then in general you could use Camunda through the REST API, but this is significantly time-consuming and more complicated than using Workflow Engine.
+
+If you have a JVM, then you simply cannot use Workflow Engine (you can use a Workflow Server based on Workflow Engine via REST API, but this is a different product).
+
+## Let us compare Camunda 7 and Workflow Engine
+
+### Start of developing process
+
+Since both of these engines can be embedded, the fundamental requirement for both embeddings is the inclusion of vendor libraries in your program.
+
+Camunda 7 has several libraries - the engine itself, REST API to the engine, web applications for administration. All libraries can be used separately. When adding a dependency, it looks like this (for a typical Spring application):
+
+```xml
+<dependency>
+    <groupId>org.camunda.bpm.springboot</groupId>
+    <artifactId>camunda-bpm-spring-boot-starter-webapp</artifactId>
+    <version>3.2.0</version>
+</dependency>
+```
+
+The Camunda database's table is created on its own.
+
+The Workflow Engine also has several libraries - the engine itself (the REST API for Designer is already built into it), a provider for a specific database. Integration looks like this:
+
+```bash
+dotnet add package WorkflowEngine.NETCore-Core --version 7.2.0
+dotnet add package WorkflowEngine.NETCore-ProviderForMSSQL --version 7.2.0
+```
+
+Or in your `.csproj` file:
+
+```xml
+<PackageReference Include="WorkflowEngine.NETCore-Core" Version="7.2.0" />
+<PackageReference Include="WorkflowEngine.NETCore-ProviderForMSSQL" Version="7.2.0" />
+```
+
+Database tables can be created by running the SQL scripts that are provided by the vendor.
+
+### Create a process diagram
+
+Both tools - Camunda and Workflow Engine - allow visual process editing. Camunda 7 provides a package for all operating systems called Camunda Modeler. Essentially, it can generate a .xml file according to the BPMN standard and send it through the REST API to Camunda.
+
+![Camunda Modeller](/images/blog/how-to-choose-the-right-embedded-workflow-automation-tool/camunda-modeller.png "Camunda Modeller")
+
+Workflow Engine provides ready-made NPM packages for embedding into various JS frameworks such as Angular or React. The meaning is also the same - the visual scheme is described by XML and sent to the engine through the designer.
+
+Naturally, I would prefer to have a ready-made application from the vendor here that is always current and functions as intended (it is available for Workflow Server solution, then, this is a different product).
+
+This is the Workflow Engine Designer interface:
+
+![Workflow Engine Designer](/images/blog/how-to-choose-the-right-embedded-workflow-automation-tool/workflow-engine-commands.png "Workflow Engine Designer")
+
+In the Workflow Engine, the process for paying for courses would resemble this:
+
+![Workflow Engine Course process](/images/blog/how-to-choose-the-right-embedded-workflow-automation-tool/workflow-engine-course-process.png "Workflow Engine Course process")
+
+### Basic abstractions and their storage in the database
+
+At this point, significant disparities between the two companies' strategies start by weighing benefits and drawbacks.
+
+**Camunda tables**
+
+There are complex abstractions to implement BPMN in Camunda, you be the judge!
+
+![Camunda tables](/images/blog/how-to-choose-the-right-embedded-workflow-automation-tool/camunda-tables.png "Camunda tables")
+
+-   Process definition - schema in XML;
+-   Job definition - specific job to be executed;
+-   Process instance - a specific running process;
+-   Activity - a square inside a process;
+-   Variables - process variables;
+-   Job - specific running job;
+-   Execution - analogue of a token in Petri nets.
+
+All of this data is also kept for history, including changes to the specified abstractions along with process execution.
+
+It can be difficult to deal with this because of the one-to-many relationship and the BPMN notation, in which these abstractions are not explicitly emphasized (but are built by Camunda). To be completely honest, these abstractions are included for a reason, and this is arguably the most obvious method to embrace BPMN.
+
+**Workflow Engine tables**
+
+Compared to Camunda, this solution is much simpler in every way:
+
+-   [WorkflowProcessScheme](https://workflowengine.io/documentation/db-entities/tables/WorkflowProcessScheme) - analogue of Process definition;
+-   [WorkflowProcessInstance](https://workflowengine.io/documentation/db-entities/tables/WorkflowProcessInstance) - is analogous to process instance, but the current state is stored right there;
+-   [WorkflowProcessInstancePersistence](https://workflowengine.io/documentation/db-entities/tables/WorkflowProcessInstancePersistence) - is analogous to process variables.
+
+The same data, including that related to process execution, is recorded for history.
+
+Other configuration data (permissions, global values, and so on) are also stored by each solution, but this information is less interesting.
+
+**Process abstractions in Camunda**
+
+What specific information is obtained when processes are formed is also crucial with regard to data saving. In Camunda, this is a full-fledged, 98% working BPMN, described in the OMG standard. This means that there are about 400 semantic constructs and about 12 key abstractions.
+
+![BPMN events](/images/blog/how-to-choose-the-right-embedded-workflow-automation-tool/bpmn-events-1.png "BPMN events")
+
+**Process abstractions in Workflow Engine**
+
+In this solution, everything is quite simple - there are only two main abstractions - `Activity` and `Transition`.
+
+![Workflow Engine abstractions](/images/blog/how-to-choose-the-right-embedded-workflow-automation-tool/workflow-engine-abstractions.png "Workflow Engine abstractions")
+
+### Delegating code execution
+
+Both solutions allow you to call your application code. To accomplish this, there must be a connection between the code and the XML schema. In Camunda, this is done by specifying a way to find the code and its unique identifier (in this case, the name of the Bean in the context of Spring):
+
+![Code execution in Camunda](/images/blog/how-to-choose-the-right-embedded-workflow-automation-tool/camunda-code-execution.png "Code execution in Camunda")
+
+This piece of code is added to the application in this manner. Keep in mind that the `JavaDelete` interface must be implemented with the required `execute` method, which receives a `DelegateExecution` object that gives access to any engine resources we might require.
+
+```kotlin
+package bpmn.payment.delegate
+
+import bpmn.payment.component.EmailSender
+import org.camunda.bpm.engine.delegate.DelegateExecution
+import org.camunda.bpm.engine.delegate.JavaDelegate
+import org.springframework.stereotype.Component
+
+@Component("sendEmailDelegate")
+class SendEmailDelegate(val emailSender: EmailSender) : JavaDelegate {
+    override fun execute(execution: DelegateExecution) {
+        val email = execution.getVariable("email") as String
+        val emailId = Integer.parseInt(execution.getVariable("emailId") as String)
+
+        emailSender.sendEmail(email, emailId)
+    }
+}
+```
+
+Similar principles apply in Workflow Engine, however the pieces must be manually registered. In Camunda the registry of unique pieces of code is done by Spring with its DI.
+
+```csharp
+public ActionProvider()
+{
+    // Register your actions in _actions and _asyncActions dictionaries
+    _actions.Add("MyAction", MyAction); // sync
+    _asyncActions.Add("MyAsyncAction", MyAsyncAction); // async
+
+    _actions.Add("Mamad", Mamad); // sync
+    _asyncActions.Add("AsyncMamad", AsyncMamad); // async
+
+    _actions.Add("Update", Update); // sync
+    _asyncActions.Add("AsyncUpdate", AsyncUpdate); // async
+
+    // Register your conditions in _conditions and _asyncConditions dictionaries
+    _conditions.Add("MyCondition", MyCondition); // sync
+    _asyncConditions.Add("MyAsyncCondition", MyAsyncCondition); // async
+}
+```
+
+![Workflow Engine actions](/images/blog/how-to-choose-the-right-embedded-workflow-automation-tool/workflow-engine-actions-demo.png "Workflow Engine actions")
+
+Similarly, within our code, we get `processInstance` and runtime objects, from which we can retrieve all data. An advantage is that, unlike Camunda, where you need to know the precise name of the bean, the Workflow Engine allows you to get a list of registered actions.
+
+On the other hand, Camunda has a built-in runtime executor of conditions on gateways, for instance, the following expression can be written in XML:
+
+![Camunda gateway condition](/images/blog/how-to-choose-the-right-embedded-workflow-automation-tool/camunda-gateway-condition.png "Camunda gateway condition")
+
+Moreover, it can be validated without additional effort from the development side. However, I personally think it's bad practice because it's challenging to test such expressions, and it could be challenging to comprehend precisely how variables are used there.
+
+In Workflow Engine, we can declare Conditions in the same way just as an Action. This approach is more explicit and more testable. Conditions can also be added to Transitions:
+
+![Workflow Engine transition expression](/images/blog/how-to-choose-the-right-embedded-workflow-automation-tool/workflow-engine-transition-expression.png "Workflow Engine transition expression")
+
+In the browser, you may also easily write code. It is technically possible to create a test for it that could then be added to the CI pipeline, but I do not recommend it.
+
+### Writing a Test
+
+It is obvious that each component of the process — whether an Action or a Bean — can be tested independently. In both solutions, it is considered a good practice not to write big logic inside, and using an interlayer between the engine and the real business logic. Business logic ought to be separated into services or components already. This approach will facilitate modularity, usability, and testability.
+
+In addition, I would like to test the process itself and the code. In this case, Camunda provides a library that allows you to raise the engine itself, load diagrams into it, run in-memory database and executing processes step by step by comparing the expected behavior with the one received from the engine.
+
+```kotlin
+@Test
+@Deployment(resources = ["BPMN/Origination.bpmn"])
+fun TechErrorPath() {
+    // Given
+    val pi = startProcess()
+    assertThat(pi).isWaitingAt("Task_0w7obdg")
+    // When
+    execute(job())
+    // Then
+    assertThat(pi).isWaitingAt("ServiceTask_1sz8j3l")
+    execute(job())
+    assertThat(pi).isEnded
+}
+```
+
+In the Workflow Engine you can use the same approach using [MSTest](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-mstest).
+
+### Process context
+
+When a process is executed, it retrieves the data. In my example of paying for courses, my context consists of email, selected course, promo code, course cost, and so on. This information must be recorded and made available to my pieces of code. In both solutions, you can get them through an object passed to my class - in the case of Camunda, this is `DelegateExecution`, and in the case of WorkflowEngine, this is `processInstance`.
+
+In Camunda it looks like this:
+
+```kotlin
+@Component("addToSegmentDelegate")
+class AddToSegmentDelegate(val emailSender: EmailSender) : JavaDelegate {
+    override fun execute(execution: DelegateExecution) {
+        execution.setVariable("paymentStatus", "ok")
+        val contactId = emailSender.findOrInsertContact(execution.getVariable("email") as String)
+        val segmentId = Integer.parseInt(execution.getVariable("segmentId") as String)
+        emailSender.addToSegment(contactId, segmentId)
+        execution.setVariable("paymentOk", true)
+    }
+}
+```
+
+In Workflow Engine it will be:
+
+```csharp
+var stringParameter = processInstance.GetParameter<string>("StringParameter");
+var objectParameter = processInstance.GetParameter<SomeCustomType>("ObjectParameter");
+```
+
+Unlike Camunda, which stores such variables in a Named-Value wide table for ALL instances and frequently causes performance issues with rapid context growth, Workflow Engine allows you to pass your own context provider, which controls how and where such variables are persisted.
+
+### Deploy process diagram
+
+Each solution offers two ways to deploy a scheme - through the API or using the designer (which is essentially the same).
+
+Both solutions provide the automatic deployment of XML from project resources, allowing you to store processes in Git and carry out procedures for comparing and approving XML versions.
+
+### Application launch
+
+With Camunda or the Workflow Engine, I can have a conventional application for a specific language and do whatever I like - thanks to all the magic of embedded engines - wrap a fat jar or exe (or assembling it in the .NET world) into docker, deploy to kubernetes etc. I didn't notice any issues or inconsistencies with these two engines.
+
+### Monitoring and operation
+
+Both solutions give users the ability to see instances' current states, modify their variables, and more. In the case of Camunda the historical data (i.e. on processes that have completed) is available only in the paid version.
+
+The current state of the instance in Workflow Engine is indicated as follows:
+
+![Process status in Workflow Engine](/images/blog/how-to-choose-the-right-embedded-workflow-automation-tool/process-status-in-workflow-engine.png "Process status in Workflow Engine")
+
+Below the current state of all processes in Camunda 7:
+
+![Statuses of processes in Camunda](/images/blog/how-to-choose-the-right-embedded-workflow-automation-tool/statuses-of-processes-in-camunda.png "Statuses of processes in Camunda")
+
+### Process schema update and instance migration
+
+When changing the version of the process (let's say a process element was added), there are several options in each tool:
+
+-   Do nothing - old processes will be completed as usual, new ones will be initialized from the new version;
+-   Migrate instances to the new version.
+
+This is accomplished in Camunda via a special migration REST API (or an internal API supplied by the engine), where the old and new versions should be specified.
+
+In Workflow Engine, we can deprecate obsolete schemas and run automatic migration, which generates events that we can process to implement business logic (enrichment with new data, changing states, and so on):
+
+```csharp
+runtime.OnSchemaWasChanged += (sender, args) =>
+{
+   var pi = runtime.GetProcessInstanceAndFillProcessParameters(args.ProcessId);
+   if (!pi.ProcessScheme.Activities.Any(a => a.Name == pi.CurrentActivityName))
+   {
+       var initialActivity = pi.ProcessScheme.InitialActivity;
+       pi.CurrentActivityName = initialActivity.Name;
+       runtime.PersistenceProvider.UpdatePersistenceState(pi,
+           TransitionDefinition.Create(initialActivity, initialActivity));
+   }
+};
+```
+
+### Performance
+
+The approach of coping with loads is a crucial requirement. Unfortunately, neither Camunda nor the Workflow Engine have the most recent information available on this.
+
+Overall, the number of instances per second, or operations per second, is generally rated in BPM engines rather than RPS. On a high-performance server, Workflow Engine support [250 operations per second](/blog/workflow-performance/). Camunda supports 150-200 [Process Instances](https://camunda.com/blog/2014/01/benchmarking-camunda-process-engine/) per second on similar hardware.
+
+Keep in mind that if you need about RPS 1000+ from the engine to process handling, then probably these are not "business processes" and you may require another tool, such as Apache Spark or Flink.
+
+### Learning curve
+
+Before using the tool effectively, it's vital to take into account the level of abstraction, which includes the information review and objects that need to be modelled and implemented. I am involved in this because I have been programming in Kotlin for a long time, and the last time I wrote in .NET was 8 years ago.
+
+Based on my experience, a middle-level developer can learn the fundamentals of the Workflow Engine from scratch in three to five weeks. It may require 2-3 months to learn Camunda and BPMN from scratch. Camunda and BPMN are quite complex.
+
+## Conclusion
+
+I sincerely hope this article assisted you in making the right decision and in learning more about engine selection. Timers, conditional jumps, working with retries, errors, and other features have not all been studied by me, but they are not crucial for selecting an engine, and in my opinion, both systems are developed in this area.
+
+The guidelines for choosing are fairly straightforward: if you're on .NET, you choose Workflow Engine. If you're running on the JVM - use Camunda (and get ready for a three-month BPMN dive).

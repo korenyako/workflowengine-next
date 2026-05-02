@@ -1,0 +1,73 @@
+## TL;DR
+
+-   Windows Workflow Foundation is by far not the best option;
+-   Consider using [Workflow Engine](https://workflowengine.io) instead.
+
+## Introduction
+
+When selecting a .NET compatible workflow solution for a company developers usually opt for Windows Workflow Foundation as the most obvious choice for helping them satisfy their mission. However, having spent **hundreds of man-hours** a while playing with it, developers find Windows Workflow Foundation awkward to code with. Such simple things as object instantiation either turn into a mess of value-setting activities, or is hard to follow due to being hidden within variable declaration default values. Moreover, when multiple developers are working on the same workflows, they'll surely have a hard time merging changes since the Workflow Foundation Designer's visual state is stored within the same XML that the actual workflows are stored in. In practice, that means that every time an activity is expanded or collapsed, the XML is changed, making your developers commit a lot of useless changes and leaving you off with troubles navigating through them. And that's just the beginning of it.
+
+## Windows Workflow Foundation Flaws
+
+Despite being a popular workflow component for .NET solutions, Windows Workflow Foundation is flawed in many ways. The claimed value of the visual representation that WF is said to bring will drive you insane due to poor performance. In particular, the more complex your workflow gets, the slower the designer becomes. Workflows that amount to 100KB take more than a minute to load, whereas their debugging becomes virtually impossible.
+
+Besides, whenever there's an error within your workflow related to persistence, communication or correlation, the trace logs do not contain any meaningful information which can tell you exactly what went wrong. It takes developers many hours of trial and error before they can figure out what the root of the problem is.
+
+And the list goes on. Here are other concerns that Workflow Foundation users express:
+
+-   Workflow Foundation does not have any built-in upgrade strategy that would keep your existing workflows running once you perform a bug fix;
+-   Implementing a Windows Workflow Foundation state machine through Windows Communication Foundation seems to hide the `WorkflowRuntime`;
+-   There is a problem unit-testing WF activities, yielding an exception, which, in turn, requires the development of a workaround solution;
+-   Workflows use a large amount of memory, whereas workflows are much slower than plain C#;
+-   Simple 1- or 2-line statements in C# become fairly large block activities in WF, effectively limiting you in programming features;
+-   Windows Workflow Foundation is not flexible in terms of allowing developers to implement custom functionality not provided by it;
+-   Windows Workflow Foundation can and will corrupt an application state that cannot be recovered;
+-   WCF XAML services don't seem to implement everything in an interface;
+-   WF has a steep learning curve.
+
+All in all, Windows Workflow Foundation is claimed to be painful to use. Consider the following [statement](http://stackoverflow.com/questions/104099/when-to-use-windows-workflow-foundation) by Kevin Devoe on Stack Overflow:
+
+> We inherited a half-completed project from a consultant which used Windows Workflow Foundation as its backbone. It was prone to errors, corrupted workflows that couldn't be restarted, an archaic versioning system that required a complete duplicate of the workflow for any minor changes, horrific generated code, and such a delicate code that you had to handle it with kid gloves. After 6 months of yellow screens of death we scrapped the entire Windows Workflow Foundation and used XML instead. Best decision we've ever made.
+
+## Windows Workflow Foundation Alternative
+
+They say the best tools are the simplest tools. However, when it comes to deploying a workflow system to address a wide range of process requirements, Windows Workflow Foundation might not be your best choice.
+
+This range might include but is not limited to:
+
+-   Workflow scheme creation/modification;
+-   Document routing;
+-   Storing routes and document states in a database;
+-   Implementing inbox\\outbox folders for users;
+-   Upgrading a document route to a new scheme;
+-   Setting a process to any state;
+-   Custom security layer.
+
+Inability of the chosen framework to introduce at least one of the aforementioned requirements might lead to an array of problems. This is why we recommend you to opt for [Workflow Engine](https://workflowengine.io).
+
+Workflow Engine is a lightweight all-in-one component that enables you to add custom executable workflows of any complexity to any .NET, .NET Core or Java software, be it your own creation or a third-party solution, with minimal changes to existing code. Workflow Engine works out of the box, offering you the widest range of features so that you can develop executable workflows of any complexity that get the necessary work done:
+
+-   An HTML5 Visual Designer to design, model, edit and visualize your custom workflows;
+-   Workflow versioning with an option to finish running the old version or to force them to run a new one;
+-   Parallel workflow support that allows you to split workflows into branches that execute tasks independently and merged afterwards;
+-   XML import/export of workflows for backups, reuse and sharing;
+-   Localization support that allows you to translate the UI into multiple languages of your choice;
+-   In-built workflow timers that enable setting intervals or specifying time to run custom actions and workflow tasks.
+
+Workflow Engine runs on any production environment capable of running .NET, .NET Core or Java. Besides, it comes with a set of pre-built providers for the most popular databases, such as MySQL, MS SQL Server, Redis, MongoDB, PostgreSQL, SQL Azure and Oracle.
+
+And there's much more. Here's a comparison chart of Workflow Engine and Windows Workflow Foundation:
+
+<table><thead><tr><th>Feature</th><th>Workflow Engine 2.0</th><th>Workflow Foundation 4</th></tr></thead><tbody><tr><td>Workflow Types</td><td>State machine</td><td>Flowchart</td></tr><tr><td>.NET Core support</td><td>✓</td><td>✕</td></tr><tr><td>Long-running operation support</td><td>✓</td><td>✓</td></tr><tr><td>State persistence mechanisms</td><td>Only a few workflow parameters are saved. Serialization (XML, binary, etc). is defined by Persistence Provider. Settings are easily controlled and changed.</td><td>Process instance is saved in part, whereas changes to the saving mechanism are complex.</td></tr><tr><td>Versioning</td><td>✓</td><td>✕</td></tr><tr><td>Visual Designer</td><td>✓</td><td>✓</td></tr><tr><td>Setting a process to an arbitrary state</td><td>✓</td><td>✕</td></tr><tr><td>Obtaining a list of available states for the current process</td><td>✓</td><td>✕</td></tr><tr><td>Obtaining a list of available external actions for the current process</td><td>✓</td><td>✕</td></tr><tr><td>Timers</td><td>✓</td><td>✓</td></tr><tr><td>Built-in authorization for external actions</td><td>✓</td><td>✕</td></tr><tr><td>Easy use of the existing codebase</td><td>✓</td><td>✕</td></tr><tr><td>Modifying the process scheme at runtime</td><td>✓</td><td>✕</td></tr><tr><td>Obtaining process lists for inbox/outbox folders</td><td>✓</td><td>✕</td></tr><tr><td>Human Readable XML format of the process scheme</td><td>✓</td><td>✕</td></tr><tr><td>User impersonation /replacement</td><td>✓</td><td>✕</td></tr><tr><td>Transition history</td><td>✓</td><td>✕</td></tr></tbody></table>
+
+## Conclusion
+
+Windows Workflow Foundation is by far not the best option if you're considering to implement workflow functionality into your .NET solution. Despite being suited for long running business logic, Workflow Foundation is flawed in so many ways that it will inevitably cause frustration and disappointment, effectively rendering your solution inoperable.
+
+If you are hesitant or already on the edge of frustration we kindly invite you to try out Workflow Engine. You can get acquainted with the full list of features [here](https://workflowengine.io/features/). Our free version is intended for non-commercial use only and has the following limitations:
+
+-   15 activities;
+-   25 transitions;
+-   5 commands;
+-   1 schema;
+-   1 thread.

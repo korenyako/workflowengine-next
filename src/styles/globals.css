@@ -81,48 +81,6 @@ a:not([class*="bg-"]):not([class*="border-"]):not([class*="text-white"]):not([cl
   color: rgb(46 106 212); /* text-blue-700 */
 }
 
-/* Стили для ссылок в тексте (как теги) */
-.text-link-tag {
-  color: rgb(66 134 244) !important; /* text-blue-600 */
-  background-color: rgba(66, 134, 244, 0.08) !important;
-  padding: 2px 6px !important;
-  border-radius: 4px !important;
-  text-decoration: none !important;
-  transition: all 0.2s ease !important;
-}
-
-.text-link-tag:hover {
-  color: rgb(46 106 212) !important; /* text-blue-700 */
-  background-color: rgba(66, 134, 244, 0.16) !important;
-}
-
-/* Стили для ссылок в тексте с моноширинным шрифтом (для кода и документации) */
-.text-link-tag-mono {
-  color: rgb(66 134 244) !important; /* text-blue-600 */
-  background-color: rgba(66, 134, 244, 0.08) !important;
-  padding: 2px 6px !important;
-  border-radius: 4px !important;
-  text-decoration: none !important;
-  transition: all 0.2s ease !important;
-  font-family: var(--font-jetbrains-mono), "JetBrains Mono", "Roboto Mono", "SF Mono", "Monaco", "Inconsolata", "Fira Code", "Droid Sans Mono", "Source Code Pro", "Consolas", "Liberation Mono", "Menlo", "Courier", monospace !important;
-  font-size: 0.875em !important;
-}
-
-.text-link-tag-mono:hover {
-  color: rgb(46 106 212) !important; /* text-blue-700 */
-  background-color: rgba(66, 134, 244, 0.16) !important;
-}
-
-/* Стили для выделения кода без ссылки */
-.code-highlight {
-  color: #98c379 !important; /* зеленый цвет */
-  background-color: #0F172A !important; /* темный фон */
-  padding: 2px 6px !important;
-  border-radius: 4px !important;
-  font-family: var(--font-jetbrains-mono), "JetBrains Mono", "Roboto Mono", "SF Mono", "Monaco", "Inconsolata", "Fira Code", "Droid Sans Mono", "Source Code Pro", "Consolas", "Liberation Mono", "Menlo", "Courier", monospace !important;
-  font-size: 0.875em !important; /* Немного меньше размер для моноширинного шрифта */
-}
-
 /* Анимация движения логотипов (seamless marquee: 2 копии → translate -50%) */
 @keyframes scroll {
   0% {
@@ -259,140 +217,60 @@ pre::-webkit-scrollbar-corner {
   background: #0f172a;
 }
 
-/* Стили для кнопки копирования в блоках кода */
-.code-copy-button {
-  opacity: 1;
-  transition: opacity 0.2s ease;
-}
-
-.code-block:hover .code-copy-button {
-  opacity: 1;
-}
-
-/* Стили для скроллбара в CodePreview */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 4px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: #0f172a;
-  border-radius: 4px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #475569;
-  border-radius: 4px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
-}
-
-/* Скрываем кнопки прокрутки */
-.custom-scrollbar::-webkit-scrollbar-button {
-  display: none !important;
-}
-
-.custom-scrollbar::-webkit-scrollbar-button:start {
-  display: none !important;
-}
-
-.custom-scrollbar::-webkit-scrollbar-button:end {
-  display: none !important;
-}
-
-.custom-scrollbar::-webkit-scrollbar-corner {
-  background: #0f172a;
-}
-
-/* Стили для выделения ключевых слов */
-.highlight-keyword {
-  background: linear-gradient(120deg, rgba(168, 85, 247, 0.8) 0%, rgba(168, 85, 247, 0.8) 100%) no-repeat 0 88%/100% 0.4em transparent;
-  font-weight: inherit;
-  color: inherit;
-  padding: 0;
-  border-radius: 0;
-  display: inline;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-}
-
-/* Стили для highlight.js */
-.hljs {
-  background: #0f172a !important;
-  color: #e2e8f0 !important;
-  padding: 1rem !important;
-  border-radius: 8px !important;
-  overflow-x: auto !important;
-  font-family: var(--font-jetbrains-mono), "JetBrains Mono", "Roboto Mono", "SF Mono", "Monaco", "Inconsolata", "Fira Code", "Droid Sans Mono", "Source Code Pro", "Consolas", "Liberation Mono", "Menlo", "Courier", monospace !important;
-  font-size: 14px !important;
-  line-height: 1.6 !important;
-}
-
-/* Стили для MDX контента */
-.article-content h1, .mdx-content h1 {
+/* === MDX article content (.article-content / .mdx-content) ===
+   Брендовая палитра: текст slate-900/600, синий ТОЛЬКО для ссылок (#4286F4).
+   Заголовки — единый набор font-family / color / letter-spacing / line-height,
+   уровни различаются только размером, весом и top/bottom margin. */
+.article-content :is(h1, h2, h3, h4, h5),
+.mdx-content :is(h1, h2, h3, h4, h5) {
   font-family: var(--font-dm-sans), 'DM Sans', ui-sans-serif !important;
+  color: #0f172a !important; /* slate-900 */
+  letter-spacing: -0.02em !important;
+  line-height: 1.2 !important;
+}
+
+.article-content h1, .mdx-content h1 {
   font-size: 32px !important;
   font-weight: 800 !important;
-  margin: 32px 0 16px !important;
-  color: #0f172a !important; /* slate-900 */
-  letter-spacing: -0.02em !important;
-  line-height: 1.1 !important;
-}
-.article-content h2, .mdx-content h2 {
-  font-family: var(--font-dm-sans), 'DM Sans', ui-sans-serif !important;
-  font-size: 28px !important;
-  font-weight: 800 !important;
-  line-height: 1.15 !important;
   margin: 64px 0 24px !important;
-  color: #0f172a !important; /* slate-900 */
-  letter-spacing: -0.02em !important;
-}
-.article-content h3, .mdx-content h3 {
-  font-family: var(--font-dm-sans), 'DM Sans', ui-sans-serif !important;
-  font-size: 20px !important;
-  font-weight: 800 !important;
-  line-height: 1.3 !important;
-  margin: 48px 0 16px !important;
-  color: #2563eb !important; /* blue-600 */
-  letter-spacing: -0.01em !important;
-}
-.article-content h4, .mdx-content h4 {
-  font-family: var(--font-dm-sans), 'DM Sans', ui-sans-serif !important;
-  font-size: 18px !important;
-  font-weight: 600 !important;
-  margin: 32px 0 16px !important;
-  color: #2563eb !important; /* blue-600 */
-  letter-spacing: -0.01em !important;
-}
-.article-content h5, .mdx-content h5 {
-  font-family: var(--font-dm-sans), 'DM Sans', ui-sans-serif !important;
-  font-size: 16px !important;
-  font-weight: 600 !important;
-  margin: 24px 0 8px !important;
-  color: #2563eb !important; /* blue-600 */
-  letter-spacing: -0.01em !important;
 }
 
-/* Стили для параграфов в article-content */
+.article-content h2, .mdx-content h2 {
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  margin: 64px 0 24px !important;
+}
+
+.article-content h3, .mdx-content h3 {
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  margin: 48px 0 16px !important;
+}
+
+.article-content :is(h4, h5),
+.mdx-content :is(h4, h5) {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  margin: 32px 0 12px !important;
+}
+
 .article-content p {
   color: #475569 !important; /* slate-600 */
   font-size: 20px !important;
-  font-weight: 300 !important;
+  font-weight: 400 !important;
   line-height: 1.8 !important;
   margin-bottom: 32px !important;
 }
 
-
 .article-content a {
-  color: #2563eb !important; /* blue-600 */
+  color: #4286F4 !important; /* brand blue */
   font-weight: 700 !important;
   text-decoration: none !important;
   transition: color 0.15s ease !important;
 }
 
 .article-content a:hover {
-  color: #1d4ed8 !important; /* blue-700 */
+  color: #2e6ad4 !important; /* brand blue hover */
 }
 
 .article-content strong {
@@ -400,7 +278,7 @@ pre::-webkit-scrollbar-corner {
 }
 
 .article-content blockquote {
-  border-left: 4px solid #2563eb !important; /* blue-600 */
+  border-left: 4px solid #cbd5e1 !important; /* slate-300 */
   background: rgba(241, 245, 249, 0.8) !important; /* slate-100 */
   border-radius: 0 12px 12px 0 !important;
   padding: 16px 24px !important;
@@ -411,7 +289,6 @@ pre::-webkit-scrollbar-corner {
   color: #334155 !important; /* slate-700 */
 }
 
-/* Стили для списков в article-content */
 .article-content ul {
   list-style: none !important;
   padding-left: 0 !important;
@@ -427,14 +304,14 @@ pre::-webkit-scrollbar-corner {
   padding-left: 1.5rem !important;
   margin-bottom: 16px !important;
   font-size: 20px !important;
-  font-weight: 300 !important;
+  font-weight: 400 !important;
   line-height: 1.8 !important;
   color: #475569 !important; /* slate-600 */
 }
 
 .article-content ul li::before {
   content: "•" !important;
-  color: #2563eb !important; /* blue-600 */
+  color: #94a3b8 !important; /* slate-400 */
   font-size: 1.2rem !important;
   position: absolute !important;
   left: 0 !important;
@@ -446,14 +323,7 @@ pre::-webkit-scrollbar-corner {
 }
 
 .article-content ol li::marker {
-  color: #2563eb !important; /* blue-600 */
-}
-
-/* Глобальные стили для тега mark */
-mark {
-  background: linear-gradient(120deg, rgba(168, 85, 247, 0.8) 0%, rgba(168, 85, 247, 0.8) 100%) no-repeat 0 88%/100% 0.4em transparent;
-  font-weight: inherit;
-  color: inherit
+  color: #94a3b8 !important; /* slate-400 */
 }
 
 /* Calendly виджет — ограничение ширины на мобильных */

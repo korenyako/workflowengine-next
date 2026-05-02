@@ -1,0 +1,29 @@
+## Preface
+
+Last year marked the new release of OpenAPI, a specification created by the Open API Initiative (OAI)—a Linux Foundation project created to promote and somewhat unify application programming interfaces. The initiative involves more than 30 companies of different tech areas, including Microsoft, Google, IBM, and CapitalOne, with Smartbear Software’s Swagger helping lead the evolution of the specification. So, what’s OpenAPI and why should you care?
+
+Well, as the guys at the OAI put it:
+
+> APIs form the connecting glue between modern applications. Nearly every application uses APIs to connect with corporate data sources, third-party data services or other applications. Creating an open description format for API services that is vendor neutral, portable and open is critical to accelerating the vision of a truly connected world.
+
+In layman terms, the more providers converge on how to describe REST APIs, the better it is for API consumers since they’ll have a standardized way of interacting with APIs. The OpenAPI Specification defines a standard, language-agnostic interface to RESTful APIs, which allows both humans and computers to discover and understand the capabilities of the service without access to source code, documentation, or through network traffic inspection. When properly defined, a consumer can understand and interact with the remote service with a minimal amount of implementation logic.
+
+An OpenAPI definition can then be used by documentation generation tools to display the API, code generation tools to generate servers and clients in various programming languages, and testing tools.
+
+## The Big News
+
+The big news is that Workflow Server now has its Swagger definitions, which are represented in YAML for better readability and conform to the OpenAPI 2.0 Specification. We opted for 2.0 rather than 3.0 intentionally, since Swagger’s tools have much better support of the former. The definitions include the following API information:
+
+-   General information about the API
+-   Available endpoints
+-   Available operations on each endpoints
+-   Input and output for each operation
+
+The best part about these definitions is that you can simplify your build process by automatically generating server stubs and client SDKs in under 10 minutes, so that your team can focus on API implementation and adoption rather than on writing the consumption code manually. Swagger will generate the source code that can be included in your project and used to call the Workflow Server API.
+
+Workflow Server has two definitions:
+
+-   OpenAPI 2.0 (Swagger) workflow server description — is an API definition, which allows you to manage processes (create and execute commands, get information on processes, etc.). This definition should be used to generate the client SDK.
+-   OpenAPI 2.0 (Swagger) callback server description — is a callback server API definition. Workflow Server communicates with the server to execute external Actions, Conditions and Rules. This definition should be used to generate the server stub.
+
+You can import the definitions, study the API and [launch automated generation online](http://editor.swagger.io/). Afterwards you can use the library in your application consuming Workflow Server’s APIs. We hope that these definitions will significantly simplify the consumption of our RESTful service, because the low-level work shall now be done by the generated libraries.

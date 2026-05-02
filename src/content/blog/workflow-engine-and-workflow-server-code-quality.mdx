@@ -1,0 +1,19 @@
+## Introduction
+
+High-quality code and software do not happen by accident—they are a result of passion, consistency and strong developer focus. Code quality isn’t just a big deal: keeping it on par while making frequent adjustments to your solution is crucial not to let it degrade into an inoperable mess. Yet, many developers underestimate the need to maintain their writings at a decent quality level—leaving quality concerns over the board is tempting especially when the project is a race against the clock and the budget.
+
+It’s not only that well-structured code that follows language rules is much easier to read and understand. It is also more reliable, predictable, consistent, maintainable and extensible. Here at OptimaJet we realize the importance of code quality when it comes to delivering you software components that become the core solution you develop. We pay attention to the naming convention of variables, methods, parameters, and classes, formatting and code organization rules, follow best practices for composing methods, and principles for writing quality documentation. But that’s only the tip of the iceberg: we also strive to make most of the source code of Workflow Engine and Workflow Server covered by tests.
+
+## Test Coverage
+
+We use Visual Studio’s unit tests to maintain code health, ensure code coverage, check that the code is working as expected, and prevent you from finding any errors and faults in Workflow Engine and Workflow Server. Being an integral part of our software development workflow, unit testing has greatest effect on the quality of our code, since it enables us to verify the behavior of the code in response to standard, boundary, and incorrect cases of input data, and check any explicit or implicit assumptions made by the code.
+
+On top of that, we use the code coverage feature of Visual Studio to determine the proportion of our code actually being tested by unit tests. Currently, 74% of the main library’s code are exercised with tests, which is enough to effectively guard Workflow Engine against defects. New functionality and error handling are always supplemented with new tests, thus increasing code coverage. 86% of the code of database providers code is currently covered by tests.
+
+We also utilize [SoapUI](https://www.soapui.org/) to make sure Workflow Server’s API functions work as intended all the time. SoapUI is the world’s most widely-used testing tool for SOAP and REST APIs—the tool helps us identify issues and narrow down problems to exact details in underlying requests and responses. Ultimately, this enables us to expedite resolution and avoid errors, while giving us visibility into performance of the APIs. Currently, 45% of the code of Workflow Server is covered with tests.
+
+Besides, we use [ReSharper](https://www.jetbrains.com/resharper) from JetBrains, a static code analyzer that provides on-the-fly code analysis and eliminates errors in C#, VB.NET, XAML, ASP.NET, XML. Being our static code analyzer of choice, it helps us instantly detect and highlight errors in the code and allows automatic corrections for most errors while coding. Altogether it helps us ensure that the written code conforms to guidelines and best practices. All significant code changes also undergo static code analysis with [PVS-Studio](https://www.viva64.com/en/pvs-studio/), a tool that performs static code analysis and a wide range of checks, generating reports that help us find and fix defects.
+
+## Conclusion
+
+At the end of the day, nobody wants spaghetti code and defects in their solution, especially when it comes to integrating third-party components in it, and we account for that. We strive for good quality so that the code of Workflow Engine and Workflow Server is able to live on without translating into development or maintenance troubles for our customers with each new release.

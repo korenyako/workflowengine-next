@@ -1,0 +1,176 @@
+## Source Code
+
+Feel free to download the [source code](https://workflowengine.io/downloads/parallel-branches-2-sample.zip).
+
+## Introduction
+
+This article continues the description of the parallel branches. Please read the article [Parallel branches](https://workflowengine.io/blog/parallel-branches-continued/) if you have not done it before. The article describes the following example: the document has three parallel branches of the approvement. The document goes into the final status only if the users have approved the document in all three branches. This is quite typical example of the parallel approvement of the documents.
+
+**Warning:** the functional does not work with the free license of Workflow Engine. It requires higher limits of the scheme. The sample has a trial license key that will allow you to use this functionality.
+
+## The Scheme
+
+![Parallel Branching Scheme](/images/blog/parallel-branching-in-workflow-engine/parallel-branches-2.png)
+
+Let's consider the scheme focusing on the more important details.
+
+First, we need to create two sub-processes. It is provided with two transitions **MainState1 -> BranchAState1, MainState1 -> BranchBState1**. Both transitions are Auto Always and this means that the sub-processes will be created immediately after the main process come in activity **MainState1**.
+
+Secondly, we need to describe the negative decisions in the sub-processes. It is provided with three transitions **BranchAState1 -> Draft, BranchAState2 -> BranchAState1, BranchBState1 -> Draft**.
+
+**BranchAState1 -> Draft** transition is triggered by denyA command, also it marked as Is Fork = true and Merge subprocess via set state = true. This means that after execution of denyA command from **BranchAState1** activity the BranchA sub-process will be finished and Main process will be set in **Draft** activity.
+
+**BranchBState1 -> Draft** transition works the same way as the **BranchAState1 -> Draft** transition.
+
+**BranchAState2 -> BranchAState1** transition is triggered by denyA command, but it is ordinary transition because it is not marked Is Fork = true. This means that after execution of denyA command from **BranchAState2** activity the BranchA sub-process will be set in **BranchAState1** activity.
+
+Third, we need to describe the positive transitions in the sub-processes. It is provided with three transitions **BranchAState1 -> BranchAState2 , BranchAState2 -> ParallelAgreementAwaiting, BranchBState1 -> ParallelAgreementAwaiting**.
+
+**BranchAState2 -> ParallelAgreementAwaiting** is triggered by approveA command, also it marked as Is Fork = true and Merge subprocess via set state = false. This means that after execution of approveA command from**BranchAState2** activity the BranchA sub-process will be finished. After that, the engine will try to execute all Auto transitions starting from the **ParallelAgreementAwaiting** activity. If it can execute at least one transition, the Main process goes into a new state. If not - remain in the same state.
+
+**BranchBState1 -> ParallelAgreementAwaiting** works the same way as the **BranchAState2 -> ParallelAgreementAwaiting** transition.
+
+**BranchAState1 -> BranchAState2** is triggered by approveA command, but it is ordinary transition because it is not marked Is Fork = true. This means that after execution of denyA command from **BranchAState1** activity the BranchA sub-process will be set in **BranchAState2** activity.
+
+Fourth, we need to ensure that the Main process will be wait for the completion of all sub-processes. This is achieved by using two Actions, and one Condition.
+
+**SetParallelApproveComplete** - writes a parameter which name is consigned by a Action parameter in the process variables. This method writes the string "true", because this parameter is not described in the parameters of the scheme and now the engine supports this kind of parameters only as string.
+
+```
+void SetParallelApproveComplete (ProcessInstance processInstance, WorkflowRuntime runtime, string parameter)
+{
+    processInstance.SetParameter(parameter,"true",ParameterPurpose.Persistence);
+}
+```
+
+**SetParallelApproveNotComplete** - removes a parameter which name is consigned by a Action parameter from the process variables. Setting any parameter to null will remove it from the process variables.
+
+```
+void SetParallelApproveNotComplete (ProcessInstance processInstance, WorkflowRuntime runtime, string parameter) 
+{
+    processInstance.SetParameter(parameter,null,ParameterPurpose.Persistence);
+}
+```
+
+**IsApproveComplete** - checks that all three branches said "i am completed" using process variables.
+
+```
+bool IsApproveComplete (ProcessInstance processInstance, WorkflowRuntime runtime, string parameter) 
+{
+    var aComplete = processInstance.GetParameter<string>("BranchA") == "true";
+    var bComplete = processInstance.GetParameter<string>("BranchB") == "true";
+    var mainComplete = processInstance.GetParameter<string>("Main") == "true";
+    return aComplete && bComplete && mainComplete;
+}
+```
+
+**SetParallelApproveNotComplete** - specified as implementation of the Draft activity three times. It will remove Main, BranchA, BranchB parameters from the process variables.
+
+**SetParallelApproveComplete** - specified as implementation of the ParallelAgreementAwaiting activity with parameter named Main. As implementation of the BranchAState1 activity with parameter named BranchA. And as implementation of the BranchBState1 activity with parameter named BranchB. The question "Why is the main process reports its completion at the end of the process, and the sub-processes do this in its beginning?" will sound reasonable. The explanation lies in the fact that the variables (parameters) of the sub-process will be merged with the variables of the main process only after completion of the sub-process. This is the rule, if the main process has a variable with the same name as in the sub-process, this variable will not be overwritten. But we set a variable to null, and they are removed from the main process, so everything works as planned. Let's proceed to the demo.
+
+## Demo
+
+First, execute the start command.
+
+```
+The process is not created.
+CreateInstance - OK.
+ProcessId = '1ea62914-...'. CurrentState: Draft, CurrentActivity: Draft
+...
+Enter command:start
+ExecuteCommand - OK.
+ProcessId = '1ea62914-...'. CurrentState: MainState1, CurrentActivity: MainState1
+->SubProcessId = '92c2a820-...'. CurrentState: BranchBState1, CurrentActivity: BranchBState1
+->SubProcessId = 'ccc964cc-...'. CurrentState: BranchAState1, CurrentActivity: BranchAState1
+```
+
+Now we see that the main process is moved to the activity MainState1. And two sub-processes were created. Run the approve command twice to the main process has moved to ParallelAgreementAwaiting activity.
+
+```
+ProcessId = '1ea62914-...'. CurrentState: MainState1, CurrentActivity: MainState1
+->SubProcessId = '92c2a820-...'. CurrentState: BranchBState1, CurrentActivity: BranchBState1
+->SubProcessId = 'ccc964cc-...'. CurrentState: BranchAState1, CurrentActivity: BranchAState1
+...
+Enter command:approve
+ExecuteCommand - OK.
+ProcessId = '1ea62914-...'. CurrentState: MainState2, CurrentActivity: MainState2
+->SubProcessId = '92c2a820-...'. CurrentState: BranchBState1, CurrentActivity: BranchBState1
+->SubProcessId = 'ccc964cc-...'. CurrentState: BranchAState1, CurrentActivity: BranchAState1
+...
+Enter command:approve
+ExecuteCommand - OK.
+ProcessId = '1ea62914-...'. CurrentState: ParallelAgreementAwaiting, CurrentActivity: ParallelAgreementAwaiting
+->SubProcessId = '92c2a820-...'. CurrentState: BranchBState1, CurrentActivity: BranchBState1
+->SubProcessId = 'ccc964cc-...'. CurrentState: BranchAState1, CurrentActivity: BranchAState1
+Now run the approveA command twice to finish BranchA sub-process.
+
+ProcessId = '1ea62914-...'. CurrentState: ParallelAgreementAwaiting, CurrentActivity: ParallelAgreementAwaiting
+->SubProcessId = '92c2a820-...'. CurrentState: BranchBState1, CurrentActivity: BranchBState1
+->SubProcessId = 'ccc964cc-...'. CurrentState: BranchAState1, CurrentActivity: BranchAState1
+...
+Enter command:approveA
+ExecuteCommand - OK.
+ProcessId = '1ea62914-...'. CurrentState: ParallelAgreementAwaiting, CurrentActivity: ParallelAgreementAwaiting
+->SubProcessId = '92c2a820-...'. CurrentState: BranchBState1, CurrentActivity: BranchBState1
+->SubProcessId = 'ccc964cc-...'. CurrentState: BranchAState2, CurrentActivity: BranchAState2
+...
+Enter command:approveA
+ExecuteCommand - OK.
+ProcessId = '1ea62914-...'. CurrentState: ParallelAgreementAwaiting, CurrentActivity: ParallelAgreementAwaiting
+->SubProcessId = '92c2a820-...'. CurrentState: BranchBState1, CurrentActivity: BranchBState1
+```
+
+Now we see that we have only one sub-process launched and the main process is still awaiting of completion of the BranchB sub-process. Run approveB command.
+
+```
+ProcessId = '1ea62914-...'. CurrentState: ParallelAgreementAwaiting, CurrentActivity: ParallelAgreementAwaiting
+->SubProcessId = '92c2a820-...'. CurrentState: BranchBState1, CurrentActivity: BranchBState1
+...
+Enter command:approveB
+ExecuteCommand - OK.
+ProcessId = '1ea62914-...'. CurrentState: Final, CurrentActivity: Final
+BranchB sub-process was completed and the Main process went into the Final activity. Let's consider the case when the sub-processes is completed before the main process. Execute restart - start - approveA - approveA - approveB commands sequentially.
+
+ProcessId = '1ea62914-...'. CurrentState: Final, CurrentActivity: Final
+...
+Enter command:restart
+ExecuteCommand - OK.
+ProcessId = '1ea62914-...'. CurrentState: Draft, CurrentActivity: Draft
+...
+Enter command:start
+ExecuteCommand - OK.
+ProcessId = '1ea62914-...'. CurrentState: MainState1, CurrentActivity: MainState1
+->SubProcessId = 'b0fd0a4d-...'. CurrentState: BranchBState1, CurrentActivity: BranchBState1
+->SubProcessId = 'cfe32d89-...'. CurrentState: BranchAState1, CurrentActivity: BranchAState1
+...
+Enter command:approveA
+ExecuteCommand - OK.
+ProcessId = '1ea62914-...'. CurrentState: MainState1, CurrentActivity: MainState1
+->SubProcessId = 'b0fd0a4d-...'. CurrentState: BranchBState1, CurrentActivity: BranchBState1
+->SubProcessId = 'cfe32d89-...'. CurrentState: BranchAState2, CurrentActivity: BranchAState2
+...
+Enter command:approveA
+ExecuteCommand - OK.
+ProcessId = '1ea62914-...'. CurrentState: MainState1, CurrentActivity: MainState1
+->SubProcessId = 'b0fd0a4d-...'. CurrentState: BranchBState1, CurrentActivity: BranchBState1
+...
+Enter command:approveB
+ExecuteCommand - OK.
+ProcessId = '1ea62914-...'. CurrentState: MainState1, CurrentActivity: MainState1
+```
+
+Both sub-processes were launched and completed but the state of the main process was not changed. Execute the approve command twice to complete main process.
+
+```
+ProcessId = '1ea62914-...'. CurrentState: MainState1, CurrentActivity: MainState1
+...
+Enter command:approve
+ExecuteCommand - OK.
+ProcessId = '1ea62914-...'. CurrentState: MainState2, CurrentActivity: MainState2
+...
+Enter command:approve
+ExecuteCommand - OK.
+ProcessId = '1ea62914-...'. CurrentState: Final, CurrentActivity: Final
+```
+
+Main process was completed and we can see that it went through **ParallelAgreementAwaiting** activity because all sub-processes has been completed at that time.

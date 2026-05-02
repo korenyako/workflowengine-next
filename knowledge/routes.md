@@ -14,8 +14,8 @@ All routes are statically exported. Each URL corresponds to a folder under [src/
 | `/downloads/` | [app/downloads/page.tsx](../src/app/downloads/page.tsx) | Live; hard-coded page with version tables + NuGet + npm lists. |
 | `/pricing/` | — | **Route deleted (Phase 1).** 301-redirect to optimajet.com via `public/_redirects`. |
 | `/contacts/` | [app/contacts/page.tsx](../src/app/contacts/page.tsx) + `layout.tsx` | Live; real contact form posting to Bitrix24 via Netlify function (Phase 3). |
-| `/blog/` | [app/blog/page.tsx](../src/app/blog/page.tsx) | Blog index; reads `src/data/blog.ts` (currently empty array) |
-| `/blog/[slug]/` | [app/blog/[slug]/page.tsx](../src/app/blog/[slug]/page.tsx) | Dynamic; emits `/blog/__placeholder__/` while empty (see [decisions.md](decisions.md)) |
+| `/blog/` | [app/blog/page.tsx](../src/app/blog/page.tsx) | Blog index; renders 31 posts from `src/data/blog.ts` (Phase 4, см. [blog.md](blog.md)). |
+| `/blog/[slug]/` | [app/blog/[slug]/page.tsx](../src/app/blog/[slug]/page.tsx) | Dynamic, 31 slug-маршрутов; placeholder-fallback не срабатывает пока `blogPosts.length > 0`. |
 | `/404` | [app/not-found.tsx](../src/app/not-found.tsx) | Standard not-found |
 
 ## Navigation

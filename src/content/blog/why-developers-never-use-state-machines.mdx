@@ -1,0 +1,43 @@
+## Introduction
+
+State machines are a common way of describing a number of states in a business process. At first sight, it seems to be an easy tool for developers. Basically, all the need to do is define all the states within a machine and describe transitions from one state to another. Nonetheless, despite apparent simplicity, developers soon start to regret using state machines.
+
+## State Machine Major Flaws
+
+State machines could be used in processes with simple logic. Let’s think of a real-life example. Imagine that you are using a state machine for a lamp. In total, your lamp will have two states: active, when the light is on, and inactive, when it is off. To make the system work, it needs state transitions. In this case, it will be switch on and switch off commands.
+
+Working with state machines seems to be quite simple if you have only two states and two types of state transitions. But imagine you are developing a more sophisticated system with numerous states or classes of states. In each of the states the behavior of a system is different and your task is to characterize them all. You'll also need to define events that will make the system move from one state to another. For instance, you are asked to create an online order system. To do that you need to think about all the possible states of the system, such as how it behaves when a customer places an order, what happens if it is not found on stock or if the customer decides to change or delete the chosen item. The number of such states could reach 100 or more. You start specifying system behavior for each of the states and quite soon realize that your code becomes unreadable.
+
+Besides, managing states turns into a challenging process for any developer. For example, what will you do when the system evolves and you need to add some new features? You will have to fully reshape the machine. Moreover, by adding new states and their transitions, the complexity of the code raises drastically making it harder to bring any new changes into the program. The system becomes unmanageable.
+
+Complex state machines make maintenance and debugging rather problematic as well. You might have 1000 and more lines of asynchronous text log, that need to be analyzed. When doing it, you will soon find yourself working with “spaghetti code”. If a certain issue occurs, it may take hours to finally realize where it comes from. As a result, system debugging turns into a nightmare.
+
+## Other Problems That May Occur
+
+If we consider finite-state machines, they have less computational power. A basic FSM consists of a set of states and transitions. Accordingly, its memory is limited by the number of its states. Since the only memory the machine has is encoded in state and the number of states is finite, it means that its memory is strictly finite as well. Their logic is also limited and all you can do is to edit a transition from one state to another.
+
+Furthermore, when using a state machine, a developer may encounter a problem of unreachable states. It happens when state machine reaches a certain state and cannot exit it since there is no valid input that will trigger such activity. It often leads to behavior with unknown outcomes and, as a result, to system failure.
+
+## When Is The Right Time to Think About Alternatives?
+
+The implementation of a state machine is not the best choice when:
+
+**You cannot break code into states**
+
+To understand whether it is worth using state machine, consider whether your system could be divided into distinct states. You may simply try to draw a diagram on a piece of paper. For example, you need to build a task-management system and you try to figure out how the system will behave under different conditions. Once that is done, you decompose it into separate states. Imagine you have come up with 10 states and the next step will be to reflect it on your diagram. After that you’ll need to think of certain conditions that will lead to a transition from one state to another. For instance, when an assigned employee finishes his task, in process state changes into completed. All these transitions may be reflected in the diagram. However, if your system is too complicated and you cannot divide it into separate states, the diagramming becomes impossible. In this case, it is better to think of possible alternatives to state machines.
+
+**The number of states is indefinite**
+
+Each state machine accepts a sequence of input items which further generate new states. When building a new system a developer has to think of all the possible input combinations, including the information about what the next step or the output should be. In case the number of inputs is too large or indefinite, it is worth considering the usage of other tools.
+
+**You want to execute several states in parallel**
+
+State machine is the right solution for actions that should be executed in a sequential order. In this case the decisions on which state will be active next depend on the actions of the previous state. However, if you want to execute multiple actions in parallel, state machine is not an option.
+
+**Your algorithm is too simple or too complex**
+
+State machines may be useful in certain cases. For instance, when you see that your code could be divided into several states and these states are affected by various inputs, there is a good point in using them. However, if you have a simple algorithm that is unlikely to grow in complexity, it doesn’t need a state machine. Again, if the number of states is too large and your code becomes unreadable, it is also better to think of other alternatives.
+
+## Conclusion
+
+State machines are useful if you can define a clear number of states and events that will trigger transitions to them. They might be good for user interfaces or communications protocols. However, when building complex systems, implementation of state machines is not the best option. In this case you’ll find yourself dealing with hundreds of lines of code that are simply unreadable. Moreover, you are likely to face problems with maintenance and support. Therefore, if you cannot decompose your system into separate states or the number of states is indefinite, you should consider possible alternatives.

@@ -1,0 +1,63 @@
+## Preface
+
+Before reading about Java workflow engine comparison we suggest you have a look at [Workflow Server](https://workflowengine.io/server/), a standalone workflow solution that requires no development efforts whatsoever and can be integrated with Java, NodeJS, PHP, Ruby, and .NET applications via a REST API. Please, keep in mind, that we stopped supporting Java version for Workflow Engine in April 2018. That is why in this article we compare Java engines to Workflow Server, not Workflow Engine.
+
+## Introduction
+
+There are quite a lot of open source solutions that provide workflow process automation. The question is how to choose the right one and what factors should be taken into account before choosing. Below you will find a table that shows a comparison of Java workflow engines available on the market, including their major features description.
+
+<table><thead><tr><th>Feature</th><th>Workflow Server</th><th>Activiti</th><th>jBPM</th><th>Camunda</th><th>Copper</th></tr></thead><tbody><tr><td>Workflow types</td><td>State machine</td><td>State machine</td><td>State machine</td><td>State machine</td><td>State machine</td></tr><tr><td>Supported databases</td><td>MS SQL Server, PostgreSQL, Oracle, MySQL, MongoDB</td><td>MS SQL, PostgreSQL, Oracle, MySQL, H2, DB2</td><td>db2, derby, h2, hsqldb, mysql, oracle, postgresql, sqlserver</td><td>MS SQL, PostgreSQL, Oracle, MySQL, H2, DB2, MariaDB</td><td>PostgreSQL, Oracle, MySQL, H2, Apache Cassandra</td></tr><tr><td>Long-running operations</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr><tr><td>State persistence</td><td>Serialization type is defined by Persistence Provider. You can easily control and change the settings saving process.</td><td>Activiti supports recovery in case of error, and will restart as a transactional state machine at the lowest level.</td><td>The runtime state of an executing process can be made persistent, for example, in a database. This allows to restore execution states of all running processes in case of unexpected failure.</td><td>Persistence Strategy based on the following concepts - Compact Tables, Deadlock Avoidance, Control Savepoints, Intelligent Caching, True Concurrency.</td><td>Not declared</td></tr><tr><td>Versioning &amp; upgrading</td><td>The processes that were created before the schema change, work under the old scheme, whereas the scheme of the specific process is updated after calling the appropriate command.</td><td>Versioning only</td><td>Both</td><td>With the use of additional converters</td><td>Yes, you can dynamically modify workflows at runtime. As soon as you save the changed code, Copper compiles it automatically and loads it.</td></tr><tr><td>Scheme format</td><td>The proprietary format based on XML. Import and export to BPMN2 starting with version 2.1.</td><td>BPMN2</td><td>BPMN2</td><td>BPMN2</td><td>Process scheme is declared as Java-code</td></tr><tr><td>Installing the process in an arbitrary state</td><td>Yes, by calling a single method</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr><tr><td>Obtaining a list of available states for the current process</td><td>Yes, by calling a single method</td><td>Yes, by calling a single method</td><td>No</td><td>No</td><td>Unknown</td></tr><tr><td>Built-in authorization of access to external actions (commands) for the workflow</td><td>Yes</td><td>No</td><td>No</td><td>No</td><td>No</td></tr><tr><td>Timers and delays</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr><tr><td>Obtaining a list of available external actions for the current process</td><td>Yes, by calling a single method</td><td>No</td><td>No</td><td>No</td><td>No</td></tr><tr><td>Simulated process execution</td><td>Yes, this mode is called Pre-Execution.</td><td>No</td><td>No</td><td>No</td><td>No</td></tr><tr><td>Modifying schemes at runtime</td><td>Yes, built in.</td><td>No</td><td>No</td><td>No</td><td>Yes</td></tr><tr><td>Obtaining process lists for Inbox and Outbox folders</td><td>Yes</td><td>No</td><td>No</td><td>No</td><td>No</td></tr></tbody></table>
+
+## Supported Types of Workflow
+
+Workflow management systems usually support three types of workflows: sequential workflow, state workflow and rule-driven workflow. Sequential workflows move from one task to another, without stepping back in sequence. Such workflows move to the next activity when the previous is finished, and they are more likely to be used when decision making process can be encoded inside the workflow. State machines, on the contrary, are used when decisions are made outside the workflow. They go from one state to another and have to wait for a certain event that will trigger a transition from one activity to another. As a result, state machines are great for defining processes that involve human interaction. Rule-driven workflows use conditions under which a transition from one step to another occurs. They might be used for resolving complicated issues when your business requirements change quite often. However, rule-driven workflows might also add complexity to your system.
+
+## Visual Designer
+
+An in-built designer allows you to easily create custom workflows of any complexity. It frees you up from writing code and, as a result, greatly reduces the time spent on the development of templates and components. Moreover, visual designer provides users with easy navigation, so you don't have to be a developer or a technically skilled person to work with it. Basically, all you need to do is to drag and drop your workflow activities on your design canvas and connect them with transitions.
+
+## Supported Databases
+
+It is always better to choose an engine that is supplemented with a number of database providers. For instance, if you are using MongoDB and the engine that you've chosen doesn't support it, you will need to write your own provider. To do this, you'll have to involve additional resources and spend more time.
+
+## Long-Running Operations Support
+
+You will need long-running operations support in case you have activities that take substantial amount of time to complete. Such processes as document approval or contract signing are usually long-running, since it might take weeks or even months to reach an agreement. Instead, their state may be left persisted till the final decision is made. Hence, if your business processes take long, you should opt for those Java workflow engines that support long-running operations.
+
+## Mechanisms of State Persistence
+
+Persistence is one of the most important features, especially for long-running workflows. When persisted, the workflow is either removed from memory or postponed. For example, you are waiting for a customer to review and sign an agreement. In some cases it might take a week or two to do so. However, it isn't practical to have this state in memory for two or more weeks, waiting for the customer to send the signed document. Instead, you may put it on hold while the customer is reviewing the agreement and activate it once he sends it back. This feature might not be required for short-lived workflows. However, if you want flexibility or your workflow to include long-running tasks that involve human interactions, persistence becomes an essential element.
+
+## Versioning and Upgrading
+
+An in-built version control helps you keep track of any changes introduced to your workflows and revert them upon necessity. Whenever you update a workflow the engine versions your changes, letting you choose whether you want existing processes to finish running the old version or to force them to run a new one.
+
+## Process Scheme Format
+
+BPMN (Business Process Model and Notation) is arguably the most commonly used format when it comes to business process modeling. It helps describe business processes by using graphical notation. Its major benefit is that it is familiar and comprehensible not only to developers, but also to ordinary business people.
+
+If you have other software that supports BPMN or are planning to switch to another workflow engine, consider those engines that support BPMN. If the engine uses any format other than BPMN, make sure it has some tangible advantages when compared to BPMN format (for example, compact notation, fewer objects, etc.).
+
+## Possibility to Install the Process in an Arbitrary State
+
+Let's assume that you have an urgent document that should be approved by three different people: first it needs ti be approved by your department manager, then a lawyer and, finally, by a general manager. As a rule, the general manager won't be able to sign the document till the department manager approves it. If the manager is out, you will be stuck waiting for their return. The possibility to install processes in an arbitrary state allows you to avoid such an unpleasant situation and set the running process to an arbitrary state, bypassing whatever it is that you need to bypass.
+
+## Built-in Authorization
+
+Built-in authorization allows business owners to regulate user access. This feature is particularly useful for large enterprises. By defining who may take actions on specific states, you can prevent users from performing operations that they shouldn’t perform.
+
+## Timers and Delays
+
+Timers allow you to trigger transitions to certain activities within your workflow. Imagine that you want your employee to create a certain document within a certain period of time. If the document is not ready within the given period of time, the employee’s manager will receive a notification about it. Or you may set a timer according to which if a reviewer doesn’t take action within a given timeframe, it becomes automatically approved or rejected.
+
+## Simulated Process Execution
+
+This feature provides you with an opportunity to see how your newly created scheme will work. Simulated process execution enables you to run the scheme and see whether you have modelled the scheme correctly and if there are any errors.
+
+## The Possibility of Modifying the Scheme of the Process at Runtime
+
+This feature might be useful if you found an error in a running scheme (for example, wrong sequence of process stages) and want to correct it. You may also use it when you want to make certain adjustments and modifications at runtime.
+
+## Obtaining Process Lists for Inbox and Outbox folders
+
+Some workflow engines allow you to obtain information from the user’s inbox or outbox folders. For example, reviewing your employee’s inbox, you may find out at what stage the process is at a given time, what steps should be taken or who is the next person to act.

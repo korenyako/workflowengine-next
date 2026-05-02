@@ -88,7 +88,7 @@ Ask owner for traffic data + strategy before committing.
 
 **Phase 3 — launch-minimum content.** Rewrite `main.json` (home), build `features.json` / `server.json` / `downloads.json` from the snapshotted inventory. Add a new `DownloadsTableBlock` component (or hard-code in `app/downloads/page.tsx`). Wire up Bitrix24 in `ContactForm.tsx`. Refresh logos and testimonials. **This ships the marketing site.**
 
-**Phase 4 — blog (P0, SEO-critical).** Port all 20 posts. Each gets an MDX file in `src/content/blog/` and an entry in `src/data/blog.ts`. **Slugs must match the legacy URLs** — audit the legacy `/blog/<slug>/` paths first, before writing anything, to guarantee 1:1 mapping (no `/blog/workflow-server-overview/` → `/blog/workflow-server/`). Remove the `__placeholder__` sentinel workaround ([blog.md](../blog.md)) once the first post lands.
+**Phase 4 — blog (P0, SEO-critical).** ✅ DONE `2026-04-30`. На источнике оказалось не 20, а **31** поста (сайт прирос за 2.5 недели между snapshot и миграцией). Все 31 портированы целиком — `src/content/blog/<slug>.mdx` + запись в [src/data/blog.ts](../src/data/blog.ts). Слаги совпадают с легаси 1:1. Конвейер и ловушки задокументированы в [knowledge/blog.md](../blog.md) и [knowledge/log.md](../log.md). Открытые вопросы (даты публикаций, авторы, code-highlighting) — там же.
 
 **Phase 5 — polish.** JSON-LD enrichment, per-page SEO metadata, sitemap/robots audit, 404 check vs legacy URL list (anything we miss must redirect somewhere).
 

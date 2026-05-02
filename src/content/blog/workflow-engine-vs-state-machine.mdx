@@ -1,0 +1,39 @@
+## Introduction
+
+When companies decide to implement a system that will help them manage business processes, their choice will probably lie between a workflow engine and a state machine. Though the behavior of the two systems seems to be quite similar, they both have a number of distinct features. Accordingly, it is necessary to analyze the pros and cons of both to decide which of the systems suits most company’s needs.
+
+In general, the major difference between a workflow engine and a state machine lies in focus. In a workflow engine, transition to the next step occurs when a previous action is completed, whilst a state machine needs an external event that will cause branching to the next activity. In other words, state machine is event driven and workflow engine is not.
+
+## What to Consider When Making a Choice
+
+When trying to figure out which of the two systems to implement, it is necessary to analyze some of their major features.
+
+**Flexibility**
+
+Workflow engine supports sequential pattern when tasks are executed one after another. The next step in a workflow will not start till the previous is finished. For instance, the document will not be signed by the boss till the lawyer signs it. As a result, workflow engine seems to be rigid and deterministic in its nature. State machine, on the contrary, works asynchronously. Since the steps in the machine are triggered by certain events/actions, they shouldn't necessarily be performed in a strict order. From this point of view state machines are more flexible.
+
+However, the situation changes once your company has new business requirements. Imagine a state machine that has the following three states: submit an application, accept an application and reject an application. At present, we can see three separate states and clear transitions to them. Later on you decide to add some new states, for example, change an application and ask for feedback. In this situation the number of states and transitions between them increases considerably. Moreover, when adding new states, you should understand that you cannot change one without breaking the rest. As a result, instead of simply adding new functionality, you find yourself building a new system from scratch. Therefore, when you understand that your business rules may change over the time (that is practically inevitable process), workflow engine is a better option.
+
+**Understandability**
+
+State machines appear to be easy in usage at first sight. The developer simply needs to review company's processes and draw a diagram on which he should depict a particular number of states and events that will trigger transitions to them. However, the main problem of a state machine is that in practice it suits only businesses with one-dimensional problems. It serves well for projects with several distinct states, but fails when there are more complex systems. A typical CRM system built as a sequence of states might cause many problems. You’ll have to think of numerous status transitions, such as the registration of a new lead, start of the project or cancellation. Moreover, each of these states could be divided into separate ones as well. For example, you might want to define a reason for cancellation or through which channel a new lead was found (an email campaign, cold calling, etc.). When trying to depict each of these states, the system soon becomes unmanageable.
+
+Workflow engines seem to be quite complicated at first, since additional elements should be deployed. However, for larger systems it is the most appropriate solution. When implemented properly, benefits outweigh apparent complexity. Workflow engine seems to be a better model for business process management. It is often used for task management systems, being able to quickly allocate tasks to various executors. Moreover, workflow engines usually have solid documentations. A new developer will be able to understand it without spending hours analyzing endless lines of code.
+
+**Readability**
+
+Effective collaboration between people inside and outside the company is necessary for businesses development. Therefore, a common platform, used by a company, should be clear for all the members of the staff. Managers should be able to quickly identify at which state a certain action is at any given time.
+
+State machine often fails in terms of readability. It is capable of executing only one state at a time since it is impossible to run two in parallel. So, when you try to introduce events that might happen under certain conditions, you double the number of states. When the number of states becomes too large, readability of state machine tends to zero.
+
+**Predictability**
+
+Workflow engines, in comparison to state machines, are predictable in their nature. They use conditions that are always predefined at the beginning. Let's assume that you require document approval from both direct manager and general manager. The document may be signed in any order. If you choose a workflow engine, this process will be predefined. For instance, at first the direct manager signs the document, then the general manager. Accordingly, the general manager will not receive the document till the direct manager signs it. This process cannot be changed.
+
+In a state machine pattern, it is the user who decides whether the direct or the general manager should sign the document first. In this case the decisions are made by people. Since state machines are controlled by external factors, there could be numerous events that will lead to process completion. From this point of view, workflow engine is more beneficial as it guides you throughout the whole process.
+
+## Conclusion
+
+State machine is a good solution if your system is not very complex. You may implement it if you are capable of drawing all the possible states as well as the events that will cause transitions to them. In general, state machines work well for network protocols or some of the embedded systems.
+
+Workflow engine implementation is a good way of managing business processes. It is the right solution for task allocation, CRM and other complex systems. All in all, its ultimate goal is to improve business processes and company’s efficiency. That is why it perfectly suits for business process automation.
