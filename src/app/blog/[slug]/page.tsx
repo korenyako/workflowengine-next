@@ -143,7 +143,15 @@ export default async function BlogPostPage({
             >
               <MDXRemote
                 source={source}
-                options={{ mdxOptions: { rehypePlugins: [rehypeHighlight] } }}
+                options={{
+                  mdxOptions: {
+                    rehypePlugins: [
+                      // detect: true — авто-определяет язык в fenced-блоках без `language-X`
+                      // (на легаси-сайте таких блоков много — HTML/XML без префикса).
+                      [rehypeHighlight, { detect: true }],
+                    ],
+                  },
+                }}
               />
             </article>
           </div>
