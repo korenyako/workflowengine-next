@@ -13,6 +13,7 @@ interface ReviewBadge {
 interface HeroBlockProps {
   title: string;
   description?: string | React.ReactNode;
+  eyebrow?: string;
   subtitle?: string;
   highlights?: string[];
   reviewBadges?: ReviewBadge[];
@@ -39,6 +40,7 @@ interface HeroBlockProps {
 const HeroBlock: React.FC<HeroBlockProps> = ({
   title,
   description,
+  eyebrow,
   subtitle,
   highlights,
   reviewBadges,
@@ -58,6 +60,11 @@ const HeroBlock: React.FC<HeroBlockProps> = ({
               <ReviewChip key={b.sourceLabel} {...b} />
             ))}
           </div>
+        )}
+        {eyebrow && (
+          <p className="text-sm uppercase tracking-[0.2em] font-mono font-medium text-[#4286F4] mb-6">
+            {eyebrow}
+          </p>
         )}
         <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-heading text-slate-900 mb-6 whitespace-pre-wrap break-words" style={{ wordBreak: 'keep-all' }}>
           {title.replace(/\s+for\s+/g, ' for\u00A0')}
