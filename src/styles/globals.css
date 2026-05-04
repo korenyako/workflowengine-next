@@ -72,12 +72,14 @@ code, pre, .font-mono, pre *, code * {
 }
 
 /* Глобальные стили только для текстовых ссылок */
-a:not([class*="bg-"]):not([class*="border-"]):not([class*="text-white"]):not([class*="text-gray"]):not([class*="text-blue"]):not([class*="text-green"]):not([class*="text-yellow"]):not([class*="text-slate"]):not(.btn) {
+a:not([class*="bg-"]):not([class*="border-"]):not([class*="text-white"]):not([class*="text-gray"]):not([class*="text-blue"]):not([class*="text-green"]):not([class*="text-yellow"]):not([class*="text-slate"]):not(.btn):not(.block):not(.inline-block) {
   color: rgb(66 134 244); /* text-blue-600 */
+  font-weight: 700;
+  text-decoration: underline;
   transition: color 0.2s ease;
 }
 
-a:not([class*="bg-"]):not([class*="border-"]):not([class*="text-white"]):not([class*="text-gray"]):not([class*="text-blue"]):not([class*="text-green"]):not([class*="text-yellow"]):not([class*="text-slate"]):not(.btn):hover {
+a:not([class*="bg-"]):not([class*="border-"]):not([class*="text-white"]):not([class*="text-gray"]):not([class*="text-blue"]):not([class*="text-green"]):not([class*="text-yellow"]):not([class*="text-slate"]):not(.btn):not(.block):not(.inline-block):hover {
   color: rgb(46 106 212); /* text-blue-700 */
 }
 
@@ -289,7 +291,7 @@ pre::-webkit-scrollbar-corner {
 .article-content a {
   color: #4286F4 !important; /* brand blue */
   font-weight: 700 !important;
-  text-decoration: none !important;
+  text-decoration: underline !important;
   transition: color 0.15s ease !important;
 }
 

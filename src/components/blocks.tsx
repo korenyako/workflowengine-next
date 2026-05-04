@@ -3,6 +3,7 @@
 import React from "react";
 import HeroBlock from "./HeroBlock";
 import CenteredImageBlock from "./CenteredImageBlock";
+import CenteredVideoBlock from "./CenteredVideoBlock";
 import FeaturesGridBlock from "./FeaturesGridBlock";
 import DetailedFeatureGridBlock from "./DetailedFeatureGridBlock";
 import ProductsGridBlock from "./ProductsGridBlock";
@@ -18,6 +19,7 @@ import blocks from "@/data/main.json";
 const components: Record<string, React.ComponentType<any>> = {
   HeroBlock,
   CenteredImageBlock,
+  CenteredVideoBlock,
   FeaturesGridBlock,
   DetailedFeatureGridBlock,
   ProductsGridBlock,

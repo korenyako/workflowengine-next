@@ -13,11 +13,11 @@ Pages are composed of **blocks** — typed React components rendered from JSON c
 3. [components/PageBlocks.tsx](../src/components/PageBlocks.tsx) is the same renderer pattern, used by `/features` and `/server` (and any future data-driven sub-page).
 4. Both renderers iterate blocks, look up the component by `type`, pass `props`. Unknown types are silently dropped in `blocks.tsx`; `PageBlocks.tsx` logs a `console.warn`.
 
-## Current registry (12 blocks)
+## Current registry (13 blocks)
 
 Both `blocks.tsx` and `PageBlocks.tsx` register the same set:
 
-`HeroBlock`, `CenteredImageBlock`, `FeaturesGridBlock`, `DetailedFeatureGridBlock`, `ProductsGridBlock`, `LogosBlock`, `ContactCTABlock`, `CustomerStoryBlock`, `CompatibilityBlock`, `CustomerTestimonialsBlock`, `ReviewsStripBlock`, `DesignerScreenshotBlock`.
+`HeroBlock`, `CenteredImageBlock`, `CenteredVideoBlock`, `FeaturesGridBlock`, `DetailedFeatureGridBlock`, `ProductsGridBlock`, `LogosBlock`, `ContactCTABlock`, `CustomerStoryBlock`, `CompatibilityBlock`, `CustomerTestimonialsBlock`, `ReviewsStripBlock`, `DesignerScreenshotBlock`.
 
 If you need a block that existed in the FormEngine fork (e.g. `HeroWithCodeBlock`, `TwoColumnFeatureBlock`, `FAQBlock`, `IconTitleTextBlock`, `CodePreview`, `BadgeGridBlock`, …) — copy it back from `../formengine-next` and register it. They were removed in the post-fork cleanup (see [log.md](log.md) `2026-04-29` entry) since none of the current JSON files referenced them.
 

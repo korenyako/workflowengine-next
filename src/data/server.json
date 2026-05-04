@@ -2,24 +2,36 @@
   {
     "type": "HeroBlock",
     "props": {
-      "title": "Ready-to-use workflow engine for any stack",
-      "description": "Workflow Server is a ready-to-use Workflow Engine-based application that you can deploy into your infrastructure. Integrate with any system over REST API — Windows, Linux, macOS, Docker.",
+      "title": "Workflow Server",
+      "description": "Workflow Server is a key component for managing the lifecycle of business objects within your enterprise.",
       "primaryCta": {
-        "text": "Download",
-        "href": "/downloads/",
+        "text": "Demo",
+        "href": "https://demo.workflowengine.io/",
         "size": "lg"
       },
       "secondaryCta": {
-        "text": "Contact Sales",
-        "href": "/contacts/",
+        "text": "Website",
+        "href": "https://workflowserver.io/",
         "size": "lg"
+      }
+    }
+  },
+  {
+    "type": "CenteredVideoBlock",
+    "props": {
+      "surface": "card",
+      "subtitle": "Overview",
+      "title": "Deploy a workflow backend in minutes",
+      "description": "Workflow Server is a ready-to-use Workflow Engine-based application that you can deploy into your infrastructure. It can be integrated with any applications via a REST API. Perfect for microservices-based architecture.",
+      "video": {
+        "youtubeId": "GbNA77uZdbs",
+        "title": "Workflow Server overview"
       }
     }
   },
   {
     "type": "FeaturesGridBlock",
     "props": {
-      "surface": "card",
       "subtitle": "Why Workflow Server",
       "title": "Run workflows without embedding code",
       "description": "Everything Workflow Engine offers, wrapped in a deployable application with a REST API and an admin panel.",
@@ -54,22 +66,41 @@
     "type": "FeaturesGridBlock",
     "props": {
       "surface": "card",
-      "subtitle": "API",
-      "title": "Two APIs, one server",
-      "description": "Drive workflows from any system and react to state changes anywhere in your stack.",
-      "centered": true,
+      "title": "API",
+      "description": "The set of APIs enables the exchange of messages between external applications and Workflow Server via the HTTP protocol.",
+      "centered": false,
       "iconSize": 48,
       "columns": 2,
       "features": [
         {
           "icon": "server",
           "title": "Workflow API",
-          "text": "Create process instances, execute commands, query state, and manage inbox / outbox folders — the full lifecycle of a running workflow, over HTTP."
+          "text": "Workflow API enables you to manage everything related to your schemes and workflows, be it the creation of a process instance, returning the list of available commands and executing them, getting the list of available states and setting them, inbox/outbox folders, etc.",
+          "bullets": [
+            "Creating instances & retrieving their info",
+            "Getting a list of commands & executing them",
+            "Getting a list of available states & setting them",
+            "Checking if a process exists",
+            "Accessing Inbox/Outbox folders",
+            "Recalculating Inbox folder"
+          ],
+          "href": "https://workflowserver.io/documentation/workflow-api",
+          "linkText": "View Workflow API docs"
         },
         {
           "icon": "webhook",
           "title": "Callback API",
-          "text": "Wire Workflow Server into microservice architectures by pointing external URLs at event hooks: action and condition execution, status changes, and more."
+          "text": "Callback API allows you to integrate Workflow Server into any infrastructure (for example, the one based on microservice architecture) by specifying external URLs that you wish Workflow Server to call whenever a specific event occurs.",
+          "bullets": [
+            "Getting a list of actions & executing them",
+            "Getting a list of conditions & executing them",
+            "Getting rules & checking them",
+            "Getting identities",
+            "Generating schemes",
+            "Receiving status change notifications"
+          ],
+          "href": "https://workflowserver.io/documentation/callback-api",
+          "linkText": "View Callback API docs"
         }
       ]
     }
@@ -77,8 +108,8 @@
   {
     "type": "FeaturesGridBlock",
     "props": {
-      "subtitle": "Requirements",
-      "title": "System requirements",
+      "subtitle": "Deployment",
+      "title": "Runs anywhere your stack lives",
       "description": "Minimum specs for running Workflow Server in production.",
       "centered": false,
       "iconSize": 48,

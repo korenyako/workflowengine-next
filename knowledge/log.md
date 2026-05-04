@@ -2,6 +2,12 @@
 
 Chronological log of wiki updates. Newest entries on top.
 
+## 2026-05-04 | /server/: Overview-секция с видео + новый блок CenteredVideoBlock
+
+- Новый блок [CenteredVideoBlock.tsx](../src/components/CenteredVideoBlock.tsx) — портирован из `../formengine-next` (использовался там на `/core/` под "No advanced React skills required"). Адаптирован под бренд: цвета `#4286F4` / `slate-900` / `slate-600`, eyebrow uppercase + mono (как в `CenteredImageBlock`), `<iframe>` YouTube вместо `<img>`. Убран `GradientButton` и `isLightBg`-ветка — на workflowengine-сайте только light-mode.
+- Зарегистрирован в обоих registry: [blocks.tsx](../src/components/blocks.tsx) и [PageBlocks.tsx](../src/components/PageBlocks.tsx). Регистр: 12 → 13 блоков.
+- Добавлена секция в [server.json](../src/data/server.json) — после Hero, до "Why Workflow Server". Контент перенесён со старого workflowengine.io/server/ ("Overview" / "deploy into your infrastructure" / "REST API" / "microservices-based architecture"). CTA: Download → /downloads/, View Documentation → workflowengine.io/documentation/. Видео: `GbNA77uZdbs` (Workflow Server overview с канала [@optimajet](https://www.youtube.com/@optimajet/videos)).
+
 ## 2026-05-02 | Blog: типографика, обложки, карточки — итерация polish
 
 Серия мелких правок по блогу после визуального ревью с пользователем.

@@ -77,6 +77,7 @@ interface Feature {
   icon: string;
   title: string;
   text: string;
+  bullets?: string[];
   href?: string;
   linkText?: string;
 }
@@ -158,6 +159,13 @@ const FeaturesGridBlock: React.FC<FeaturesGridBlockProps> = ({
                 />
               ) : (
                 <p className="text-lg text-slate-600 whitespace-pre-wrap break-words">{feature.text}</p>
+              )}
+              {feature.bullets && feature.bullets.length > 0 && (
+                <ul className="mt-4 ml-5 list-disc marker:text-[#4286F4] space-y-2 text-base text-slate-600">
+                  {feature.bullets.map((b, i) => (
+                    <li key={i}>{b}</li>
+                  ))}
+                </ul>
               )}
               {hasLink && feature.linkText && (
                 <div className="mt-6 inline-flex items-center gap-1 text-[#4286F4] font-semibold">
