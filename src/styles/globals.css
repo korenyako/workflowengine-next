@@ -83,6 +83,31 @@ a:not([class*="bg-"]):not([class*="border-"]):not([class*="text-white"]):not([cl
   color: rgb(46 106 212); /* text-blue-700 */
 }
 
+/* === Scroll-reveal (см. knowledge/scroll-reveal-pattern.md) ===
+   Hidden state применяется только при html[data-reveal-ready] — этот атрибут
+   ставит inline-script в <head> до paint'a. Без JS аттрибут не появится и
+   контент рендерится нормально (graceful degradation). */
+html[data-reveal-ready] [data-reveal] {
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-reveal-ready] [data-reveal] {
+    transition: none;
+  }
+  html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* Анимация движения логотипов (seamless marquee: 2 копии → translate -50%) */
 @keyframes scroll {
   0% {

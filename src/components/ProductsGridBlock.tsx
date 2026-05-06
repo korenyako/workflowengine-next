@@ -35,7 +35,7 @@ const ProductsGridBlock: React.FC<ProductsGridBlockProps> = ({
   };
 
   return (
-    <section className="py-16 px-4 sm:px-8">
+    <section className="py-12 lg:py-16 px-4 sm:px-8">
       <div className="max-w-6xl mx-auto text-center mb-16">
         <h2 className="text-4xl lg:text-5xl xl:text-6xl font-heading text-slate-900 mb-6 whitespace-pre-wrap break-words">{title}</h2>
         <p className="text-xl text-slate-600 max-w-4xl mx-auto whitespace-pre-wrap break-words">{description}</p>
@@ -49,7 +49,7 @@ const ProductsGridBlock: React.FC<ProductsGridBlockProps> = ({
             <Link
               key={idx}
               href={product.href && product.href.startsWith('/') && product.href !== '/' && !product.href.includes('#') && !product.href.includes('?') && !product.href.endsWith('/') ? product.href + '/' : (product.href || '#')}
-              className="flex flex-col h-full transition-opacity duration-200 hover:opacity-80 cursor-pointer"
+              className="flex flex-col h-full text-slate-900 no-underline transition-opacity duration-200 hover:opacity-80 cursor-pointer"
             >
               <div className="bg-white rounded-3xl p-8 flex flex-col items-center text-center flex-1 relative z-10">
                 {badge && (

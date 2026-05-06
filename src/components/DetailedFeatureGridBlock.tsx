@@ -83,7 +83,7 @@ const DetailedFeatureGridBlock: React.FC<DetailedFeatureGridBlockProps> = ({
   const ActiveIcon = active ? FEATURE_ICONS[active.icon] : undefined;
 
   return (
-    <section className="py-16 px-4 sm:px-8">
+    <section className="py-12 lg:py-16 px-4 sm:px-8">
       <div className="max-w-6xl mx-auto text-center mb-12">
         {subtitle && <h3 className="text-sm uppercase tracking-[0.2em] font-mono font-medium text-[#4286F4] mb-4 whitespace-pre-wrap break-words">{subtitle}</h3>}
         <h2 className="text-4xl lg:text-5xl xl:text-6xl font-heading text-slate-900 mb-6 whitespace-pre-wrap break-words">{title}</h2>
@@ -91,7 +91,7 @@ const DetailedFeatureGridBlock: React.FC<DetailedFeatureGridBlockProps> = ({
       </div>
 
       {layout === "tabs" ? (
-        <div className="max-w-6xl mx-auto bg-white rounded-3xl p-8">
+        <div className="max-w-6xl mx-auto border-2 border-slate-200 rounded-3xl p-8">
           <div className="flex flex-col gap-8">
             <div className="flex flex-row flex-wrap gap-6">
               {features.map((feature, idx) => {
@@ -102,14 +102,14 @@ const DetailedFeatureGridBlock: React.FC<DetailedFeatureGridBlockProps> = ({
                   <button
                     key={idx}
                     onClick={() => setActiveTab(idx)}
-                    className={`flex items-center gap-2 px-4 py-3 rounded-full text-left transition-colors duration-200 cursor-pointer ${
+                    className={`flex items-center gap-3 px-6 py-4 rounded-full text-left transition-colors duration-200 cursor-pointer ${
                       idx === activeTab
                         ? `${bgTint} ${iconColor}`
                         : "text-slate-600 hover:text-slate-900"
                     }`}
                   >
-                    {TabIcon && <TabIcon size={20} strokeWidth={2} className={`flex-shrink-0 ${iconColor}`} />}
-                    <span className="text-sm font-semibold">{feature.tabLabel || feature.title}</span>
+                    {TabIcon && <TabIcon size={24} strokeWidth={2} className={`flex-shrink-0 ${iconColor}`} />}
+                    <span className="text-base lg:text-lg font-semibold">{feature.tabLabel || feature.title}</span>
                   </button>
                 );
               })}

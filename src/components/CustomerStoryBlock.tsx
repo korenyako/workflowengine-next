@@ -114,7 +114,7 @@ const CustomerStoryBlock: React.FC<CustomerStoryBlockProps> = ({
   );
 
   return (
-    <section className="py-8 lg:py-12 px-4 sm:px-6 lg:px-8">
+    <section className="py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
       {isExternal ? (
         <a href={href} target="_blank" rel="noopener noreferrer" className={cardClass}>
           {cardInner}

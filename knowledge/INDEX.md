@@ -13,6 +13,7 @@
 - [content-blocks](content-blocks.md) — JSON-driven блочная система (registry, layout hooks, ограничения).
 - [blog](blog.md) — MDX-пайплайн, `src/data/blog.ts`, воркэраунд для пустого блога.
 - [external-scripts](external-scripts.md) — GTM, Bitrix24, правила для сторонних скриптов в static export.
+- [scroll-reveal-pattern](scroll-reveal-pattern.md) — Постепенное появление блоков при скролле (Reveal-компонент, IntersectionObserver, политика применения).
 
 ## Решения
 

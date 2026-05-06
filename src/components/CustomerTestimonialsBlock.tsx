@@ -35,7 +35,7 @@ const CustomerTestimonialsBlock: React.FC<CustomerTestimonialsBlockProps> = ({
   const next = () => setIndex((i) => (i + 1) % total);
 
   return (
-    <section id={anchor} className="py-16 px-4 sm:px-8">
+    <section id={anchor} className="py-12 lg:py-16 px-4 sm:px-8">
       <div className="max-w-6xl mx-auto">
         {subtitle && (
           <h3 className="text-sm uppercase tracking-[0.2em] font-mono font-medium text-[#4286F4] text-center mb-4 whitespace-pre-wrap break-words">
@@ -43,9 +43,11 @@ const CustomerTestimonialsBlock: React.FC<CustomerTestimonialsBlockProps> = ({
           </h3>
         )}
 
-        <h2 className="text-4xl lg:text-5xl xl:text-6xl font-heading text-slate-900 text-center mb-16">
-          {title}
-        </h2>
+        {title && (
+          <h2 className="text-4xl lg:text-5xl xl:text-6xl font-heading text-slate-900 text-center mb-16">
+            {title}
+          </h2>
+        )}
 
         <div className="flex items-center gap-3 sm:gap-6 lg:gap-8">
           {hasCarousel && (
@@ -58,7 +60,7 @@ const CustomerTestimonialsBlock: React.FC<CustomerTestimonialsBlockProps> = ({
             </button>
           )}
 
-          <div className="flex-1 max-w-4xl mx-auto bg-slate-100 rounded-[40px] lg:rounded-[48px] p-8 sm:p-12 lg:p-16">
+          <div className="flex-1 bg-slate-100 rounded-[40px] lg:rounded-[48px] p-8 sm:p-12 lg:p-16">
             <div className="space-y-6 mb-10">
               {paragraphs.map((p, i) => (
                 <p key={i} className="text-xl lg:text-2xl text-slate-900 leading-relaxed">

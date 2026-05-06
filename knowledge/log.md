@@ -2,6 +2,23 @@
 
 Chronological log of wiki updates. Newest entries on top.
 
+## 2026-05-06 | Scroll-reveal: тюнинг тайминга
+
+После раскатки на `/`, `/features/`, `/server/` пользователь сообщил, что с дефолтным `0.6s ease + translateY(24px)` секции «всплывают слишком быстро, почти статика». Поменял на `0.9s cubic-bezier(0.16, 1, 0.3, 1) + translateY(40px)` — snappy ease-out-quart («Stripe/Linear»-кривая, быстрый старт → затухающий финиш). Документ [scroll-reveal-pattern.md](scroll-reveal-pattern.md) дополнен таблицей тюнинг-рукояток (длительность, амплитуда, кривая, rootMargin, threshold) с указаниями где крутить и какой эффект.
+
+## 2026-05-06 | Scroll-reveal: имплементация на `/`, `/features/`, `/server/`
+
+Паттерн постепенного появления блоков при скролле (opacity 0→1 + translateY(24px), 600ms ease) — раскатан на marketing-страницах. Документ [scroll-reveal-pattern.md](scroll-reveal-pattern.md) переведён из «справочник на будущее» в «как сделано».
+
+**Что добавилось:**
+
+- Компонент [Reveal.tsx](../src/components/Reveal.tsx) — клиентский wrapper с `IntersectionObserver` (one-shot, `unobserve` после first hit). Учитывает `prefers-reduced-motion`.
+- CSS-секция «Scroll-reveal» в [globals.css](../src/styles/globals.css) — гейт через `html[data-reveal-ready]`, атрибут ставится inline-скриптом в `<head>` до paint'а ([layout.tsx](../src/app/layout.tsx)). Без JS контент остаётся видимым (graceful degradation).
+- Опциональный prop `revealOnScroll?: boolean` в обоих block-registry: [blocks.tsx](../src/components/blocks.tsx) (главная) и [PageBlocks.tsx](../src/components/PageBlocks.tsx) (sub-страницы). Hero (i === 0) исключён из обёртки — он во вьюпорте на загрузке, анимация дала бы только flash.
+- Включён на `/`, `/features/`, `/server/`. НЕ включён на `/contacts/`, `/downloads/`, `/blog/` (transactional / list-views).
+
+**Подводный камень (зафиксирован в [scroll-reveal-pattern.md](scroll-reveal-pattern.md#гочи-overflow-x-hidden-на-ancestor--transform-на-детях))**: оба block-wrapper'а имели `overflow-x-hidden`. По CSS-спеке `overflow-x: hidden` промотирует `overflow-y` в `auto`; нижний блок с `transform: translateY(24px)` создавал реальный overflow → двойной скроллбар. Фикс: `overflow-x-clip` (не создаёт scrolling box).
+
 ## 2026-05-04 | /server/: Overview-секция с видео + новый блок CenteredVideoBlock
 
 - Новый блок [CenteredVideoBlock.tsx](../src/components/CenteredVideoBlock.tsx) — портирован из `../formengine-next` (использовался там на `/core/` под "No advanced React skills required"). Адаптирован под бренд: цвета `#4286F4` / `slate-900` / `slate-600`, eyebrow uppercase + mono (как в `CenteredImageBlock`), `<iframe>` YouTube вместо `<img>`. Убран `GradientButton` и `isLightBg`-ветка — на workflowengine-сайте только light-mode.

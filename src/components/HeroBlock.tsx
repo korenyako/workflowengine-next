@@ -52,7 +52,7 @@ const HeroBlock: React.FC<HeroBlockProps> = ({
   gradientButton = false,
 }) => {
   return (
-    <section className="py-12 text-slate-900 text-center">
+    <section className="py-12 lg:py-16 text-slate-900 text-center">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         {reviewBadges && reviewBadges.length > 0 && (
           <div className="flex flex-wrap justify-center gap-3 mb-8">

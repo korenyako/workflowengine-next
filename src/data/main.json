@@ -49,10 +49,9 @@
   {
     "type": "DetailedFeatureGridBlock",
     "props": {
-      "surface": "card",
       "subtitle": "Use cases",
       "title": "Built for Real Business Scenarios",
-      "text": "From simple approvals to long-running orchestrations — Workflow Engine handles the full spectrum of business process automation.",
+      "text": "From simple approvals to long-running orchestrations —\nWorkflow Engine handles the full spectrum of business process automation.",
       "layout": "tabs",
       "features": [
         {
@@ -79,15 +78,23 @@
           "benefit": "Run thousands of concurrent long-lived processes without worrying about state loss. Processes survive server restarts, support horizontal scaling, and are fail-safe by design.",
           "details": "Automates any process that involves waiting for external responses or actions: order fulfillment tracking, multi-stage onboarding, SLA-based escalations, recurring timer-based jobs, and never-ending monitoring workflows."
         }
-      ],
-      "testimonial": {
-        "photo": "/photos/marcio-lima.jpg",
-        "logo": "/logos/winecreate.svg",
-        "text": "The workflow is super flexible, visual and easy to extend, allowing us to customize it to our needs in a timely fashion.",
-        "name": "Márcio Lima",
-        "title": "Senior Software Engineer",
-        "company": "Wine.Create"
-      }
+      ]
+    }
+  },
+  {
+    "type": "CustomerTestimonialsBlock",
+    "props": {
+      "title": "",
+      "testimonials": [
+        {
+          "photo": "/photos/marcio-lima.jpg",
+          "logo": "/logos/winecreate.svg",
+          "text": "The workflow is super flexible, visual and easy to extend, allowing us to customize it to our needs in a timely fashion.",
+          "name": "Márcio Lima",
+          "title": "Senior Software Engineer",
+          "company": "Wine.Create"
+        }
+      ]
     }
   },
   {

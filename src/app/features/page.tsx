@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 }
 
 export default function FeaturesPage() {
-  return <PageBlocks blocks={blocks} />
+  return <PageBlocks blocks={blocks} revealOnScroll />
 }

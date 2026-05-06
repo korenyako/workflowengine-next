@@ -113,7 +113,7 @@ const renderIcon = (value: boolean) => {
 
 export function ComparisonTable() {
   return (
-    <section className="py-16 px-4 sm:px-8">
+    <section className="py-12 lg:py-16 px-4 sm:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Заголовок */}
         <div className="text-center mb-12">

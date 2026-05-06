@@ -13,7 +13,7 @@ const DesignerScreenshotBlock: React.FC<DesignerScreenshotBlockProps> = ({
   caption,
 }) => {
   return (
-    <section className="py-8 lg:py-16 px-4 sm:px-8">
+    <section className="py-12 lg:py-16 px-4 sm:px-8">
       <div className="max-w-6xl mx-auto">
         <div className="rounded-3xl bg-white p-4 sm:p-6 lg:p-12">
           <img

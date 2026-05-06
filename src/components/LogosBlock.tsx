@@ -31,7 +31,7 @@ const LogosBlock: React.FC<LogosBlockProps> = ({
   ];
 
   return (
-    <section className="pb-8 lg:pb-12">
+    <section className="py-12 lg:py-16">
       {/* Заголовок — по ширине контента */}
       <div className="max-w-6xl mx-auto px-4 lg:px-8">
         <div className="text-center mb-6 lg:mb-8">

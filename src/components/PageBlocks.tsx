@@ -1,6 +1,7 @@
 'use client';
 
 import React from "react";
+import Reveal from "./Reveal";
 import HeroBlock from "./HeroBlock";
 import CenteredImageBlock from "./CenteredImageBlock";
 import CenteredVideoBlock from "./CenteredVideoBlock";
@@ -38,14 +39,15 @@ interface BlockData {
 
 interface PageBlocksProps {
   blocks: BlockData[];
+  revealOnScroll?: boolean;
 }
 
 // Slide-card surface: см. knowledge/design-rules.md §7.
 const isCard = (props: Record<string, any>): boolean => props.surface === 'card';
 
-const PageBlocks: React.FC<PageBlocksProps> = ({ blocks }) => {
+const PageBlocks: React.FC<PageBlocksProps> = ({ blocks, revealOnScroll = false }) => {
   return (
-    <div className="w-full overflow-x-hidden">
+    <div className="w-full overflow-x-clip flex flex-col">
       {blocks.map((block: BlockData, i: number) => {
         const { type, props } = block;
         const Component = components[type];
@@ -56,18 +58,23 @@ const PageBlocks: React.FC<PageBlocksProps> = ({ blocks }) => {
 
         const content = <Component {...props} />;
 
+        const wrapped = isCard(props) ? (
+          <div className="mx-4 sm:mx-12 lg:mx-16 xl:mx-32 2xl:mx-64 my-12 lg:my-16 bg-slate-100 rounded-[40px] lg:rounded-[48px] overflow-hidden">
+            {content}
+          </div>
+        ) : (
+          <div className="mx-4 sm:mx-12 lg:mx-16 xl:mx-32 2xl:mx-64" style={props.blockBg ? { backgroundColor: props.blockBg } : undefined}>
+            {content}
+          </div>
+        );
+
+        // Hero (first block) is above the fold and doesn't benefit from reveal —
+        // animating it just causes a flash on initial paint.
+        const shouldReveal = revealOnScroll && i > 0;
+
         return (
           <React.Fragment key={type + i}>
-            {type === 'LogosBlock' && <div className="h-16" />}
-            {isCard(props) ? (
-              <div className="mx-4 sm:mx-12 lg:mx-16 xl:mx-32 2xl:mx-64 my-6 lg:my-8 bg-slate-100 rounded-[40px] lg:rounded-[48px] overflow-hidden">
-                {content}
-              </div>
-            ) : (
-              <div style={props.blockBg ? { backgroundColor: props.blockBg } : undefined}>
-                {content}
-              </div>
-            )}
+            {shouldReveal ? <Reveal>{wrapped}</Reveal> : wrapped}
           </React.Fragment>
         );
       })}

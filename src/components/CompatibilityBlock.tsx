@@ -48,7 +48,7 @@ const CompatibilityBlock: React.FC<CompatibilityBlockProps> = ({
   anchor,
 }) => {
   return (
-    <section className="py-16 px-4 sm:px-8" id={anchor}>
+    <section className="py-12 lg:py-16 px-4 sm:px-8" id={anchor}>
       <div className="max-w-6xl mx-auto">
         {(eyebrowLogo || subtitle || title) && (
           <div className="flex flex-col items-center text-center mb-12">

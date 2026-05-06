@@ -127,7 +127,7 @@ const FeaturesGridBlock: React.FC<FeaturesGridBlockProps> = ({
 }) => {
   const testimonialParagraphs = testimonial ? testimonial.text.split("\n\n") : [];
   return (
-    <section className="py-16 px-4 sm:px-8" id={anchor}>
+    <section className="py-12 lg:py-16 px-4 sm:px-8" id={anchor}>
       <div className="max-w-6xl mx-auto text-center mb-12">
         {subtitle && (
           <h3 className="text-sm uppercase tracking-[0.2em] font-mono font-medium text-[#4286F4] mb-4 whitespace-pre-wrap break-words">
