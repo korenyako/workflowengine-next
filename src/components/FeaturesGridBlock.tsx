@@ -141,7 +141,7 @@ const FeaturesGridBlock: React.FC<FeaturesGridBlockProps> = ({
         )}
         {description && <p className="text-xl text-slate-600 whitespace-pre-wrap break-words">{description}</p>}
       </div>
-      <div className={`max-w-6xl mx-auto grid gap-6 ${GRID_COLS[columns]}`}>
+      <div className={`-mx-4 sm:-mx-8 grid gap-6 ${GRID_COLS[columns]}`}>
         {features.map((feature, idx) => {
           const IconComponent = FEATURE_ICONS[feature.icon];
           const iconColor = ICON_COLORS[idx % ICON_COLORS.length];

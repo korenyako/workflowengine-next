@@ -21,7 +21,7 @@ const ContactCTABlock: React.FC<ContactCTABlockProps> = ({
   buttonHref = "/contacts",
 }) => {
   return (
-    <section data-merge-footer className="pt-12 pb-[88px] lg:pt-16 lg:pb-[112px] px-6 sm:px-10 lg:px-16 bg-[#4286F4] rounded-t-[40px] lg:rounded-t-[48px] mx-4 sm:mx-12 lg:mx-16 xl:mx-32 2xl:mx-64 mt-12 lg:mt-16">
+    <section data-merge-footer className="pt-12 pb-[88px] lg:pt-16 lg:pb-[112px] px-6 sm:px-10 lg:px-16 bg-[#4286F4] rounded-t-[40px] lg:rounded-t-[48px] mt-12 lg:mt-16">
       <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-8">
         <div className="flex items-start gap-4">
           <div className="flex-shrink-0 mt-1">

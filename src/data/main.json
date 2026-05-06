@@ -150,8 +150,6 @@
       ],
       "image": "/photos/stories/bf-saul.webp",
       "imageAlt": "B.F. Saul case study",
-      "href": "/blog/bf-saul/",
-      "linkText": "Read story",
       "imageSide": "right"
     }
   },
@@ -199,8 +197,6 @@
       ],
       "image": "/photos/stories/lks-next.webp",
       "imageAlt": "LKS Next case study",
-      "href": "/blog/lks-next/",
-      "linkText": "Read story",
       "imageSide": "left"
     }
   },

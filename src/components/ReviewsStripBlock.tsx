@@ -99,7 +99,7 @@ const ReviewsStripBlock: React.FC<ReviewsStripBlockProps> = ({
 
       <div
         ref={stripRef}
-        className="overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="-mx-4 sm:-mx-12 lg:-mx-16 xl:-mx-32 2xl:-mx-64 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         <div className="flex gap-4 lg:gap-6 pr-4 pl-4 sm:pl-8 lg:pl-[max(2rem,calc((100vw-72rem)/2+2rem))]">
           {triplicated.map((r, i) => {

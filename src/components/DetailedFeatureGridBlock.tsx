@@ -91,8 +91,8 @@ const DetailedFeatureGridBlock: React.FC<DetailedFeatureGridBlockProps> = ({
       </div>
 
       {layout === "tabs" ? (
-        <div className="max-w-6xl mx-auto border-2 border-slate-200 rounded-3xl p-8">
-          <div className="flex flex-col gap-8">
+        <div className="-mx-4 sm:-mx-8 border-2 border-slate-200 rounded-3xl py-12 lg:py-16 px-4 sm:px-8">
+          <div className="max-w-6xl mx-auto flex flex-col gap-8">
             <div className="flex flex-row flex-wrap gap-6">
               {features.map((feature, idx) => {
                 const TabIcon = FEATURE_ICONS[feature.icon];

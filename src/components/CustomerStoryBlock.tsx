@@ -17,7 +17,7 @@ interface CustomerStoryBlockProps {
   metrics?: Metric[];
   image: string;
   imageAlt?: string;
-  href: string;
+  href?: string;
   linkText?: string;
   imageSide?: 'left' | 'right';
 }
@@ -35,8 +35,8 @@ const CustomerStoryBlock: React.FC<CustomerStoryBlockProps> = ({
   linkText = "Read story",
   imageSide = 'right',
 }) => {
-  const isExternal = href.startsWith('http');
-  const cardClass = "group block max-w-6xl mx-auto rounded-3xl overflow-hidden bg-slate-100 grid grid-cols-1 lg:grid-cols-2";
+  const isExternal = !!href && href.startsWith('http');
+  const cardClass = "group block -mx-4 sm:-mx-6 lg:-mx-8 rounded-3xl overflow-hidden bg-slate-100 grid grid-cols-1 lg:grid-cols-2";
   const readStory = (
     <span className="inline-flex items-center gap-1 text-[#4286F4] group-hover:text-[#2e6ad4] transition-colors text-base font-semibold">
       {linkText}
@@ -91,10 +91,10 @@ const CustomerStoryBlock: React.FC<CustomerStoryBlockProps> = ({
           {logo && (
             <img src={logo} alt={logoAlt} className={`${logoHeight} w-auto mb-6`} />
           )}
-          <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading text-slate-900 leading-snug mb-6">
+          <h3 className="text-2xl md:text-3xl lg:text-4xl font-heading tracking-normal! text-slate-900 leading-snug mb-6">
             {title}
           </h3>
-          {readStory}
+          {href && readStory}
         </div>
         {metrics && metrics.length > 0 && (
           <div className="flex flex-wrap gap-x-10 gap-y-6 lg:gap-x-12">
@@ -115,7 +115,9 @@ const CustomerStoryBlock: React.FC<CustomerStoryBlockProps> = ({
 
   return (
     <section className="py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
-      {isExternal ? (
+      {!href ? (
+        <div className={cardClass}>{cardInner}</div>
+      ) : isExternal ? (
         <a href={href} target="_blank" rel="noopener noreferrer" className={cardClass}>
           {cardInner}
         </a>
