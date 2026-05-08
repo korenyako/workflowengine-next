@@ -17,6 +17,7 @@ interface CustomerTestimonialsBlockProps {
   subtitle?: string;
   testimonials: Testimonial[];
   anchor?: string;
+  theme?: 'light' | 'dark';
 }
 
 const CustomerTestimonialsBlock: React.FC<CustomerTestimonialsBlockProps> = ({
@@ -24,7 +25,13 @@ const CustomerTestimonialsBlock: React.FC<CustomerTestimonialsBlockProps> = ({
   subtitle,
   testimonials,
   anchor,
+  theme = 'light',
 }) => {
+  const isDark = theme === 'dark';
+  const cardBg = isDark ? 'bg-[#0f172a]' : 'bg-slate-100';
+  const quoteColor = isDark ? 'text-white' : 'text-slate-900';
+  const nameColor = isDark ? 'text-white' : 'text-slate-900';
+  const metaColor = isDark ? 'text-slate-400' : 'text-slate-500';
   const [index, setIndex] = useState(0);
   const current = testimonials[index];
   const paragraphs = current.text.split("\n\n");
@@ -60,10 +67,10 @@ const CustomerTestimonialsBlock: React.FC<CustomerTestimonialsBlockProps> = ({
             </button>
           )}
 
-          <div className="flex-1 bg-slate-100 rounded-3xl p-8 sm:p-12 lg:p-16">
+          <div className={`flex-1 ${cardBg} rounded-3xl p-8 sm:p-12 lg:p-16`}>
             <div className="space-y-6 mb-10">
               {paragraphs.map((p, i) => (
-                <p key={i} className="text-2xl md:text-3xl lg:text-4xl font-heading tracking-normal! text-slate-900 leading-snug">
+                <p key={i} className={`text-2xl md:text-3xl lg:text-4xl font-heading tracking-normal! leading-snug ${quoteColor}`}>
                   {p}
                 </p>
               ))}
@@ -78,8 +85,8 @@ const CustomerTestimonialsBlock: React.FC<CustomerTestimonialsBlockProps> = ({
                 />
               )}
               <div>
-                <p className="text-lg font-semibold text-slate-900">{current.name}</p>
-                <p className="text-base text-slate-500">
+                <p className={`text-lg font-semibold ${nameColor}`}>{current.name}</p>
+                <p className={`text-base ${metaColor}`}>
                   {current.title}, {current.company}
                 </p>
               </div>

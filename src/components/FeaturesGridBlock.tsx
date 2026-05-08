@@ -104,6 +104,7 @@ interface FeaturesGridBlockProps {
   imageAlt?: string;
   columns?: 2 | 3 | 4;
   surface?: string;
+  cardTheme?: 'light' | 'dark';
 }
 
 // Tailwind v4 JIT: нельзя собирать классы динамически, поэтому литералы.
@@ -126,9 +127,11 @@ const FeaturesGridBlock: React.FC<FeaturesGridBlockProps> = ({
   imageAlt = "",
   columns = 3,
   surface,
+  cardTheme = 'light',
 }) => {
   const testimonialParagraphs = testimonial ? testimonial.text.split("\n\n") : [];
   const inCard = surface === 'card';
+  const isDark = cardTheme === 'dark';
   return (
     <section className="py-12 lg:py-16 px-4 sm:px-8" id={anchor}>
       <div className="max-w-6xl mx-auto text-center mb-12">
@@ -149,22 +152,30 @@ const FeaturesGridBlock: React.FC<FeaturesGridBlockProps> = ({
           const IconComponent = FEATURE_ICONS[feature.icon];
           const iconColor = ICON_COLORS[idx % ICON_COLORS.length];
           const hasLink = !!feature.href;
-          const cardClass = `bg-slate-100 rounded-3xl p-8 flex flex-col ${centered ? 'items-center text-center' : 'items-start text-left'} h-full ${hasLink ? 'group hover:bg-slate-200 transition-colors duration-200' : ''}`;
+          const cardBg = isDark ? 'bg-[#0f172a]' : 'bg-slate-100';
+          const cardHover = hasLink
+            ? (isDark ? 'group hover:bg-[#1e293b]' : 'group hover:bg-slate-200')
+            : '';
+          const titleColor = isDark ? 'text-white' : 'text-slate-900';
+          const bodyColor = isDark ? 'text-slate-300' : 'text-slate-600';
+          const bulletColor = isDark ? 'text-slate-300' : 'text-slate-600';
+          const bulletFont = isDark ? 'font-mono text-sm' : 'text-base';
+          const cardClass = `${cardBg} rounded-3xl p-8 lg:p-10 xl:p-12 flex flex-col ${centered ? 'items-center text-center' : 'items-start text-left'} h-full ${cardHover} ${hasLink ? 'transition-colors duration-200' : ''}`;
           const hasHtml = /<\/?[a-z][^>]*>/i.test(feature.text);
           const cardBody = (
             <>
               {IconComponent && <IconComponent size={iconSize} strokeWidth={2} className={`mb-4 ${iconColor}`} />}
-              <h3 className="text-2xl lg:text-3xl font-heading text-slate-900 mb-3 whitespace-pre-wrap break-words">{feature.title}</h3>
+              <h3 className={`text-2xl lg:text-3xl font-heading mb-3 whitespace-pre-wrap break-words ${titleColor}`}>{feature.title}</h3>
               {hasHtml ? (
                 <p
-                  className="text-lg text-slate-600 break-words [&_a]:text-[#4286F4] [&_a]:font-medium [&_a]:underline [&_a]:decoration-[#4286F4]/30 [&_a:hover]:decoration-[#4286F4] [&_a]:underline-offset-4 [&_a]:transition-colors"
+                  className={`text-lg break-words [&_a]:text-[#4286F4] [&_a]:font-medium [&_a]:underline [&_a]:decoration-[#4286F4]/30 [&_a:hover]:decoration-[#4286F4] [&_a]:underline-offset-4 [&_a]:transition-colors ${bodyColor}`}
                   dangerouslySetInnerHTML={{ __html: feature.text }}
                 />
               ) : (
-                <p className="text-lg text-slate-600 whitespace-pre-wrap break-words">{feature.text}</p>
+                <p className={`text-lg whitespace-pre-wrap break-words ${bodyColor}`}>{feature.text}</p>
               )}
               {feature.bullets && feature.bullets.length > 0 && (
-                <ul className="mt-4 ml-5 list-disc marker:text-[#4286F4] space-y-2 text-base text-slate-600">
+                <ul className={`mt-6 lg:mt-8 mb-2 lg:mb-4 ml-5 list-disc marker:text-[#4286F4] space-y-2 ${bulletFont} ${bulletColor}`}>
                   {feature.bullets.map((b, i) => (
                     <li key={i}>{b}</li>
                   ))}

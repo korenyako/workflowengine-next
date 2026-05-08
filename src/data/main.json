@@ -86,6 +86,7 @@
     "type": "CustomerTestimonialsBlock",
     "props": {
       "title": "",
+      "theme": "dark",
       "testimonials": [
         {
           "photo": "/photos/marcio-lima.jpg",
@@ -140,38 +141,24 @@
     }
   },
   {
-    "type": "CustomerStoryBlock",
-    "props": {
-      "logo": "/logos/bfsaul.png",
-      "logoAlt": "B.F. Saul",
-      "title": "How B.F. Saul automated 500+ processes and replaced SharePoint",
-      "metrics": [
-        { "value": "1 year", "label": "Dev time saved" },
-        { "value": "60%", "label": "Cost reduction" }
-      ],
-      "image": "/photos/stories/bf-saul.webp",
-      "imageAlt": "B.F. Saul case study",
-      "imageSide": "right"
-    }
-  },
-  {
     "type": "ProductsGridBlock",
     "props": {
       "title": "Which Product Do I Need?",
       "description": "Two ways to run Workflow Engine, depending on your stack and project stage.",
+      "theme": "dark",
       "products": [
         {
           "icon": "/logos/workflowengine-square.svg",
           "title": "Workflow Engine",
           "description": "An embedded component designed to be fully integrated into your .NET or .NET Core project.",
-          "whyChoose": "The right choice if you already have a .NET information system.",
+          "whyChoose": "If you already have a .NET information system",
           "href": "/features/"
         },
         {
           "icon": "/logos/workflowserver-square.svg",
           "title": "Workflow Server",
           "description": "A stand-alone cross-platform application with an admin panel and integration API.",
-          "whyChoose": "The right choice if you need a standalone cross-platform solution.",
+          "whyChoose": "If you need a standalone cross-platform solution",
           "href": "/server/"
         }
       ]

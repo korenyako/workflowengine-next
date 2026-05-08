@@ -24,7 +24,7 @@
       "description": "With Workflow Engine, it's never been easier to add a fully operational workflow automation solution into your existing .NET / .NET Core system. Our ready-made engine and comprehensive documentation let you get down to development faster, and hit the market sooner.",
       "centered": true,
       "iconSize": 48,
-      "columns": 2,
+      "columns": 4,
       "features": [
         {
           "icon": "sliders-horizontal",
@@ -33,7 +33,7 @@
         },
         {
           "icon": "headset",
-          "title": "Professional customer support",
+          "title": "Customer support",
           "text": "Over the past year we have implemented 95% of customers' requests for new functionality."
         },
         {
@@ -77,6 +77,21 @@
       ],
       "image": "/images/scheme.png",
       "imageAlt": "Workflow Designer scheme example"
+    }
+  },
+  {
+    "type": "CustomerStoryBlock",
+    "props": {
+      "logo": "/logos/bfsaul.png",
+      "logoAlt": "B.F. Saul",
+      "title": "How B.F. Saul automated 500+ processes and replaced SharePoint",
+      "metrics": [
+        { "value": "1 year", "label": "Dev time saved" },
+        { "value": "60%", "label": "Cost reduction" }
+      ],
+      "image": "/photos/stories/bf-saul.webp",
+      "imageAlt": "B.F. Saul case study",
+      "imageSide": "right"
     }
   },
   {
@@ -125,6 +140,7 @@
     "type": "CustomerTestimonialsBlock",
     "props": {
       "title": "",
+      "theme": "dark",
       "testimonials": [
         {
           "photo": "/photos/mark-west.jpg",
@@ -212,6 +228,8 @@
     "type": "CompatibilityBlock",
     "props": {
       "surface": "card",
+      "cardBg": "#0f172a",
+      "theme": "dark",
       "eyebrowLogo": "/logos/tech/net.svg",
       "eyebrowLogoAlt": ".NET",
       "title": "Runs on your .NET stack",

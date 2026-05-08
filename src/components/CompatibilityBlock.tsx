@@ -21,6 +21,7 @@ interface CompatibilityBlockProps {
   groups: LogoGroup[];
   anchor?: string;
   blockBg?: string;
+  theme?: 'light' | 'dark';
 }
 
 const LogoRow: React.FC<{ logos: TechLogo[] }> = ({ logos }) => (
@@ -46,7 +47,11 @@ const CompatibilityBlock: React.FC<CompatibilityBlockProps> = ({
   description,
   groups,
   anchor,
+  theme = 'light',
 }) => {
+  const isDark = theme === 'dark';
+  const titleColor = isDark ? 'text-white' : 'text-slate-900';
+  const descColor = isDark ? 'text-slate-300' : 'text-slate-600';
   return (
     <section className="py-12 lg:py-16 px-4 sm:px-8" id={anchor}>
       <div className="max-w-6xl mx-auto">
@@ -64,7 +69,7 @@ const CompatibilityBlock: React.FC<CompatibilityBlockProps> = ({
               </h3>
             ) : null}
             {title && (
-              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-heading text-slate-900 whitespace-pre-wrap break-words">
+              <h2 className={`text-4xl lg:text-5xl xl:text-6xl font-heading whitespace-pre-wrap break-words ${titleColor}`}>
                 {title}
               </h2>
             )}
@@ -72,7 +77,7 @@ const CompatibilityBlock: React.FC<CompatibilityBlockProps> = ({
         )}
 
         {description && (
-          <p className="text-xl text-slate-600 whitespace-pre-wrap break-words max-w-4xl mx-auto text-center mb-12">
+          <p className={`text-xl whitespace-pre-wrap break-words max-w-4xl mx-auto text-center mb-12 ${descColor}`}>
             {description}
           </p>
         )}

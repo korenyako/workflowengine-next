@@ -67,6 +67,7 @@
     "props": {
       "title": "API",
       "description": "The set of APIs enables the exchange of messages between external applications and Workflow Server via the HTTP protocol.",
+      "cardTheme": "dark",
       "centered": false,
       "iconSize": 48,
       "columns": 2,
@@ -112,7 +113,7 @@
       "description": "Minimum specs for running Workflow Server in production.",
       "centered": false,
       "iconSize": 48,
-      "columns": 2,
+      "columns": 4,
       "features": [
         {
           "icon": "monitor",
