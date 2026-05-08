@@ -54,7 +54,7 @@ const FooterBlock: React.FC<FooterBlockProps> = ({ columns, socialLinks, logo, c
           {columns.map((col, idx) => (
             <div key={idx}>
               {col.title && (
-                <div className="text-sm uppercase tracking-[0.2em] font-mono font-medium text-[#4286F4] mb-4">{col.title}</div>
+                <div className="text-sm uppercase font-mono font-medium tracking-[0.2em] text-[#4286F4] mb-4">{col.title}</div>
               )}
               {col.links.length > 0 && (
                 <ul className="space-y-2">

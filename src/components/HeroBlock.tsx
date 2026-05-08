@@ -62,7 +62,7 @@ const HeroBlock: React.FC<HeroBlockProps> = ({
           </div>
         )}
         {eyebrow && (
-          <p className="text-sm uppercase tracking-[0.2em] font-mono font-medium text-[#4286F4] mb-6">
+          <p className="text-sm uppercase font-mono font-medium tracking-[0.2em] text-[#4286F4] mb-6">
             {eyebrow}
           </p>
         )}

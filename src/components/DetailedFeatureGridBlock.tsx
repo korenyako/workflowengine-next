@@ -11,6 +11,7 @@ import {
   Monitor,
   type LucideIcon,
 } from "lucide-react";
+import { useMergeBg } from "./MergeBgContext";
 
 const FEATURE_ICONS: Record<string, LucideIcon> = {
   "file-pen": FilePen,
@@ -78,20 +79,28 @@ const DetailedFeatureGridBlock: React.FC<DetailedFeatureGridBlockProps> = ({
 }) => {
   const [activeTab, setActiveTab] = useState(0);
   const testimonialParagraphs = testimonial ? testimonial.text.split("\n\n") : [];
+  const { active: onColoredBg } = useMergeBg();
 
   const active = features[activeTab] || features[0];
   const ActiveIcon = active ? FEATURE_ICONS[active.icon] : undefined;
 
+  const subtitleColor = onColoredBg ? "text-white" : "text-[#4286F4]";
+  const titleColor = onColoredBg ? "text-white" : "text-slate-900";
+  const descColor = onColoredBg ? "text-slate-200" : "text-slate-600";
+  const panelSurface = onColoredBg
+    ? "bg-white"
+    : "border-2 border-slate-200";
+
   return (
     <section className="py-12 lg:py-16 px-4 sm:px-8">
       <div className="max-w-6xl mx-auto text-center mb-12">
-        {subtitle && <h3 className="text-sm uppercase tracking-[0.2em] font-mono font-medium text-[#4286F4] mb-4 whitespace-pre-wrap break-words">{subtitle}</h3>}
-        <h2 className="text-4xl lg:text-5xl xl:text-6xl font-heading text-slate-900 mb-6 whitespace-pre-wrap break-words">{title}</h2>
-        {text && <p className="text-xl text-slate-600 whitespace-pre-wrap break-words">{text}</p>}
+        {subtitle && <h3 className={`text-sm uppercase font-mono font-medium tracking-[0.2em] mb-4 whitespace-pre-wrap break-words ${subtitleColor}`}>{subtitle}</h3>}
+        <h2 className={`text-4xl lg:text-5xl xl:text-6xl font-heading mb-6 whitespace-pre-wrap break-words ${titleColor}`}>{title}</h2>
+        {text && <p className={`text-xl whitespace-pre-wrap break-words ${descColor}`}>{text}</p>}
       </div>
 
       {layout === "tabs" ? (
-        <div className="-mx-4 sm:-mx-8 border-2 border-slate-200 rounded-3xl py-12 lg:py-16 px-4 sm:px-8">
+        <div className={`-mx-4 sm:-mx-8 rounded-3xl py-12 lg:py-16 px-4 sm:px-8 ${panelSurface}`}>
           <div className="max-w-6xl mx-auto flex flex-col gap-8">
             <div className="flex flex-row flex-wrap gap-6">
               {features.map((feature, idx) => {

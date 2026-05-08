@@ -84,7 +84,7 @@ const CustomerStoryBlock: React.FC<CustomerStoryBlockProps> = ({
       <div className={`p-8 sm:p-10 lg:p-14 flex flex-col justify-between gap-16 min-h-[320px] lg:min-h-[420px] ${imageSide === 'left' ? 'lg:order-2' : ''}`}>
         <div>
           {eyebrow && (
-            <div className="text-sm uppercase tracking-[0.2em] font-mono font-medium text-[#4286F4] mb-6">
+            <div className="text-sm uppercase font-mono font-medium tracking-[0.2em] text-[#4286F4] mb-6">
               {eyebrow}
             </div>
           )}

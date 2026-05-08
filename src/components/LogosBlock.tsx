@@ -36,7 +36,7 @@ const LogosBlock: React.FC<LogosBlockProps> = ({
       <div className="max-w-6xl mx-auto px-4 lg:px-8">
         <div className="text-center mb-6 lg:mb-8">
           {subtitle && (
-            <h3 className="text-sm uppercase tracking-[0.2em] font-mono font-medium text-[#4286F4] mb-4 whitespace-pre-wrap break-words">
+            <h3 className="text-sm uppercase font-mono font-medium tracking-[0.2em] text-[#4286F4] mb-4 whitespace-pre-wrap break-words">
               {subtitle}
             </h3>
           )}

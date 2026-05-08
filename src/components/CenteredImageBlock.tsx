@@ -114,7 +114,7 @@ const CenteredImageBlock: React.FC<CenteredImageBlockProps> = ({
       <div className="max-w-6xl mx-auto text-center">
         {/* Eyebrow (см. design-rules §typography) */}
         {subtitle && (
-          <h3 className="text-sm uppercase tracking-[0.2em] font-mono font-medium text-[#4286F4] mb-4 whitespace-pre-wrap break-words">
+          <h3 className="text-sm uppercase font-mono font-medium tracking-[0.2em] text-[#4286F4] mb-4 whitespace-pre-wrap break-words">
             {subtitle}
           </h3>
         )}

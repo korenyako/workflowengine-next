@@ -38,7 +38,7 @@ const CustomerTestimonialsBlock: React.FC<CustomerTestimonialsBlockProps> = ({
     <section id={anchor} className="py-12 lg:py-16 px-4 sm:px-8">
       <div>
         {subtitle && (
-          <h3 className="max-w-6xl mx-auto text-sm uppercase tracking-[0.2em] font-mono font-medium text-[#4286F4] text-center mb-4 whitespace-pre-wrap break-words">
+          <h3 className="max-w-6xl mx-auto text-sm uppercase font-mono font-medium tracking-[0.2em] text-[#4286F4] text-center mb-4 whitespace-pre-wrap break-words">
             {subtitle}
           </h3>
         )}
@@ -60,7 +60,7 @@ const CustomerTestimonialsBlock: React.FC<CustomerTestimonialsBlockProps> = ({
             </button>
           )}
 
-          <div className="flex-1 bg-slate-100 rounded-[40px] lg:rounded-[48px] p-8 sm:p-12 lg:p-16">
+          <div className="flex-1 bg-slate-100 rounded-3xl p-8 sm:p-12 lg:p-16">
             <div className="space-y-6 mb-10">
               {paragraphs.map((p, i) => (
                 <p key={i} className="text-2xl md:text-3xl lg:text-4xl font-heading tracking-normal! text-slate-900 leading-snug">

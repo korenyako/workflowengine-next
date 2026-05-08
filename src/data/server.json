@@ -65,7 +65,6 @@
   {
     "type": "FeaturesGridBlock",
     "props": {
-      "surface": "card",
       "title": "API",
       "description": "The set of APIs enables the exchange of messages between external applications and Workflow Server via the HTTP protocol.",
       "centered": false,

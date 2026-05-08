@@ -104,7 +104,7 @@ export default async function BlogPostPage({
           <div className="flex-1 min-w-0">
             {/* Hero */}
             <div className="mb-16">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading tracking-tight mb-4">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading mb-4">
                 {post.title}
               </h1>
               <div className="text-2xl text-slate-700 mb-8 leading-relaxed space-y-4">

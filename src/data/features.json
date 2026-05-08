@@ -82,7 +82,6 @@
   {
     "type": "FeaturesGridBlock",
     "props": {
-      "surface": "card",
       "subtitle": "Core components",
       "title": "The building blocks of every workflow",
       "description": "Workflow Engine offers its users all the components necessary to implement workflows of any complexity; and helps them to maintain consistent business processes. Workflow Engine is designed to improve organizational efficiency and productivity, allowing companies to concentrate on job performance rather than workflow management.",
@@ -118,6 +117,21 @@
           "icon": "timer",
           "title": "Timers",
           "text": "Schedule transitions by interval or absolute date/time. Drive SLAs, escalations, reminders, and any time-bound behavior declaratively."
+        }
+      ]
+    }
+  },
+  {
+    "type": "CustomerTestimonialsBlock",
+    "props": {
+      "title": "",
+      "testimonials": [
+        {
+          "photo": "/photos/mark-west.jpg",
+          "text": "Workflow Engine provides a flexible and extensible architecture, a powerful workflow engine and an intuitive visual workflow designer that enables us to rapidly modify our application to meet the needs of our clients.",
+          "name": "Mark West",
+          "title": "CEO",
+          "company": "Innovum Technologies"
         }
       ]
     }
@@ -269,22 +283,6 @@
           "icon": "layers",
           "title": "Designer integration",
           "text": "Use our <a href=\"https://workflowengine.io/documentation/how-to-integrate/#designer\" target=\"_blank\" rel=\"noopener noreferrer\">step-by-step instructions</a> to integrate Workflow Designer into your application. If you are having trouble with styles, use <a href=\"https://workflowengine.io/blog/workflow-designer-integration/\" target=\"_blank\" rel=\"noopener noreferrer\">integration via IFrame</a>. If you are using Angular, check one of the following examples: <a href=\"https://github.com/optimajet/WorkflowEngine.NET/tree/master/Other/AngularTest\" target=\"_blank\" rel=\"noopener noreferrer\">Angular Test</a>, <a href=\"https://github.com/optimajet/WorkflowEngine.NET/tree/master/Other/AbpAngularSample/\" target=\"_blank\" rel=\"noopener noreferrer\">Angular Boilerplate</a>."
-        }
-      ]
-    }
-  },
-  {
-    "type": "CustomerTestimonialsBlock",
-    "props": {
-      "subtitle": "Customer story",
-      "title": "Built for real production",
-      "testimonials": [
-        {
-          "photo": "/photos/mark-west.jpg",
-          "text": "Innovum Technologies needed a flexible workflow component for ASP.NET that would allow us to customize our software product to our customer's environment. Workflow Engine was the best fit for our needs. It provides a flexible and extensible architecture, a powerful workflow engine and an intuitive visual workflow designer that enables us to rapidly modify our application to meet the needs of our clients.",
-          "name": "Mark West",
-          "title": "CEO",
-          "company": "Innovum Technologies"
         }
       ]
     }

@@ -103,6 +103,7 @@ interface FeaturesGridBlockProps {
   image?: string;
   imageAlt?: string;
   columns?: 2 | 3 | 4;
+  surface?: string;
 }
 
 // Tailwind v4 JIT: нельзя собирать классы динамически, поэтому литералы.
@@ -124,13 +125,15 @@ const FeaturesGridBlock: React.FC<FeaturesGridBlockProps> = ({
   image,
   imageAlt = "",
   columns = 3,
+  surface,
 }) => {
   const testimonialParagraphs = testimonial ? testimonial.text.split("\n\n") : [];
+  const inCard = surface === 'card';
   return (
     <section className="py-12 lg:py-16 px-4 sm:px-8" id={anchor}>
       <div className="max-w-6xl mx-auto text-center mb-12">
         {subtitle && (
-          <h3 className="text-sm uppercase tracking-[0.2em] font-mono font-medium text-[#4286F4] mb-4 whitespace-pre-wrap break-words">
+          <h3 className="text-sm uppercase font-mono font-medium tracking-[0.2em] text-[#4286F4] mb-4 whitespace-pre-wrap break-words">
             {subtitle}
           </h3>
         )}
@@ -141,7 +144,7 @@ const FeaturesGridBlock: React.FC<FeaturesGridBlockProps> = ({
         )}
         {description && <p className="text-xl text-slate-600 whitespace-pre-wrap break-words">{description}</p>}
       </div>
-      <div className={`-mx-4 sm:-mx-8 grid gap-6 ${GRID_COLS[columns]}`}>
+      <div className={`${inCard ? 'sm:mx-4 lg:mx-8' : '-mx-4 sm:-mx-8'} grid gap-6 ${GRID_COLS[columns]}`}>
         {features.map((feature, idx) => {
           const IconComponent = FEATURE_ICONS[feature.icon];
           const iconColor = ICON_COLORS[idx % ICON_COLORS.length];

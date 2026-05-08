@@ -59,7 +59,10 @@ const PageBlocks: React.FC<PageBlocksProps> = ({ blocks, revealOnScroll = false 
         const content = <Component {...props} />;
 
         const wrapped = isCard(props) ? (
-          <div className="mx-4 sm:mx-12 lg:mx-16 xl:mx-32 2xl:mx-64 my-12 lg:my-16 bg-slate-100 rounded-[40px] lg:rounded-[48px] overflow-hidden">
+          <div
+            className={`mx-4 sm:mx-12 lg:mx-16 xl:mx-32 2xl:mx-64 my-12 lg:my-16 rounded-[40px] lg:rounded-[48px] overflow-hidden ${props.cardBg ? '' : 'bg-slate-100'}`}
+            style={props.cardBg ? { backgroundColor: props.cardBg } : undefined}
+          >
             {content}
           </div>
         ) : (

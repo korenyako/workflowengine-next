@@ -39,7 +39,8 @@
   {
     "type": "DesignerScreenshotBlock",
     "props": {
-      "surface": "card",
+      "mergeNext": true,
+      "mergeBg": "#4286F4",
       "image": {
         "src": "/photos/screenshots/scheme-wfe.png",
         "alt": "Workflow Engine HTML5 drag & drop designer"
@@ -156,9 +157,8 @@
   {
     "type": "ProductsGridBlock",
     "props": {
-      "surface": "card",
       "title": "Which Product Do I Need?",
-      "description": "Three ways to run Workflow Engine, depending on your stack and project stage.",
+      "description": "Two ways to run Workflow Engine, depending on your stack and project stage.",
       "products": [
         {
           "icon": "/logos/workflowengine-square.svg",
@@ -170,16 +170,9 @@
         {
           "icon": "/logos/workflowserver-square.svg",
           "title": "Workflow Server",
-          "description": "A stand-alone cross-platform application with an admin panel and integration API. Supports Windows, macOS, Linux, and Docker.",
-          "whyChoose": "The right choice if you need a ready-to-use cross-platform workflow solution.",
+          "description": "A stand-alone cross-platform application with an admin panel and integration API.",
+          "whyChoose": "The right choice if you need a standalone cross-platform solution.",
           "href": "/server/"
-        },
-        {
-          "icon": "/logos/dwkit-square.svg",
-          "title": "DWKit",
-          "description": "A low-code platform to build your workflow process from scratch and get going. Start with a Proof of Concept.",
-          "whyChoose": "The right choice if you need to develop a workflow solution from scratch.",
-          "href": "https://dwkit.com/"
         }
       ]
     }

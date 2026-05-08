@@ -38,7 +38,7 @@ body, p, div, span, button, input, textarea, select {
 @layer base {
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-dm-sans), "DM Sans", sans-serif;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
     line-height: 1.1;
   }
 }
@@ -48,11 +48,11 @@ body, p, div, span, button, input, textarea, select {
   font-family: var(--font-dm-sans), "DM Sans", sans-serif;
 }
 
-/* Heading использует DM Sans 800 с поджатым трекингом (h1–h3) */
+/* Heading использует DM Sans 800 */
 .font-heading {
   font-family: var(--font-dm-sans), "DM Sans", sans-serif;
   font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   line-height: 1.1;
 }
 
@@ -71,16 +71,21 @@ code, pre, .font-mono, pre *, code * {
   font-variant-ligatures: none;
 }
 
-/* Глобальные стили только для текстовых ссылок */
+/* Глобальные стили только для текстовых ссылок (Thinkmill-style: подчёркивание
+   ниже базовой линии и светлее, чем цвет текста) */
 a:not([class*="bg-"]):not([class*="border-"]):not([class*="text-white"]):not([class*="text-gray"]):not([class*="text-blue"]):not([class*="text-green"]):not([class*="text-yellow"]):not([class*="text-slate"]):not(.btn):not(.block):not(.inline-block) {
   color: rgb(66 134 244); /* text-blue-600 */
   font-weight: 700;
   text-decoration: underline;
-  transition: color 0.2s ease;
+  text-decoration-color: rgb(66 134 244 / 0.35);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
 }
 
 a:not([class*="bg-"]):not([class*="border-"]):not([class*="text-white"]):not([class*="text-gray"]):not([class*="text-blue"]):not([class*="text-green"]):not([class*="text-yellow"]):not([class*="text-slate"]):not(.btn):not(.block):not(.inline-block):hover {
   color: rgb(46 106 212); /* text-blue-700 */
+  text-decoration-color: rgb(46 106 212);
 }
 
 /* === Scroll-reveal (см. knowledge/scroll-reveal-pattern.md) ===
@@ -276,7 +281,7 @@ pre::-webkit-scrollbar-corner {
 .mdx-content :is(h1, h2, h3, h4, h5) {
   font-family: var(--font-dm-sans), 'DM Sans', ui-sans-serif !important;
   color: #0f172a !important; /* slate-900 */
-  letter-spacing: -0.02em !important;
+  letter-spacing: 0 !important;
   line-height: 1.2 !important;
 }
 
@@ -317,11 +322,15 @@ pre::-webkit-scrollbar-corner {
   color: #4286F4 !important; /* brand blue */
   font-weight: 700 !important;
   text-decoration: underline !important;
-  transition: color 0.15s ease !important;
+  text-decoration-color: rgb(66 134 244 / 0.35) !important;
+  text-decoration-thickness: 1.5px !important;
+  text-underline-offset: 4px !important;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease !important;
 }
 
 .article-content a:hover {
   color: #2e6ad4 !important; /* brand blue hover */
+  text-decoration-color: #2e6ad4 !important;
 }
 
 .article-content strong {

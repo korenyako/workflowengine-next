@@ -44,7 +44,7 @@ export default function BlogIndex() {
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading text-slate-900 mb-4">
             Blog
           </h1>
-          <p className="text-xl lg:text-2xl font-subtitle font-semibold tracking-wide text-[#4286F4]">
+          <p className="text-xl lg:text-2xl font-subtitle font-semibold text-[#4286F4]">
             Releases, integrations, and developer insights
           </p>
         </div>

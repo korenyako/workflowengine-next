@@ -51,7 +51,7 @@ export default function TableOfContents() {
 
   return (
     <nav className="sticky top-24" aria-label="Table of contents">
-      <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-4">
+      <p className="text-xs font-semibold uppercase text-slate-500 mb-4">
         On this page
       </p>
       <ul className="space-y-2 border-l border-slate-300">
