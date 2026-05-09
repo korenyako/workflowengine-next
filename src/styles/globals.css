@@ -454,6 +454,8 @@ pre::-webkit-scrollbar-corner {
    behind. CTA keeps flat bottom; Footer keeps its rounded-top. */
 body:has(section[data-merge-footer]) > footer {
   margin-top: -40px !important;
+  position: relative;
+  z-index: 10;
 }
 @media (min-width: 1024px) {
   body:has(section[data-merge-footer]) > footer {

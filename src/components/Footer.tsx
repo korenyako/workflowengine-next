@@ -19,32 +19,26 @@ const Footer: React.FC = () => {
         title: "DEVELOPERS",
         links: [
           { text: "Documentation", href: "https://workflowengine.io/documentation/" },
-          { text: "Release Notes", href: "https://workflowengine.io/documentation/release-notes" },
           { text: "Roadmap", href: "https://workflowengine.io/documentation/roadmap" },
           { text: "Blog", href: "/blog/" },
           { text: "Guides", href: "https://workflowengine.io/documentation/category/guides" },
-          { text: "FAQ", href: "https://workflowengine.io/documentation/category/faq" },
-          { text: "Support", href: "https://workflowengine.io/documentation/support" },
-          { text: "LLMs.txt", href: "/llms.txt" }
         ]
       },
       {
         title: "RESOURCES",
         links: [
           { text: "WorkflowEngine License", href: "https://optimajet.com/products/workflowengine/eula/" },
-          { text: "Optimajet Limited", href: "https://optimajet.com/" },
-          { text: "Component Source", href: "https://www.componentsource.com/product/optimajet-workflowengine/prices" },
+          { text: "Integrators", href: "https://optimajet.com/integrators/" },
           { text: "Resellers", href: "https://optimajet.com/resellers/" },
-          { text: "For Integrators", href: "https://optimajet.com/integrators/" },
           { text: "Write for Devs", href: "https://optimajet.com/company/write-for-developers/" },
-          { text: "Book a meeting", href: "https://optimajet.com/book-a-meeting/" },
-          { text: "Contact Us", href: "/contacts/" }
         ]
       },
       {
         title: "COMPANY",
         links: [
-          { text: "About Optimajet", href: "https://optimajet.com/" },
+          { text: "Optimajet Limited", href: "https://optimajet.com/" },
+          { text: "Component Source", href: "https://www.componentsource.com/brand/optimajet" },
+          { text: "Book a meeting", href: "https://optimajet.com/book-a-meeting/" },
           { text: "Contact Us", href: "/contacts/" },
         ]
       }

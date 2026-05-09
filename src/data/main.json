@@ -52,7 +52,7 @@
     "props": {
       "subtitle": "Use cases",
       "title": "Built for Real Business Scenarios",
-      "text": "From simple approvals to long-running orchestrations —\nWorkflow Engine handles the full spectrum of business process automation.",
+      "text": "From simple approvals to long-running orchestrations —\nWorkflow Engine by Optimajet handles the full spectrum of business process automation.",
       "layout": "tabs",
       "features": [
         {
@@ -102,7 +102,7 @@
   {
     "type": "FeaturesGridBlock",
     "props": {
-      "title": "Why Teams Choose Workflow Engine",
+      "title": "Why Teams Choose\nWorkflow Engine by Optimajet",
       "description": "A complete toolkit for building, running, and managing business workflows inside your .NET applications.",
       "centered": false,
       "iconSize": 48,
@@ -144,7 +144,7 @@
     "type": "ProductsGridBlock",
     "props": {
       "title": "Which Product Do I Need?",
-      "description": "Two ways to run Workflow Engine, depending on your stack and project stage.",
+      "description": "Two ways to run Workflow Engine by Optimajet, depending on your stack and project stage.",
       "theme": "dark",
       "products": [
         {
@@ -184,7 +184,7 @@
     "type": "LogosBlock",
     "props": {
       "subtitle": "Trusted by global organizations",
-      "description": "Leading companies rely on Workflow Engine for mission-critical business process automation."
+      "description": "Leading companies rely on Workflow Engine by Optimajet for mission-critical business process automation."
     }
   },
   {

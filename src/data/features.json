@@ -3,7 +3,7 @@
     "type": "HeroBlock",
     "props": {
       "title": "Workflow Engine Features",
-      "description": "Workflow Engine gives you every building block needed to design, version, and execute workflows of any complexity — visually, programmatically, or via REST.",
+      "description": "Workflow Engine by Optimajet gives you every building block needed to design, version, and execute workflows of any complexity — visually, programmatically, or via REST.",
       "primaryCta": {
         "text": "Getting Started",
         "href": "https://workflowengine.io/documentation/",
@@ -20,7 +20,7 @@
     "type": "FeaturesGridBlock",
     "props": {
       "subtitle": "Benefits",
-      "title": "Why choose Workflow Engine",
+      "title": "Why choose Workflow Engine\nby Optimajet",
       "description": "With Workflow Engine, it's never been easier to add a fully operational workflow automation solution into your existing .NET / .NET Core system. Our ready-made engine and comprehensive documentation let you get down to development faster, and hit the market sooner.",
       "centered": true,
       "iconSize": 48,
@@ -55,7 +55,7 @@
       "surface": "card",
       "subtitle": "Designer",
       "title": "HTML5 Visual Designer",
-      "description": "We realize that not everyone is a developer. That's why Workflow Engine comes with a built-in HTML5 visual designer that lets you create interactive workflows of any complexity — no need to draft them programmatically. Design, model, edit, and visualize your custom workflows right in the browser.",
+      "description": "We realize that not everyone is a developer. That's why Workflow Engine by Optimajet comes with a built-in HTML5 visual designer that lets you create interactive workflows of any complexity — no need to draft them programmatically. Design, model, edit, and visualize your custom workflows right in the browser.",
       "centered": true,
       "iconSize": 48,
       "features": [
@@ -99,7 +99,7 @@
     "props": {
       "subtitle": "Core components",
       "title": "The building blocks of every workflow",
-      "description": "Workflow Engine offers its users all the components necessary to implement workflows of any complexity; and helps them to maintain consistent business processes. Workflow Engine is designed to improve organizational efficiency and productivity, allowing companies to concentrate on job performance rather than workflow management.",
+      "description": "Workflow Engine by Optimajet offers its users all the components necessary to implement workflows of any complexity; and helps them to maintain consistent business processes. Workflow Engine is designed to improve organizational efficiency and productivity, allowing companies to concentrate on job performance rather than workflow management.",
       "centered": false,
       "iconSize": 48,
       "features": [
@@ -158,7 +158,7 @@
       "surface": "card",
       "subtitle": "Version control",
       "title": "Track changes. Roll back when needed.",
-      "description": "Workflow Engine comes with built-in version control that helps you keep track of any changes introduced to your workflows and revert them when needed. Whenever you update a workflow, the engine versions your changes, letting you choose whether you want existing processes to finish running the old version or to force them to run the new one.",
+      "description": "Workflow Engine by Optimajet comes with built-in version control that helps you keep track of any changes introduced to your workflows and revert them when needed. Whenever you update a workflow, the engine versions your changes, letting you choose whether you want existing processes to finish running the old version or to force them to run the new one.",
       "image": {
         "src": "/images/version-control-scheme.png",
         "alt": "Version control scheme — how updated workflows propagate to running processes"
@@ -171,7 +171,7 @@
       "surface": "card",
       "subtitle": "Parallel workflows",
       "title": "Run branches in parallel — then merge.",
-      "description": "Workflow Engine lets you split a process into multiple branches that execute concurrently. Each branch runs its own activities, and when all of them complete, the workflow merges back into a single flow and continues. Model complex business logic without sacrificing clarity or performance.",
+      "description": "Workflow Engine by Optimajet lets you split a process into multiple branches that execute concurrently. Each branch runs its own activities, and when all of them complete, the workflow merges back into a single flow and continues. Model complex business logic without sacrificing clarity or performance.",
       "image": {
         "src": "/images/parallel-workflow-scheme.png",
         "alt": "Parallel workflow scheme — branches executing concurrently and merging on completion"
@@ -233,7 +233,7 @@
       "eyebrowLogo": "/logos/tech/net.svg",
       "eyebrowLogoAlt": ".NET",
       "title": "Runs on your .NET stack",
-      "description": "Workflow Engine comes in a .NET build, enabling you to run it in any environment that supports these technologies and integrate it into your .NET solutions. Plus, the engine is supplemented with a set of providers that allow you to connect it to a DBMS of your choice.",
+      "description": "Workflow Engine by Optimajet comes in a .NET build, enabling you to run it in any environment that supports these technologies and integrate it into your .NET solutions. Plus, the engine is supplemented with a set of providers that allow you to connect it to a DBMS of your choice.",
       "groups": [
         {
           "logos": [

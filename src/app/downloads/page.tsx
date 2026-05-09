@@ -9,7 +9,6 @@ export const metadata: Metadata = {
 }
 
 const LATEST_VERSION = '21.0.0'
-const RELEASE_DATE = '24/04/2026'
 
 const ENGINE_ZIP_URL = `https://workflowengine.io/downloads/assets/workflow-engine-net-${LATEST_VERSION}.zip`
 const SAMPLE_ZIP_URL = `https://workflowengine.io/downloads/assets/workflow-engine-netcore-samples-${LATEST_VERSION}.zip`
@@ -74,19 +73,16 @@ export default function DownloadsPage() {
       {/* Workflow Engine — consolidated card */}
       <section className="pb-16">
         <div className="bg-slate-100 rounded-3xl p-10 sm:p-16 text-center mx-4 sm:mx-12 lg:mx-16 xl:mx-32 2xl:mx-64">
-          <div className="flex flex-wrap justify-center gap-2 mb-6">
-            <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#F97316]/10 text-[#F97316] text-sm font-semibold">
-              v{LATEST_VERSION}
-            </span>
-            <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#F97316]/10 text-[#F97316] text-sm font-semibold">
-              released {RELEASE_DATE}
-            </span>
-          </div>
+          <img
+            src="/logos/workflowengine-square.svg"
+            alt=""
+            className="w-20 h-20 mx-auto mb-6"
+          />
           <h2 className="text-4xl lg:text-5xl xl:text-6xl font-heading text-slate-900 mb-6">
-            Workflow Engine
+            Workflow Engine v{LATEST_VERSION}
           </h2>
           <p className="text-xl text-slate-600 mb-10 max-w-6xl mx-auto">
-            Here you can download the Workflow Engine version to be integrated into your project as a library. This version is intended for{' '}
+            Here you can download the Workflow Engine by Optimajet Limited to be integrated into your project as a library. This version is intended for{' '}
             <a
               href="https://docs.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-2-0"
               target="_blank"
@@ -262,12 +258,14 @@ export default function DownloadsPage() {
         </div>
       </section>
 
-      <ContactCTABlock
-        title="Need an enterprise build?"
-        description="Our team can help with licensing, custom packaging, and long-term support."
-        buttonText="Contact Sales"
-        buttonHref="/contacts/"
-      />
+      <div className="mx-4 sm:mx-12 lg:mx-16 xl:mx-32 2xl:mx-64">
+        <ContactCTABlock
+          title="Need an enterprise build?"
+          description="Our team can help with licensing, custom packaging, and long-term support."
+          buttonText="Contact Sales"
+          buttonHref="/contacts/"
+        />
+      </div>
     </>
   )
 }

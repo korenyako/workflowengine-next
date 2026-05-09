@@ -167,9 +167,7 @@ const FooterBlock: React.FC<FooterBlockProps> = ({ columns, socialLinks, logo, c
               Customer Support Agreement
             </a>
             <a
-              href="https://workflowengine.io/agreements/policy/"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/agreements/policy/"
               className="hover:text-slate-900 transition-colors"
             >
               Privacy Policy
