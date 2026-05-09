@@ -2,6 +2,18 @@
 
 Chronological log of wiki updates. Newest entries on top.
 
+## 2026-05-09 | Domain overview: product taxonomy + naming conventions
+
+Существенно обновил [domain/overview.md](domain/overview.md) под текущее состояние сайта и продукта.
+
+**Что добавилось:**
+
+- Раздел **Naming conventions** — фиксирует разницу между «Workflow Engine» (продукт), «workflow engine» (категория) и «WorkflowEngine» (код-контекст). Правило «by Optimajet на первом упоминании» — приведено в соответствие с уже применённой брендинг-итерацией по `main.json`/`features.json` и с тем, как это сформулировано в [public/llms.txt](../public/llms.txt).
+- Раздел **Product family** — таблица четырёх членов семейства (Workflow Engine base, Community Edition, NEO, Server) + HTML5 Designer как UI-компонент, общий для всех. До этого в overview была только одна общая фраза «.NET workflow automation engine», без таксономии. Latest stable version: 21.0.0.
+- Раздел **Site routes (current state)** — таблица фактического статуса страниц. Старая версия описывала почти всё как «Stub», что давно устарело: `/`, `/features/`, `/server/`, `/downloads/`, `/contacts/` все live; `/blog/` живой со спринт-индексом из 31 поста; `/agreements/policy/` добавлена; `/pricing/` редирект на optimajet.com.
+- Раздел **Relationship to FormEngine** уточнён продуктовой стороной — связка идёт через NEO Forms Plugin, это единственный продуктовый мост между двумя сайтами. Маркетинговые предупреждения (no MIT badges, no community-CTA, FormEngine-era artifacts) сохранены.
+- Ссылки на [public/llms.txt](../public/llms.txt) + [public/llms-full.txt](../public/llms-full.txt) добавлены в раздел Owner / vendor — это публичный AI-facing источник правды по стандарту [llmstxt.org](https://llmstxt.org). Внутренний knowledge wiki и публичный llms.txt теперь дублируют ключевую информацию (продуктовая таксономия, naming) — это сделано умышленно: первый для меня (LLM) при работе с кодом, второй для внешних AI-краулеров. Если будем менять продуктовую таксономию — синхронизировать оба файла.
+
 ## 2026-05-06 | Scroll-reveal: тюнинг тайминга
 
 После раскатки на `/`, `/features/`, `/server/` пользователь сообщил, что с дефолтным `0.6s ease + translateY(24px)` секции «всплывают слишком быстро, почти статика». Поменял на `0.9s cubic-bezier(0.16, 1, 0.3, 1) + translateY(40px)` — snappy ease-out-quart («Stripe/Linear»-кривая, быстрый старт → затухающий финиш). Документ [scroll-reveal-pattern.md](scroll-reveal-pattern.md) дополнен таблицей тюнинг-рукояток (длительность, амплитуда, кривая, rootMargin, threshold) с указаниями где крутить и какой эффект.
