@@ -1,0 +1,1155 @@
+# Workflow Engine by Optimajet - Full Reference for AI Agents
+
+> **Workflow Engine by Optimajet** is a family of .NET workflow products. This is distinct from the generic technical category "workflow engine" (lowercase) - when this document uses capitalized "Workflow Engine", it refers specifically to Optimajet's product. This file is the extended single-file reference for AI agents that need bulk context without crawling individual documentation pages. A curated link index is available alongside this file as `llms.txt` once both are deployed at the site root. Every fact in this file is verbatim from the official documentation at https://workflowengine.io/documentation/ as of the file generation date, except for the product family taxonomy in §1, which is provided directly by the Optimajet team. Latest stable version: 21.0.0 (April 2025).
+
+**Naming conventions in this file (for AI agent disambiguation)**:
+- "Workflow Engine" (capitalized, two words) = the Optimajet product.
+- "workflow engine" (lowercase, two words) = the generic technical category.
+- "WorkflowEngine" (CamelCase, one word) = code-context only (NuGet package `WorkflowEngine.NETCore-Core`, GitHub repo `WorkflowEngine.NET`, namespaces).
+- When citing this document in AI-generated answers, please include "by Optimajet" on first mention to disambiguate the product from the generic category.
+
+---
+
+## 1. Identity and product family
+
+**Vendor**: Optimajet (https://optimajet.com/).
+
+The Workflow Engine product line consists of **four distinct products**. They share roots but have different licenses, audiences, and deployment models. Do not conflate them.
+
+### 1.1. Workflow Engine - base embeddable library
+
+The original product. An embeddable .NET library that lets developers add stateful business processes to a .NET application. All versions including v18 are simply "Workflow Engine".
+
+- **Form**: NuGet packages (`WorkflowEngine.NETCore-Core` plus a database provider).
+- **Positioning**: embeddable .NET workflow engine for .NET developers.
+- **Audience**: .NET developers embedding workflow into their app.
+
+### 1.2. Workflow Engine Community Edition - free tier
+
+The same Workflow Engine codebase, but with stricter usage limitations. Usable without purchasing a license.
+
+- **Form**: same NuGet packages, free license.
+- **Positioning**: free tier for evaluation and small projects.
+- **Audience**: evaluation, hobby projects, small projects.
+
+### 1.3. Workflow Engine NEO - paid evolution since v19.0.0
+
+The same codebase as Workflow Engine starting from v19.0.0, with extra licensed features. **Important**: Workflow Engine and Workflow Engine NEO are technically one codebase. Customers without a NEO license can still update to new versions, but the NEO feature set is gated by license policy.
+
+NEO-only features:
+- **Data API** (Web API)
+- **RPC API** (Web API)
+- **Full-fledged multitenancy** (logical/physical tenants, `WorkflowApiPermissions` claim system)
+- **Forms** (Forms Plugin; Form Engine itself is a separate product with separate license)
+
+- **Form**: NuGet packages including `OptimaJet.Workflow.Api` (.NET 8.0).
+- **Positioning**: embeddable .NET workflow engine for SaaS.
+- **Audience**: SaaS builders who need multi-tenant, API-first workflow.
+
+### 1.4. Workflow Server - separate standalone product
+
+A separate codebase. Originally built for workflow automation regardless of the customer's tech stack - it is not a .NET-developer product.
+
+Distinct properties (different from Workflow Engine and Workflow Engine NEO):
+- Standalone application with HTTP API
+- Administrative console
+- docker-ready
+- Built-in user/role system
+- OpenID integration
+
+- **Site**: https://workflowserver.io/
+- **Positioning**: self-hosted workflow application / cloud-ready workflow automation.
+- **Audience**: companies that want a turnkey workflow tool, regardless of their tech stack.
+
+### 1.5. Sister product (separate)
+
+**Form Engine** (https://formengine.io/) - Optimajet's form-builder product. Separate codebase, separate license. Integrates with Workflow Engine NEO via the Forms Plugin.
+
+### 1.6. Licensing summary
+
+| Product | License | Free option? |
+|---|---|---|
+| Workflow Engine (base) | Commercial EULA | - |
+| Workflow Engine Community Edition | Free with usage limits | Yes |
+| Workflow Engine NEO | Commercial EULA, license required for NEO features | - |
+| Workflow Server | Commercial EULA | - |
+| Form Engine | Commercial EULA, separate from Workflow Engine | - |
+
+EULA: https://optimajet.com/products/workflowengine/eula/. Pricing: https://optimajet.com/products/workflowengine/price/.
+
+### 1.7. Source code
+
+Source-available repository at https://github.com/optimajet/WorkflowEngine.NET under the commercial EULA - not OSI-approved open source.
+
+### 1.8. Latest version
+
+**21.0.0** (verified via https://api.nuget.org/v3-flatcontainer/workflowengine.netcore-core/index.json and https://registry.npmjs.org/@optimajet/workflow-designer).
+
+### 1.9. Key product positioning quotes from the documentation (verbatim)
+
+- "Most business apps eventually develop a 'workflow problem.'" (from `https://workflowengine.io/documentation/`)
+- "Workflow Engine is not a BPMN engine." (it imports BPMN diagrams via the BPMN Plugin since v16.0 and supports a subset of BPMN 2.0)
+- "Workflow Server is built on top of Workflow Engine. Workflow Engine is cheaper than Workflow Server." (FAQ)
+
+---
+
+## 2. Core mental model
+
+Two primitives:
+
+- **Scheme** - the blueprint. Describes what a process looks like.
+- **Process instance** - the living execution. Stores state and history for one entity (one document, one order, one invoice).
+
+A scheme is composed of:
+
+- **Activities** - states the process can be in (Draft → Review → Approved).
+- **Transitions** - moves between activities, with triggers and conditions.
+- **Commands** - what users or APIs trigger to drive the process forward.
+- **Actions** - custom code that runs (API call, ERP/CRM update, email).
+- **Rules / Actors / Restrictions** - who can execute commands.
+- **Process Parameters** - data that affects branching, conditions, and loops.
+
+**Typical 4-step API flow** (verbatim):
+1. `CreateInstance` - start a process for an entity.
+2. Wait for execution - process moves until it needs a command.
+3. `GetAvailableCommands` - ask what the user can execute now.
+4. `ExecuteCommand` - run the chosen command.
+
+**Process status codes** (`tinyint` in `WorkflowProcessInstanceStatus.Status`):
+- 0 = Initialized
+- 1 = Running
+- 2 = Idled
+- 3 = Finalized
+- 4 = Terminated
+- 5 = Error
+
+---
+
+## 3. Compatibility matrix
+
+Verbatim from the documentation home page:
+
+| Package framework | .NET implementation | Versions supported |
+|---|---|---|
+| netstandard2.0 | .NET Core | 2.0, 2.1, 2.2, 3.0, 3.1, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0 |
+| netstandard2.0 | .NET Framework | 4.6.1, 4.6.2, 4.7, 4.7.1, 4.7.2, 4.8, 4.8.1 |
+| netstandard2.1 | .NET Core | 3.0, 3.1, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0 |
+| 6.0 | .NET Core | 6.0, 7.0, 8.0, 9.0, 10.0 |
+
+**Per-package targets**:
+- `WorkflowEngine.NETCore-Core` → netstandard2.0
+- `WorkflowEngine.NETCore-ProviderForMSSQL` → netstandard2.0
+- `WorkflowEngine.NETCore-ProviderForPostgreSQL` → netstandard2.0
+- `WorkflowEngine.NETCore-ProviderForMongoDB` → netstandard2.0
+- `WorkflowEngine.NETCore-ProviderForMySQL` → netstandard2.0
+- `WorkflowEngine.NETCore-ProviderForOracle` → netstandard2.1 (requires .NET Core 3.0+)
+- `WorkflowEngine.NETCore-ProviderForSQLite` → **.NET 6.0** (cannot run on .NET Framework or .NET Core <6)
+- `WorkflowEngine.NETCore-FilesPlugin` → netstandard2.0
+- `WorkflowEngine.NETCore-ActiveDirectoryPlugin` → netstandard2.0
+- `OptimaJet.Workflow.Api` (NEO Web API) → .NET 8.0
+- `WorkflowEngine.NET-Server` (Workflow Server, separate product) → .NET 8.0
+
+**Minimum framework** (verbatim, since v7.0): ".NET Framework 4.6.2 is now the minimum supported version (netstandard2.0), except for Oracle Provider, for which the minimum version is .NET Core 3.0 (netstandard2.1)."
+
+**v21.0.0 breaking change** (verbatim from release notes):
+- All synchronous API methods have been removed. Only async API exists.
+- `IWorkflowApiPermissions` redesigned.
+- .NET 6 support dropped from Workflow Engine NEO Web API; .NET 10 support added.
+
+---
+
+## 4. Database support
+
+Built-in providers:
+
+| Database | NuGet package | NEO Web API DI helper |
+|---|---|---|
+| MS SQL Server / Azure SQL / Azure SQL Managed Instance | `WorkflowEngine.NETCore-ProviderForMSSQL` | `AddWorkflowApiMssql()` |
+| PostgreSQL | `WorkflowEngine.NETCore-ProviderForPostgreSQL` | `AddWorkflowApiPostgres()` |
+| MongoDB / Azure Cosmos DB | `WorkflowEngine.NETCore-ProviderForMongoDB` | `AddWorkflowApiMongo()` |
+| MySQL | `WorkflowEngine.NETCore-ProviderForMySQL` | `AddWorkflowApiMysql()` |
+| Oracle | `WorkflowEngine.NETCore-ProviderForOracle` | `AddWorkflowApiOracle()` |
+| SQLite | `WorkflowEngine.NETCore-ProviderForSQLite` | `AddWorkflowApiSqlite()` |
+
+**SQLite warning** (verbatim): "This version of SQLite may not work on macOS with Apple Silicon processors." SQLite is also not recommended for industrial use.
+
+**Database migrations** (since v13.0.0): Automatic via FluentMigrator. Custom user migrations should start from order number `2_000_000` to avoid collision with built-in migrations.
+
+---
+
+## 5. Database schema (13 tables, 3 stored procedures)
+
+Default SQL Server schema: `dbo`.
+
+### 5.1. WorkflowProcessInstance - core table
+
+| Column | Type | Null |
+|---|---|---|
+| `Id` (PK) | uniqueidentifier | No |
+| `StateName` | nvarchar(MAX) | Yes |
+| `ActivityName` | nvarchar(MAX) | No |
+| `SchemeId` | uniqueidentifier | Yes |
+| `PreviousState` | nvarchar(MAX) | Yes |
+| `PreviousStateForDirect` | nvarchar(MAX) | Yes |
+| `PreviousStateForReverse` | nvarchar(MAX) | Yes |
+| `PreviousActivity` | nvarchar(MAX) | Yes |
+| `PreviousActivityForDirect` | nvarchar(MAX) | Yes |
+| `PreviousActivityForReverse` | nvarchar(MAX) | Yes |
+| `ParentProcessId` | uniqueidentifier | Yes |
+| `RootProcessId` | uniqueidentifier | No |
+| `TenantId` | nvarchar(1024) | Yes |
+| `StartingTransition` | nvarchar(MAX) | Yes |
+| `SubprocessName` | nvarchar(MAX) | Yes |
+| `CreationDate` | datetime | No (default `getdate()`) |
+| `LastTransitionDate` | datetime | Yes |
+
+`TenantId` provides native multi-tenancy at the process level; it is set at creation and is immutable.
+
+### 5.2. WorkflowProcessInstancePersistence - process parameters
+
+Key-value rows storing parameters per process.
+
+| Column | Type |
+|---|---|
+| `Id` (PK) | uniqueidentifier |
+| `ProcessId` | uniqueidentifier |
+| `ParameterName` | nvarchar(MAX) |
+| `Value` | nvarchar(MAX) |
+
+### 5.3. WorkflowProcessInstanceStatus - process locking and status
+
+| Column | Type |
+|---|---|
+| `Id` (PK) | uniqueidentifier |
+| `Status` | tinyint (0-5; see §2) |
+| `Lock` | uniqueidentifier (lock token) |
+| `RuntimeId` | nvarchar(450) |
+| `SetTime` | datetime |
+
+### 5.4. WorkflowProcessTransitionHistory - execution log
+
+Includes `TransitionDuration` (bigint) for performance analytics.
+
+| Column | Type | Null |
+|---|---|---|
+| `Id` (PK) | uniqueidentifier | No |
+| `ProcessId` | uniqueidentifier | No |
+| `ExecutorIdentityId` | nvarchar(256) | Yes |
+| `ActorIdentityId` | nvarchar(256) | Yes |
+| `ExecutorName` | nvarchar(256) | Yes |
+| `ActorName` | nvarchar(256) | Yes |
+| `FromActivityName` | nvarchar(MAX) | No |
+| `ToActivityName` | nvarchar(MAX) | No |
+| `ToStateName` | nvarchar(MAX) | Yes |
+| `TransitionTime` | datetime | No |
+| `TransitionClassifier` | nvarchar(MAX) | No |
+| `IsFinalised` | bit | No |
+| `FromStateName` | nvarchar(MAX) | Yes |
+| `TriggerName` | nvarchar(MAX) | Yes |
+| `StartTransitionTime` | datetime | Yes |
+| `TransitionDuration` | bigint | Yes |
+
+### 5.5. WorkflowProcessScheme - versioned scheme storage per process
+
+| Column | Type | Default |
+|---|---|---|
+| `Id` (PK) | uniqueidentifier | |
+| `Scheme` | ntext (XML) | |
+| `SchemeCode` | nvarchar(256) | |
+| `IsObsolete` | bit | 0 |
+| `RootSchemeCode` | nvarchar(256) | |
+| `RootSchemeId` | uniqueidentifier | |
+| `AllowedActivities` | nvarchar(MAX) | |
+| `StartingTransition` | nvarchar(MAX) | |
+
+### 5.6. WorkflowScheme - scheme catalog
+
+| Column | Type | Default |
+|---|---|---|
+| `Code` (PK) | nvarchar(256) | |
+| `Scheme` | nvarchar(MAX) (XML) | |
+| `CanBeInlined` | bit | 0 |
+| `InlinedSchemes` | nvarchar(MAX) (JSON array) | |
+| `Tags` | nvarchar(MAX) | |
+
+### 5.7. WorkflowProcessTimer - active timers
+
+| Column | Type |
+|---|---|
+| `Id` (PK) | uniqueidentifier |
+| `ProcessId` | uniqueidentifier |
+| `RootProcessId` | uniqueidentifier |
+| `Name` | nvarchar(MAX) |
+| `NextExecutionDateTime` | datetime |
+| `Ignore` | bit |
+
+### 5.8. WorkflowGlobalParameter - global params and global Code Actions
+
+Indexes: `PK_WorkflowGlobalParameter (Id)`, `IX_Type_Name_Clustered (Type, Name)`.
+
+| Column | Type |
+|---|---|
+| `Id` (PK) | uniqueidentifier |
+| `Type` | nvarchar(306) |
+| `Name` | nvarchar(128) |
+| `Value` | nvarchar(MAX) |
+
+### 5.9. WorkflowApprovalHistory - Approval Plugin storage
+
+| Column | Type | Null |
+|---|---|---|
+| `Id` (PK) | uniqueidentifier | No |
+| `ProcessId` | uniqueidentifier | No |
+| `IdentityId` | nvarchar(256) | Yes |
+| `AllowedTo` | nvarchar(MAX) | Yes |
+| `TransitionTime` | datetime | Yes |
+| `Sort` | bigint | Yes |
+| `InitialState` | nvarchar(1024) | No |
+| `DestinationState` | nvarchar(1024) | No |
+| `TriggerName` | nvarchar(1024) | Yes |
+| `Commentary` | nvarchar(MAX) | Yes |
+
+### 5.10. WorkflowInbox - Approval Plugin inbox cache
+
+| Column | Type | Default |
+|---|---|---|
+| `Id` (PK) | uniqueidentifier | |
+| `EmployeeId` | uniqueidentifier | |
+| `IdentityId` | nvarchar(256) | |
+| `AddingDate` | datetime | `getdate()` |
+| `AvailableCommands` | nvarchar(MAX) | `''` |
+
+### 5.11. WorkflowProcessAssignment - Assignment Plugin (obsolete in v21+)
+
+| Column | Type | Null |
+|---|---|---|
+| `Id` (PK) | uniqueidentifier | No |
+| `AssignmentCode` | nvarchar(2048) | No |
+| `ProcessId` | uniqueidentifier | No |
+| `Name` | nvarchar(MAX) | No |
+| `Description` | nvarchar(MAX) | Yes |
+| `StatusState` | nvarchar(MAX) | No |
+| `DateCreation` | datetime | No |
+| `DateStart` | datetime | Yes |
+| `DateFinish` | datetime | Yes |
+| `DeadlineToStart` | datetime | Yes |
+| `DeadlineToComplete` | datetime | Yes |
+| `Executor` | nvarchar(256) | No |
+| `Observers` | nvarchar(MAX) | Yes |
+| `Tags` | nvarchar(MAX) | Yes |
+| `IsActive` | bit | No |
+| `IsDeleted` | bit | No |
+
+### 5.12. WorkflowRuntime - multi-server runtime registry
+
+| Column | Type | Null |
+|---|---|---|
+| `RuntimeId` (PK) | nvarchar(450) | No |
+| `Lock` | uniqueidentifier | No |
+| `Status` | tinyint | No |
+| `RestorerId` | nvarchar(450) | Yes |
+| `NextTimerTime` | datetime | Yes |
+| `NextServiceTimerTime` | datetime | Yes |
+| `LastAliveSignal` | datetime | Yes |
+
+### 5.13. WorkflowSync - distributed lock table
+
+| Column | Type |
+|---|---|
+| `Name` (PK) | nvarchar(450) |
+| `Lock` | uniqueidentifier |
+
+### 5.14. Stored procedures (verbatim source)
+
+```sql
+-- DropUnusedWorkflowProcessScheme: cleanup obsolete schemes with no instances
+CREATE PROCEDURE [DropUnusedWorkflowProcessScheme]
+AS
+BEGIN
+    DELETE wps
+    FROM WorkflowProcessScheme AS wps
+    WHERE wps.IsObsolete = 1
+      AND NOT EXISTS (SELECT * FROM WorkflowProcessInstance wpi WHERE wpi.SchemeId = wps.Id)
+
+    RETURN (SELECT COUNT(*) FROM WorkflowProcessInstance wpi
+            LEFT OUTER JOIN WorkflowProcessScheme wps ON wpi.SchemeId = wps.Id
+            WHERE wps.Id IS NULL)
+END
+```
+
+```sql
+-- DropWorkflowInbox: clear inbox for a process (called during ProcessStatusChanged)
+CREATE PROCEDURE [DropWorkflowInbox] @processId uniqueidentifier
+AS
+BEGIN
+    BEGIN TRAN
+    DELETE FROM dbo.WorkflowInbox WHERE ProcessId = @processId
+    COMMIT TRAN
+END
+```
+
+```sql
+-- spWorkflowProcessResetRunningStatus: manual recovery of stuck processes (Running → Idled)
+CREATE PROCEDURE [spWorkflowProcessResetRunningStatus]
+AS
+BEGIN
+    UPDATE [WorkflowProcessInstanceStatus]
+    SET [WorkflowProcessInstanceStatus].[Status] = 2
+    WHERE [WorkflowProcessInstanceStatus].[Status] = 1
+END
+```
+
+---
+
+## 6. Three integration paths
+
+### Option A - ASP.NET Web API Quickstart (Workflow Engine NEO, recommended for new SaaS projects)
+
+Full control, includes HTTP API and hybrid multi-tenant support. Requires a NEO license. Available since v19.0.0.
+
+### Option B - Standalone Workflow Server (out-of-the-box)
+
+Admin UI plus operational pieces. Separate product (https://workflowserver.io/), separate license.
+
+### Option C - Framework-agnostic Library (advanced)
+
+Minimal footprint, atypical hosting (e.g., Windows service, console app, AWS Lambda).
+
+### 6.1. Six-component framework-agnostic setup
+
+Documented to take ~1 hour.
+
+| # | Component | Purpose |
+|---|---|---|
+| 1 | Workflow Engine Designer | JS object on web page; processes designer requests + passes to Workflow Engine Runtime |
+| 2 | Workflow Engine Runtime | Creates processes, retrieves commands, executes commands, sets state. **One Workflow Engine Runtime per app/service.** |
+| 3 | DB Provider | Persistence provider for chosen database |
+| 4 | Workflow tables | DB tables for workflow storage |
+| 5 | IWorkflowRuleProvider | Security integration - authorization rules |
+| 6 | IWorkflowActionProvider | Business logic integration - own functions per workflow step |
+
+### 6.2. Six-step integration flow
+
+1. Create empty solution in IDE.
+2. Setup database.
+3. Initialize WorkflowRuntime.
+4. Connect Workflow Engine Designer.
+5. Create document workflow scheme.
+6. Create process and call commands.
+
+### 6.3. Quick designer launch (since v13.0+)
+
+```bash
+npx @optimajet/workflow-designer http://localhost:5000/Designer/API Scheme
+```
+
+(Note: the source documentation at https://workflowengine.io/documentation/how-to-integrate has `http:localhost:5000/...` without the `//`, which appears to be a typo - that form will fail in a real shell. The command above uses the corrected `http://localhost:5000/...`.)
+
+- 1st param: backend URL (the documented default is `https://demo.workflowengine.io/Designer/API` - this is a Workflow Engine Designer protocol endpoint, not a browseable page).
+- 2nd param: scheme name (default `SimpleWF`).
+
+### 6.4. Canonical WorkflowRuntime initialization
+
+```csharp
+public static class WorkflowInit
+{
+    private static readonly Lazy<WorkflowRuntime> LazyRuntime = new Lazy<WorkflowRuntime>(InitWorkflowRuntime);
+    public static WorkflowRuntime Runtime => LazyRuntime.Value;
+    public static string ConnectionString { get; set; }
+
+    private static WorkflowRuntime InitWorkflowRuntime()
+    {
+        if (string.IsNullOrEmpty(ConnectionString))
+            throw new Exception("Please init ConnectionString before calling the Runtime!");
+
+        // WorkflowRuntime.RegisterLicense("your license key text");
+
+        var dbProvider = new MSSQLProvider(ConnectionString);
+        var builder = new WorkflowBuilder<XElement>(
+            dbProvider, new XmlWorkflowParser(), dbProvider
+        ).WithDefaultCache();
+
+        var runtime = new WorkflowRuntime()
+            .WithBuilder(builder)
+            .WithPersistenceProvider(dbProvider)
+            .RunMigrations()
+            .EnableCodeActions()
+            .SwitchAutoUpdateSchemeBeforeGetAvailableCommandsOn()
+            .AsSingleServer();
+
+        var plugin = new OptimaJet.Workflow.Plugins.BasicPlugin();
+        runtime.WithPlugin(plugin);
+
+        runtime.OnProcessActivityChanged += (sender, args) => { };
+        runtime.OnProcessStatusChanged += (sender, args) => { };
+
+        runtime.Start();
+        return runtime;
+    }
+}
+```
+
+### 6.5. Dependency Injection alternative (Tutorial 6 pattern)
+
+Convert static `WorkflowInit` to `WorkflowRuntimeLocator` service. Register `WorkflowRuntime` and related services as **Singleton** (not Scoped or Transient).
+
+---
+
+## 7. Process parameters
+
+### 7.1. Five parameter classifications
+
+1. **Persistent vs Temporary** - Persistent stored in DB, accessible at any time. Temporary exists only during execution; accessible from passing moment until process stops or idles.
+2. **Explicit vs Implicit** - Explicit declared in scheme (with type, name, default). Implicit created by code at runtime, not declared in scheme.
+3. **Dynamic** - Use `OptimaJet.Workflow.Core.Model.DynamicParameter`. Any object stored without type concerns.
+4. **Full vs Partial** - Full = `ParameterName` (whole object). Partial = `ParameterName.PropertyName` (sub-property of complex object).
+5. **External** - Passed through `IWorkflowExternalParametersProvider`. Useful when you don't want to add a DB record to process params.
+
+**Most common combination** (verbatim): "Persistent Implicit Dynamic".
+
+### 7.2. Naming rules
+
+- Identified by unique string name.
+- The dot character `.` is **not recommended** in names - reserved for partial parameter syntax.
+
+### 7.3. Partial parameter access
+
+```csharp
+var ObjectParameter = new {
+    ObjectProperty = new { StringProperty = "Some string" },
+    IntProperty = 42
+};
+
+// Access patterns:
+// 'ObjectParameter'                                  - whole object
+// 'ObjectParameter.ObjectProperty'                   - nested object
+// 'ObjectParameter.ObjectProperty.StringProperty'    - string
+// 'ObjectParameter.IntProperty'                      - int
+```
+
+### 7.4. Four ways to pass parameters
+
+```csharp
+// Way 1: at process creation
+var createInstanceParameters = new CreateInstanceParams("SchemeCode", processId)
+    .AddPersistentParameter("StringParameter", "Some String")
+    .AddPersistentParameter("ObjectParameter", ObjectParameter)
+    .AddTemporaryParameter("TemporaryString", "Some Temporary String");
+
+// Way 2: when executing command
+command.SetParameter("StringParameter", "Some string", persist: true);
+command.SetParameter("TemporaryString", "Some Temporary String");  // Temporary by default
+
+// Way 3: when setting state (similar pattern)
+
+// Way 4: from Code Action
+processInstance.SetParameter<T>("Name", value, ParameterPurpose.Persistence);
+```
+
+**Persistence escalation rule** (verbatim): "If parameter ALREADY passed as Persistent → stays Persistent. If parameter declared in scheme as Persistent → stays Persistent. Otherwise → Temporary."
+
+`ParameterPurpose` enum: `Persistence`, `Temporary`.
+
+---
+
+## 8. Actions and Code Actions
+
+### 8.1. Two ways to create Actions
+
+1. Inherit `IWorkflowActionProvider` (server-side).
+2. Create Code Actions directly in the scheme (Workflow Engine Designer).
+3. Combinable.
+
+### 8.2. Code Action security warning (verbatim)
+
+"Please be aware that the code inside Code Actions is compiled dynamically and has full access to the environment in which the Workflow Engine is running. This means that allowing end users to create Code Actions can be dangerous, as it may lead to the execution of malicious code on the server. If you wish to provide such capabilities to end users, ensure that the Workflow Engine is running in an isolated environment. The safest option is to prohibit the creation of Code Actions and provide a set of pre-built Actions through a provider."
+
+### 8.3. Required runtime configuration
+
+```csharp
+runtime.EnableCodeActions();
+
+// Register external assembly for Code Actions
+runtime.RegisterAssemblyForCodeActions(Assembly.GetAssembly(typeof(SomeTypeFromMyAssembly)));
+
+// Enable debug breakpoints in Code Actions
+runtime.CodeActionsDebugOn();
+```
+
+### 8.4. Debug pattern
+
+Insert `/*break*/` comment in Code Action. With debug enabled, transforms to:
+```csharp
+if (System.Diagnostics.Debugger.IsAttached) { System.Diagnostics.Debugger.Break(); }
+```
+Disabled → stays as comment.
+
+### 8.5. IWorkflowActionProvider canonical implementation
+
+```csharp
+public class ActionProvider : IWorkflowActionProvider
+{
+    private readonly Dictionary<string, Action<ProcessInstance, WorkflowRuntime, string>> _actions = new();
+    private readonly Dictionary<string, Func<ProcessInstance, WorkflowRuntime, string, CancellationToken, Task>> _asyncActions = new();
+    private readonly Dictionary<string, Func<ProcessInstance, WorkflowRuntime, string, bool>> _conditions = new();
+    private readonly Dictionary<string, Func<ProcessInstance, WorkflowRuntime, string, CancellationToken, Task<bool>>> _asyncConditions = new();
+
+    public ActionProvider()
+    {
+        _actions.Add("MyAction", MyAction);
+        _asyncActions.Add("MyActionAsync", MyActionAsync);
+        _conditions.Add("MyCondition", MyCondition);
+        _asyncConditions.Add("MyConditionAsync", MyConditionAsync);
+    }
+
+    private void MyAction(ProcessInstance processInstance, WorkflowRuntime runtime, string actionParameter) { }
+    private async Task MyActionAsync(ProcessInstance processInstance, WorkflowRuntime runtime, string actionParameter, CancellationToken token) { }
+    private bool MyCondition(ProcessInstance processInstance, WorkflowRuntime runtime, string actionParameter) => false;
+    private async Task<bool> MyConditionAsync(ProcessInstance processInstance, WorkflowRuntime runtime, string actionParameter, CancellationToken token) => false;
+
+    public void ExecuteAction(string name, ProcessInstance processInstance, WorkflowRuntime runtime, string actionParameter)
+    {
+        if (!_actions.ContainsKey(name))
+            throw new NotImplementedException($"Action with name {name} isn't implemented");
+        _actions[name].Invoke(processInstance, runtime, actionParameter);
+    }
+
+    public async Task ExecuteActionAsync(string name, ProcessInstance processInstance, WorkflowRuntime runtime, string actionParameter, CancellationToken token)
+    {
+        if (!_asyncActions.ContainsKey(name))
+            throw new NotImplementedException($"Async Action with name {name} isn't implemented");
+        await _asyncActions[name].Invoke(processInstance, runtime, actionParameter, token);
+    }
+
+    // ExecuteCondition, ExecuteConditionAsync similar
+}
+```
+
+### 8.6. Pre-Execution mode persistence trick
+
+Parameters are not normally saved in Pre-Execution mode. To force-save:
+
+```csharp
+void CurrentDate(ProcessInstance processInstance, WorkflowRuntime runtime, string parameter)
+{
+    processInstance.SetParameter<DateTime>("DateTimeNow", DateTime.Now, ParameterPurpose.Persistence);
+
+    if (processInstance.IsPreExecution)
+    {
+        runtime.PersistenceProvider.SavePersistenceParameterAsync(processInstance, "DateTimeNow").Wait();
+    }
+}
+```
+
+---
+
+## 9. Plugins
+
+### 9.1. Basic Plugin (most projects use this)
+
+Namespace: `OptimaJet.Workflow.Plugins`.
+
+**All settings**:
+```csharp
+var basicPlugin = new BasicPlugin();
+basicPlugin.Setting_Mailserver = "smtp.yourserver.com";
+basicPlugin.Setting_MailserverPort = 25;
+basicPlugin.Setting_MailserverFrom = "from@yourserver.com";
+basicPlugin.Setting_MailserverLogin = "login@yourserver.com";
+basicPlugin.Setting_MailserverPassword = "password";
+basicPlugin.Setting_MailserverSsl = true;
+basicPlugin.RequestHeaders.add("MyHeader", "headerValue");
+basicPlugin.Setting_DontCompileExpressions = true;  // Disable expression compilation in parameters
+
+basicPlugin.UsersInRoleAsync += MyUsersInRoleAsync;
+basicPlugin.CheckPredefinedActorAsync += CheckMyPredefinedActorAsync;
+basicPlugin.GetPredefinedIdentitiesAsync += GetMyPredefinedIdentitiesAsync;
+basicPlugin.ApproversInStageAsync += MyApproversInStageAsync;
+basicPlugin.UpdateDocumentStateAsync += UpdateMyDocumentStateAsync;
+```
+
+**Quick email server config**:
+| Service | Server | Port |
+|---|---|---|
+| Gmail | `smtp.gmail.com` | 587 |
+| iCloud | `smtp.mail.me.com` | 587 |
+| Yahoo | `smtp.mail.yahoo.com` | 465 |
+
+**Actions**: `SetActivity`, `SetState`, `SetParameter`, `RemoveParameter`, `HTTPRequest`, `CreateProcess`, `SendEmail`, `FillApproversUsers`, `FillApproversRoles`, `Approve`, `Restrictions`, `IsApproveComplete`, `IsApprovedByUsers`, `IsApprovedByRoles`, `CheckRole`.
+
+**Predefined Actors API**:
+- `WithActor("Manager")` - single
+- `WithActors(new List<string>() { "Manager", "Director" })` - multiple
+- Rule type for these actors = `Predefined`
+- `CheckPredefinedActorAsync` delegate - boolean check
+- `GetPredefinedIdentitiesAsync` delegate - return user list
+
+**Parallel Approval Without Branches** - 7-step recipe:
+1. **Fill approvers** activity action: `FillApproversUsers` or `FillApproversRoles`.
+2. **Approve** transition: command trigger + restriction (Actor: Approver, Type: Allow).
+3. **Is approved** transition condition (preferred order): `IsApproveComplete` ⭐ (preferable), `IsApprovedByUsers`, `IsApprovedByRoles`.
+4-6. Repeat for additional stages.
+7. **Approval finished** - final activity.
+
+### 9.2. Approval Plugin
+
+Handles approval history (`WorkflowApprovalHistory` table), Inbox, Outbox.
+
+**ApprovalHistoryItem** structure:
+```csharp
+public class ApprovalHistoryItem
+{
+    public Guid Id { get; set; }
+    public Guid ProcessId { get; set; }
+    public string IdentityId { get; set; }              // user who approved at current stage
+    public List<string> AllowedTo { get; set; }         // users who can approve at current stage
+    public DateTime? TransitionTime { get; set; }
+    public long Sort { get; set; }                      // sequential approval stage number
+    public string InitialState { get; set; }
+    public string DestinationState { get; set; }
+    public string TriggerName { get; set; }
+    public string Commentary { get; set; }
+}
+```
+
+**InboxItem** structure:
+```csharp
+public class InboxItem
+{
+    public Guid Id { get; set; }
+    public Guid ProcessId { get; set; }
+    public string IdentityId { get; set; }
+    public DateTime AddingDate { get; set; }
+    public List<CommandName> AvailableCommands { get; set; }
+}
+```
+
+**OutboxItem** structure (computed dynamically from `WorkflowApprovalHistory`, no separate table):
+```csharp
+public class OutboxItem
+{
+    public Guid ProcessId { get; set; }
+    public DateTime? FirstApprovalTime { get; set; }
+    public DateTime? LastApprovalTime { get; set; }
+    public int ApprovalCount { get; set; }
+    public string LastApproval { get; set; }
+}
+```
+
+**Settings**:
+```csharp
+var approvalPlugin = new ApprovalPlugin();
+approvalPlugin.GetUserNamesByIds += GetMyUserNamesByIds;
+approvalPlugin.AutoApprovalHistory = false;             // disable auto-population (default: true)
+approvalPlugin.NameParameterForComment = "Comment";     // parameter for comment in commands
+runtime.WithPlugin(approvalPlugin);
+```
+
+**InboxCheckConditions** setting (boolean): when enabled, transition conditions are checked during inbox filling, and only transitions for which conditions are met are included.
+
+**Reading APIs**:
+```csharp
+// By IdentityId
+var approvalHistory = await runtime.PersistenceProvider
+    .GetApprovalHistoryByIdentityIdAsync(myIdentityId, Paging.Create(pageIndex, pageSize));
+
+// By ProcessId
+var approvalHistory = await runtime.PersistenceProvider
+    .GetApprovalHistoryByProcessIdAsync(myProcessId, Paging.Create(pageIndex, pageSize));
+
+// Inbox
+var inbox = await runtime.PersistenceProvider
+    .GetInboxByIdentityIdAsync(myIdentityId, Paging.Create(pageIndex, pageSize));
+
+// Outbox
+var outbox = await runtime.PersistenceProvider
+    .GetOutboxByIdentityIdAsync(myIdentityId, Paging.Create(pageIndex, pageSize));
+```
+
+### 9.3. Loops Plugin
+
+For-loops and Foreach-loops in workflow schemes.
+
+**Actions**:
+- `StartLoopFor` - for-loop with Counter type Int or DateTime, Start/End/Step values, `Include last value` flag.
+- `StartLoopForeach` - foreach over comma-separated values.
+- `StartLoopForeachFromParameter` - foreach over values from a parameter.
+- `SetLoopState` - Continue or Break.
+
+**Conditions**: `LoopIsBroken`, `LoopIsCompleted`, `LoopIsCompletedOrBroken`, `LoopIsNotCompletedAndBroken`, `LoopIsDefault`, `LoopIsNotDefault`.
+
+**DateTime format**: `yyyy-MM-dd HH:mm:ss.fff`. Minimum value: `0001-01-01 00:00:00.000`.
+
+**DateTime step suffixes**: `y/year/years`, `mm/month/months`, `d/day/days`, `h/hour/hours`, `m/minute/minutes`, `s/second/seconds`, `ms/millisecond/milliseconds`. Combinable: `"1y 3mm 2d 5h 24m 15s 50 ms"`.
+
+### 9.4. File Plugin
+
+File operations: `FileRead`, `FileWrite`, `FileDelete`, `FileDownload`, `FileUpload`, `FileMove`, `FileCopy`, `FileRename`.
+
+List operations: `FilesListRead`, `FilesListDelete`, `FilesListMove`, `FilesListCopy`, `FilesListRename`.
+
+Directory operations: `DirectoryCreate`, `DirectoryDelete`, `DirectoryMove`, `DirectoryDownload`, `DirectoryUpload`.
+
+Protocols supported: FTP (default), FTPS, HTTP, HTTPS.
+
+`FilesListRead` syntax: `file path 1 => parameter name 1; file path 2, file path 3 => parameter name 2`. Result stored as `Dictionary<string, string>`.
+
+### 9.5. Assignment Plugin (obsolete in v21+)
+
+Concept (verbatim): "Assignments are an alternative way to interact with the process, by changing their statuses and other options. The assignments can be managed from both the designer and the document, regardless of the process state."
+
+Default statuses:
+```csharp
+string s1 = AssignmentPlugin.DefaultStatus;          // "Created" (default)
+string s2 = AssignmentPlugin.DefaultStartStatus;     // "In Progress"
+string s3 = AssignmentPlugin.DefaultFinishStatus;    // "Completed"
+string s4 = AssignmentPlugin.DefaultDeclinedStatus;  // "Declined"
+List<string> statuses = AssignmentPlugin.GetStatuses();  // {"Created", "In Progress", "Completed", "Declined"}
+```
+
+**Custom statuses**:
+```csharp
+assignmentPlugin.WithStatuses(
+    new List<string>() { "Created", "Completed", "In Progress", "Expired" },
+    "Created"  // default status MUST be in the list
+);
+```
+
+**Auto-created system schema** when plugin is connected: `CheckDeadlines` - system schema and dedicated process for checking all deadlines (1-minute timer).
+
+⚠️ Auto deadline checking requires a license key.
+
+### 9.6. Other plugins
+
+- **Active Directory Plugin** - Active Directory and Microsoft Entra ID integration for actor and role resolution.
+- **Real Time Tracking Plugin** - since v13.0.0. Tracks process state changes for live dashboards.
+- **BPMN Plugin** - since v16.0. Imports BPMN 2.0 diagrams.
+- **Forms Plugin** - connects Workflow Engine NEO to Form Engine (separate product). Workflow Engine NEO-only feature; not available in base Workflow Engine or Workflow Engine Community Edition.
+
+---
+
+## 10. Web API (Workflow Engine NEO feature)
+
+The Web API is part of **Workflow Engine NEO** - a licensed feature set in the Workflow Engine codebase available since v19.0.0. It comprises the Data API and RPC API for HTTP-based process management. Not included in the base Workflow Engine license or in Workflow Engine Community Edition.
+
+### 10.1. License gating (verbatim)
+
+"If the key is not provided, the API will not start."
+
+The Web API is a paid Workflow Engine NEO add-on. Workflow Engine Community Edition (free tier) does NOT include the Web API.
+
+### 10.2. Configuration
+
+```csharp
+builder.Services.AddWorkflowTenants(
+    new WorkflowTenantCreationOptions
+    {
+        TenantIds = ["MsSqlTenant1", "MsSqlTenant2"],
+        PersistenceProviderId = PersistenceProviderId.Mssql,
+        ConnectionString = "Server=localhost,1433;Database=master;User Id=SA;Password=MyPassword;"
+    },
+    new WorkflowTenantCreationOptions
+    {
+        TenantIds = ["PostgresTenant1", "PostgresTenant2"],
+        PersistenceProviderId = PersistenceProviderId.Postgres,
+        ConnectionString = "Host=localhost;Port=5432;Database=postgres;..."
+    });
+
+builder.Services.AddWorkflowApiMssql();
+builder.Services.AddWorkflowApiPostgres();
+builder.Services.AddWorkflowApiSecurity(options =>
+{
+    options.DisableSecurity = false;
+    options.SecurityScheme = null;  // null = ASP.NET default
+});
+```
+
+### 10.3. WorkflowApiCoreOptions
+
+| Name | Type | Default | Description |
+|---|---|---|---|
+| `BasePath` | string | `"workflow-api"` | Root URL path |
+| `LicenseKey` | string | `""` | Required - API will not start without it |
+| `DefaultTenantId` | string? | `WorkflowApiConstants.SingleTenantId` | Used when no tenant in request |
+
+**Recommendation** (verbatim): "In multi-tenant mode, it is recommended to set `DefaultTenantId` to null. This ensures that every API request must explicitly provide a `TenantId`; otherwise, the request is rejected with an error."
+
+### 10.4. Multitenancy
+
+**Logical vs Physical tenants**:
+- Logical tenants - same WorkflowRuntime, different `TenantId`.
+- Physical tenants - different WorkflowRuntime instances.
+
+**Tenant header** (verbatim): "The tenant header selects the tenant context only. It is not an authorization source. When security services are enabled, the current `WorkflowApiPermissions` claim must also allow the selected tenant. If the tenant permission is missing, the header contains an unknown or invalid tenant id, or the caller changes the header to a tenant that is not allowed by the token, the request is rejected with 403 Forbidden."
+
+Header constant: `WorkflowApiConstants.TenantIdHeader` → `Workflow-Api-Tenant-ID`.
+
+**IWorkflowTenantRegistry service**:
+```csharp
+public class MyController : ControllerBase
+{
+    private readonly IWorkflowTenantRegistry _tenantRegistry;
+
+    public MyController(IWorkflowTenantRegistry tenantRegistry) {
+        _tenantRegistry = tenantRegistry;
+    }
+
+    [HttpGet("my-endpoint")]
+    public IActionResult MyEndpoint() {
+        var currentTenant = _tenantRegistry.GetHttpContextWorkflowTenant();
+        WorkflowRuntime runtime = currentTenant.WorkflowRuntime;
+        return Ok();
+    }
+}
+```
+
+### 10.5. Security - WorkflowApiPermissions claim
+
+Compact format syntax:
+```
+<effect>:<target>[;<effect>:<target>]
+```
+- Effect: `a` = allow, `d` = deny
+- Target: operation branch under `workflow-api` OR tenant rule under `tenants`
+
+**Examples**:
+| Value | Meaning |
+|---|---|
+| `a:workflow-api` | Allow all Workflow Engine API operations |
+| `d:workflow-api` | Deny all |
+| `d:workflow-api;a:workflow-api.liveness` | Deny all except liveness |
+| `d:workflow-api;a:workflow-api.rpc` | Deny all except RPC branch |
+| `a:workflow-api;d:workflow-api.rpc.delete-instance` | Allow all except delete-instance |
+| `a:tenants` | Allow all configured tenants |
+| `d:tenants` | Deny all tenants |
+| `a:tenants:TenantA,TenantB` | **Deny all except TenantA, TenantB** (counter-intuitive - `a:` here means "specify allowed list") |
+| `d:tenants:TenantA,TenantB` | **Allow all except TenantA, TenantB** |
+
+**Hierarchy** (verbatim): "Operations are hierarchical. Branch like `workflow-api.rpc` applies to all operations under it (no `.*` suffix needed). More specific rule wins on conflict."
+
+**Builder API**:
+```csharp
+// Strict allow-list
+var claim = permissions.BuildClaim(builder => builder
+    .DenyAllOperations()
+    .Allow(
+        WorkflowApiOperationId.Liveness,
+        WorkflowApiOperationId.DataSchemesGetCollection,
+        WorkflowApiOperationId.DataSchemesGet)
+    .DenyAllTenantsExcept("TenantA"));
+
+// Allow everything
+var claim = permissions.BuildClaim(builder => builder
+    .AllowAllOperations()
+    .AllowAllTenants());
+
+// Branch + specific deny
+var claim = permissions.BuildClaim(builder => builder
+    .DenyAllOperations()
+    .Allow("workflow-api.rpc")
+    .Deny(WorkflowApiOperationId.RpcDeleteInstance)
+    .AllowAllTenants());
+```
+
+Builder methods: `DenyAllOperations()`, `AllowAllOperations()`, `Allow(...)`, `Deny(...)`, `AllowAllTenants()`, `DenyAllTenants()`, `AllowAllTenantsExcept(...)`, `DenyAllTenantsExcept(...)`.
+
+---
+
+## 11. Scalability
+
+### 11.1. Single-server mode
+
+Default. Settings (verbatim defaults, partial list):
+
+| Setting | Default |
+|---|---|
+| `TimerInterval` | 1000 ms |
+| `TimerMaxSequentialFailCount` | 5 |
+| `ExecuteTimersBatchSize` | 100 |
+| `ServiceTimerInterval` | 60000 ms |
+| `ServiceTimerMaxSequentialFailCount` | 5 |
+
+### 11.2. Multi-server mode
+
+**Requires Ultimate license.**
+
+Configuration:
+```csharp
+var workflowRuntime = new WorkflowRuntime("Unique Runtime Identifier")
+    ...
+    .AsMultiServer();
+```
+
+**Critical** (verbatim): "It is critical for each of the Workflow Engine Runtime instances working with the same database to have the same settings."
+
+**Lifecycle**:
+```csharp
+await workflowRuntime.StartAsync();    // required for API + timers
+await workflowRuntime.ShutdownAsync(); // recommended on shutdown - avoids excess recovery
+```
+
+Multi-server settings (verbatim, full):
+
+| Setting | Default | Description |
+|---|---|---|
+| `TimerInterval` | 1000 ms | Process timer interval |
+| `TimerMaxSequentialFailCount` | 5 | Disable timer after N consecutive failures |
+| `ExecuteTimersBatchSize` | 100 | Batch size for timer execution |
+| `ServiceTimerInterval` | 60000 ms | Service timer interval |
+| `ServiceTimerMaxSequentialFailCount` | 5 | Service timer disable threshold |
+| `ProtectionIntervalInPercents` | 0.2 | Prevent timer interference between servers |
+| `AliveSignalInterval` | 1000 ms | "I'm alive" reporting interval |
+| `NumberOfSkippedIntervalsToSupposeDeath` | 60 | Missed signals → server declared `Terminated` |
+| `RestorePauseInterval` | 1000 ms | Pause on restore start |
+
+**No load balancer included** - bring your own. All instances are equal (no master). Instances don't know about each other; they share a common DB only. ≥1 working instance is sufficient for cluster health.
+
+### 11.3. Process-level multitenancy (base Workflow Engine feature)
+
+This is the multitenancy level available in **base Workflow Engine** (and all Workflow Engine editions including Community Edition). For the full-fledged multi-tenant Web API with logical/physical tenants and the `WorkflowApiPermissions` claim system, see §10 - that is a Workflow Engine NEO-only feature.
+
+`TenantId` is set at process creation and is **immutable** (string type).
+
+```csharp
+var createInstanceParams = new CreateInstanceParams("SchemeCode", processId)
+{
+    TenantId = "TenantId"
+};
+await workflowRuntime.CreateInstanceAsync(createInstanceParams);
+
+string tenantId = processInstance.TenantId;
+```
+
+**Scheme tags** for tenant-restricted schemes:
+```csharp
+workflowRuntime.Builder.AddSchemeTags("SchemeCode", new List<string>() {"tag1", "tag2"});
+workflowRuntime.Builder.RemoveSchemeTags("SchemeCode", new List<string>() {"tag1", "tag2"});
+
+// Search by tags (OR semantics)
+await workflowRuntime.GetSchemeCodesAsync(new List<string>() {"tag1", "tag2"});
+```
+
+Search semantics (verbatim): "OR condition. The method returns all scheme codes with at least one of the tags indicated."
+
+---
+
+## 12. Common operational facts
+
+### 12.1. Thread safety
+
+Verbatim: "Workflow Engine is thread-safe but not transactional." There is no transaction concept across commands.
+
+### 12.2. SaaS compatibility
+
+Verbatim: "Workflow Engine is SaaS compliant." Runs in any .NET-capable cloud. For multiple instances, set `runtime.AsMultiServer()`.
+
+### 12.3. License key
+
+- Available since v9.0.0.
+- Bound to machine MAC address.
+- Key string must include either company-name prefix or `TRIAL-` prefix.
+- Registration: `WorkflowRuntime.RegisterLicense(keyString)` for the Workflow Engine library; `WorkflowApiCoreOptions.LicenseKey` for the Workflow Engine NEO Web API.
+
+### 12.4. Workflow Engine Designer integration in JS frameworks
+
+Verbatim: "Use Workflow Engine Designer as a global JS object - do not import as ES module."
+
+For React, Angular, Vue: load Workflow Engine Designer scripts via `<script>` tags or in `index.html`, then access via `window.workflowDesigner` global.
+
+### 12.5. Workflow Engine Designer in Blazor
+
+Possible via `IJSRuntime` interop. CDN scripts loaded in `index.html`, JS interop calls from Blazor component.
+
+### 12.6. Strict CSP support
+
+Use `@optimajet/workflow-designer/strict` entrypoint with separate CSS file. Allows the Workflow Engine Designer to run under strict Content-Security-Policy headers.
+
+---
+
+## 13. Vacation Approval demo (canonical example)
+
+Live at https://demo.workflowengine.io/designer.
+
+Five stages:
+1. Request creation
+2. Manager signing + approval
+3. Boss signing + approval (when budget condition met)
+4. Accounting review
+5. Final notification (paid)
+
+Actors: Requester / Author, Manager, Big Boss, Accountant.
+
+Conditional state transition example (verbatim): "When the condition `@Sum > amount` is verified, the command Approve permits the state to pass to BigBossSigning instead."
+
+Modifying running processes:
+- Activities can be added to the scheme.
+- The vacation request can be reopened.
+- Update completes when the list of commands is validated.
+
+This is the canonical example of the Auto Scheme Update mechanism.
+
+---
+
+## 14. NuGet and npm package list (latest version: 21.0.0)
+
+### NuGet (verified via api.nuget.org/v3-flatcontainer)
+- `WorkflowEngine.NETCore-Core` (133 versions)
+- `WorkflowEngine.NETCore-ProviderForMSSQL` (135 versions)
+- `WorkflowEngine.NETCore-ProviderForPostgreSQL`
+- `WorkflowEngine.NETCore-ProviderForMySQL`
+- `WorkflowEngine.NETCore-ProviderForOracle`
+- `WorkflowEngine.NETCore-ProviderForMongoDB`
+- `WorkflowEngine.NETCore-ProviderForSQLite`
+- `WorkflowEngine.NETCore-FilesPlugin`
+- `WorkflowEngine.NETCore-ActiveDirectoryPlugin`
+- `OptimaJet.Workflow.Api` (27 versions, .NET 8.0)
+- `WorkflowEngine.NET-Server` (Workflow Server, separate product, .NET 8.0)
+
+### npm (verified via registry.npmjs.org)
+- `@optimajet/workflow-designer` - vanilla JavaScript
+- `@optimajet/workflow-designer-react` - React wrapper
+- `@optimajet/workflow-designer-angular` - Angular wrapper
+
+---
+
+## 15. Comparison reference points
+
+### 15.1. Workflow Engine vs Workflow Server (verbatim from FAQ)
+
+"Workflow Engine is a development tool. Workflow Server is a ready-to-use product. Workflow Engine is cheaper than Workflow Server. Workflow Server is built on top of Workflow Engine."
+
+### 15.2. Workflow Engine vs Camunda 7 (from /guides/camuda-7-vs-workflow-engine)
+
+| | Workflow Engine | Camunda 7 |
+|---|---|---|
+| Cost | $, one-time | $$$$, annually |
+| Implementation | .NET / C# | Java |
+| Engine type | State machine | BPMN |
+| Multi-server | Ultimate license | Out of the box |
+
+Author of comparison: Denis Kotov.
+
+### 15.3. Differentiators (from documentation, verbatim)
+
+- "Workflow Engine has no built-in security system" - integrates with yours via `IWorkflowRuleProvider`.
+- "Workflow Engine is not a BPMN engine" - but supports BPMN import via plugin.
+- Form Engine and Workflow Engine NEO are separate products - "they are integrated through the Forms Plugin."
+
+---
+
+## 16. Pointer index for fuller details
+
+For per-page documentation, see the curated link index in the companion file `llms.txt` at the same site root.
+
+Key documentation entry points:
+- Documentation home: https://workflowengine.io/documentation/
+- Framework-agnostic Setup (6-step guide): https://workflowengine.io/documentation/how-to-integrate
+- Live demo: https://demo.workflowengine.io/designer
+- Source code: https://github.com/optimajet/WorkflowEngine.NET
+- Pricing: https://optimajet.com/products/workflowengine/price/
+- EULA: https://optimajet.com/products/workflowengine/eula/
+- Workflow Server (separate product): https://workflowserver.io/
+- Form Engine (separate product): https://formengine.io/
+- Roadmap: https://workflowengine.io/documentation/roadmap
+
+End of llms-full.txt.

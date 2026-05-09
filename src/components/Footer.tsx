@@ -22,6 +22,7 @@ const Footer: React.FC = () => {
           { text: "Roadmap", href: "https://workflowengine.io/documentation/roadmap" },
           { text: "Blog", href: "/blog/" },
           { text: "Guides", href: "https://workflowengine.io/documentation/category/guides" },
+          { text: "LLMs.txt", href: "/llms.txt" },
         ]
       },
       {
