@@ -37,10 +37,14 @@ export type BlogCategory = (typeof BLOG_CATEGORIES)[number]
 
 const CONTENT_DIR = path.join(process.cwd(), 'src', 'content', 'blog')
 
+// Cache only in production. In dev we re-read on every call so Decap CMS
+// edits (create/update/delete via /admin/) show up immediately on /blog/
+// without restarting the dev server.
+const CACHE_ENABLED = process.env.NODE_ENV === 'production'
 let cache: BlogPost[] | null = null
 
 function readAllPosts(): BlogPost[] {
-  if (cache) return cache
+  if (CACHE_ENABLED && cache) return cache
 
   const entries = fs.readdirSync(CONTENT_DIR, { withFileTypes: true })
   const posts: BlogPost[] = []
@@ -73,13 +77,32 @@ function readAllPosts(): BlogPost[] {
   return posts
 }
 
-export const blogPosts: BlogPost[] = readAllPosts()
+// `blogPosts` is a Proxy that re-invokes readAllPosts() on each property
+// access. In production the underlying readAllPosts() is cached (see
+// CACHE_ENABLED above) so the proxy adds no cost. In dev each access re-
+// reads from disk, so edits made via Decap CMS at /admin/ show up on
+// /blog/ immediately without restarting the dev server.
+export const blogPosts: BlogPost[] = new Proxy([] as BlogPost[], {
+  get(_target, prop, receiver) {
+    return Reflect.get(readAllPosts(), prop, receiver)
+  },
+  has(_target, prop) {
+    return Reflect.has(readAllPosts(), prop)
+  },
+  ownKeys() {
+    return Reflect.ownKeys(readAllPosts())
+  },
+  getOwnPropertyDescriptor(_target, prop) {
+    return Reflect.getOwnPropertyDescriptor(readAllPosts(), prop)
+  },
+})
 
 export function getBlogPostBySlug(slug: string): BlogPost | undefined {
-  return blogPosts.find((post) => post.slug === slug)
+  return readAllPosts().find((post) => post.slug === slug)
 }
 
 export function getBlogPostsByCategory(category: string): BlogPost[] {
-  if (category === 'All') return blogPosts
-  return blogPosts.filter((post) => post.category === category)
+  const posts = readAllPosts()
+  if (category === 'All') return posts
+  return posts.filter((post) => post.category === category)
 }

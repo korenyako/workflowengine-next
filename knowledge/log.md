@@ -2,6 +2,35 @@
 
 Chronological log of wiki updates. Newest entries on top.
 
+## 2026-05-12 | Decap CMS на `/admin/`
+
+Подключён [Decap CMS](https://decapcms.org) как UI-редактор для блога. Авторы (включая нон-технических) теперь могут создавать, редактировать и удалять посты через `/admin/` без правки кода. CMS читает/пишет напрямую в `src/content/blog/*.mdx` через YAML-frontmatter — никакой БД или бекенда. Полная инструкция — [docs/blog-cms.md](../docs/blog-cms.md).
+
+**Что добавилось:**
+
+- [public/admin/index.html](../public/admin/index.html) — точка входа, грузит Decap CMS с CDN (`unpkg.com/decap-cms@^3.8.0`).
+- [public/admin/config.yml](../public/admin/config.yml) — collection-схема для блога: 13 полей (frontmatter + body), backend-stub `git-gateway`, `local_backend: true` для dev-режима. Per-slug media folder `public/images/blog/{{slug}}/` (повторяет существующую раскладку 31 поста).
+- [docs/blog-cms.md](../docs/blog-cms.md) — usage-гайд: dev-flow (`npx decap-server` + `next dev`), frontmatter-schema для прямой правки файлов, ограничения, **outline для перехода на prod-auth** (Netlify Identity / GitHub OAuth) — реализовать перед запуском сайта в прод.
+
+**Что пришлось доработать в манифесте:**
+
+- В [blog-manifest.ts](../src/lib/blog-manifest.ts) `blogPosts` теперь Proxy, который на каждом доступе вызывает `readAllPosts()`. В prod-сборке `readAllPosts()` кэшируется (`CACHE_ENABLED = NODE_ENV === 'production'`), в dev — re-читает с диска. Без этого dev-сервер не видел CMS-изменения после первого рендера `/blog/` (модуль-уровневая `const` фриз). С Proxy — изменения через CMS видны на `/blog/` мгновенно без перезапуска `next dev`.
+
+**Что НЕ сделано (намеренно):**
+
+- Prod-auth не настроен. `local_backend: true` работает только на localhost. Перед деплоем нужен один из путей в [docs/blog-cms.md#production-auth-phase-2--not-yet-implemented](../docs/blog-cms.md#production-auth-phase-2--not-yet-implemented).
+- Авто-инкремент `order`. Поле required, но автор сам выбирает следующее число (current max = 31).
+- MDX-preview в редакторе. Отключён (`editor: preview: false`) — Decap-renderer не совпадает с `next-mdx-remote/rsc` пайплайном, превью был бы misleading.
+- Очистка `public/images/blog/<slug>/` при удалении поста. Decap удаляет только `.mdx`-файл, картинки остаются — chistить вручную.
+
+**Тестирование выполнено через decap-server HTTP API** (имитация CMS-клиента; полноценный браузерный smoke не прогонял):
+- `info` → server-info OK
+- `entriesByFolder` → видит все 31 пост с распарсенным frontmatter
+- `persistEntry` (create) → пишет новый `.mdx`, манифест подхватывает, `/blog/` показывает 32
+- `persistEntry` (update) → переписывает frontmatter + body чисто
+- `persistMedia` → загружает картинку в `public/images/blog/<slug>/`
+- `deleteFile` → удаляет файл; манифест в dev сразу подхватывает (32 → 31)
+
 ## 2026-05-12 | Blog: миграция метаданных в MDX frontmatter
 
 `src/data/blog.ts` удалён. Все 31 поста получили YAML-frontmatter в `.mdx` — теперь это единственный источник правды по метаданным. Новый модуль [src/lib/blog-manifest.ts](../src/lib/blog-manifest.ts) сканирует `src/content/blog/` через `gray-matter` и экспортирует `blogPosts`, `BLOG_CATEGORIES`, `getBlogPostBySlug`, `getBlogPostsByCategory` (тот же API, что раньше у `blog.ts`). Импорты в [src/app/blog/page.tsx](../src/app/blog/page.tsx), [src/app/blog/[slug]/page.tsx](../src/app/blog/[slug]/page.tsx), [src/components/blog/BlogCard.tsx](../src/components/blog/BlogCard.tsx) переключены с `@/data/blog` на `@/lib/blog-manifest`.

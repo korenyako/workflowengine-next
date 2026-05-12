@@ -1,0 +1,149 @@
+# Decap CMS configuration for the WorkflowEngine blog.
+# See: https://decapcms.org/docs/configuration-options/
+#
+# Auth: local_backend during dev (run `npx decap-server` and open /admin/);
+# git-gateway is the placeholder production backend, swapped in once Netlify
+# Identity (or GitHub OAuth) is configured. See docs/blog-cms.md.
+
+backend:
+  name: git-gateway
+  branch: main
+
+# Enables the local backend for development:
+#   1. Run `npx decap-server` in one terminal (binds 8081)
+#   2. Run `npm run dev` in another (binds 3000)
+#   3. Open http://localhost:3000/admin/
+# The CMS edits files in src/content/blog/ directly via the local server,
+# so changes appear immediately and are committable like any other edit.
+local_backend: true
+
+site_url: https://workflowengine.io
+display_url: https://workflowengine.io
+logo_url: /logos/workflowengine.svg
+
+# Default media destination — overridden per collection below so uploads
+# land in the correct per-slug subfolder used by the existing 31 posts.
+media_folder: public/images/blog
+public_folder: /images/blog
+
+collections:
+  - name: blog
+    label: Blog
+    label_singular: Post
+    description: >-
+      Blog posts for workflowengine.io. Each post is a single .mdx file in
+      src/content/blog/. Metadata lives in YAML frontmatter at the top of
+      the file; the body is MDX (Markdown + optional JSX components).
+    folder: src/content/blog
+    extension: mdx
+    format: yaml-frontmatter
+    create: true
+    delete: true
+    slug: '{{fields.slug}}'
+    summary: '{{title}}  ·  order {{order}}  ·  {{category}}'
+    sortable_fields:
+      - order
+      - title
+      - date
+    # Per-slug media folder, matching the existing layout
+    # public/images/blog/<slug>/. Uploads from a post's editor land in
+    # that post's folder; references are written as /images/blog/<slug>/...
+    media_folder: '/public/images/blog/{{slug}}'
+    public_folder: '/images/blog/{{slug}}'
+    editor:
+      # MDX preview is finicky (next-mdx-remote pipeline differs from
+      # Decap's preview renderer). Disable to avoid misleading previews.
+      preview: false
+    fields:
+      - name: slug
+        label: Slug
+        widget: string
+        hint: >-
+          URL slug. Lowercase, hyphens only. Becomes the filename
+          (<slug>.mdx) and the URL (/blog/<slug>/). Must be unique.
+      - name: title
+        label: Title
+        widget: string
+      - name: description
+        label: Description
+        widget: text
+        hint: >-
+          Subtitle shown on /blog/ index card and at the top of the post.
+          Multi-paragraph: separate paragraphs with one blank line.
+      - name: category
+        label: Category
+        widget: select
+        options:
+          - Product
+          - Engineering
+          - Case Study
+          - Open Source
+      - name: tags
+        label: Tags
+        widget: list
+        default: []
+        required: false
+        hint: >-
+          Comma-separated. Currently unused on the rendered site but kept
+          for future filtering.
+      - name: readingTime
+        label: Reading time
+        widget: string
+        hint: 'e.g. "5 minutes" or "2 minutes 30 seconds".'
+      - name: order
+        label: Order
+        widget: number
+        value_type: int
+        min: 1
+        hint: >-
+          Curated display order on /blog/ index. Lower = earlier. To put a
+          new post at the end of the list, use a number greater than any
+          existing post (current max is 31).
+      - name: cover
+        label: Cover image
+        widget: image
+        required: false
+        hint: >-
+          Used as the thumbnail on /blog/ and as og:image / twitter:image
+          for social shares. NOT rendered at the top of the post itself —
+          if you want a lead image inside the article, add an image as
+          the first line of the body (it can be the same file).
+      - name: date
+        label: Date
+        widget: datetime
+        required: false
+        format: 'YYYY-MM-DD'
+        date_format: 'YYYY-MM-DD'
+        time_format: false
+        picker_utc: true
+        hint: >-
+          Optional. Legacy posts ported from workflowengine.io have no
+          date and render without one — leave blank to match.
+      - name: dateLabel
+        label: Date label
+        widget: select
+        required: false
+        options:
+          - Published
+          - Updated
+        default: Published
+      - name: keywords
+        label: Keywords (SEO)
+        widget: string
+        required: false
+        hint: 'Comma-separated keywords for the <meta name="keywords"> tag.'
+      - name: author
+        label: Author
+        widget: object
+        required: false
+        collapsed: true
+        fields:
+          - { name: name, label: Name, widget: string, default: 'Optimajet Team' }
+          - { name: title, label: Title, widget: string, required: false }
+      - name: body
+        label: Body
+        widget: markdown
+        hint: >-
+          MDX: Markdown plus optional JSX components. Do NOT start the
+          body with "# Title" — the post title is rendered separately at
+          the top, so a leading heading would duplicate it.
