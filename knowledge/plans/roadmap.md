@@ -31,7 +31,7 @@ Outstanding work after the FormEngine → WorkflowEngine fork (commit `0efe811`)
 
 - [ ] **Regenerate `package-lock.json`.** Still references removed `@react-form-builder/*`, `@mui/*`, `@emotion/*` packages. Run a clean `npm install` on a healthy network.
 - [ ] **Set `BITRIX_URL` (+ optional `BITRIX_ASSIGNED_BY_ID`) in Netlify.** Without it, `/backend/lead/` returns 500 and the contact form fails.
-- [ ] **Curate customer logos.** `LogosBlock` hard-codes a 9-logo set of shared OptimaJet clients (Bosch, Engie, Philips, Nelnet, Dell, Acer, Santos, Ideagen, Novartis). The workflowengine.io live set adds Airbus, KPMG, Wolters Kluwer, ProcessMAP, Techlogix, Technocom, MediaOcean, GE Honda, Wine.Create. Needs SVG sourcing — or pick a shorter curated list.
+- [x] ~~Curate customer logos.~~ `LogosBlock` теперь содержит 17 логотипов в анимированной ленте: shared OptimaJet (Bosch, Engie, Philips, Nelnet, Dell, Acer, Santos, Ideagen, Novartis) + WE-specific (Wine.Create, ProcessMAP, Civix, Honda Aero, KPMG, MediaOcean, Techlogix, Technocom). Из исходного wish-list отсутствуют только Airbus и Wolters Kluwer — добавить при появлении SVG.
 - [ ] **`public/sitemap.xml`** — auto-generated at build time, but check for stale FormEngine URLs after next deploy.
 - [ ] **`public/robots.txt`, `public/_redirects`, `public/_headers`** — audit for FormEngine leftovers.
 - [ ] **Drop `__placeholder__` blog workaround** once the first real post lands. See [blog.md](../blog.md).
