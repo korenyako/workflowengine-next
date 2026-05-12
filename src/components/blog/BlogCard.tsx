@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import type { BlogPost } from '@/data/blog'
+import type { BlogPost } from '@/lib/blog-manifest'
 
 interface BlogCardProps {
   post: BlogPost

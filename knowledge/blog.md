@@ -10,12 +10,14 @@ title: Blog
 
 | File | Role |
 |------|------|
-| [src/data/blog.ts](../src/data/blog.ts) | `blogPosts: BlogPost[]` (метаданные 31 поста), `BLOG_CATEGORIES`, helpers `getBlogPostBySlug`, `getBlogPostsByCategory`. |
-| [src/content/blog/](../src/content/blog/) | MDX-источники. Имя файла = slug (`<slug>.mdx`). 31 файл. |
-| [src/app/blog/page.tsx](../src/app/blog/page.tsx) | Index page; category filter + `BlogCard` grid. |
-| [src/app/blog/[slug]/page.tsx](../src/app/blog/[slug]/page.tsx) | Post page; читает MDX через `fs.readFileSync`, рендерит `next-mdx-remote/rsc`. |
+| [src/content/blog/](../src/content/blog/) | MDX-источники + **frontmatter** = единственный источник правды. Имя файла = slug. 31 файл. |
+| [src/lib/blog-manifest.ts](../src/lib/blog-manifest.ts) | Build-time сканирует `src/content/blog/`, парсит frontmatter через `gray-matter`, экспортирует `blogPosts: BlogPost[]`, `BLOG_CATEGORIES`, helpers `getBlogPostBySlug`, `getBlogPostsByCategory`. Кэшируется на уровне модуля (один read на build). |
+| [src/app/blog/page.tsx](../src/app/blog/page.tsx) | Index page; `BlogCard` grid в порядке `order`. |
+| [src/app/blog/[slug]/page.tsx](../src/app/blog/[slug]/page.tsx) | Post page; читает MDX через `fs.readFileSync`, рендерит body через `next-mdx-remote/rsc` (frontmatter уже распарсен манифестом, не дублируется). |
 | [src/components/blog/](../src/components/blog/) | `BlogCard`, `BlogCategoryFilter`, `TableOfContents` (client-side ToC extractor). |
 | [public/images/blog/<slug>/](../public/images/blog/) | Обложки + inline-картинки, скачаны с `workflowengine.io/blog/assets/...` и перевешены на per-slug папки. |
+
+`src/data/blog.ts` **удалён** (`2026-05-12`). Метаданные мигрировали в YAML-frontmatter каждого `.mdx` файла. Единый источник правды; редактирование через [Decap CMS](./../docs/blog-cms.md) (admin UI на `/admin/`) или прямое правка файла.
 
 ## BlogPost shape
 
@@ -32,10 +34,17 @@ interface BlogPost {
   cover?: string
   readingTime: string
   keywords?: string
+  order: number         // required — курируемый порядок отображения на /blog/ index
 }
 ```
 
-`date` опциональна: на источнике (workflowengine.io) ни в HTML, ни в `<meta>`, ни в sitemap нет дат публикации. Рендеринг ([BlogCard](../src/components/blog/BlogCard.tsx) + [post page](../src/app/blog/[slug]/page.tsx)) обёрнут в conditional. Когда (если) даты восстановятся, их можно проставить в `blog.ts` без изменения компонентов.
+### `order` — почему required
+
+У большинства легаси-постов нет `date`, поэтому date-desc сортировка не сработает. `order` (1..31 для текущих, дальше — новый автор сам выбирает позицию) даёт детерминированный порядок без отдельного индекса-файла. Меньше = раньше на `/blog/`.
+
+Если будущие посты будут с реальными датами — можно перейти на гибрид: `date` desc для датированных + `order` для legacy-fallback. Сейчас просто `posts.sort((a,b) => a.order - b.order)`.
+
+`date` опциональна: на источнике (workflowengine.io) ни в HTML, ни в `<meta>`, ни в sitemap нет дат публикации. Рендеринг ([BlogCard](../src/components/blog/BlogCard.tsx) + [post page](../src/app/blog/[slug]/page.tsx)) обёрнут в conditional. Когда (если) даты восстановятся, их можно проставить во frontmatter без изменения компонентов.
 
 `author` тоже опциональна, но у всех 31 портированного поста выставлено `{ name: 'Optimajet Team' }` (на источнике автор не указан, это дефолт от имени бренда). Рендеринг автора тоже conditional — если поле снимут, просто не покажется.
 
@@ -53,9 +62,28 @@ interface BlogPost {
 
 ## Add a post
 
-1. Append a `BlogPost` object to `blogPosts` in `src/data/blog.ts`. `slug` must be URL-safe and match the MDX filename. `category` must be one of `BLOG_CATEGORIES`.
-2. Create `src/content/blog/<slug>.mdx` with article body (MDX — supports standard Markdown + JSX). **Не начинай тело с `# Title`** — заголовок поста уже рендерит [page.tsx](../src/app/blog/[slug]/page.tsx) в hero, в теле он будет дубликатом.
-3. Drop cover image under `public/images/blog/<slug>/cover.webp` and set `cover: '/images/blog/<slug>/cover.webp'` on the metadata. Если хочешь lead-картинку в начале статьи — добавь `![alt](/images/blog/<slug>/cover.webp)` первой строкой MDX (та же картинка как и в `cover` — она появится на карточке индекса как thumbnail и в теле статьи как lead).
+Через [Decap CMS](./../docs/blog-cms.md) на `/admin/` (рекомендуется для нон-технических авторов) **или** напрямую в файлы:
+
+1. Создать `src/content/blog/<slug>.mdx`. Имя файла = `slug`. Frontmatter обязательно — schema из [blog-manifest.ts](../src/lib/blog-manifest.ts):
+
+   ```yaml
+   ---
+   slug: my-new-post
+   title: My New Post
+   description: One-paragraph subtitle.
+   category: Engineering   # one of Product, Engineering, Case Study, Open Source
+   tags: []
+   readingTime: 5 minutes
+   order: 32               # next available — больше любого существующего, чтобы новый пост попал в конец /blog/
+   cover: /images/blog/my-new-post/cover.webp
+   author:
+     name: Optimajet Team
+   ---
+   ```
+
+2. Body — MDX (standard Markdown + JSX). **Не начинай тело с `# Title`** — заголовок уже рендерит [page.tsx](../src/app/blog/[slug]/page.tsx) в hero, в теле он будет дубликатом.
+
+3. Cover: положить картинку в `public/images/blog/<slug>/cover.webp`, прописать `cover: /images/blog/<slug>/cover.webp` во frontmatter. Lead-картинка (опционально) — добавить `![alt](/images/blog/<slug>/cover.webp)` первой строкой MDX-тела (та же картинка: на карточке индекса как thumbnail, в теле статьи как lead).
 
 ## Categories
 
@@ -71,6 +99,8 @@ interface BlogPost {
 Server-rendered via `next-mdx-remote/rsc` — MDX is transformed at build time, the post page is just a React Server Component. No runtime MDX compilation. No custom `<MDXRemote>` components map yet; add one via the `components` prop of `<MDXRemote>` if you need custom rendering (callouts, embeds, code highlighting, etc.).
 
 **Code-блоки сейчас рендерятся как plain `<pre><code>`** — без подсветки синтаксиса. `highlight.js` есть в `package.json`, но в эту версию ещё не подключён к MDX-пайплайну. На легаси-сайте была подсветка; включить через `rehype-highlight` или `rehype-prism-plus` (см. `MDXRemote.options.mdxOptions.rehypePlugins`).
+
+Frontmatter парсится дважды (это не оптимально, но просто): один раз в [blog-manifest.ts](../src/lib/blog-manifest.ts) для метаданных, второй — в [post page](../src/app/blog/[slug]/page.tsx) через `matter(...).content` чтобы **отделить body от frontmatter** перед `MDXRemote`. **`MDXRemote` сам frontmatter не стрипает** — без `matter(...)` YAML отрендерился бы как видимый текст в начале статьи (мы это поймали и поправили `2026-05-12` сразу после миграции).
 
 ## Inline HTML внутри MDX — гайдлайн
 

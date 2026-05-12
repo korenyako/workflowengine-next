@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import fs from 'fs'
 import path from 'path'
+import matter from 'gray-matter'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import rehypeHighlight from 'rehype-highlight'
-import { blogPosts, getBlogPostBySlug } from '@/data/blog'
+import { blogPosts, getBlogPostBySlug } from '@/lib/blog-manifest'
 import TableOfContents from '@/components/blog/TableOfContents'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -77,7 +78,8 @@ export default async function BlogPostPage({
   const filePath = path.join(CONTENT_DIR, `${slug}.mdx`)
   if (!fs.existsSync(filePath)) notFound()
 
-  const source = fs.readFileSync(filePath, 'utf-8')
+  // Strip frontmatter — MDXRemote would otherwise render the YAML as visible text.
+  const { content: source } = matter(fs.readFileSync(filePath, 'utf-8'))
 
   const formattedDate = post.date
     ? new Date(post.date).toLocaleDateString('en-US', {

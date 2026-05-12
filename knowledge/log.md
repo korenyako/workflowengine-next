@@ -2,6 +2,23 @@
 
 Chronological log of wiki updates. Newest entries on top.
 
+## 2026-05-12 | Blog: миграция метаданных в MDX frontmatter
+
+`src/data/blog.ts` удалён. Все 31 поста получили YAML-frontmatter в `.mdx` — теперь это единственный источник правды по метаданным. Новый модуль [src/lib/blog-manifest.ts](../src/lib/blog-manifest.ts) сканирует `src/content/blog/` через `gray-matter` и экспортирует `blogPosts`, `BLOG_CATEGORIES`, `getBlogPostBySlug`, `getBlogPostsByCategory` (тот же API, что раньше у `blog.ts`). Импорты в [src/app/blog/page.tsx](../src/app/blog/page.tsx), [src/app/blog/[slug]/page.tsx](../src/app/blog/[slug]/page.tsx), [src/components/blog/BlogCard.tsx](../src/components/blog/BlogCard.tsx) переключены с `@/data/blog` на `@/lib/blog-manifest`.
+
+**Что добавилось:**
+
+- Новое required-поле `order: number` во frontmatter и в `BlogPost`-shape. Нужно потому, что у легаси-постов нет `date` → date-desc сортировка не работает; `order` (1..31 для текущих) даёт детерминированный порядок без отдельного индекс-файла. Подробнее в [blog.md](blog.md#order--почему-required).
+- Зависимость `gray-matter` в `package.json` (build-time парсинг).
+- Гoтча про MDX-рендер: `MDXRemote` сам frontmatter не стрипает — `[slug]/page.tsx` теперь явно отделяет `body` через `matter(source).content` перед передачей в `<MDXRemote>`. Без этого YAML отрендерился бы как видимый текст в начале статьи (поймал и поправил сразу же).
+
+**Что сделано для подготовки к [Decap CMS](../docs/blog-cms.md):**
+
+- Frontmatter-as-source-of-truth — обязательное условие для Decap (он читает/пишет только frontmatter, не отдельные TS-файлы).
+- Поле `description` поддерживает многоабзацный режим (`\n\n`) через YAML folded-scalar (`>-`) с пустыми строками между параграфами; round-trip через `gray-matter` сохраняет `\n\n` корректно (проверено).
+
+[blog.md](blog.md) полностью переписан под новую архитектуру.
+
 ## 2026-05-09 | Domain overview: product taxonomy + naming conventions
 
 Существенно обновил [domain/overview.md](domain/overview.md) под текущее состояние сайта и продукта.

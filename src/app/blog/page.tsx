@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { blogPosts, BLOG_CATEGORIES } from '@/data/blog'
+import { blogPosts, BLOG_CATEGORIES } from '@/lib/blog-manifest'
 import BlogCard from '@/components/blog/BlogCard'
 import BlogCategoryFilter from '@/components/blog/BlogCategoryFilter'
 
