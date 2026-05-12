@@ -1,7 +1,7 @@
 {
-  "name": "FormEngine",
-  "short_name": "FormEngine",
-  "description": "FormEngine Core Open Source Free React Form Library",
+  "name": "WorkflowEngine",
+  "short_name": "WorkflowEngine",
+  "description": "OptimaJet WorkflowEngine — .NET workflow automation engine",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
