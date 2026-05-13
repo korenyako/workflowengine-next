@@ -27,13 +27,40 @@ npm run dev          # binds http://localhost:3000
 # Terminal 2 — Decap local backend
 npx decap-server     # binds http://localhost:8081
 
-# Browser
-# Open http://localhost:3000/admin/
+# Browser — IMPORTANT: include /index.html in dev mode (see note below)
+# Open http://localhost:3000/admin/index.html
 ```
 
-The CMS auto-detects `localhost` and uses the proxy at port 8081 because [config.yml](../public/admin/config.yml) sets `local_backend: true`. No login screen — you go straight to the editor.
+### Dev-mode URL quirk
 
-Changes saved in the CMS appear immediately on `/blog/` and `/blog/<slug>/` in the dev server (the manifest re-scans on every request in dev). Commit them with normal `git` afterwards — the CMS doesn't push anything.
+`next dev` does **not** auto-resolve `/admin/` to `/admin/index.html` for files served from `public/`. In dev:
+
+| URL | Result |
+|-----|--------|
+| `http://localhost:3000/admin/index.html` | ✅ 200 — loads the CMS |
+| `http://localhost:3000/admin/` | ❌ 404 |
+| `http://localhost:3000/admin` | 308 → `/admin/` → 404 |
+
+In **production** (Netlify), `/admin/` works because the static-file server resolves index.html automatically. The quirk is dev-only. Bookmark `/admin/index.html` for local work, or run a prod-like preview with `npx serve out` after `npm run build`.
+
+### Logging in (local backend)
+
+With `local_backend: true`, the CMS shows a generic **"Login"** button (the UI is the same regardless of backend), but clicking it logs you in **immediately — no password or account needed**. It works because:
+
+1. The page is loaded from `localhost` (NOT `127.0.0.1` — Decap's local-backend detection only fires for the `localhost` hostname).
+2. `npx decap-server` is running and listening on port 8081.
+3. The browser can reach `http://localhost:8081/api/v1`.
+
+**If clicking Login asks for real Netlify Identity / GitHub credentials**, local backend isn't connected. Debug checklist:
+
+- Is `decap-server` actually running? Test with: `curl -X POST -H "Content-Type: application/json" -d '{\"action\":\"info\"}' http://localhost:8081/api/v1` — should return `{"repo":"workflowengine",...}`.
+- Are you on `localhost` (not `127.0.0.1`)?
+- Open DevTools → Network. After clicking Login, you should see a POST to `localhost:8081/api/v1`. If you don't, the CMS isn't trying the local backend at all — re-check `local_backend: true` in [config.yml](../public/admin/config.yml) and force-refresh (`Ctrl+Shift+R`) to bust the cached config.
+- Console errors about CORS? `decap-server` enables CORS by default, but a firewall or extension could be blocking it.
+
+### What you can do after login
+
+Once in, the CMS reads/writes `src/content/blog/` directly through the proxy. Changes saved in the CMS appear immediately on `/blog/` and `/blog/<slug>/` in the dev server (the manifest re-scans on every request in dev). Commit them with normal `git` afterwards — the CMS doesn't push anything.
 
 ## Creating a post
 

@@ -29,6 +29,7 @@
     "@types/node": "^25.0.8",
     "@types/react": "^19.2.8",
     "autoprefixer": "^10.4.23",
+    "decap-server": "^3.7.0",
     "eslint": "^9.39.2",
     "eslint-config-next": "^16.1.1",
     "js-beautify": "^1.15.4",
