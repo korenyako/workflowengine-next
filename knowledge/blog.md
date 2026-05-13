@@ -98,7 +98,12 @@ interface BlogPost {
 
 Server-rendered via `next-mdx-remote/rsc` — MDX is transformed at build time, the post page is just a React Server Component. No runtime MDX compilation. No custom `<MDXRemote>` components map yet; add one via the `components` prop of `<MDXRemote>` if you need custom rendering (callouts, embeds, code highlighting, etc.).
 
-**Code-блоки сейчас рендерятся как plain `<pre><code>`** — без подсветки синтаксиса. `highlight.js` есть в `package.json`, но в эту версию ещё не подключён к MDX-пайплайну. На легаси-сайте была подсветка; включить через `rehype-highlight` или `rehype-prism-plus` (см. `MDXRemote.options.mdxOptions.rehypePlugins`).
+**Подключённые плагины:**
+
+- `rehype-highlight` (с `detect: true`) — подсветка синтаксиса в fenced-блоках (auto-determine для блоков без `language-X`).
+- `remark-gfm` — GFM-возможности: таблицы (`|...|`), ~~strikethrough~~, task-lists (`- [ ]`), autolinks, footnotes. **Без него таблицы рендерятся как plain text с пайпами** (`2026-05-13` поймали на новом посте `data-api-vs-rpc-api-in-workflow-engine-neo`).
+
+Inline `<code>` (backticks внутри текста) стилизуется как pill-бейдж — CSS-правило `.article-content :not(pre) > code` в [globals.css](../src/styles/globals.css). `:not(pre)` важно — иначе зацепит и code-блоки внутри `<pre>` где работает highlight.js.
 
 Frontmatter парсится дважды (это не оптимально, но просто): один раз в [blog-manifest.ts](../src/lib/blog-manifest.ts) для метаданных, второй — в [post page](../src/app/blog/[slug]/page.tsx) через `matter(...).content` чтобы **отделить body от frontmatter** перед `MDXRemote`. **`MDXRemote` сам frontmatter не стрипает** — без `matter(...)` YAML отрендерился бы как видимый текст в начале статьи (мы это поймали и поправили `2026-05-12` сразу после миграции).
 

@@ -4,6 +4,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import rehypeHighlight from 'rehype-highlight'
+import remarkGfm from 'remark-gfm'
 import { blogPosts, getBlogPostBySlug } from '@/lib/blog-manifest'
 import TableOfContents from '@/components/blog/TableOfContents'
 import Link from 'next/link'
@@ -147,6 +148,10 @@ export default async function BlogPostPage({
                 source={source}
                 options={{
                   mdxOptions: {
+                    remarkPlugins: [
+                      // GFM: tables, strikethrough, task lists, autolinks, footnotes.
+                      remarkGfm,
+                    ],
                     rehypePlugins: [
                       // detect: true — авто-определяет язык в fenced-блоках без `language-X`
                       // (на легаси-сайте таких блоков много — HTML/XML без префикса).
