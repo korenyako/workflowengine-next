@@ -2,7 +2,7 @@
 
 ## Knowledge Base
 
-Перед работой с проектом прочитай [knowledge/INDEX.md](knowledge/INDEX.md) и нужные статьи из вики. После значимых изменений — обновляй соответствующие статьи и добавляй запись в [knowledge/log.md](knowledge/log.md).
+1. Перед работой с проектом прочитай [knowledge/INDEX.md](knowledge/INDEX.md) и нужные статьи из вики. После значимых изменений — обновляй соответствующие статьи и добавляй запись в [knowledge/log.md](knowledge/log.md).
 
 ---
 
