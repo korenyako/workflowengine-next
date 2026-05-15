@@ -34,22 +34,31 @@ export default function RelatedPosts({ currentSlug, topics, limit = 3 }: Props) 
   if (related.length === 0) return null
 
   return (
-    <aside className="related-posts">
-      <h2 className="related-posts__heading">Related articles</h2>
-      <ul className="related-posts__list">
-        {related.map((p) => (
-          <li key={p.slug} className="related-posts__item">
-            <Link href={`/blog/${p.slug}/`} className="related-posts__link">
-              <span className="related-posts__title">{p.title}</span>
-              {p.description && (
-                <span className="related-posts__excerpt">
-                  {p.description.split('\n\n')[0]}
-                </span>
+    <aside className="mt-16 pt-10 border-t border-slate-200">
+      <h2 className="text-2xl font-heading text-slate-900 mb-8">
+        Related articles
+      </h2>
+      <div className="grid gap-6 md:grid-cols-3">
+        {related.map((p) => {
+          const excerpt = p.description?.split('\n\n')[0]
+          return (
+            <Link
+              key={p.slug}
+              href={`/blog/${p.slug}/`}
+              className="block group rounded-xl border border-slate-200 p-5 transition-colors hover:border-[#4286F4]"
+            >
+              <h3 className="font-heading text-base text-slate-900 leading-snug mb-2 group-hover:text-[#4286F4] transition-colors">
+                {p.title}
+              </h3>
+              {excerpt && (
+                <p className="text-sm text-slate-600 leading-relaxed line-clamp-3">
+                  {excerpt}
+                </p>
               )}
             </Link>
-          </li>
-        ))}
-      </ul>
+          )
+        })}
+      </div>
     </aside>
   )
 }
