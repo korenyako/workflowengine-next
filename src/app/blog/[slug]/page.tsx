@@ -7,6 +7,7 @@ import rehypeHighlight from 'rehype-highlight'
 import remarkGfm from 'remark-gfm'
 import { blogPosts, getBlogPostBySlug } from '@/lib/blog-manifest'
 import TableOfContents from '@/components/blog/TableOfContents'
+import RelatedPosts from '@/components/blog/RelatedPosts'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 // Highlight.js theme — imported here so it only loads on blog post pages.
@@ -161,6 +162,10 @@ export default async function BlogPostPage({
                 }}
               />
             </article>
+
+            {/* Related posts — topic-overlap based, server-rendered.
+                Renders nothing if `topics` is missing or no overlap is found. */}
+            <RelatedPosts currentSlug={post.slug} topics={post.topics} />
           </div>
 
           {/* Table of Contents — right sidebar */}

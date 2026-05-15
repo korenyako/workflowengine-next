@@ -23,6 +23,16 @@ export interface BlogPost {
    * sort is not viable. Set in MDX frontmatter.
    */
   order: number
+  /**
+   * Controlled-vocabulary topic tags (1-4 per post). Drives the
+   * <RelatedPosts> block at the bottom of each article — posts with
+   * the most topic-overlap surface as related. Vocabulary is fixed:
+   * see `topics` field in public/admin/config.yml + rationale in
+   * knowledge/blog.md (Topics taxonomy section).
+   *
+   * Distinct from `tags` (free-form keywords for SEO meta).
+   */
+  topics?: string[]
 }
 
 export const BLOG_CATEGORIES = [
@@ -69,6 +79,7 @@ function readAllPosts(): BlogPost[] {
       readingTime: data.readingTime as string,
       keywords: data.keywords as string | undefined,
       order: typeof data.order === 'number' ? data.order : Number.MAX_SAFE_INTEGER,
+      topics: Array.isArray(data.topics) ? (data.topics as string[]) : undefined,
     })
   }
 

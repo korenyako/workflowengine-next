@@ -86,6 +86,28 @@ collections:
         hint: >-
           Comma-separated. Currently unused on the rendered site but kept
           for future filtering.
+      - name: topics
+        label: Topics (drives Related posts)
+        widget: select
+        multiple: true
+        required: false
+        min: 1
+        max: 4
+        options:
+          - { label: 'Workflow Engine basics', value: 'workflow-engine-basics' }
+          - { label: 'Workflow engine comparisons (vs Camunda, Nintex, WWF, ...)', value: 'workflow-engine-comparisons' }
+          - { label: 'BPM implementation', value: 'bpm-implementation' }
+          - { label: 'Workflow Server', value: 'workflow-server' }
+          - { label: 'API & microservices', value: 'api-and-microservices' }
+          - { label: 'Case studies', value: 'case-studies' }
+          - { label: 'Parallel workflows', value: 'parallel-workflows' }
+          - { label: 'Workflow Designer', value: 'workflow-designer' }
+          - { label: 'Low-code', value: 'low-code' }
+        hint: >-
+          Pick 1-4 topics that best describe this post's subject matter.
+          Drives the "Related articles" block at the bottom of the post
+          (overlap with other posts' topics → top 3 by score). Distinct
+          from `tags` (free-form keywords for SEO meta).
       - name: readingTime
         label: Reading time
         widget: string

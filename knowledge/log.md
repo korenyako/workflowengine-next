@@ -2,6 +2,22 @@
 
 Chronological log of wiki updates. Newest entries on top.
 
+## 2026-05-15 | Topics taxonomy + Related posts
+
+Добавлен controlled vocabulary `topics: string[]` во frontmatter блог-постов (9 топиков, 1-4 на пост) и блок «Related articles» внизу каждой статьи. Цель — внутренняя перелинковка для SEO; категорий (Engineering = 17 постов) для этого слишком мало granularity.
+
+**Контент-аудит:** прогнал Explore-агент по всем 32 .mdx (читал заголовок + description + первые ~500 слов тела). Агент предложил 8-10 кластеров, я переименовал под SEO-friendly слуги и слил пары с большим overlap'ом (`tool-selection` + `alternatives-comparison` → `workflow-engine-comparisons`; `industry-applications` → `case-studies` по подсказке пользователя). Финальные 9 топиков и mapping → таблица в [blog.md#topics-taxonomy](blog.md#topics-taxonomy-для-related-posts).
+
+**Что добавилось:**
+
+- `topics?: string[]` в [BlogPost type](../src/lib/blog-manifest.ts) (опционально для совместимости — посты без него просто не имеют related-блока).
+- [RelatedPosts.tsx](../src/components/blog/RelatedPosts.tsx) — server-component, алгоритм top-3 по `|intersection(currentTopics, otherTopics)|` с тiebreaker по `order`. Если score 0 — пост не показывается (никакого random-fallback'а; для SEO лучше пусто).
+- Поле `topics` в [Decap config.yml](../public/admin/config.yml) — `widget: select, multiple: true, options: [...]` (drop-down с фиксированным списком, `min: 1, max: 4`).
+- CSS-блок `.related-posts*` в [globals.css](../src/styles/globals.css) — текстовый список 3 ссылок (заголовок + 1 абзац description), без обложек чтобы не конкурировать с CTA.
+- Backfill-скрипт прописал `topics:` во все 32 .mdx, удалён после прогона (как и migrate-script — однократный).
+
+**Slug-конвенция:** общие топики без префикса (`bpm-implementation`, `low-code`, `parallel-workflows`); конкретные продукты — с префиксом (`workflow-server`, `workflow-designer`). Расширять список = синхронно править `config.yml`, `knowledge/blog.md`, и (опц.) frontmatter существующих постов.
+
 ## 2026-05-12 | Decap CMS на `/admin/`
 
 Подключён [Decap CMS](https://decapcms.org) как UI-редактор для блога. Авторы (включая нон-технических) теперь могут создавать, редактировать и удалять посты через `/admin/` без правки кода. CMS читает/пишет напрямую в `src/content/blog/*.mdx` через YAML-frontmatter — никакой БД или бекенда. Полная инструкция — [docs/blog-cms.md](../docs/blog-cms.md).

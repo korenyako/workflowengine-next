@@ -94,6 +94,44 @@ interface BlogPost {
 - **Product** (11) — обзоры, релизы, бизнес-фрейминг (server overview, low-code platform, BPM/BRMS guides).
 - **Open Source** — пусто, никто из 31 поста не подходит. Кнопка фильтра отрендерится, но покажет пустую сетку. Можно убрать категорию из массива, если хочется почистить UI.
 
+## Topics taxonomy (для related-posts)
+
+Категории слишком широкие чтобы строить осмысленные «Related articles» (Engineering = 17 постов). Поэтому **отдельный controlled vocabulary** в поле `topics: string[]` во frontmatter — 1-4 топика на пост из фиксированного списка из 9 значений. Внедрено `2026-05-15` после контент-аудита всех 32 постов (см. также Decap-select в [config.yml](../public/admin/config.yml)).
+
+| topic slug | label в Decap | посты |
+|------------|---------------|-------|
+| `workflow-engine-basics` | Workflow Engine basics | 8 |
+| `workflow-engine-comparisons` | Workflow engine comparisons (vs Camunda, Nintex, WWF, ...) | 9 |
+| `bpm-implementation` | BPM implementation | 8 |
+| `workflow-server` | Workflow Server | 7 |
+| `api-and-microservices` | API & microservices | 5 |
+| `case-studies` | Case studies | 4 |
+| `low-code` | Low-code | 4 |
+| `parallel-workflows` | Parallel workflows | 3 |
+| `workflow-designer` | Workflow Designer | 3 |
+
+`tags` vs `topics` — разные:
+- `tags` — free-form keywords (для будущего `<meta name="keywords">` или фильтрации). Сейчас не рендерится.
+- `topics` — controlled vocabulary, **только из списка выше**. Драйвит [RelatedPosts.tsx](../src/components/blog/RelatedPosts.tsx) внизу каждого поста.
+
+### Как работают «Related articles»
+
+[RelatedPosts.tsx](../src/components/blog/RelatedPosts.tsx) — server-component на конце статьи. Алгоритм:
+
+1. Для каждого другого поста: `score = |intersection(currentPost.topics, otherPost.topics)|`
+2. Отбросить посты со score 0 (нет ни одного общего топика — не релевантны)
+3. Сортировка: score desc, потом order asc (как тiebreaker — «более курируемые» сначала)
+4. Top 3
+
+Если у поста нет `topics` (пустой массив или undefined) — блок не рендерится вообще (`return null`). Для SEO лучше не показать ничего, чем показать рандом.
+
+**Расширение списка топиков:** добавить новый topic = три места синхронно:
+1. `options:` в [config.yml](../public/admin/config.yml) (поле `topics`)
+2. Эта таблица в knowledge/blog.md
+3. (Опционально) указать существующим постам через Decap UI или прямую правку frontmatter
+
+Slug-конвенция: kebab-case, без `workflow-` префикса для общих топиков, **с** префиксом для топиков о конкретном продукте (`workflow-server`, `workflow-designer`).
+
 ## MDX pipeline
 
 Server-rendered via `next-mdx-remote/rsc` — MDX is transformed at build time, the post page is just a React Server Component. No runtime MDX compilation. No custom `<MDXRemote>` components map yet; add one via the `components` prop of `<MDXRemote>` if you need custom rendering (callouts, embeds, code highlighting, etc.).
