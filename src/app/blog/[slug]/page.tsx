@@ -8,6 +8,7 @@ import remarkGfm from 'remark-gfm'
 import { blogPosts, getBlogPostBySlug } from '@/lib/blog-manifest'
 import TableOfContents from '@/components/blog/TableOfContents'
 import RelatedPosts from '@/components/blog/RelatedPosts'
+import StripeDivider from '@/components/StripeDivider'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 // Highlight.js theme — imported here so it only loads on blog post pages.
@@ -107,7 +108,7 @@ export default async function BlogPostPage({
         <div className="flex gap-12">
           <div className="flex-1 min-w-0">
             {/* Hero */}
-            <div className="mb-16">
+            <div className="mb-10">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading mb-4">
                 {post.title}
               </h1>
@@ -139,6 +140,11 @@ export default async function BlogPostPage({
                 <span>{post.readingTime}</span>
               </div>
             </div>
+
+            {/* Striped divider — separates the author/meta line from
+                the actual article body. Mirrors the dividers above
+                Related articles and inside the footer. */}
+            <StripeDivider className="h-2 mb-10" />
 
             {/* Article */}
             <article
@@ -174,9 +180,6 @@ export default async function BlogPostPage({
           </aside>
         </div>
 
-        <div className="mt-10 mb-10">
-          <div className="w-[30%] border-t border-slate-200"></div>
-        </div>
       </div>
     </section>
   )

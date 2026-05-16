@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { blogPosts, type BlogPost } from '@/lib/blog-manifest'
+import StripeDivider from '@/components/StripeDivider'
 
 interface Props {
   currentSlug: string
@@ -34,7 +35,8 @@ export default function RelatedPosts({ currentSlug, topics, limit = 3 }: Props) 
   if (related.length === 0) return null
 
   return (
-    <aside className="mt-16 pt-10 border-t border-slate-200">
+    <aside className="mt-16">
+      <StripeDivider className="h-2 mb-10" />
       <h2 className="text-2xl font-heading text-slate-900 mb-8">
         Related articles
       </h2>
@@ -45,9 +47,9 @@ export default function RelatedPosts({ currentSlug, topics, limit = 3 }: Props) 
             <Link
               key={p.slug}
               href={`/blog/${p.slug}/`}
-              className="block group rounded-xl border border-slate-200 p-5 transition-colors hover:border-[#4286F4]"
+              className="block group rounded-xl border border-slate-200 p-5 transition-colors hover:bg-[#F1F5F9] hover:border-[#F1F5F9]"
             >
-              <h3 className="font-heading text-base text-slate-900 leading-snug mb-2 group-hover:text-[#4286F4] transition-colors">
+              <h3 className="font-heading text-base text-[#4286F4] leading-snug mb-2">
                 {p.title}
               </h3>
               {excerpt && (

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from "react";
+import StripeDivider from "./StripeDivider";
 
 interface FooterLink {
   text: string;
@@ -83,7 +84,7 @@ const FooterBlock: React.FC<FooterBlockProps> = ({ columns, socialLinks, logo, c
         
         {/* Блок Optimajet на 100% ширины */}
         {companyInfo && (
-          <div className="border-b border-slate-300 pb-8">
+          <>
             <div className="space-y-4">
               {/* Логотип + соцсети */}
               <div className="flex items-center justify-between gap-4">
@@ -143,9 +144,12 @@ const FooterBlock: React.FC<FooterBlockProps> = ({ columns, socialLinks, logo, c
                 <p>{companyInfo.location}</p>
               </div>
             </div>
-          </div>
+            {/* Striped divider — replaces the old slate-300 border-b
+                that separated the company-info block from copyright. */}
+            <StripeDivider className="h-2 mt-8" />
+          </>
         )}
-        
+
         {/* Copyright + legal links */}
         <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4 text-sm text-slate-500 pt-8">
           <div>© {currentYear} Optimajet Limited. All rights reserved.</div>
